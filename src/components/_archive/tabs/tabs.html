@@ -1,0 +1,33 @@
+<!-- Tabs Component Demo -->
+<div class="tabs-demo">
+  <h2>Tabs</h2>
+
+  <cob-tabs>
+    <div class="cob-tabs__nav">
+      <button class="cob-tabs__button" role="tab" aria-selected="true" aria-controls="tab-panel-1">
+        Tab 1
+      </button>
+      <button class="cob-tabs__button" role="tab" aria-selected="false" aria-controls="tab-panel-2">
+        Tab 2
+      </button>
+      <button class="cob-tabs__button" role="tab" aria-selected="false" aria-controls="tab-panel-3">
+        Tab 3
+      </button>
+    </div>
+
+    <div id="tab-panel-1" class="cob-tabs__content" role="tabpanel" aria-hidden="false">
+      <h3>Tab 1 Content</h3>
+      <p>This is the content for the first tab.</p>
+    </div>
+
+    <div id="tab-panel-2" class="cob-tabs__content" role="tabpanel" aria-hidden="true">
+      <h3>Tab 2 Content</h3>
+      <p>This is the content for the second tab.</p>
+    </div>
+
+    <div id="tab-panel-3" class="cob-tabs__content" role="tabpanel" aria-hidden="true">
+      <h3>Tab 3 Content</h3>
+      <p>This is the content for the third tab.</p>
+    </div>
+  </cob-tabs>
+</div>

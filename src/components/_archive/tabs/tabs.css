@@ -1,0 +1,57 @@
+/* Tabs Component */
+.cob-tabs {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: var(--spacing-lg);
+}
+
+.cob-tabs--nav {
+  border-bottom: 2px solid var(--color-border);
+  display: flex;
+  gap: var(--spacing-lg);
+  overflow-x: auto;
+  −webkit-overflow-scrolling: touch;
+}
+
+.cob-tabs--button {
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: -2px;
+  padding: var(--spacing-md) 0;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.cob-tabs--button:hover {
+  color: var(--color-text);
+}
+
+.cob-tabs--button[aria-selected='true'] {
+  border-bottom-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.cob-tabs--content {
+  display: none;
+  padding: var(--spacing-lg) 0;
+}
+
+.cob-tabs--content[aria-hidden='false'] {
+  display: block;
+}
+
+@media (width <= 640px) {
+  .cob-tabs--nav {
+    gap: var(--spacing-md);
+  }
+
+  .cob-tabs--button {
+    font-size: var(--font-size-sm);
+    padding: var(--spacing-sm) 0;
+  }
+}

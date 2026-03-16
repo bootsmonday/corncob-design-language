@@ -1,0 +1,77 @@
+/* Alert Component */
+.cob-alert {
+  align-items: flex-start;
+  border-left: 4px solid;
+  border-radius: var(--radius-md);
+  display: flex;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+  padding: var(--spacing-lg);
+}
+
+.cob-alert--icon {
+  flex-shrink: 0;
+  font-size: var(--font-size-lg);
+  margin-top: 2px;
+}
+
+.cob-alert--content {
+  color: var(--color-text);
+  flex: 1;
+}
+
+.cob-alert--title {
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--spacing-sm);
+}
+
+.cob-alert--close {
+  align-items: center;
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  display: flex;
+  flex-shrink: 0;
+  font-size: var(--font-size-lg);
+  height: 28px;
+  justify-content: center;
+  padding: 0;
+  width: 28px;
+}
+
+.cob-alert--close:hover {
+  opacity: 0.8;
+}
+
+/* Success Variant */
+.cob-alert--success {
+  background-color: var(--color-success-light);
+  border-color: var(--color-success);
+  color: var(--color-success-dark);
+}
+
+/* Info Variant */
+.cob-alert--info {
+  background-color: var(--color-info-light);
+  border-color: var(--color-info);
+  color: var(--color-info-dark);
+}
+
+/* Warning Variant */
+.cob-alert--warning {
+  background-color: var(--color-warning-light);
+  border-color: var(--color-warning);
+  color: var(--color-warning-dark);
+}
+
+/* Danger Variant */
+.cob-alert--danger {
+  background-color: var(--color-danger-light);
+  border-color: var(--color-danger);
+  color: var(--color-danger-dark);
+}
+
+.cob-alert--hidden {
+  display: none;
+}

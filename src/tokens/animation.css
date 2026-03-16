@@ -1,0 +1,6 @@
+:root {
+  --cc-transition--easing: cubic-bezier(0.22, 1, 0.36, 1);
+  --cc-transition--time: 250ms;
+  --cc-transition--time--fast: 83ms;
+  --cc-transition--time--slow: 333ms;
+}

@@ -1,0 +1,70 @@
+/* Card Component */
+.cob-card {
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: var(--spacing-lg);
+  overflow: hidden;
+  transition: all var(--transition-base);
+}
+
+.cob-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.cob-card--header {
+  background-color: var(--color-background-secondary);
+  border-bottom: 1px solid var(--color-border);
+  padding: var(--spacing-lg);
+}
+
+.cob-card--header h2,
+.cob-card--header h3 {
+  color: var(--color-text);
+  font-size: var(--font-size-xl);
+  margin: 0;
+}
+
+.cob-card--media {
+  display: block;
+  height: 200px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.cob-card--body {
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-relaxed);
+  padding: var(--spacing-lg);
+}
+
+.cob-card--body p {
+  margin-bottom: var(--spacing-md);
+}
+
+.cob-card--body p:last-child {
+  margin-bottom: 0;
+}
+
+.cob-card--footer {
+  background-color: var(--color-background-secondary);
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  gap: var(--spacing-md);
+  padding: var(--spacing-lg);
+}
+
+.cob-card--footer button {
+  flex: 1;
+}
+
+.cob-card--flat {
+  border: none;
+  box-shadow: none;
+}
+
+.cob-card--elevated {
+  box-shadow: var(--shadow-lg);
+}

@@ -1,0 +1,55 @@
+/* Radio Component */
+.cob-radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+.cob-radio {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  gap: var(--spacing-md);
+  user-select: none;
+}
+
+.cob-radio input[type='radio'] {
+  appearance: none;
+  background-color: var(--color-background);
+  border: 2px solid var(--color-border);
+  border-radius: 50%;
+  cursor: pointer;
+  height: 20px;
+  min-width: 20px;
+  transition: all var(--transition-fast);
+  width: 20px;
+}
+
+.cob-radio input[type='radio']:hover {
+  border-color: var(--color-primary);
+}
+
+.cob-radio input[type='radio']:checked {
+  border-color: var(--color-primary);
+  box-shadow:
+    inset 0 0 0 4px var(--color-background),
+    inset 0 0 0 6px var(--color-primary);
+}
+
+.cob-radio input[type='radio']:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.cob-radio input[type='radio']:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.cob-radio label {
+  color: var(--color-text);
+  cursor: pointer;
+  font-size: var(--font-size-base);
+  margin: 0;
+}

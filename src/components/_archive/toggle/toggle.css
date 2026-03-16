@@ -1,0 +1,58 @@
+/* Toggle/Switch Component */
+.cob-toggle {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+  user-select: none;
+}
+
+.cob-toggle input[type='checkbox'] {
+  appearance: none;
+  background-color: var(--cc-gray-500300);
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  height: 28px;
+  position: relative;
+  transition: background-color var(--transition-fast);
+  width: 48px;
+}
+
+.cob-toggle input[type='checkbox']::after {
+  background-color: var(--color-white);
+  border-radius: 50%;
+  content: '';
+  height: 24px;
+  left: 2px;
+  position: absolute;
+  top: 2px;
+  transition: left var(--transition-fast);
+  width: 24px;
+}
+
+.cob-toggle input[type='checkbox']:checked {
+  background-color: var(--color-primary);
+}
+
+.cob-toggle input[type='checkbox']:checked::after {
+  left: 22px;
+}
+
+.cob-toggle input[type='checkbox']:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.cob-toggle input[type='checkbox']:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.cob-toggle label {
+  color: var(--color-text);
+  cursor: pointer;
+  font-size: var(--font-size-base);
+  margin: 0;
+}

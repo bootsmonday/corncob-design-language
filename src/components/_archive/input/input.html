@@ -1,0 +1,47 @@
+<!-- Input Component Demo -->
+<div class="input-demo">
+  <h2>Input</h2>
+
+  <h3>Basic Input</h3>
+  <div class="cob-input-group">
+    <label class="cob-label" for="email">Email</label>
+    <div class="cob-input">
+      <input id="email" type="email" placeholder="Enter your email" />
+    </div>
+    <div class="cob-help-text">We'll never share your email</div>
+  </div>
+
+  <h3>With Icon</h3>
+  <div class="cob-input-group">
+    <label class="cob-label" for="search">Search</label>
+    <div class="cob-input cob-input--icon-prefix">
+      <span class="cob-input__icon">🔍</span>
+      <input id="search" type="text" placeholder="Search..." />
+    </div>
+  </div>
+
+  <h3>Required Field</h3>
+  <div class="cob-input-group">
+    <label class="cob-label cob-label--required" for="name">Full Name</label>
+    <div class="cob-input">
+      <input id="name" type="text" placeholder="John Doe" required />
+    </div>
+  </div>
+
+  <h3>Disabled</h3>
+  <div class="cob-input-group">
+    <label class="cob-label">Disabled Input</label>
+    <div class="cob-input cob-input--disabled">
+      <input type="text" placeholder="Disabled" disabled />
+    </div>
+  </div>
+
+  <h3>Error State</h3>
+  <div class="cob-input-group">
+    <label class="cob-label">Email Address</label>
+    <div class="cob-input cob-input--error">
+      <input type="email" placeholder="invalid@example" />
+    </div>
+    <div class="cob-error">Please enter a valid email address</div>
+  </div>
+</div>

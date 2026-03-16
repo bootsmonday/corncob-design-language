@@ -1,0 +1,61 @@
+/* Checkbox Component */
+.cob-checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+.cob-checkbox {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  gap: var(--spacing-md);
+  user-select: none;
+}
+
+.cob-checkbox input[type='checkbox'] {
+  appearance: none;
+  background-color: var(--color-background);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  height: 20px;
+  min-width: 20px;
+  transition: all var(--transition-fast);
+  width: 20px;
+}
+
+.cob-checkbox input[type='checkbox']:hover {
+  border-color: var(--color-primary);
+}
+
+.cob-checkbox input[type='checkbox']:checked {
+  background-color: var(--color-primary);
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="white"><path d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 11-1.06-1.06l7.25-7.25a.75.75 0 011.06 0z"/></svg>');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  border-color: var(--color-primary);
+}
+
+.cob-checkbox input[type='checkbox']:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.cob-checkbox input[type='checkbox']:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.cob-checkbox label {
+  color: var(--color-text);
+  cursor: pointer;
+  font-size: var(--font-size-base);
+  margin: 0;
+}
+
+.cob-checkbox--error input {
+  border-color: var(--color-danger);
+}

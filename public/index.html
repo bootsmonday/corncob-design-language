@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Corncob EDL - Component Gallery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --spacing-unit: 12px;
+        --font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: var(--font-family);
+        background-color: #f8f9fa;
+        color: #333;
+        padding: var(--spacing-unit);
+      }
+
+      main {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .header {
+        background: white;
+        padding: calc(var(--spacing-unit) * 3);
+        border-radius: 8px;
+        margin-bottom: calc(var(--spacing-unit) * 2);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .header h1 {
+        font-size: 2.25rem;
+        margin-bottom: var(--spacing-unit);
+      }
+
+      .header p {
+        font-size: 1.125rem;
+        color: #666;
+        margin-bottom: var(--spacing-unit);
+      }
+
+      .theme-toggle {
+        margin-top: calc(var(--spacing-unit) * 2);
+      }
+
+      .theme-toggle label {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-unit);
+        cursor: pointer;
+      }
+
+      .component-section {
+        background: white;
+        padding: calc(var(--spacing-unit) * 2);
+        border-radius: 8px;
+        margin-bottom: calc(var(--spacing-unit) * 2);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .component-section h2 {
+        font-size: 1.5rem;
+        padding-bottom: var(--spacing-unit);
+        border-bottom: 2px solid #e5e7eb;
+        margin-bottom: calc(var(--spacing-unit) * 2);
+      }
+
+      .component-demo {
+        padding: calc(var(--spacing-unit) * 1);
+        margin-bottom: calc(var(--spacing-unit) * 1);
+      }
+
+      .component-demo h3 {
+        font-size: 1.125rem;
+        margin-top: calc(var(--spacing-unit) * 1.5);
+        margin-bottom: var(--spacing-unit);
+        color: #666;
+      }
+
+      .footer {
+        text-align: center;
+        padding: calc(var(--spacing-unit) * 2);
+        color: #999;
+        font-size: 0.875rem;
+      }
+
+      @media (max-width: 768px) {
+        .header h1 {
+          font-size: 1.875rem;
+        }
+
+        .component-section {
+          padding: calc(var(--spacing-unit) * 1);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="header">
+        <h1>🌽 Corncob EDL</h1>
+        <p>Enterprise Design Language - A vanilla JavaScript design system</p>
+        <div class="theme-toggle">
+          <label> <input type="checkbox" id="theme-toggle" /> Dark Mode </label>
+        </div>
+      </div>
+
+      <!-- Buttons -->
+      <div class="component-section">
+        <div id="button-demo" class="component-demo"></div>
+      </div>
+
+      <!-- Input -->
+      <div class="component-section">
+        <div id="input-demo" class="component-demo"></div>
+      </div>
+
+      <!-- Textarea -->
+      <div class="component-section">
+        <div id="textarea-demo" class="component-demo"></div>
+      </div>
+
+      <!-- Select -->
+      <div class="component-section">
+        <div id="select-demo" class="component-demo"></div>
+      </div>
+
+      <!-- Checkbox -->
+      <div class="component-section">
+        <div id="checkbox-demo" class="component-demo"></div>
+      </div>
+
+      <!-- Radio -->
+      <div class="component-section">
+        <div id="radio-demo" class="component-demo"></div>
+      </div>
+
+      <!-- Toggle -->
+      <div class="component-section">
+        <div id="toggle-demo" class="component-demo"></div>
+      </div>
+
+      <!-- Card -->
+      <div class="component-section">
+        <div id="card-demo" class="component-demo"></div>
+      </div>
+
+      <!-- Modal -->
+      <div class="component-section">
+        <div id="modal-demo" class="component-demo"></div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="component-section">
+        <div id="tabs-demo" class="component-demo"></div>
+      </div>
+
+      <!-- Table -->
+      <div class="component-section">
+        <div id="table-demo" class="component-demo"></div>
+      </div>
+
+      <!-- Tooltip -->
+      <div class="component-section">
+        <div id="tooltip-demo" class="component-demo"></div>
+      </div>
+
+      <!-- Alert -->
+      <div class="component-section">
+        <div id="alert-demo" class="component-demo"></div>
+      </div>
+
+      <!-- Badge -->
+      <div class="component-section">
+        <div id="badge-demo" class="component-demo"></div>
+      </div>
+
+      <!-- Avatar -->
+      <div class="component-section">
+        <div id="avatar-demo" class="component-demo"></div>
+      </div>
+
+      <div class="footer">
+        <p>&copy; 2026 Corncob. MIT License.</p>
+      </div>
+    </main>
+
+    <script type="module">
+      // Import all components
+      import '../src/index.js';
+
+      // Dynamically load demo HTML
+      async function loadDemo(componentName, demoid) {
+        try {
+          const response = await fetch(`../src/components/${componentName}/${componentName}.html`);
+          const html = await response.text();
+          const container = document.getElementById(demoid);
+          if (container) {
+            container.innerHTML = html;
+          }
+        } catch (error) {
+          console.error(`Failed to load demo for ${componentName}:`, error);
+        }
+      }
+
+      // Load all demos
+      const components = [
+        'button',
+        'input',
+        'textarea',
+        'select',
+        'checkbox',
+        'radio',
+        'toggle',
+        'card',
+        'modal',
+        'tabs',
+        'table',
+        'tooltip',
+        'alert',
+        'badge',
+        'avatar',
+      ];
+
+      components.forEach((component) => {
+        loadDemo(component, `${component}-demo`);
+      });
+
+      // Theme toggle
+      const themeToggle = document.getElementById('theme-toggle');
+      const html = document.documentElement;
+
+      // Check for saved theme preference or default to light mode
+      const currentTheme = localStorage.getItem('theme') || 'light';
+      html.setAttribute('data-theme', currentTheme === 'dark' ? 'dark' : 'light');
+      themeToggle.checked = currentTheme === 'dark';
+
+      themeToggle.addEventListener('change', () => {
+        const newTheme = themeToggle.checked ? 'dark' : 'light';
+        html.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+      });
+    </script>
+  </body>
+</html>

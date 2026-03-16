@@ -1,0 +1,161 @@
+@import url('button-tokens.css');
+
+.corn-button,
+.corn-button--md {
+  align-items: center;
+  background-color: var(--cc-gray-100);
+  border: var(--cc-border--width) var(--cc-border--style) var(--cc-border--color);
+  border-radius: var(--cc-border--radius);
+  color: var(--cc-white);
+  cursor: pointer;
+  display: inline-flex;
+  font-size: var(--cc-size-2);
+  height: var(--cc-size-5);
+  justify-content: center;
+  line-height: 1;
+  outline: none;
+  padding: 0 var(--cc-size-0);
+
+  &:hover {
+    background-color: var(--cc-gray-90);
+  }
+
+  &:active {
+    background-color: var(--cc-black);
+  }
+
+  &:focus {
+    border-color: var(--cc-white);
+    box-shadow: 0 0 0 2px var(--cc-blue-60);
+  }
+
+  &:active:focus {
+    border-color: var(--cc-border--color);
+    box-shadow: none;
+  }
+
+  &[disabled] {
+    background-color: rgb(from var(--cc-gray-80) r g b / 5.4%);
+    border-color: rgb(from var(--cc-gray-80) r g b / 40.2%);
+    color: rgb(from var(--cc-gray-80) r g b / 40.2%);
+    cursor: not-allowed;
+  }
+
+  svg {
+    fill: currentcolor;
+    height: var(--cc-size-2);
+    width: var(--cc-size-2);
+  }
+
+  &.corn-button--icon {
+    border-radius: var(--cc-border--radius-round);
+    padding: 0;
+    width: var(--cc-size-5);
+  }
+}
+
+.corn-button--xs {
+  border-radius: var(--cc-border--radius--xs);
+  font-size: var(--cc-size--1);
+  height: var(--cc-size-2);
+
+  &.corn-button--icon {
+    width: var(--cc-size-2);
+
+    svg {
+      fill: currentcolor;
+      height: var(--cc-size-1);
+      width: var(--cc-size-1);
+    }
+  }
+}
+
+.corn-button--sm {
+  font-size: var(--cc-size-0);
+  height: var(--cc-size-4);
+  line-height: 1;
+  padding: 0 var(--cc-size-0);
+
+  &.corn-button--icon {
+    width: var(--cc-size-4);
+
+    svg {
+      fill: currentcolor;
+      height: var(--cc-size-1);
+      width: var(--cc-size-1);
+    }
+  }
+}
+
+.corn-button--lg {
+  font-size: var(--cc-size-3);
+  height: var(--cc-size-6);
+
+  &.corn-button--icon {
+    width: var(--cc-size-6);
+
+    svg {
+      fill: currentcolor;
+      height: var(--cc-size-3);
+      width: var(--cc-size-3);
+    }
+  }
+}
+
+.corn-button--xl {
+  font-size: var(--cc-size-3);
+  height: var(--cc-size-7);
+
+  &.corn-button--icon {
+    width: var(--cc-size-7);
+
+    svg {
+      fill: currentcolor;
+      height: var(--cc-size-3);
+      width: var(--cc-size-3);
+    }
+  }
+}
+
+.corn-button--secondary {
+  background-color: rgb(from var(--cc-gray-20) r g b / 40.2%);
+  color: var(--cc-gray-90);
+
+  &:hover {
+    background-color: rgb(from var(--cc-gray-80) r g b / 15.8%);
+    color: var(--cc-gray-100);
+  }
+
+  &:active {
+    background-color: rgb(from var(--cc-gray-80) r g b / 20.8%);
+  }
+}
+
+.corn-button--danger {
+  background-color: var(--cc-red-80);
+  border-color: var(--cc-red-100);
+  color: var(--cc-red-10);
+
+  &:hover {
+    background-color: var(--cc-red-90);
+    color: var(--cc-red-20);
+  }
+
+  &:active {
+    background-color: var(--cc-red-100);
+    color: var(--cc-red-10);
+  }
+
+  &:active:focus {
+    border-color: var(--cc-red-100);
+    box-shadow: none;
+  }
+
+  svg {
+    fill: currentcolor;
+  }
+}
+
+.corn-button--icon {
+  border-radius: var(--cc-border--radius-round);
+}

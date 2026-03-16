@@ -1,0 +1,109 @@
+/* Input Component */
+.cob-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-lg);
+}
+
+.cob-label {
+  color: var(--color-text);
+  display: block;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  margin-bottom: var(--spacing-sm);
+}
+
+.cob-label--required::after {
+  color: var(--color-danger);
+  content: ' *';
+}
+
+.cob-input {
+  align-items: center;
+  background-color: var(--color-background);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text);
+  display: flex;
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+  transition: all var(--transition-fast);
+}
+
+.cob-input:focus-within {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgb(0 123 255 / 10%);
+}
+
+.cob-input input {
+  background: transparent;
+  border: none;
+  color: inherit;
+  flex: 1;
+  font-size: inherit;
+  padding: 0;
+}
+
+.cob-input input:focus {
+  outline: none;
+}
+
+.cob-input input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.cob-input--icon-prefix {
+  gap: var(--spacing-md);
+}
+
+.cob-input--icon {
+  align-items: center;
+  color: var(--color-text-secondary);
+  display: flex;
+  font-size: var(--font-size-lg);
+  justify-content: center;
+}
+
+.cob-input:focus-within .cob-input--icon {
+  color: var(--color-primary);
+}
+
+.cob-error {
+  color: var(--color-danger);
+  font-size: var(--font-size-sm);
+  margin-top: var(--spacing-sm);
+}
+
+.cob-help-text {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  margin-top: var(--spacing-sm);
+}
+
+.cob-input--error {
+  border-color: var(--color-danger);
+}
+
+.cob-input--error:focus-within {
+  box-shadow: 0 0 0 3px rgb(220 53 69 / 10%);
+}
+
+.cob-input--disabled {
+  background-color: var(--cc-gray-50);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+[data-theme='dark'] .cob-input--disabled {
+  background-color: var(--cc-gray-80);
+}
+
+/* Responsive */
+@media (width <= 640px) {
+  .cob-input {
+    width: 100%;
+  }
+}

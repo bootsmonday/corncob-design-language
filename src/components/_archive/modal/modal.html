@@ -1,0 +1,42 @@
+<!-- Modal Component Demo -->
+<div class="modal-demo">
+  <h2>Modal/Dialog</h2>
+
+  <button
+    class="cob-button cob-button--primary"
+    onclick="document.querySelector('#demo-modal').open()"
+  >
+    Open Modal
+  </button>
+
+  <cob-modal id="demo-modal" role="dialog" aria-labelledby="modal-title">
+    <div class="cob-modal-backdrop">
+      <div class="cob-modal">
+        <div class="cob-modal__header">
+          <h2 id="modal-title">Modal Title</h2>
+          <button class="cob-modal__close" aria-label="Close">✕</button>
+        </div>
+        <div class="cob-modal__body">
+          <p>
+            This is a modal dialog. It captures focus and can be closed by clicking outside,
+            pressing Escape, or clicking the close button.
+          </p>
+        </div>
+        <div class="cob-modal__footer">
+          <button
+            class="cob-button cob-button--outline"
+            onclick="document.querySelector('#demo-modal').close()"
+          >
+            Cancel
+          </button>
+          <button
+            class="cob-button cob-button--primary"
+            onclick="document.querySelector('#demo-modal').close()"
+          >
+            Confirm
+          </button>
+        </div>
+      </div>
+    </div>
+  </cob-modal>
+</div>

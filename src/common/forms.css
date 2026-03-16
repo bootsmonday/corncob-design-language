@@ -1,0 +1,105 @@
+.corn-form--row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+fieldset.corn-form--item:has(input[disabled]) {
+  background-color: transparent !important;
+}
+
+.corn-form--item {
+  display: inline-flex;
+  flex-direction: column;
+  flex-grow: 1;
+
+  .corn-status {
+    margin-top: 0.25rem;
+  }
+
+  &:has(input[disabled]) {
+    background-color: rgb(from var(--cc-gray-80) r g b / 5.4%) !important;
+    border-color: rgb(from var(--cc-gray-80) r g b / 40.2%) !important;
+    box-shadow: none !important;
+    color: rgb(from var(--cc-gray-80) r g b / 40.2%) !important;
+    cursor: not-allowed !important;
+
+    &:hover {
+      background-color: rgb(from var(--cc-white) r g b / 87.2%);
+    }
+
+    input {
+      background-color: rgb(from var(--cc-gray-80) r g b / 5.4%) !important;
+      border-color: rgb(from var(--cc-gray-80) r g b / 40.2%) !important;
+      color: rgb(from var(--cc-gray-80) r g b / 40.2%) !important;
+      cursor: not-allowed !important;
+
+      &::after {
+        border-color: rgb(from var(--cc-gray-80) r g b / 40.2%) !important;
+      }
+    }
+
+    label {
+      color: rgb(from var(--cc-gray-80) r g b / 40.2%) !important;
+      cursor: not-allowed !important;
+    }
+
+    .corn-status {
+      color: rgb(from var(--cc-gray-80) r g b / 40.2%) !important;
+      cursor: not-allowed !important;
+    }
+  }
+}
+
+.corn-status {
+  align-items: center;
+  color: currentcolor;
+  display: inline-flex;
+  gap: 0.25rem;
+  text-shadow: var(--cc-shadow--shadow--text--reverse);
+  width: 100%;
+
+  .corn-icon {
+    color: currentcolor;
+    fill: currentcolor;
+    height: var(--cc-size-1);
+    margin-left: 0.25rem;
+    width: var(--cc-size-1);
+  }
+}
+
+.corn-status--success {
+  .corn-status {
+    color: var(--cc-green-60);
+  }
+
+  .corn-text-input {
+    label {
+      color: var(--cc-green-60);
+    }
+  }
+}
+
+.corn-status--warning {
+  .corn-status {
+    color: var(--cc-yellow-60);
+  }
+
+  .corn-text-input {
+    label {
+      color: var(--cc-yellow-60);
+    }
+  }
+}
+
+.corn-status--error {
+  .corn-status {
+    color: var(--cc-red-60);
+  }
+
+  .corn-text-input {
+    label {
+      color: var(--cc-red-60);
+    }
+  }
+}

@@ -16,6 +16,7 @@ export class CornExpandable extends HTMLElement {
     const shadow = this.attachShadow({ mode: 'open' });
     shadow.appendChild(template.content.cloneNode(true));
   }
+
   connectedCallback() {
     this._cacheElements();
     this._addEventListeners();
@@ -27,24 +28,6 @@ export class CornExpandable extends HTMLElement {
   attributeChangeCallback(name, oldValue, newValue) {
     console.log('attribute changed', name, oldValue, newValue);
   }
-  singleOpenCallback(mutationsList, observer) {
-    let i = 0;
-    for (const mutation of mutationsList) {
-      i++;
-
-      if (mutation.type === 'attributes') {
-        console.log(`${i} The "${mutation.attributeName}" attribute was changed.`);
-        console.log('mutation target', mutation.target, mutation.target.hasAttribute('open'));
-        if (mutation.target.hasAttribute('open') === false) {
-          mutation.target.classList.remove('corn-expandable--open');
-        }
-        console.log(`${i} The "${mutation.attributeName}" attribute was changed.`);
-        console.log(mutation.target.classList);
-        // Access the new value: mutation.target.getAttribute(mutation.attributeName)
-        // Access the old value if configured: mutation.oldValue
-      }
-    }
-  }
   connectedCallback() {
     this._cacheElements();
     this._addEventListeners();
@@ -54,25 +37,24 @@ export class CornExpandable extends HTMLElement {
     this.details = this.shadowRoot.querySelector('slot[name="details"]').assignedElements()[0];
     this.summary = this.details.querySelector('summary');
     this.content = this.details.querySelector('.corn-expandable--content');
+    if (this.details.name) {
+      this.detailCollection = this.parentNode.querySelectorAll(`[name="${this.details.name}"]`);
+    } else {
+      this.detailCollection = null;
+    }
   }
   _addAccessiblity() {}
   _addEventListeners() {
-    if (this.details.hasAttribute('name')) {
-      const observer = new MutationObserver((mutationsList, observer) =>
-        this.singleOpenCallback(mutationsList, observer)
-      );
-      observer.observe(this.details, {
-        attributes: true,
-        attributeFilter: ['open'],
-      });
-    }
-    this.summary.addEventListener('click', (evt) => this._toggle(evt));
-    this.content.addEventListener('transitionend', (evt) => {
-      if (!this.isOpen) {
-        this.details.removeAttribute('open');
+    console.log('adding event listeners');
+    this.content.addEventListener('transitioncancel', (evt) => {
+      if (evt.propertyName !== 'grid-template-rows') return;
+      if (this.details.open && !this.details.classList.contains('corn-expandable--open')) {
+        this.details.open = false;
+      } else if (!this.details.open && this.details.classList.contains('corn-expandable--open')) {
         this.details.classList.remove('corn-expandable--open');
       }
     });
+    this.summary.addEventListener('click', (evt) => this._toggle(evt));
   }
   _removeEventListeners() {
     // this.parent.removeEventListener('mouseenter', this._showTooltip);
@@ -82,25 +64,58 @@ export class CornExpandable extends HTMLElement {
     // this.parent.removeEventListener('focusout', this._hideTooltip);
   }
   _toggle(evt) {
-    console.log('toggling');
     evt.preventDefault();
 
-    return;
-    // if (this.details.hasAttribute('open')) {
-    //   this.details.classList.remove('corn-expandable--open');
-    //   this.isOpen = false;
-    // } else {
-    //   this.details.setAttribute('open', '');
-    //   window.requestAnimationFrame(() => {
-    //     this.details.classList.add('corn-expandable--open');
-    //   });
-    //   this.isOpen = true;
-    // }
-    // this.clicked = true;
+    if (this.detailCollection?.length > 0) {
+      let closingDetail = null;
+      this.detailCollection.forEach((detail) => {
+        if (detail === this.details) return;
+        if (detail.open) {
+          this._close(detail, evt);
+          closingDetail = detail;
+        }
+      });
+      if (!closingDetail) {
+        this.details.open ? this._close(this.details) : this._open(this.details);
+      }
+      return;
+    }
+    if (this.details.open) {
+      this._close(this.details);
+    } else {
+      this._open(this.details);
+    }
   }
-  _positionContent() {}
-  _open() {}
-  _close() {}
+  _open(details) {
+    details.open = true;
+    window.requestAnimationFrame(() => {
+      details.classList.add('corn-expandable--open');
+    });
+    details.querySelector('.corn-expandable--content').addEventListener(
+      'transitionend',
+      (evt) => {
+        if (evt.propertyName !== 'grid-template-rows') return;
+      },
+      { once: true }
+    );
+  }
+  _close(details, nextEvt) {
+    details.classList.remove('corn-expandable--open');
+    this.isAnimating = true;
+    details.querySelector('.corn-expandable--content').addEventListener(
+      'transitionend',
+      (evt) => {
+        if (evt.propertyName !== 'grid-template-rows') return;
+
+        details.open = false;
+        this.isAnimating = false;
+        if (nextEvt) {
+          this._toggle(nextEvt);
+        }
+      },
+      { once: true }
+    );
+  }
   disconnectedCallback() {}
 }
 customElements.define('corn-expandable', CornExpandable);

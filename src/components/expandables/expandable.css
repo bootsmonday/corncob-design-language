@@ -1,10 +1,5 @@
 corn-expandable {
   display: flex;
-  overflow: hidden;
-
-  &:has(.corn-expandable--content--open) {
-    overflow: visible;
-  }
 
   &.corn-panel-menu {
     summary > .corn-icon {
@@ -17,10 +12,14 @@ corn-expandable {
     flex-basis: 100%;
     flex-direction: column;
     margin: 0;
+    overflow: hidden;
+    padding: 0.5rem;
   }
 
-  details[open] {
+  details {
     &.corn-expandable--open {
+      overflow: visible;
+
       > summary .corn-icon {
         transform: rotate(90deg);
         transform-origin: center;
@@ -47,7 +46,6 @@ corn-expandable {
     font-weight: 500;
     gap: 0.25rem;
     outline: none;
-    padding: 0.5rem;
 
     &:focus-visible {
       .corn-icon {
@@ -88,9 +86,5 @@ corn-expandable {
   overflow: hidden;
   transition:
     grid-template-rows var(--cc-transition--easing) var(--cc-transition--time),
-    opacity var(--cc-transition--easing) var(--cc-transition--time--slow);
-
-  /* transition:
-    grid-template-rows var(--cc-transition--easing) 2000ms,
-    opacity var(--cc-transition--easing) 2000ms; */
+    opacity var(--cc-transition--easing) var(--cc-transition--time);
 }

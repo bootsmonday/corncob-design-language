@@ -17,10 +17,6 @@ export class CornExpandable extends HTMLElement {
     shadow.appendChild(template.content.cloneNode(true));
   }
 
-  connectedCallback() {
-    this._cacheElements();
-    this._addEventListeners();
-  }
   static get observedAttributes() {
     return ['name'];
   }
@@ -31,7 +27,6 @@ export class CornExpandable extends HTMLElement {
   connectedCallback() {
     this._cacheElements();
     this._addEventListeners();
-    this._addAccessiblity();
   }
   _cacheElements() {
     this.details = this.shadowRoot.querySelector('slot[name="details"]').assignedElements()[0];
@@ -43,9 +38,7 @@ export class CornExpandable extends HTMLElement {
       this.detailCollection = null;
     }
   }
-  _addAccessiblity() {}
   _addEventListeners() {
-    console.log('adding event listeners');
     this.content.addEventListener('transitioncancel', (evt) => {
       if (evt.propertyName !== 'grid-template-rows') return;
       if (this.details.open && !this.details.classList.contains('corn-expandable--open')) {

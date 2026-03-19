@@ -1,51 +1,24 @@
+/**
+ * CornButtonBar is a custom web component that represents a button bar with an overflow menu.
+ * It is designed to handle situations where there are more buttons than can fit in a single row, allowing the user to access additional buttons through an overflow menu.
+ * The component uses a ResizeObserver to monitor changes in its size and dynamically move overflowing buttons into the overflow menu as needed.
+ * It also includes lifecycle methods to manage event listeners and ensure proper cleanup when the component is removed from the DOM.
+ */
+
 export class CornButtonBar extends HTMLElement {
   /**
-   * Constructor is called when the element is created.
-   * Note:
+   * connectedCallback is a lifecycle method that is called when the element is added to the DOM.
+   * In this method, we call _cacheElements to store references to important child elements and _addEventListeners to set up any necessary event listeners for the component.
+   * This ensures that the component is fully initialized and ready to respond to user interactions as soon as it is connected to the DOM.
    */
-  constructor() {
-    super();
-    console.log('constructor call back');
-  }
-  detectFlexWrap = (containerElement) => {
-    const wrappedItems = [];
-    const items = Array.from(containerElement.children); // Get flex items
-
-    if (items.length === 0) return wrappedItems;
-
-    let prevItemTop = items[0].getBoundingClientRect().top;
-
-    for (let i = 1; i < items.length; i++) {
-      const currentItemTop = items[i].getBoundingClientRect().top;
-      if (currentItemTop > prevItemTop) {
-        wrappedItems.push(items[i]); // This item has wrapped
-      }
-      prevItemTop = currentItemTop;
-    }
-    return wrappedItems;
-  };
-  /**
-   * observedAttributes is a static getter that returns an array of attribute names to monitor for changes.
-   * When any of these attributes change, the attributeChangedCallback method is called.
-   */
-  static get observedAttributes() {
-    return ['position'];
-  }
-
-  /**
-   * attributeChangedCallback is called whenever one of the observed attributes changes.
-   * It receives the name of the attribute, its old value, and its new value as arguments.
-   * In this case, when the 'position' attribute changes, it updates the internal _position property and adds a corresponding class to the element.
-   * The class added is in the format 'corn-button-bar--' followed by the new position value (e.g., 'corn-button-bar--top').
-   * This allows the element to dynamically update its styling based on the position attribute.
-   */
-  attributeChangedCallback(name, oldValue, newValue) {}
-
   connectedCallback() {
     this._cacheElements();
     this._addEventListeners();
   }
 
+  /**
+   * _addEventListeners is a method that sets up event listeners for the component. In this case, it uses a ResizeObserver to monitor changes in the size of the button bar. When the size changes, it calls the _moveOverflowingItems method to adjust which items are visible in the button bar and which are moved to an overflow menu (if applicable). This allows the button bar to dynamically adapt to different screen sizes and ensure that all buttons remain accessible even when there isn't enough space to display them all in a single row.
+   */
   _addEventListeners() {
     // Using ResizeObserver to detect changes in the size of the button bar and adjust the overflowing items accordingly
     // Use window.requestAnimationFrame to ensure that the DOM updates are processed before calculating the overflowing items, which can help prevent layout thrashing and improve performance.
@@ -56,12 +29,20 @@ export class CornButtonBar extends HTMLElement {
   }
 
   /**
-   * _removeEventListeners is a method that removes the event listeners that were added in the _addEventListeners method. It removes the click event listener from the trigger element and the keydown event listener from the popover itself. It also removes the clickListener from the document to prevent it from listening for clicks when the popover is closed. This cleanup is important to avoid memory leaks and unintended behavior when the component is removed from the DOM or when it is no longer needed.
+   * _removeEventListeners is a method that removes the event listeners that were added in the _addEventListeners method.
+   * It removes the click event listener from the trigger element and the keydown event listener from the popover itself.
+   * It also removes the clickListener from the document to prevent it from listening for clicks when the popover is closed.
+   * This cleanup is important to avoid memory leaks and unintended behavior when the component is removed from the DOM or when it is no longer needed.
    */
   _removeEventListeners() {
     this.resizeObserver.unobserve(this);
   }
 
+  /**
+   * _cacheElements is a method that caches references to important child elements within the button bar.
+   * In this case, it looks for an element with the class 'corn-button-bar--more' which is likely a button that triggers an overflow menu, and then it looks for a 'corn-popover' element within that button which would contain the overflow items.
+   * Caching these elements allows the component to efficiently access and manipulate them later when handling events or updating the UI, without needing to repeatedly query the DOM.
+   */
   _cacheElements() {
     console.log('cache elements');
     this.moreButton = this.querySelector('.corn-button-bar--more');
@@ -70,6 +51,11 @@ export class CornButtonBar extends HTMLElement {
     //this._moveOverflowingItems();
   }
 
+  /**
+   * _findOverflowingItems is a method that identifies which items in the button bar are overflowing and need to be moved to the overflow menu.
+   * It calculates the position of each item and determines if it has wrapped to a new line, indicating that it is overflowing.
+   * @returns {Array} An array of overflowing items that need to be moved to the overflow menu.
+   */
   _findOverflowingItems() {
     console.log('testing overflow items');
     const overflowingItems = Array.from(this.moreItems.children);
@@ -89,6 +75,12 @@ export class CornButtonBar extends HTMLElement {
 
     return overflowingItems;
   }
+
+  /**
+   * _moveOverflowingItems is a method that moves the identified overflowing items from the main button bar into the overflow menu (moreItems).
+   * It first calls _findOverflowingItems to get the list of items that are overflowing, and then it appends each of those items to the moreItems container.
+   * This allows the button bar to maintain a clean layout while still providing access to all buttons through the overflow menu when there isn't enough space to display them all in a single row.
+   */
   _moveOverflowingItems() {
     this.overflowingItems = this._findOverflowingItems();
     this.overflowingItems.forEach((item) => {

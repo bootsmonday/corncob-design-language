@@ -7,27 +7,55 @@ template.innerHTML = `
 `;
 
 export class CornExpandable extends HTMLElement {
+  /**
+   * Constructor is called when the element is created.
+   * Note:
+   * 1. Always call super() first in the constructor of a subclass to ensure that the parent class is properly initialized before accessing 'this'.
+   * 2. Create a shadow root using this.attachShadow({ mode: 'open' }) to encapsulate the component's DOM and styles, preventing them from affecting the rest of the document and vice versa.
+   * 3. Append the template content to the shadow root to render the component's structure defined in the template.
+   * This setup allows for better modularity and reusability of the component while maintaining a clean separation of concerns.
+   */
   constructor() {
-    // console.log('constructed');
     super(); // 1. Always call super first
     this.isOpen = false;
-    this.clicked = false;
     // 2. Create the shadow root
     const shadow = this.attachShadow({ mode: 'open' });
     shadow.appendChild(template.content.cloneNode(true));
   }
 
+  /**
+   * Returns an array of attribute names to be observed for changes.
+   * When any of these attributes change, the attributeChangedCallback is invoked.
+   */
   static get observedAttributes() {
     return ['name'];
   }
 
+  /**
+   * Called when one of the observed attributes is added, removed, or changed.
+   * TODO: Implement logic to handle changes to the 'name' attribute, such as updating internal state or modifying the component's appearance based on the new value.
+   * @param {string} name - The name of the attribute that changed.
+   * @param {string} oldValue - The previous value of the attribute.
+   * @param {string} newValue - The new value of the attribute.
+   */
   attributeChangeCallback(name, oldValue, newValue) {
     console.log('attribute changed', name, oldValue, newValue);
   }
+
+  /**
+   * Called when the element is added to the DOM. This is a good place to perform setup tasks, such as caching references to child elements, adding event listeners, or initializing state.
+   * In this implementation, it calls the _cacheElements method to store references to important child elements and the _addEventListeners method to set up event listeners for user interactions.
+   * This method is essential for ensuring that the component is fully functional and interactive once it is part of the document.
+   */
   connectedCallback() {
     this._cacheElements();
     this._addEventListeners();
   }
+
+  /**
+   * _cacheElements is a method that retrieves and stores references to important child elements within the component. It uses the shadow DOM's querySelector to find elements based on their slot names and class names. This
+   * method is essential for ensuring that the component can efficiently access and manipulate its internal elements without repeatedly querying the DOM, which can improve performance and maintainability.
+   */
   _cacheElements() {
     this.details = this.shadowRoot.querySelector('slot[name="details"]').assignedElements()[0];
     this.summary = this.details.querySelector('summary');
@@ -38,25 +66,49 @@ export class CornExpandable extends HTMLElement {
       this.detailCollection = null;
     }
   }
+
+  /**
+   * _addEventListeners is a method that sets up event listeners for user interactions with the component.
+   * In this case, it listens for the 'transitioncancel' event on the content element to handle cases where the transition is interrupted, ensuring that the component's state remains consistent.
+   * It also listens for 'click' events on the summary element to toggle the open/closed state of the details element.
+   * This method is crucial for making the component interactive and responsive to user actions, allowing it to function as an expandable section in the UI.
+   */
   _addEventListeners() {
-    this.content.addEventListener('transitioncancel', (evt) => {
-      if (evt.propertyName !== 'grid-template-rows') return;
-      if (this.details.open && !this.details.classList.contains('corn-expandable--open')) {
-        this.details.open = false;
-      } else if (!this.details.open && this.details.classList.contains('corn-expandable--open')) {
-        this.details.classList.remove('corn-expandable--open');
-      }
-    });
-    this.summary.addEventListener('click', (evt) => this._toggle(evt));
+    this.content.addEventListener('transitioncancel', this._cancelTransition);
+    this.summary.addEventListener('click', this._toggle);
   }
+
+  /**
+   * _cancelTransition is an event handler that is called when a CSS transition on the content element is canceled.
+   * It checks the propertyName of the event to ensure that it only responds to transitions related to 'grid-template-rows', which is the property being animated for the expand/collapse effect.
+   * If the details element is open but does not have the 'corn-expandable--open' class, it sets open to false, effectively closing it. Conversely, if the details element is closed but has the 'corn-expandable--open' class, it removes that class. This method ensures that the component's state remains consistent even if a transition is interrupted, preventing visual glitches and maintaining a smooth user experience.
+   */
+  _cancelTransition = (evt) => {
+    if (evt.propertyName !== 'grid-template-rows') return;
+    if (this.details.open && !this.details.classList.contains('corn-expandable--open')) {
+      this.details.open = false;
+    } else if (!this.details.open && this.details.classList.contains('corn-expandable--open')) {
+      this.details.classList.remove('corn-expandable--open');
+    }
+  };
+
+  /**
+   * _removeEventListeners is a method that removes the event listeners that were added in the _addEventListeners method.
+   * It is important to remove event listeners when they are no longer needed, such as when the component is disconnected from the DOM, to prevent memory leaks and unintended behavior.
+   * In this implementation, it removes the 'transitioncancel' event listener from the content element and the 'click' event listener from the summary element, ensuring that the component does not continue to respond to events after it has been removed from the document.
+   */
   _removeEventListeners() {
-    // this.parent.removeEventListener('mouseenter', this._showTooltip);
-    // this.parent.removeEventListener('mouseleave', this._hideTooltip);
-    // // Focus listeners (handles tab navigation)
-    // this.parent.removeEventListener('focusin', this._showTooltip);
-    // this.parent.removeEventListener('focusout', this._hideTooltip);
+    this.content.removeEventListener('transitioncancel', this._cancelTransition);
+    this.summary.removeEventListener('click', this._toggle);
   }
-  _toggle(evt) {
+
+  /**
+   * _toggle is an event handler that toggles the open/closed state of the details element.
+   * It is called when the summary element is clicked.
+   * @param {Event} evt - The event object representing the click event.
+   * @returns {void}
+   */
+  _toggle = (evt) => {
     evt.preventDefault();
 
     if (this.detailCollection?.length > 0) {
@@ -78,7 +130,12 @@ export class CornExpandable extends HTMLElement {
     } else {
       this._open(this.details);
     }
-  }
+  };
+
+  /**
+   * _open is a method that opens the details element by setting its open property to true and adding the 'corn-expandable--open' class.
+   * @param {HTMLDetailsElement} details - The details element to be opened.
+   */
   _open(details) {
     details.open = true;
     window.requestAnimationFrame(() => {
@@ -92,6 +149,13 @@ export class CornExpandable extends HTMLElement {
       { once: true }
     );
   }
+
+  /**
+   * _close is a method that closes the details element by removing the 'corn-expandable--open' class and setting its open property to false.
+   * @param {HTMLDetailsElement} details - The details element to be closed.
+   * @param {Event} [nextEvt] - An optional event object representing the next event to be processed after closing. This allows for chaining of open/close actions if multiple details elements are being toggled in sequence.
+   * This method also listens for the 'transitionend' event on the content element to ensure that the open property is only set to false after the closing transition has completed, providing a smooth user experience.
+   */
   _close(details, nextEvt) {
     details.classList.remove('corn-expandable--open');
     this.isAnimating = true;
@@ -109,6 +173,15 @@ export class CornExpandable extends HTMLElement {
       { once: true }
     );
   }
-  disconnectedCallback() {}
+
+  /**
+   * disconnectedCallback is called when the element is removed from the DOM. This is a good place to perform cleanup tasks, such as removing event listeners or canceling any ongoing operations that are no longer needed.
+   * In this implementation, it calls the _removeEventListeners method to clean up any event listeners that were added when the element was connected. This is important to prevent memory leaks and ensure that the component does not continue to respond to events after it has been removed from the DOM.
+   * By removing event listeners in the disconnectedCallback, we ensure that the component is properly cleaned up and does not cause unintended side effects in the application after it has been removed.
+   * This is a crucial part of managing the lifecycle of custom elements and ensuring that they behave correctly in dynamic applications where elements may be added and removed frequently.
+   */
+  disconnectedCallback() {
+    this._removeEventListeners();
+  }
 }
 customElements.define('corn-expandable', CornExpandable);

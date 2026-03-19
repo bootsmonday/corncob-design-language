@@ -10,7 +10,7 @@
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap"
       rel="stylesheet"
     />
-    <script type="module">
+    <script type="module" blocking="render">
       // Import all components
       import '/src/index.js';
     </script>
@@ -18,14 +18,7 @@
   </head>
   <body>
     <main>
-      <div class="header">
-        <h1>
-          <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" class="corncob-logo">
-            <use href="../public/corn-cob-dl.svg"></use>
-          </svg>
-          Corncob Design Language
-        </h1>
-      </div>
+      <include src="./src/stickersheet-header.html"></include>
       <div class="stickersheet">
         <include
           src="./src/stickersheet-controls.html"

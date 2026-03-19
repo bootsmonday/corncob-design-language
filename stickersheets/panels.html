@@ -10,21 +10,27 @@
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap"
       rel="stylesheet"
     />
-    <script type="module">
+    <link rel="stylesheet" href="./src/stickersheet.css" />
+    <style>
+      body {
+        display: none;
+      }
+    </style>
+    <script type="module" blocking="render">
       // Import all components
       import '/src/index.js';
-
+      document.body.style.display = 'block';
     </script>
   </head>
   <body>
-
     <main>
-      <div class="header">
-        <h1>🌽 Corncob EDL</h1>
-        <p>Enterprise Design Language - A vanilla JavaScript design system</p>
-      </div>
+      <include src="./src/stickersheet-header.html"></include>
       <div class="stickersheet">
-        <include src="../src/components/panels/panel.html" locals='{"title": "Welcome Home", "theme": "dark"}'></include>
+        <include
+          src="../src/components/panels/panel.html"
+          locals='{"title": "Welcome Home", "theme": "dark"}'
+        ></include>
       </div>
+    </main>
   </body>
 </html>

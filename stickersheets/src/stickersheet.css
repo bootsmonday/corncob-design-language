@@ -5,6 +5,7 @@ body {
 
 .header {
   h1 {
+    align-items: center;
     display: flex;
     gap: 0.5rem;
     margin-top: 1rem;
@@ -16,4 +17,5 @@ body {
   border-radius: 50%;
   height: 3rem;
   padding: 0.25rem;
+  width: 3rem;
 }

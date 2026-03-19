@@ -176,9 +176,11 @@ export class CornPopover extends HTMLElement {
     let scrollRect = this.scrollEl.getBoundingClientRect().toJSON();
     // If the scroll parent is the body, we need to adjust the bottom value to account for the viewport height
     if (this.scrollEl === document.body) {
-      scrollRect.bottom =
-        scrollRect.bottom <= window.innerHeight ? scrollRect.bottom : window.innerHeight;
+      if (scrollRect.bottom < window.innerHeight) {
+        scrollRect.bottom = window.innerHeight;
+      }
     }
+
     let popOverRect = this.getBoundingClientRect();
 
     // Calculate overlap

@@ -20,6 +20,7 @@ import './components/popovers/popover.css';
 import './components/checkboxes/checkbox.css';
 import './components/radio-buttons/radio-button.css';
 import './components/expandables/expandable.css';
+import './components/button-bars/button-bar.css';
 // Import Base Styles
 import './common/reset.css';
 import './common/dark.css';
@@ -60,7 +61,7 @@ import './components/expandables/expandable.js';
 // import './components/_archive/avatar/avatar.js';
 
 // // Re-export all components for package consumers
-export { CornTooltip, CornExpandable, CornPopover } from './components/index.js';
+export { CornTooltip, CornExpandable, CornPopover, CornButtonBar } from './components/index.js';
 // export {
 //   CobButton,
 //   CobInput,

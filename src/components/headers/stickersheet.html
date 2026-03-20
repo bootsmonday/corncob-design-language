@@ -1,0 +1,40 @@
+<div class="header-demo">
+  <header class="corn-header">
+    <div class="corn-company">
+      <div class="corn-company--logo">
+        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <use href="/corn-cob-dl.svg"></use>
+        </svg>
+      </div>
+      <div class="corn-company--name">Corncob</div>
+    </div>
+    <div class="corn-header--title">Title Page</div>
+    <nav class="corn-header--nav">
+      <corn-button-bar class="corn-button-bar">
+        <a href="#">Link 1</a>
+        <a href="#">Link 2</a>
+        <a href="#">Link 3</a>
+        <a href="#">Link 4</a>
+        <a href="#">Link 5</a>
+        <a href="#">Link 6</a>
+        <a href="#">Link 7</a>
+        <a href="#">Link 8</a>
+        <a href="#">Link 9</a>
+        <div class="corn-popover--anchor corn-button-bar--more">
+          <button class="corn-button corn-button--xs corn-pop" aria-controls="button-bar-popover">
+            More
+          </button>
+          <corn-popover
+            position="bottom"
+            id="button-bar-popover"
+            class="corn-popover"
+          ></corn-popover>
+        </div>
+      </corn-button-bar>
+    </nav>
+    <div class="corn-header--actions">
+      <button class="corn-button corn-button--xs">Action 1</button>
+      <button class="corn-button corn-button--xs">Action 2</button>
+    </div>
+  </header>
+</div>

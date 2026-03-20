@@ -1,0 +1,48 @@
+.corn-header {
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+}
+
+.corn-company {
+  align-items: center;
+  display: flex;
+  flex-grow: 0;
+  font-size: var(--cc-size-3);
+  font-weight: 500;
+  gap: 0.25rem;
+}
+
+.corn-company--logo {
+  align-items: baseline;
+  display: flex;
+}
+
+.corn-header--nav {
+  gap: 1rem;
+  width: 100%;
+
+  .corn-button-bar {
+    flex-grow: 1;
+  }
+}
+
+.corn-header--title {
+  font-size: var(--cc-size-2);
+  font-weight: 500;
+  padding-right: 1rem;
+  white-space: nowrap;
+}
+
+.corn-header--actions {
+  align-items: center;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+.corn-company--logo img,
+.corn-company--logo svg {
+  height: 2rem;
+  width: 2rem;
+}

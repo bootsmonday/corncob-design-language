@@ -15,6 +15,7 @@
   line-height: 1;
   outline: none;
   padding: 0 var(--cc-size-0);
+  white-space: nowrap;
 
   &:hover {
     background-color: var(--cc-gray-90);

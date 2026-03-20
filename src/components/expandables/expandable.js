@@ -1,9 +1,17 @@
+/**
+ * CornExpandable is a custom web component that represents an expandable section of content, similar to the native HTML <details> element but with enhanced functionality and styling.
+ * It uses a shadow DOM to encapsulate its structure and styles, and it provides methods for toggling the open/closed state of the expandable content.
+ * The component also observes changes to a 'name' attribute, allowing for potential grouping of multiple expandables based on their name.
+ * Event listeners are set up to handle user interactions, such as clicking the summary to toggle the details, and to manage CSS transitions for smooth opening and closing animations.
+ * Overall, CornExpandable is designed to provide a flexible and interactive way to display expandable content in a web application.
+ */
+
 const template = document.createElement('template');
 template.innerHTML = `
   <slot name="details">
     <slot name="summary"></slot>
     <slot></slot>
-  </div>
+  </slot>
 `;
 
 export class CornExpandable extends HTMLElement {
@@ -72,6 +80,8 @@ export class CornExpandable extends HTMLElement {
    * In this case, it listens for the 'transitioncancel' event on the content element to handle cases where the transition is interrupted, ensuring that the component's state remains consistent.
    * It also listens for 'click' events on the summary element to toggle the open/closed state of the details element.
    * This method is crucial for making the component interactive and responsive to user actions, allowing it to function as an expandable section in the UI.
+   * You can't cancel the toggle event, the toggle event is applies the attribute open to the details element before the event is dispatched, so by the time you can listen for the toggle event, the state has already changed.
+   * And you can't animate the close event because the open attribute is removed immediately when the user clicks the summary, so there is no way to trigger a CSS transition for closing.
    */
   _addEventListeners() {
     this.content.addEventListener('transitioncancel', this._cancelTransition);

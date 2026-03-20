@@ -7,6 +7,14 @@
 
 export class CornButtonBar extends HTMLElement {
   /**
+   * The constructor method is called when a new instance of the CornButtonBar component is created.
+   * In this method, we call the super() method to ensure that the HTMLElement constructor is properly initialized.
+   */
+  constructor() {
+    super();
+    this._internals = this.attachInternals();
+  }
+  /**
    * connectedCallback is a lifecycle method that is called when the element is added to the DOM.
    * In this method, we call _cacheElements to store references to important child elements and _addEventListeners to set up any necessary event listeners for the component.
    * This ensures that the component is fully initialized and ready to respond to user interactions as soon as it is connected to the DOM.
@@ -22,8 +30,8 @@ export class CornButtonBar extends HTMLElement {
   _addEventListeners() {
     // Using ResizeObserver to detect changes in the size of the button bar and adjust the overflowing items accordingly
     // Use window.requestAnimationFrame to ensure that the DOM updates are processed before calculating the overflowing items, which can help prevent layout thrashing and improve performance.
-    this.resizeObserver = new ResizeObserver((entries) =>
-      window.requestAnimationFrame(() => this._moveOverflowingItems(entries))
+    this.resizeObserver = new ResizeObserver(() =>
+      window.requestAnimationFrame(() => this._moveOverflowingItems())
     );
     this.resizeObserver.observe(this);
   }
@@ -44,50 +52,55 @@ export class CornButtonBar extends HTMLElement {
    * Caching these elements allows the component to efficiently access and manipulate them later when handling events or updating the UI, without needing to repeatedly query the DOM.
    */
   _cacheElements() {
-    console.log('cache elements');
-    this.moreButton = this.querySelector('.corn-button-bar--more');
-    this.moreItems = this.moreButton.querySelector('corn-popover');
-    // /console.log(this.moreItems);
-    //this._moveOverflowingItems();
+    this.moreElement = this.querySelector('.corn-button-bar--more');
+    this.moreItems = this.moreElement.querySelector('.corn-popover');
+    this.moreButton = this.moreElement.querySelector('.corn-pop');
   }
 
   /**
-   * _findOverflowingItems is a method that identifies which items in the button bar are overflowing and need to be moved to the overflow menu.
-   * It calculates the position of each item and determines if it has wrapped to a new line, indicating that it is overflowing.
-   * @returns {Array} An array of overflowing items that need to be moved to the overflow menu.
+   * _hasOverflow is a method that checks if there are any overflowing items in the button bar.
+   * It temporarily moves all items from the overflow menu back to the main button bar to accurately measure their positions.
+   * It then checks if any items have wrapped to a new line, indicating that they are overflowing.
+   * @returns {boolean} True if there are overflowing items, false otherwise.
    */
-  _findOverflowingItems() {
-    console.log('testing overflow items');
+  _hasOverflow() {
     const overflowingItems = Array.from(this.moreItems.children);
+
     for (const item of overflowingItems) {
-      this.insertBefore(item, this.moreButton);
+      this.insertBefore(item, this.moreElement);
     }
+
     const items = Array.from(this.children);
     const initialOffset = items[0]?.offsetTop || 0;
 
-    for (const item of items) {
-      const itemOffset = item.offsetTop;
-      if (itemOffset > initialOffset) {
-        // Return overflowing items starting from the first one that wraps
-        return items.slice(items.indexOf(item) - 1);
-      }
-    }
-
-    return overflowingItems;
+    return items.some((item) => item.offsetTop > initialOffset);
   }
 
   /**
    * _moveOverflowingItems is a method that moves the identified overflowing items from the main button bar into the overflow menu (moreItems).
-   * It first calls _findOverflowingItems to get the list of items that are overflowing, and then it appends each of those items to the moreItems container.
+   * It first calls _hasOverflow to check if there are any overflowing items, and if so, it moves them to the moreItems container.
    * This allows the button bar to maintain a clean layout while still providing access to all buttons through the overflow menu when there isn't enough space to display them all in a single row.
+   * @returns {void}
    */
   _moveOverflowingItems() {
-    this.overflowingItems = this._findOverflowingItems();
-    this.overflowingItems.forEach((item) => {
-      if (item !== this.moreButton) {
-        this.moreItems.appendChild(item);
-      }
-    });
+    if (!this._hasOverflow()) {
+      return;
+    } else {
+      const items = Array.from(this.children);
+      const initialOffset = items[0]?.offsetTop;
+
+      // Reverse the order of items to ensure that we move the last overflowing items first, which helps maintain the correct order in the overflow menu.
+      items.reverse();
+      items.forEach((item) => {
+        if (item !== this.moreElement) {
+          if (item.offsetTop > initialOffset || this.moreElement.offsetTop > initialOffset) {
+            // Move the overflowing item to the moreItems container (overflow menu)
+            // Prepend the item to the moreItems container to maintain the correct order in the overflow menu, ensuring that the most recently moved items appear at the top of the menu.
+            this.moreItems.prepend(item);
+          }
+        }
+      });
+    }
   }
 
   /**
@@ -99,4 +112,5 @@ export class CornButtonBar extends HTMLElement {
     this._removeEventListeners();
   }
 }
+
 customElements.define('corn-button-bar', CornButtonBar);

@@ -1,17 +1,22 @@
-<div class="header">
-  <h1>
-    <svg
-      viewBox="0 0 48 48"
-      xmlns="http://www.w3.org/2000/svg"
-      class="corncob-logo"
-      aria-hidden="true"
-    >
-      <use href="/corn-cob-dl.svg"></use>
-    </svg>
-    Corncob Design Language
-  </h1>
-  <p>
-    <a href="/stickersheets/">Full List</a> - Corncob Design Language - A vanilla JavaScript design
-    system
-  </p>
-</div>
+<header class="corn-header">
+  <div class="corn-company">
+    <div class="corn-company--logo">
+      <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <use href="/corn-cob-dl.svg"></use>
+      </svg>
+    </div>
+    <div class="corn-company--name">Corncob Design Language</div>
+  </div>
+  <div class="corn-header--title">{{ title }}</div>
+  <nav class="corn-header--nav">
+    <corn-button-bar class="corn-button-bar">
+      <a href="/stickersheets/">Full List</a>
+      <div class="corn-popover--anchor corn-button-bar--more">
+        <button class="corn-button corn-button--xs corn-pop" aria-controls="button-bar-popover">
+          More
+        </button>
+        <corn-popover position="bottom" id="button-bar-popover" class="corn-popover"></corn-popover>
+      </div>
+    </corn-button-bar>
+  </nav>
+</header>

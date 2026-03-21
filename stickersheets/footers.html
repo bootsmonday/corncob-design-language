@@ -25,21 +25,11 @@
   <body>
     <main>
       <include src="./src/stickersheet-header.html"></include>
-      <div class="main">
-        <ul>
-          <li><a href="./buttons-standard.html">Buttons</a></li>
-          <li><a href="./button-bars.html">Button Bars</a></li>
-          <li><a href="./checkboxes.html">Checkboxes</a></li>
-          <li><a href="./expandables.html">Expandables</a></li>
-          <li><a href="./footers.html">Footers</a></li>
-          <li><a href="./headers.html">Headers</a></li>
-          <li><a href="./links.html">Links</a></li>
-          <li><a href="./panels.html">Panels</a></li>
-          <li><a href="./popovers.html">Popovers</a></li>
-          <li><a href="./radio-buttons.html">Radio Buttons</a></li>
-          <li><a href="./text-inputs.html">Text Inputs</a></li>
-          <li><a href="./tooltips.html">Tooltips</a></li>
-        </ul>
+      <div class="stickersheet">
+        <include
+          src="../src/components/footers/stickersheet.html"
+          locals='{"title": "Welcome Home", "theme": "dark"}'
+        ></include>
       </div>
     </main>
   </body>

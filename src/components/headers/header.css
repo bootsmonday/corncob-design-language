@@ -2,6 +2,7 @@
   align-items: center;
   display: flex;
   gap: 1rem;
+  margin-bottom: 2rem;
 }
 
 .corn-company {
@@ -11,6 +12,10 @@
   font-size: var(--cc-size-3);
   font-weight: 500;
   gap: 0.25rem;
+}
+
+.corn-company--name {
+  white-space: nowrap;
 }
 
 .corn-company--logo {
@@ -35,7 +40,7 @@
 }
 
 .corn-header--actions {
-  align-items: center;
+  align-items: baseline;
   display: flex;
   gap: 0.5rem;
   justify-content: flex-end;

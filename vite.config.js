@@ -95,25 +95,29 @@ export default defineConfig({
   build: {
     lib: {
       entry: resolve(__dirname, 'src/index.js'),
-      name: 'CorncobEDL',
+      name: 'CorncobDL',
       formats: ['es', 'umd'],
       fileName: (format) => `edl.${format === 'es' ? 'esm' : 'umd'}.js`,
     },
     // Ensures CSS is not inlined in the JS bundle (default behavior)
     cssCodeSplit: true,
     // Customize the output file name for the CSS
-    cssFileName: 'corncob-edl.css',
+    cssFileName: 'corncob-dl.css',
+    sourcemap: true,
     rollupOptions: {
       external: [],
       output: {
-        sourcemap: true,
+        assetFileNames: 'corn-cob-dl.css',
         globals: {},
       },
     },
-    minify: 'terser',
+    minify: 'esbuild',
   },
   server: {
     open: '/public/index.html',
     hmr: true,
+  },
+  preview: {
+    open: '/dist/index.html',
   },
 });

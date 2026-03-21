@@ -22,6 +22,7 @@ import './components/radio-buttons/radio-button.css';
 import './components/expandables/expandable.css';
 import './components/button-bars/button-bar.css';
 import './components/headers/header.css';
+import './components/footers/footer.css';
 // Import Base Styles
 import './common/reset.css';
 import './common/dark.css';

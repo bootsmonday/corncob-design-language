@@ -1,0 +1,26 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+import ButtonExample from "../../components/vue/ButtonExample.vue";
+---
+
+<DocsLayout title="Vue | Corncob" description="Vue adapter guidance for Corncob EDL">
+  <h1>Vue Version</h1>
+  <p>
+    Vue wrappers can follow the same contract as React wrappers: classes are generated from props while
+    all design behavior remains in shared Corncob CSS.
+  </p>
+
+  <ButtonExample />
+
+  <h2>Wrapper Pattern</h2>
+  <pre class="docs-code"><code>{`<script setup>
+import "@corncob/edl/style.css";
+import { CcButton } from "@corncob/edl-vue";
+</script>
+
+<template>
+  <CcButton size="sm">Save</CcButton>
+  <CcButton variant="secondary" size="sm">Cancel</CcButton>
+  <CcButton variant="danger" size="sm">Delete</CcButton>
+</template>`}</code></pre>
+</DocsLayout>

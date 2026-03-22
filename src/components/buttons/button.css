@@ -1,51 +1,71 @@
-@import url('button-tokens.css');
+:root {
+  --cc--button--height--md: var(--cc-size-5);
+  --cc--button--font-size--md: var(--cc-size-2);
+  --cc--button--padding-x--md: var(--cc-size-0);
+  --cc--button--corn-icon--size--md: var(--cc-size-2);
+  --cc--button--background--hover: var(--cc-gray-90);
+  --cc--button--background--active: var(--cc-black);
+  --cc--button--border-color--active: var(--cc-gray-100);
+  --cc--button--color--disabled: var(--cc-gray-80);
+  --cc--button--box-shadow--focus: 0 0 0 2px var(--cc-blue-60);
+  --cc--button--box-shadow--active-focus: none;
+  --cc--button--background--disabled: rgb(from var(--cc-gray-80) r g b / 5.4%);
+  --cc--button--border-color--disabled: rgb(from var(--cc-gray-80) r g b / 40.2%);
+  --cc--button--background: var(--cc-gray-100);
+  --cc--button--color: var(--cc-white);
+  --cc--button--border-width: var(--cc-border--width);
+  --cc--button--border-style: var(--cc-border--style);
+  --cc--button--border-color: var(--cc-border--color);
+  --cc--button--border-radius: var(--cc-border--radius);
+}
 
 .corn-button,
 .corn-button--md {
   align-items: center;
-  background-color: var(--cc-gray-100);
-  border: var(--cc-border--width) var(--cc-border--style) var(--cc-border--color);
-  border-radius: var(--cc-border--radius);
-  color: var(--cc-white);
+  background-color: var(--cc-button--background);
+  border: var(--cc-button--border-width) var(--cc-button--border-style)
+    var(--cc-button--border-color);
+  border-radius: var(--cc-button--border-radius);
+  color: var(--cc-button--color);
   cursor: pointer;
   display: inline-flex;
-  font-size: var(--cc-size-2);
-  height: var(--cc-size-5);
+  font-size: var(--cc-button--font-size--md);
+  height: var(--cc-button--height--md);
   justify-content: center;
   line-height: 1;
   outline: none;
-  padding: 0 var(--cc-size-0);
+  padding: 0 var(--cc-button--padding-x--md);
   white-space: nowrap;
 
   &:hover {
-    background-color: var(--cc-gray-90);
+    background-color: var(--cc-button--background--hover);
   }
 
   &:active {
-    background-color: var(--cc-black);
+    background-color: var(--cc-button--background--active);
   }
 
   &:focus {
     border-color: var(--cc-white);
-    box-shadow: 0 0 0 2px var(--cc-blue-60);
+    box-shadow: var(--cc-button--box-shadow--focus);
   }
 
   &:active:focus {
     border-color: var(--cc-border--color);
-    box-shadow: none;
+    box-shadow: var(--cc-button--box-shadow--active-focus);
   }
 
   &[disabled] {
-    background-color: rgb(from var(--cc-gray-80) r g b / 5.4%);
-    border-color: rgb(from var(--cc-gray-80) r g b / 40.2%);
-    color: rgb(from var(--cc-gray-80) r g b / 40.2%);
+    background-color: var(--cc-button--background--disabled);
+    border-color: var(--cc-button--border-color--disabled);
+    color: var(--cc-button--color--disabled);
     cursor: not-allowed;
   }
 
-  svg {
+  .corn-icon {
     fill: currentcolor;
-    height: var(--cc-size-2);
-    width: var(--cc-size-2);
+    height: var(--cc-button--corn-icon--size--md);
+    width: var(--cc-button--corn-icon--size--md);
   }
 
   &.corn-button--icon {

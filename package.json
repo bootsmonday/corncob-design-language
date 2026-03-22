@@ -8,6 +8,10 @@
   "files": [
     "dist"
   ],
+  "workspaces": [
+    "packages/react",
+    "packages/vue"
+  ],
   "exports": {
     ".": "./dist/corncob-edl.esm.js",
     "./style.css": "./dist/corncob-edl.css"
@@ -19,6 +23,11 @@
     "dev": "vite --host",
     "build": "vite build",
     "preview": "vite preview --host 0.0.0.0 --port 4173",
+    "docs:dev": "astro dev --root docs --host",
+    "docs:build": "astro build --root docs",
+    "docs:preview": "astro preview --root docs --host --port 4322",
+    "wrappers:build": "npm run -w @corncob/edl-react build && npm run -w @corncob/edl-vue build",
+    "wrappers:test": "npm run -w @corncob/edl-react test && npm run -w @corncob/edl-vue test",
     "test": "jest",
     "test:watch": "jest --watch",
     "lint:css": "stylelint src/**/*.css",
@@ -33,10 +42,13 @@
   "author": "Corncob Team",
   "license": "MIT",
   "devDependencies": {
+    "@astrojs/react": "^5.0.1",
+    "@astrojs/vue": "^6.0.1",
     "@babel/preset-env": "^7.29.2",
     "@carbon/icons": "^11.76.0",
     "@happy-dom/jest-environment": "^20.8.4",
     "@testing-library/dom": "^10.4.1",
+    "astro": "^6.0.8",
     "esbuild": "^0.27.4",
     "happy-dom": "^20.8.4",
     "identity-obj-proxy": "^3.0.0",
@@ -48,5 +60,10 @@
     "stylelint-order": "^7.0.1",
     "vite": "^7.3.1",
     "vite-plugin-string": "^1.2.3"
+  },
+  "dependencies": {
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "vue": "^3.5.30"
   }
 }

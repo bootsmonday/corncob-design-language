@@ -1,4 +1,15 @@
-corn-expandable {
+:root {
+  --cc-expandable--border-radius: var(--cc-border--radius);
+  --cc-expandable--color: var(--cc-gray-90);
+  --cc-expandable--color--hover: var(--cc-gray-100);
+  --cc-expandable--color--active: var(--cc-black);
+  --cc-expandable--focus-ring: var(--cc-form--item--focus-ring);
+  --cc-expandable--icon--background: var(--cc-gray-20);
+  --cc-expandable--icon--background--hover: var(--cc-gray-30);
+  --cc-expandable--icon--background--active: transparent;
+}
+
+.corn-expandable {
   display: flex;
 
   &.corn-panel-menu {
@@ -36,8 +47,8 @@ corn-expandable {
 
   summary {
     align-items: center;
-    border-radius: var(--cc-border--radius);
-    color: var(--cc-gray-90);
+    border-radius: var(--cc-expandable--border-radius);
+    color: var(--cc-expandable--color);
     cursor: pointer;
     display: inline-flex;
     flex: 1 1 0%;
@@ -47,23 +58,23 @@ corn-expandable {
 
     &:focus-visible {
       .corn-icon {
-        box-shadow: var(--cc-focus-ring);
+        box-shadow: var(--cc-expandable--focus-ring);
       }
     }
 
     &:hover {
-      color: var(--cc-gray-100);
+      color: var(--cc-expandable--color--hover);
 
       .corn-icon {
-        background-color: var(--cc-gray-20);
+        background-color: var(--cc-expandable--icon--background--hover);
       }
     }
 
     &:active {
-      color: var(--cc-black);
+      color: var(--cc-expandable--color--active);
 
       .corn-icon {
-        background-color: transparent;
+        background-color: var(--cc-expandable--icon--background--active);
       }
     }
 

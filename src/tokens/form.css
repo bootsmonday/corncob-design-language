@@ -1,5 +1,6 @@
 :root {
-  --cc-form--item--focus-ring: var(--cc-focus-ring);
+  --cc-form--item--focus-ring: 0 0 0 3px var(--cc-blue-60);
+  --cc-form--item--focus-ring--active: none;
   --cc-form--item--color--background: rgb(from var(--cc-gray-10) r g b / 66.2%);
   --cc-form--item--color--background--hover: rgb(from var(--cc-white) r g b / 87.2%);
   --cc-form--item--color-background--selected: rgb(from var(--cc-blue-20) r g b / 87.2%);
@@ -13,7 +14,7 @@
   --cc-form--item--font--size--md: var(--cc-size-1);
   --cc-form--item--font--size--lg: var(--cc-size-2);
   --cc-form--item--font--size--xl: var(--cc-size-3);
-  --cc-form--item--input--padding: 0 var(--cc-size-0);
+  --cc-form--item--padding: 0 var(--cc-size-0);
   --cc-form--item--size--xs: var(--cc-size-2);
   --cc-form--item--size--sm: var(--cc-size-4);
   --cc-form--item--size--md: var(--cc-size-5);
@@ -22,6 +23,12 @@
   --cc-form--item--input--label--color: var(--cc-blue-60);
   --cc-form--item--input--label--font-weight: 500;
   --cc-form--item--color-indicator: var(--cc-blue-70);
-  --cc-form--item--control--size: var(--cc-size-1);
-  --cc-form--item--control--size--xs: var(--cc-size-0);
+  --cc-form--control--font-size--xs: var(--cc-size--1);
+  --cc-form--control--font-size--sm: var(--cc-size-0);
+  --cc-form--control--font-size--md: var(--cc-size-2);
+  --cc-form--control--font-size--lg: var(--cc-size-3);
+  --cc-form--control--font-size--xl: var(--cc-size-3);
+  --cc-form--item--background--disabled: rgb(from var(--cc-gray-80) r g b / 5.4%);
+  --cc-form--item--border-color--disabled: rgb(from var(--cc-gray-80) r g b / 40.2%);
+  --cc-form--item--color--disabled: var(--cc-gray-40);
 }

@@ -1,22 +1,49 @@
 :root {
-  --cc--button--height--md: var(--cc-size-5);
-  --cc--button--font-size--md: var(--cc-size-2);
-  --cc--button--padding-x--md: var(--cc-size-0);
-  --cc--button--corn-icon--size--md: var(--cc-size-2);
-  --cc--button--background--hover: var(--cc-gray-90);
-  --cc--button--background--active: var(--cc-black);
-  --cc--button--border-color--active: var(--cc-gray-100);
-  --cc--button--color--disabled: var(--cc-gray-80);
-  --cc--button--box-shadow--focus: 0 0 0 2px var(--cc-blue-60);
-  --cc--button--box-shadow--active-focus: none;
-  --cc--button--background--disabled: rgb(from var(--cc-gray-80) r g b / 5.4%);
-  --cc--button--border-color--disabled: rgb(from var(--cc-gray-80) r g b / 40.2%);
-  --cc--button--background: var(--cc-gray-100);
-  --cc--button--color: var(--cc-white);
-  --cc--button--border-width: var(--cc-border--width);
-  --cc--button--border-style: var(--cc-border--style);
-  --cc--button--border-color: var(--cc-border--color);
-  --cc--button--border-radius: var(--cc-border--radius);
+  --cc-button--height--xs: var(--cc-form--item--size--xs);
+  --cc-button--height--sm: var(--cc-form--item--size--sm);
+  --cc-button--height--md: var(--cc-form--item--size--md);
+  --cc-button--height--lg: var(--cc-form--item--size--lg);
+  --cc-button--height--xl: var(--cc-form--item--size--xl);
+  --cc-button--icon--size--md: var(--cc-button--height--md);
+  --cc-button--icon--size--xs: var(--cc-button--height--xs);
+  --cc-button--icon--size--sm: var(--cc-button--height--sm);
+  --cc-button--icon--size--lg: var(--cc-button--height--lg);
+  --cc-button--icon--size--xl: var(--cc-button--height--xl);
+  --cc-button--font-size--md: var(--cc-form--control--font-size--md);
+  --cc-button--font-size--xs: var(--cc-form--control--font-size--xs);
+  --cc-button--font-size--sm: var(--cc-form--control--font-size--sm);
+  --cc-button--font-size--lg: var(--cc-form--control--font-size--lg);
+  --cc-button--font-size--xl: var(--cc-form--control--font-size--xl);
+  --cc-button--padding--md: var(--cc-form--item--padding);
+  --cc-button--corn-icon--size--md: var(--cc-size-2);
+  --cc-button--background--hover: var(--cc-gray-90);
+  --cc-button--background--active: var(--cc-black);
+  --cc-button--border-color--active: var(--cc-gray-100);
+  --cc-button--color--disabled: var(--cc-form--item--color--disabled);
+  --cc-button--box-shadow--focus: var(--cc-form--item--focus-ring);
+  --cc-button--box-shadow--active-focus: var(--cc-form--item--focus-ring--active);
+  --cc-button--background--disabled: var(--cc-form--item--background--disabled);
+  --cc-button--border-color--disabled: var(--cc-form--item--border-color--disabled);
+  --cc-button--background: var(--cc-gray-100);
+  --cc-button--color: var(--cc-white);
+  --cc-button--border-width: var(--cc-border--width);
+  --cc-button--border-style: var(--cc-border--style);
+  --cc-button--border-color: var(--cc-border--color);
+  --cc-button--border-radius: var(--cc-border--radius);
+  --cc-button--border-radius--xs: var(--cc-border--radius--xs);
+  --cc-button--border-radius--round: var(--cc-border--radius-round);
+  --cc-button--secondary--background: rgb(from var(--cc-gray-20) r g b / 40.2%);
+  --cc-button--secondary--color: var(--cc-gray-90);
+  --cc-button--secondary--background--hover: rgb(from var(--cc-gray-80) r g b / 15.8%);
+  --cc-button--secondary--color--hover: var(--cc-gray-100);
+  --cc-button--secondary--background--active: rgb(from var(--cc-gray-80) r g b / 20.8%);
+  --cc-button--danger--background: var(--cc-red-80);
+  --cc-button--danger--border-color: var(--cc-red-100);
+  --cc-button--danger--color: var(--cc-red-10);
+  --cc-button--danger--background--hover: var(--cc-red-90);
+  --cc-button--danger--color--hover: var(--cc-red-20);
+  --cc-button--danger--background--active: var(--cc-red-100);
+  --cc-button--danger--color--active: var(--cc-red-10);
 }
 
 .corn-button,
@@ -34,7 +61,7 @@
   justify-content: center;
   line-height: 1;
   outline: none;
-  padding: 0 var(--cc-button--padding-x--md);
+  padding: var(--cc-button--padding--md);
   white-space: nowrap;
 
   &:hover {
@@ -62,113 +89,118 @@
     cursor: not-allowed;
   }
 
-  .corn-icon {
-    fill: currentcolor;
-    height: var(--cc-button--corn-icon--size--md);
-    width: var(--cc-button--corn-icon--size--md);
-  }
-
   &.corn-button--icon {
-    border-radius: var(--cc-border--radius-round);
+    border-radius: var(--cc-button--border-radius--round);
+    height: var(--cc-button--icon--size--md);
     padding: 0;
-    width: var(--cc-size-5);
+    width: var(--cc-button--icon--size--md);
+
+    .corn-icon {
+      fill: currentcolor;
+      height: var(--cc-button--font-size--md);
+      width: var(--cc-button--font-size--md);
+    }
   }
 }
 
 .corn-button--xs {
-  border-radius: var(--cc-border--radius--xs);
-  font-size: var(--cc-size--1);
-  height: var(--cc-size-2);
+  border-radius: var(--cc-button--border-radius--xs);
+  font-size: var(--cc-button--font-size--xs);
+  height: var(--cc-button--height--xs);
 
   &.corn-button--icon {
-    width: var(--cc-size-2);
+    height: var(--cc-button--icon--size--xs);
+    width: var(--cc-button--icon--size--xs);
 
-    svg {
+    .corn-icon {
       fill: currentcolor;
-      height: var(--cc-size-1);
-      width: var(--cc-size-1);
+      height: var(--cc-button--font-size--xs);
+      width: var(--cc-button--font-size--xs);
     }
   }
 }
 
 .corn-button--sm {
-  font-size: var(--cc-size-0);
-  height: var(--cc-size-4);
+  font-size: var(--cc-button--font-size--sm);
+  height: var(--cc-button--height--sm);
   line-height: 1;
-  padding: 0 var(--cc-size-0);
 
   &.corn-button--icon {
-    width: var(--cc-size-4);
+    height: var(--cc-button--icon--size--sm);
+    width: var(--cc-button--icon--size--sm);
 
-    svg {
+    .corn-icon {
       fill: currentcolor;
-      height: var(--cc-size-1);
-      width: var(--cc-size-1);
+      height: var(--cc-button--font-size--sm);
+      width: var(--cc-button--font-size--sm);
     }
   }
 }
 
 .corn-button--lg {
-  font-size: var(--cc-size-3);
-  height: var(--cc-size-6);
+  font-size: var(--cc-button--font-size--lg);
+  height: var(--cc-button--height--lg);
 
   &.corn-button--icon {
-    width: var(--cc-size-6);
+    height: var(--cc-button--icon--size--lg);
+    width: var(--cc-button--icon--size--lg);
 
-    svg {
+    .corn-icon {
       fill: currentcolor;
-      height: var(--cc-size-3);
-      width: var(--cc-size-3);
+      height: var(--cc-button--font-size--lg);
+      width: var(--cc-button--font-size--lg);
     }
   }
 }
 
 .corn-button--xl {
-  font-size: var(--cc-size-3);
-  height: var(--cc-size-7);
+  font-size: var(--cc-button--font-size--xl);
+  height: var(--cc-button--height--xl);
 
   &.corn-button--icon {
-    width: var(--cc-size-7);
+    height: var(--cc-button--icon--size--xl);
+    width: var(--cc-button--icon--size--xl);
 
-    svg {
+    .corn-icon {
       fill: currentcolor;
-      height: var(--cc-size-3);
-      width: var(--cc-size-3);
+      height: var(--cc-button--font-size--xl);
+      width: var(--cc-button--font-size--xl);
     }
   }
 }
 
 .corn-button--secondary {
-  background-color: rgb(from var(--cc-gray-20) r g b / 40.2%);
-  color: var(--cc-gray-90);
+  background-color: var(--cc-button--secondary--background);
+  color: var(--cc-button--secondary--color);
 
   &:hover {
-    background-color: rgb(from var(--cc-gray-80) r g b / 15.8%);
-    color: var(--cc-gray-100);
+    background-color: var(--cc-button--secondary--background--hover);
+    color: var(--cc-button--secondary--color--hover);
   }
 
   &:active {
-    background-color: rgb(from var(--cc-gray-80) r g b / 20.8%);
+    background-color: var(--cc-button--secondary--background--active);
+    color: var(--cc-button--secondary--color--active);
   }
 }
 
 .corn-button--danger {
-  background-color: var(--cc-red-80);
-  border-color: var(--cc-red-100);
-  color: var(--cc-red-10);
+  background-color: var(--cc-button--danger--background);
+  border-color: var(--cc-button--danger--border-color);
+  color: var(--cc-button--danger--color);
 
   &:hover {
-    background-color: var(--cc-red-90);
-    color: var(--cc-red-20);
+    background-color: var(--cc-button--danger--background--hover);
+    color: var(--cc-button--danger--color--hover);
   }
 
   &:active {
-    background-color: var(--cc-red-100);
-    color: var(--cc-red-10);
+    background-color: var(--cc-button--danger--background--active);
+    color: var(--cc-button--danger--color--active);
   }
 
   &:active:focus {
-    border-color: var(--cc-red-100);
+    border-color: var(--cc-button--danger--border-color--active);
     box-shadow: none;
   }
 
@@ -178,5 +210,5 @@
 }
 
 .corn-button--icon {
-  border-radius: var(--cc-border--radius-round);
+  border-radius: var(--cc-button--border-radius--round);
 }

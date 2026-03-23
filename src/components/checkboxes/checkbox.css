@@ -1,8 +1,9 @@
 fieldset.corn-checkbox-group {
   border: none;
+  display: flex;
 
   hr {
-    margin: var(--cc-spacing-0);
+    margin: 1rem 0;
   }
 
   legend {
@@ -37,14 +38,14 @@ fieldset.corn-checkbox-group {
     border-radius: var(--cc-border--radius);
     cursor: pointer;
     display: flex;
-    font-size: var(--cc-form--item--control--size);
-    height: var(--cc-form--item--control--size);
+    font-size: var(--cc-form--control--font-size--md);
+    height: var(--cc-form--control--font-size--md);
     justify-content: center;
     left: 0;
     margin: 0;
     outline: none;
     position: relative;
-    width: var(--cc-form--item--control--size);
+    width: var(--cc-form--control--font-size--md);
 
     &:focus {
       box-shadow: var(--cc-form--item--focus-ring);
@@ -93,6 +94,7 @@ fieldset.corn-checkbox-group {
 
   label {
     cursor: pointer;
+    font-size: var(--cc-form--item--font--size--md);
     line-height: 2rem;
     padding-left: 0.5rem;
   }
@@ -102,9 +104,13 @@ fieldset.corn-checkbox-group {
   height: var(--cc-form--item--size--xs);
 
   input {
-    font-size: var(--cc-form--item--control--size--xs);
-    height: var(--cc-form--item--control--size--xs);
-    width: var(--cc-form--item--control--size--xs);
+    font-size: var(--cc-form--control--font-size--sm);
+    height: var(--cc-form--control--font-size--sm);
+    width: var(--cc-form--control--font-size--sm);
+
+    /* font-size: var(--cc-form--item--size--xs);
+    height: var(--cc-form--item--size--xs);
+    width: var(--cc-form--item--size--xs); */
 
     &::after {
       border-radius: 1px;
@@ -118,6 +124,16 @@ fieldset.corn-checkbox-group {
 
 .corn-checkbox--sm {
   height: var(--cc-form--item--size--sm);
+
+  input {
+    font-size: var(--cc-form--control--font-size--sm);
+    height: var(--cc-form--control--font-size--sm);
+    width: var(--cc-form--control--font-size--sm);
+
+    &::after {
+      border-radius: 1px;
+    }
+  }
 
   label {
     font-size: var(--cc-form--item--font--size--sm);

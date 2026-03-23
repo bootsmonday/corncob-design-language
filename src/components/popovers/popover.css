@@ -1,4 +1,15 @@
-/* Popover Component */
+:root {
+  --cc-popover--background: var(--cc-white);
+  --cc-popover--border: var(--cc-border--width) var(--cc-border--style) var(--cc-border--color);
+  --cc-popover--border-radius: var(--cc-border--radius);
+  --cc-popover--box-shadow: var(--cc-shadow--drop);
+  --cc-popover--color: var(--cc-ink);
+  --cc-popover--font-size: var(--cc-size-0);
+  --cc-popover--gap: 0.5rem;
+  --cc-popover--padding: 0.75rem;
+  --cc-popover--transition: opacity var(--cc-transition--easing) var(--cc-transition--time);
+}
+
 .corn-popover--anchor {
   display: inline-flex;
   position: relative;
@@ -11,24 +22,24 @@
     padding: 0;
   }
 
-  background: var(--cc-white);
-  border: var(--cc-border--width) var(--cc-border--style) var(--cc-border--color);
-  border-radius: var(--cc-border--radius);
+  background: var(--cc-popover--background);
+  border: var(--cc-popover--border);
+  border-radius: var(--cc-popover--border-radius);
   bottom: calc(100% + 0.25rem);
-  box-shadow: var(--cc-shadow--drop);
+  box-shadow: var(--cc-popover--box-shadow);
   box-sizing: border-box;
-  color: var(--cc-white);
+  color: var(--cc-popover--color);
   display: flex;
   display: none;
   flex-direction: column;
-  font-size: var(--cc-size-0);
-  gap: 0.5rem;
+  font-size: var(--cc-popover--font-size);
+  gap: var(--cc-popover--gap);
   left: 50%;
   opacity: 0;
-  padding: 0.75rem;
+  padding: var(--cc-popover--padding);
   position: absolute;
   transform: translate(-50%, 0);
-  transition: opacity var(--cc-transition--easing) var(--cc-transition--time);
+  transition: opacity var(--cc-popover--transition);
   white-space: nowrap;
   z-index: 1000;
 

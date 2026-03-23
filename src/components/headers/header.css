@@ -1,3 +1,10 @@
+:root {
+  --cc-header--company--font--size: var(--cc-size-3);
+  --cc-header--company--font--weight: 500;
+  --cc-header--title--font--size: var(--cc-size-2);
+  --cc-header--title--font--weight: 500;
+}
+
 .corn-header {
   align-items: center;
   display: flex;
@@ -9,8 +16,8 @@
   align-items: center;
   display: flex;
   flex-grow: 0;
-  font-size: var(--cc-size-3);
-  font-weight: 500;
+  font-size: var(--cc-header--company--font--size);
+  font-weight: var(--cc-header--company--font--weight);
   gap: 0.25rem;
 }
 
@@ -33,8 +40,8 @@
 }
 
 .corn-header--title {
-  font-size: var(--cc-size-2);
-  font-weight: 500;
+  font-size: var(--cc-header--title--font--size);
+  font-weight: var(--cc-header--title--font--weight);
   padding-right: 1rem;
   white-space: nowrap;
 }

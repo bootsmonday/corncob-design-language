@@ -1,6 +1,36 @@
+:root {
+  --cc-checkbox--input--background: var(--cc-form--item--color--background);
+  --cc-checkbox--input--background--hover: var(--cc-form--item--color--background--hover);
+  --cc-checkbox--input--background--checked: var(--cc-form--widget--background--selected);
+  --cc-checkbox--input--background--checked--hover: var(
+    --cc-form--widget--background--selected--hover
+  );
+  --cc-checkbox--input--border: var(--cc-form--item--border);
+  --cc-checkbox--input--border-radius: var(--cc-border--radius);
+  --cc-checkbox--input--color--checked: var(--cc-form--widget--color);
+  --cc-checkbox--input--color--checked-hover: var(--cc-form--widget--color--hover);
+  --cc-checkbox--input--border-color--checked-focus: var(--cc-form--item--input--label--color);
+  --cc-checkbox--input--border-color--checked-active: var(--cc-form--item--input--label--color);
+  --cc-checkbox--input--border-color--checked-hover: var(--cc-form--item--input--label--color);
+  --cc-checkbox--input--focus-ring: var(--cc-form--item--focus-ring);
+  --cc-checkbox--input--focus-ring--active: var(--cc-form--item--focus-ring--active);
+  --cc-checkbox--input--color--text: var(--cc-form--item--color--text);
+  --cc-checkbox--input--font-size--xs: var(--cc-form--item--font--size--xs);
+  --cc-checkbox--input--font-size--sm: var(--cc-form--item--font--size--sm);
+  --cc-checkbox--input--font-size--md: var(--cc-form--item--font--size--md);
+  --cc-checkbox--input--font-size--lg: var(--cc-form--item--font--size--lg);
+  --cc-checkbox--input--font-size--xl: var(--cc-form--item--font--size--xl);
+  --cc-checkbox--input--size--xs: var(--cc-form--widget--size--xs);
+  --cc-checkbox--input--size--sm: var(--cc-form--widget--size--sm);
+  --cc-checkbox--input--size--md: var(--cc-form--widget--size--md);
+  --cc-checkbox--input--size--lg: var(--cc-form--widget--size--lg);
+  --cc-checkbox--input--size--xl: var(--cc-form--widget--size--xl);
+}
+
 fieldset.corn-checkbox-group {
   border: none;
   display: flex;
+  gap: 1rem;
 
   hr {
     margin: 1rem 0;
@@ -17,15 +47,18 @@ fieldset.corn-checkbox-group {
 .corn-checkbox {
   align-items: center;
   display: flex;
-  height: var(--cc-form--item--size--md);
+  height: var(--cc-checkbox--input--size--md);
   position: relative;
 
   &:has(input:hover, label:hover) {
     input {
-      background-color: var(--cc-form--item--color--background--hover);
+      background-color: var(--cc-form--widget--background--selected--hover);
+      zoom: 1;
 
       &:checked {
-        background-color: var(--cc-form--item--color-background--selected--hover);
+        &::after {
+          border-color: var(--cc-checkbox--input--color--checked-hover);
+        }
       }
     }
   }
@@ -33,22 +66,22 @@ fieldset.corn-checkbox-group {
   input {
     align-items: center;
     appearance: none;
-    background-color: var(--cc-form--item--color--background);
-    border: var(--cc-form--item--border);
+    background-color: var(--cc-checkbox--input--background-color);
+    border: var(--cc-checkbox--input--border);
     border-radius: var(--cc-border--radius);
     cursor: pointer;
     display: flex;
-    font-size: var(--cc-form--control--font-size--md);
-    height: var(--cc-form--control--font-size--md);
+    font-size: var(--cc-checkbox--input--font-size--md);
+    height: var(--cc-checkbox--input--size--md);
     justify-content: center;
     left: 0;
     margin: 0;
     outline: none;
     position: relative;
-    width: var(--cc-form--control--font-size--md);
+    width: var(--cc-checkbox--input--size--md);
 
     &:focus {
-      box-shadow: var(--cc-form--item--focus-ring);
+      box-shadow: var(--cc-checkbox--input--focus-ring);
 
       &:checked {
         border-color: var(--cc-white);
@@ -59,19 +92,19 @@ fieldset.corn-checkbox-group {
       box-shadow: none;
 
       &:checked {
-        border: var(--cc-form--item--border);
+        border: var(--cc-checkbox--input--border);
       }
     }
 
     &::after {
-      border-color: var(--cc-form--item--input--label--color);
+      border-color: var(--cc-checkbox--input--color--checked);
       border-radius: 2px;
       border-style: solid;
       border-width: 0 0.105em 0.105em 0;
       content: '';
-      display: block;
+      font-size: inherit;
       height: 0.5em;
-      margin-top: -0.25rem;
+      margin-top: -0.2rem;
       opacity: 0;
       scale: 0.65;
       transform: rotate(45deg);
@@ -79,38 +112,39 @@ fieldset.corn-checkbox-group {
         opacity var(--cc-transition--time--fast) var(--cc-transition--easing),
         scale var(--cc-transition--time--fast) var(--cc-transition--easing),
         box-shadow var(--cc-transition--time--fast) var(--cc-transition--easing);
-      width: 0.25em;
+      width: 0.3em;
     }
 
     &:checked {
-      background: var(--cc-form--item--color-background--selected);
+      background: var(--cc-checkbox--input--background--checked);
 
       &::after {
         opacity: 1;
-        scale: 1;
+        scale: 1.05;
       }
     }
   }
 
   label {
     cursor: pointer;
-    font-size: var(--cc-form--item--font--size--md);
+    font-size: var(--cc-checkbox--input--font-size--md);
     line-height: 2rem;
     padding-left: 0.5rem;
   }
 }
 
 .corn-checkbox--xs {
-  height: var(--cc-form--item--size--xs);
+  height: var(--cc-checkbox--input--size--xs);
 
   input {
-    font-size: var(--cc-form--control--font-size--sm);
-    height: var(--cc-form--control--font-size--sm);
-    width: var(--cc-form--control--font-size--sm);
+    height: var(--cc-checkbox--input--size--xs);
+    width: var(--cc-checkbox--input--size--xs);
 
-    /* font-size: var(--cc-form--item--size--xs);
-    height: var(--cc-form--item--size--xs);
-    width: var(--cc-form--item--size--xs); */
+    &:checked {
+      &::after {
+        scale: 0.75;
+      }
+    }
 
     &::after {
       border-radius: 1px;
@@ -118,17 +152,22 @@ fieldset.corn-checkbox-group {
   }
 
   label {
-    font-size: var(--cc-form--item--font--size--xs);
+    font-size: var(--cc-checkbox--input--font-size--xs);
   }
 }
 
 .corn-checkbox--sm {
-  height: var(--cc-form--item--size--sm);
+  height: var(--cc-checkbox--input--size--sm);
 
   input {
-    font-size: var(--cc-form--control--font-size--sm);
-    height: var(--cc-form--control--font-size--sm);
-    width: var(--cc-form--control--font-size--sm);
+    height: var(--cc-checkbox--input--size--sm);
+    width: var(--cc-checkbox--input--size--sm);
+
+    &:checked {
+      &::after {
+        scale: 0.75;
+      }
+    }
 
     &::after {
       border-radius: 1px;
@@ -136,44 +175,61 @@ fieldset.corn-checkbox-group {
   }
 
   label {
-    font-size: var(--cc-form--item--font--size--sm);
+    font-size: var(--cc-checkbox--input--font-size--sm);
   }
 }
 
 .corn-checkbox--md {
-  height: var(--cc-form--item--size--md);
+  height: var(--cc-checkbox--input--size--md);
+
+  input {
+    height: var(--cc-checkbox--input--size--md);
+    width: var(--cc-checkbox--input--size--md);
+  }
 
   label {
-    font-size: var(--cc-form--item--font--size--md);
+    font-size: var(--cc-checkbox--input--font-size--md);
   }
 }
 
 .corn-checkbox--lg {
-  height: var(--cc-form--item--size--lg);
+  height: var(--cc-checkbox--input--size--lg);
+
+  input {
+    height: var(--cc-checkbox--input--size--lg);
+    width: var(--cc-checkbox--input--size--lg);
+  }
 
   label {
-    font-size: var(--cc-form--item--font--size--lg);
+    font-size: var(--cc-checkbox--input--font-size--lg);
   }
 }
 
 .corn-checkbox--xl {
-  height: var(--cc-form--item--size--xl);
+  height: var(--cc-checkbox--input--size--xl);
+
+  input {
+    height: var(--cc-checkbox--input--size--xl);
+    width: var(--cc-checkbox--input--size--xl);
+
+    &:checked {
+      &::after {
+        scale: 1.25;
+      }
+    }
+  }
 
   label {
-    font-size: var(--cc-form--item--font--size--xl);
+    font-size: var(--cc-checkbox--input--font-size--xl);
   }
 }
 
 fieldset.corn-checkbox-group--inline {
-  display: flex;
-  flex-flow: row wrap;
-  gap: 1rem;
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(20rem, 100%), 1fr));
   list-style: none;
   padding: 0;
-
-  .spark-input--message {
-    margin-top: -1rem;
-  }
 
   .corn-checkbox {
     flex: 1 1 0%;

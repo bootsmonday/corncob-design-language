@@ -18,34 +18,42 @@ fieldset.corn-form--item:has(input[disabled]) {
   }
 
   &:has(input[disabled]) {
-    background-color: rgb(from var(--cc-gray-80) r g b / 5.4%) !important;
-    border-color: rgb(from var(--cc-gray-80) r g b / 40.2%) !important;
-    box-shadow: none !important;
-    color: rgb(from var(--cc-gray-80) r g b / 40.2%) !important;
+    box-shadow: var(--cc-form--item--focus-ring--disabled);
+    color: var(--cc-form--item--color--disabled);
     cursor: not-allowed !important;
 
-    &:hover {
-      background-color: rgb(from var(--cc-white) r g b / 87.2%);
-    }
-
     input {
-      background-color: rgb(from var(--cc-gray-80) r g b / 5.4%) !important;
-      border-color: rgb(from var(--cc-gray-80) r g b / 40.2%) !important;
-      color: rgb(from var(--cc-gray-80) r g b / 40.2%) !important;
+      &[type='radio'],
+      &[type='checkbox'] {
+        background-color: var(--cc-form--item--background--disabled);
+        border-color: var(--cc-form--item--border-color--disabled);
+      }
+
+      &::placeholder {
+        color: var(--cc-form--item--color--disabled);
+      }
+
+      color: var(--cc-form--item--color--disabled);
       cursor: not-allowed !important;
 
+      &[type='radio'] {
+        &::after {
+          background-color: var(--cc-form--item--color--disabled);
+        }
+      }
+
       &::after {
-        border-color: rgb(from var(--cc-gray-80) r g b / 40.2%) !important;
+        border-color: var(--cc-form--item--border-color--disabled);
       }
     }
 
     label {
-      color: rgb(from var(--cc-gray-80) r g b / 40.2%) !important;
+      color: var(--cc-form--item--color--disabled);
       cursor: not-allowed !important;
     }
 
     .corn-status {
-      color: rgb(from var(--cc-gray-80) r g b / 40.2%) !important;
+      color: var(--cc-form--item--color--disabled);
       cursor: not-allowed !important;
     }
   }
@@ -84,22 +92,10 @@ fieldset.corn-form--item:has(input[disabled]) {
   .corn-status {
     color: var(--cc-yellow-60);
   }
-
-  .corn-text-input {
-    label {
-      color: var(--cc-yellow-60);
-    }
-  }
 }
 
 .corn-status--error {
   .corn-status {
     color: var(--cc-red-60);
-  }
-
-  .corn-text-input {
-    label {
-      color: var(--cc-red-60);
-    }
   }
 }

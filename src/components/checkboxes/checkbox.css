@@ -15,11 +15,11 @@
   --cc-checkbox--input--focus-ring: var(--cc-form--item--focus-ring);
   --cc-checkbox--input--focus-ring--active: var(--cc-form--item--focus-ring--active);
   --cc-checkbox--input--color--text: var(--cc-form--item--color--text);
-  --cc-checkbox--input--font-size--xs: var(--cc-form--item--font--size--xs);
-  --cc-checkbox--input--font-size--sm: var(--cc-form--item--font--size--sm);
-  --cc-checkbox--input--font-size--md: var(--cc-form--item--font--size--md);
-  --cc-checkbox--input--font-size--lg: var(--cc-form--item--font--size--lg);
-  --cc-checkbox--input--font-size--xl: var(--cc-form--item--font--size--xl);
+  --cc-checkbox--input--font-size--xs: var(--cc-form--item--font-size--xs);
+  --cc-checkbox--input--font-size--sm: var(--cc-form--item--font-size--sm);
+  --cc-checkbox--input--font-size--md: var(--cc-form--item--font-size--md);
+  --cc-checkbox--input--font-size--lg: var(--cc-form--item--font-size--lg);
+  --cc-checkbox--input--font-size--xl: var(--cc-form--item--font-size--xl);
   --cc-checkbox--input--size--xs: var(--cc-form--widget--size--xs);
   --cc-checkbox--input--size--sm: var(--cc-form--widget--size--sm);
   --cc-checkbox--input--size--md: var(--cc-form--widget--size--md);

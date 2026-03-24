@@ -1,0 +1,39 @@
+---
+import '../../../dist/corncob-design-language.css';
+import NavigationBar from './partials/NavigationBar.astro';
+// import "../styles/docs.css";
+
+const { title = 'Corncob Design Language', description = 'Corncob documentation' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+  </head>
+  <body class="corn-body">
+    <NavigationBar />
+    <main class="corn-main">
+      <aside class="corn-sidebar">
+        <nav class="corn-sidebar--nav">
+          <ul>
+            <li><a href="/">Overview</a></li>
+            <li><a href="/getting-started/">Getting Started</a></li>
+            <li><a href="/components/buttons/">Buttons</a></li>
+            <li><a href="/frameworks/react/">React</a></li>
+            <li><a href="/frameworks/vue/">Vue</a></li>
+          </ul>
+        </nav>
+      </aside>
+
+      <article class="corn-content">
+        <div class="corn-panel">
+          <slot />
+        </div>
+      </article>
+    </main>
+  </body>
+</html>

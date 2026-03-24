@@ -1,0 +1,13 @@
+.corn-body {
+  background: var(--cc-body--background);
+
+  /* font-family: var(--cc-font-family); */
+}
+
+.corn-main {
+  padding: 2rem;
+}
+
+.corn-sidebar {
+  padding: 2rem 0 2rem 2rem;
+}

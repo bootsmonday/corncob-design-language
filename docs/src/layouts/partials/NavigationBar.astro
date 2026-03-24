@@ -1,0 +1,31 @@
+---
+import Logo from '../../../../dist/corn-cob-dl.svg';
+---
+
+<header class="corn-header">
+  <div class="corn-company">
+    <div class="corn-company--logo">
+      <Logo aria-hidden="true" />
+    </div>
+    <div class="corn-company--name">Corncob</div>
+  </div>
+  <div class="corn-header--title">Title Page</div>
+  <nav class="corn-header--nav">
+    <corn-button-bar class="corn-button-bar">
+      <a href="/">Overview</a>
+      <a href="/getting-started/">Getting Started</a>
+      <a href="/components/buttons/">Buttons</a>
+      <a href="/frameworks/react/">React</a>
+      <a href="/frameworks/vue/">Vue</a>
+      <div class="corn-popover--anchor corn-button-bar--more">
+        <button class="corn-button corn-button--xs corn-pop" aria-controls="button-bar-popover">
+          More
+        </button>
+        <corn-popover
+          position="bottom"
+          id="button-bar-popover"
+          class="corn-popover corn-popover--bottom"></corn-popover>
+      </div>
+    </corn-button-bar>
+  </nav>
+</header>

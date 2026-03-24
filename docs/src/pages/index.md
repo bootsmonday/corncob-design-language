@@ -1,5 +1,5 @@
 ---
-layout: ../layouts/DocsLayout.astro
+layout: ../layouts/LandingLayout.astro
 title: Corncob Design Language
 ---
 
@@ -9,9 +9,11 @@ Corncob is a framework-neutral design language built with tokens, CSS, and plain
 
 ## Goals
 
-- Keep the core package vanilla and portable.
-- Provide framework adapters without duplicating styles.
-- Publish static docs with minimal runtime overhead.
+- Keep the core package vanilla and portable
+- Utilize as much built-in browser functionality as possible.
+- HTML and CSS first, Web Components and JavaScript as needed.
+- 10 Steps Color Palette to ease accessiblity
+- Design Tokens from Primative, Categorical, Components
 
 ## Documentation Structure
 

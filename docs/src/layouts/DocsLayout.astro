@@ -1,8 +1,8 @@
 ---
-import "../../../dist/corn-cob-dl.css";
-import "../styles/docs.css";
+import '../../../dist/corncob-design-language.css';
+// import "../styles/docs.css";
 
-const { title = "Corncob Design Language", description = "Corncob documentation" } = Astro.props;
+const { title = 'Corncob Design Language', description = 'Corncob documentation' } = Astro.props;
 ---
 
 <!doctype html>
@@ -13,7 +13,7 @@ const { title = "Corncob Design Language", description = "Corncob documentation"
     <meta name="description" content={description} />
     <title>{title}</title>
   </head>
-  <body>
+  <body class="corn-body">
     <header class="docs-header corn-panel">
       <div>
         <p class="docs-eyebrow">Corncob EDL</p>

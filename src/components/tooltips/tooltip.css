@@ -1,6 +1,14 @@
-/* Tooltip Component */
+:root {
+  --cc-tooltip--background: var(--cc-black);
+  --cc-tooltip--color: var(--cc-white);
+  --cc-tooltip--font-size: var(--cc-size--1);
+  --cc-tooltip--padding: 0.25rem 0.5rem;
+  --cc-tooltip--border-radius: var(--cc-border--radius);
+  --cc-tooltip--box-shadow: var(--cc-shadow--drop);
+  --cc-tooltip--transition: opacity var(--cc-transition--easing) var(--cc-transition--time);
+}
 
-.corn-tooltip {
+.corn-tooltip--anchor {
   position: relative;
 
   &:not([disabled]):hover,
@@ -45,20 +53,20 @@
   }
 }
 
-corn-tooltip {
-  background: var(--cc-black);
-  border-radius: var(--cc-border--radius);
+.corn-tooltip {
+  background: var(--cc-tooltip--background);
+  border-radius: var(--cc-tooltip--border-radius);
   bottom: calc(100% + 0.25rem);
-  box-shadow: var(--cc-shadow--drop);
-  color: var(--cc-white);
-  font-size: var(--cc-size--1);
+  box-shadow: var(--cc-tooltip--box-shadow);
+  color: var(--cc-tooltip--color);
+  font-size: var(--cc-tooltip--font-size);
   left: 50%;
   line-height: 1;
   opacity: 0;
-  padding: 0.25rem 0.5rem;
+  padding: var(--cc-tooltip--padding);
   position: absolute;
   transform: translate(-50%, 0);
-  transition: opacity var(--cc-transition--easing) var(--cc-transition--time);
+  transition: var(--cc-tooltip--transition);
   white-space: nowrap;
 
   &.corn-tooltip--bottom {

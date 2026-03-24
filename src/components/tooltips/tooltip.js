@@ -8,7 +8,7 @@ export class CornTooltip extends HTMLElement {
   }
 
   connectedCallback() {
-    this.parent = this.closest('.corn-tooltip');
+    this.parent = this.closest('.corn-tooltip--anchor');
     if (!this.parent) return;
     if (!this._position) this._position = 'top';
     this.classPrefix = 'corn-tooltip--';

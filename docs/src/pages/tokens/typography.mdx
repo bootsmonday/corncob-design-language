@@ -3,11 +3,15 @@ layout: ../../layouts/DocsLayout.astro
 title: Tokens | Typography | Corncob
 ---
 
+import CodeSample from '../../layouts/partials/CodeSample.astro';
+
 # Typography Tokens
 
 Basic typography tokens for font families, sizes, weights, and line heights. These can be used in components or directly in your own styles. These are the foundation for typography in Corncob, but we recommend using them as a starting point and building on top of them with your own custom tokens as needed.
 
 Nothing fancy here, just a simple system font stack for the body and a monospaced font stack for code. We don't have strong opinions on which fonts you should use in your projects, [IBM Plex](https://www.ibm.com/plex/) is a popular open source font that pairs well with the system stack and has a lot of weights and styles, [Roboto](https://fonts.adobe.com/fonts/roboto) is another popular choice, and [Inter](https://rsms.me/inter/) is a newer font that has gained a lot of popularity in the design community. We recommend choosing fonts that fit the tone and style of your project, and that have good readability and accessibility.
+
+<CodeSample id="typography-tokens">
 
 ```css
 :root {
@@ -19,3 +23,5 @@ Nothing fancy here, just a simple system font stack for the body and a monospace
   --cc-font-family-mono: 'SFMono-Regular', consolas, 'Liberation Mono', menlo, courier, monospace;
 }
 ```
+
+</CodeSample>

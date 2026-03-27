@@ -3,10 +3,13 @@ layout: ../../layouts/DocsLayout.astro
 title: Tokens | Borders | Corncob
 ---
 
+import CodeSample from '../../layouts/partials/CodeSample.astro';
+
 # Border Tokens
 
 Basic border tokens for widths, colors, and radii. These can be used in components or directly in your own styles. These are the foundation for borders in Corncob, but we recommend using them as a starting point and building on top of them with your own custom tokens as needed.
 
+<CodeSample id="border-tokens">
 ```css
 :root {
   --cc-border--width: 1px;
@@ -17,3 +20,4 @@ Basic border tokens for widths, colors, and radii. These can be used in componen
   --cc-border--color: var(--cc-gray-70);
 }
 ```
+</CodeSample>

@@ -3,6 +3,8 @@ layout: ../../layouts/DocsLayout.astro
 title: Tokens | Sizes | Corncob
 ---
 
+import CodeSample from '../../layouts/partials/CodeSample.astro';
+
 # Size Tokens
 
 Basic size tokens for spacing and typography. These can be used in components or directly in your own styles. These are the foundation for sizes in Corncob, but we recommend using them as a starting point and building on top of them with your own custom tokens as needed.
@@ -10,6 +12,8 @@ Basic size tokens for spacing and typography. These can be used in components or
 These sizes are based on a modular scale with a major third ratio (1.25). This means that each size is 1.25 times larger than the previous size. This creates a harmonious and consistent scale that can be used for spacing, typography, and other design elements. The default size (0) is set to 1rem (16px), which is a common base size for web design, but you can adjust this as needed for your project.
 
 See [Modular Scale](https://www.modularscale.com/) for more information on modular scales and how to use them in your designs.
+
+<CodeSample id="size-tokens">
 
 ```css
 :root {
@@ -54,3 +58,5 @@ See [Modular Scale](https://www.modularscale.com/) for more information on modul
   --cc-size-7: calc(var(--cc-size-6) * var(--cc-size-ratio));
 }
 ```
+
+</CodeSample>

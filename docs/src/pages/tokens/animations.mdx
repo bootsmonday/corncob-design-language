@@ -3,6 +3,8 @@ layout: ../../layouts/DocsLayout.astro
 title: Tokens | Animations | Corncob
 ---
 
+import CodeSample from '../../layouts/partials/CodeSample.astro';
+
 # Animation Tokens
 
 Basic animation tokens for durations, easing, and keyframes. These can be used in components or directly in your own styles. These are the foundation for motion in Corncob.
@@ -15,6 +17,7 @@ Keep animations consistent across your application by using these tokens as a ba
 
 Too much animation can cause accessibility issues and overwhelm users, so always consider the impact of your animations on the overall user experience.
 
+<CodeSample id="animation-tokens">
 ```css
 :root {
   --cc-transition--easing: ease-out;
@@ -23,3 +26,4 @@ Too much animation can cause accessibility issues and overwhelm users, so always
   --cc-transition--time--slow: 333ms;
 }
 ```
+</CodeSample>

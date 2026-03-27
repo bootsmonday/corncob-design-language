@@ -3,6 +3,8 @@ layout: ../../layouts/DocsLayout.astro
 title: Tokens | Colors | Corncob
 ---
 
+import CodeSample from '../../layouts/partials/CodeSample.astro';
+
 # Color Tokens
 
 Color tokens for the Corncob palette. These can be used in components or directly in your own styles. These are the foundation for colors in Corncob, but we recommend using them as a starting point and building on top of them with your own custom tokens as needed.
@@ -349,12 +351,14 @@ In any design system or application, it's important to have a solid foundation o
   </div>
 </div>
 
+<CodeSample id="color-tokens-css">
+
 ```css
 :root {
   --cc-white: #fff;
   --cc-black: #000;
 
-  /* cc-yellow CSS Variables */
+  /* Yellow */
   --cc-yellow-10: #faf6ed;
   --cc-yellow-20: #efe2bb;
   --cc-yellow-30: #dfcb87;
@@ -366,7 +370,7 @@ In any design system or application, it's important to have a solid foundation o
   --cc-yellow-90: #393000;
   --cc-yellow-100: #282100;
 
-  /* cc-blue CSS Variables */
+  /* Blue */
   --cc-blue-10: #d4fffa;
   --cc-blue-20: #abefe8;
   --cc-blue-30: #5be0d5;
@@ -378,7 +382,7 @@ In any design system or application, it's important to have a solid foundation o
   --cc-blue-90: #103633;
   --cc-blue-100: #002724;
 
-  /* cc-orange CSS Variables */
+  /* Orange */
   --cc-orange-10: #fef4f3;
   --cc-orange-20: #fbdcd5;
   --cc-orange-30: #f4c0b4;
@@ -390,7 +394,7 @@ In any design system or application, it's important to have a solid foundation o
   --cc-orange-90: #52220d;
   --cc-orange-100: #3b1707;
 
-  /* cc-red CSS Variables */
+  /* Red */
   --cc-red-10: #fcf5f5;
   --cc-red-20: #f5dddd;
   --cc-red-30: #eec2c1;
@@ -402,7 +406,7 @@ In any design system or application, it's important to have a solid foundation o
   --cc-red-90: #571d1a;
   --cc-red-100: #3f1311;
 
-  /* cc-green CSS Variables */
+  /* Green */
   --cc-green-10: #ecfbe8;
   --cc-green-20: #b9f2a5;
   --cc-green-30: #a6da93;
@@ -414,7 +418,7 @@ In any design system or application, it's important to have a solid foundation o
   --cc-green-90: #263420;
   --cc-green-100: #192515;
 
-  /* cc-gray CSS Variables */
+  /* Gray */
   --cc-gray-10: #f7f6f3;
   --cc-gray-20: #e7e2d7;
   --cc-gray-30: #d1ccbe;
@@ -425,5 +429,7 @@ In any design system or application, it's important to have a solid foundation o
   --cc-gray-80: #44423d;
   --cc-gray-90: #32302c;
   --cc-gray-100: #23211f;
-
+}
 ```
+
+</CodeSample>

@@ -1,6 +1,6 @@
 ---
 layout: ../../layouts/DocsLayout.astro
-title: Buttons | Corncob
+title: Component | Button | Corncob
 ---
 
 # Buttons
@@ -17,11 +17,37 @@ Buttons are built from shared token values and semantic variants.
 
 ## HTML API
 
+<div id="button-code" class="corn-copy-button--anchor">
+
 ```html
 <button class="corn-button">Primary</button>
 <button class="corn-button corn-button--secondary">Secondary</button>
 <button class="corn-button corn-button--danger">Danger</button>
 ```
+
+<corn-copy-button
+class="corn-copy-button"
+copyselector="#button-code pre code"
+copysuccess="Text copied to clipboard"
+copyfailure="Failed to copy"
+
+>
+
+  <button
+    class="corn-button corn-button--xs"
+    aria-controls="button-code"
+    aria-label="Copy text to clipboard"
+  >
+    copy
+  </button>
+  <div
+    role="status"
+    aria-live="polite"
+    class="corn-copy-button--message corn-assistive-text"
+  ></div>
+</corn-copy-button>
+
+</div>
 
 ## Notes
 

@@ -1,0 +1,56 @@
+---
+layout: ../../layouts/DocsLayout.astro
+title: Tokens | Sizes | Corncob
+---
+
+# Size Tokens
+
+Basic size tokens for spacing and typography. These can be used in components or directly in your own styles. These are the foundation for sizes in Corncob, but we recommend using them as a starting point and building on top of them with your own custom tokens as needed.
+
+These sizes are based on a modular scale with a major third ratio (1.25). This means that each size is 1.25 times larger than the previous size. This creates a harmonious and consistent scale that can be used for spacing, typography, and other design elements. The default size (0) is set to 1rem (16px), which is a common base size for web design, but you can adjust this as needed for your project.
+
+See [Modular Scale](https://www.modularscale.com/) for more information on modular scales and how to use them in your designs.
+
+```css
+:root {
+  /* Modular Scale Major 3rd */
+  --cc-size-ratio: 1.25;
+
+  /* 6.554px */
+  --cc-size--4: calc(var(--cc-size-3) / var(--cc-size-ratio));
+
+  /* 8.192px */
+  --cc-size--3: calc(var(--cc-size-2) / var(--cc-size-ratio));
+
+  /* 10.24px */
+  --cc-size--2: calc(var(--cc-size-1) / var(--cc-size-ratio));
+
+  /* 12.8px */
+  --cc-size--1: calc(var(--cc-size-0) / var(--cc-size-ratio));
+
+  /* Default 16px */
+
+  --cc-size-0: 1rem;
+
+  /* 20px */
+  --cc-size-1: calc(var(--cc-size-0) * var(--cc-size-ratio));
+
+  /* 25px */
+  --cc-size-2: calc(var(--cc-size-1) * var(--cc-size-ratio));
+
+  /* 31.25 px */
+  --cc-size-3: calc(var(--cc-size-2) * var(--cc-size-ratio));
+
+  /* 39.063px */
+  --cc-size-4: calc(var(--cc-size-3) * var(--cc-size-ratio));
+
+  /* 48.82px */
+  --cc-size-5: calc(var(--cc-size-4) * var(--cc-size-ratio));
+
+  /* 61.035px */
+  --cc-size-6: calc(var(--cc-size-5) * var(--cc-size-ratio));
+
+  /* 72.289px */
+  --cc-size-7: calc(var(--cc-size-6) * var(--cc-size-ratio));
+}
+```

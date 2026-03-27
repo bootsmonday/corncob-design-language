@@ -187,4 +187,27 @@
     </button>
   </div>
   <hr />
+  <h3>Copy Button</h3>
+  <div class="corn-copy-button--anchor">
+    <div id="copy-button-1">Text to Copy</div>
+    <corn-copy-button
+      class="corn-copy-button"
+      copyselector="#copy-button-1"
+      copysuccess="Text copied to clipboard"
+      copyfailure="Failed to copy"
+    >
+      <button
+        class="corn-button corn-button--xs"
+        aria-controls="copy-button-1"
+        aria-label="Copy text to clipboard"
+      >
+        copy
+      </button>
+      <div
+        role="status"
+        aria-live="polite"
+        class="corn-copy-button--message corn-assistive-text"
+      ></div>
+    </corn-copy-button>
+  </div>
 </div>

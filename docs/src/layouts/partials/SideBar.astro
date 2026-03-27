@@ -1,0 +1,84 @@
+---
+import ChevronRight from '@carbon/icons/svg/chevron--right.svg';
+
+const { pathname } = Astro.url;
+
+// A utility function can help handle edge cases like trailing slashes or nested routes
+const isActive = (href) => {
+  // Normalize paths by removing trailing slashes, but treat the home page '/' specially
+  const normalizedPathname = pathname.replace(/\/$/, '') || '/';
+  const normalizedHref = href.replace(/\/$/, '') || '/';
+
+  // Check for direct match or if current page is a sub-path of the link (e.g., /blog/post-1 and /blog)
+  return (
+    normalizedPathname === normalizedHref ||
+    (normalizedHref !== '/' && normalizedPathname.startsWith(normalizedHref + '/'))
+  );
+};
+
+const isTokensSection = pathname.includes('/tokens') ? true : null;
+---
+
+<div class="corn-panel-menu">
+  <a href="/" class="corn-panel-menu--item" aria-current={isActive('/') ? 'page' : false}
+    >Overview</a
+  >
+  <a
+    href="/getting-started/"
+    class="corn-panel-menu--item"
+    aria-current={isActive('/getting-started/') ? 'page' : false}>Getting Started</a
+  >
+  <corn-expandable class="corn-expandable" open={isTokensSection} data-test={pathname}>
+    <details slot="details">
+      <summary class="corn-panel-menu--item corn-expandable-button">
+        Tokens
+        <ChevronRight class="corn-icon" aria-hidden="true" />
+      </summary>
+      <div class="corn-expandable--content">
+        <div class="corn-panel-menu--submenu">
+          <a
+            href="/tokens/animations"
+            class="corn-panel-menu--item"
+            aria-current={isActive('/tokens/animations') ? 'page' : false}>Animation</a
+          >
+          <a
+            href="/tokens/colors"
+            class="corn-panel-menu--item"
+            aria-current={isActive('/tokens/colors') ? 'page' : false}>Colors</a
+          >
+          <a
+            href="/tokens/borders"
+            class="corn-panel-menu--item"
+            aria-current={isActive('/tokens/borders') ? 'page' : false}>Borders</a
+          >
+          <a
+            href="/tokens/forms"
+            class="corn-panel-menu--item"
+            aria-current={isActive('/tokens/forms') ? 'page' : false}>Forms</a
+          >
+          <a
+            href="/tokens/shadows"
+            class="corn-panel-menu--item"
+            aria-current={isActive('/tokens/shadows') ? 'page' : false}>Shadows</a
+          >
+          <a
+            href="/tokens/sizes"
+            class="corn-panel-menu--item"
+            aria-current={isActive('/tokens/sizes') ? 'page' : false}>Sizes</a
+          >
+          <a
+            href="/tokens/spacing"
+            class="corn-panel-menu--item"
+            aria-current={isActive('/tokens/spacing') ? 'page' : false}>Spacing</a
+          >
+          <a
+            href="/tokens/typography"
+            class="corn-panel-menu--item"
+            aria-current={isActive('/tokens/typography') ? 'page' : false}>Typography</a
+          >
+        </div>
+      </div>
+    </details>
+  </corn-expandable>
+  <a href="#" class="corn-panel-menu--item">Menu Item 3</a>
+</div>

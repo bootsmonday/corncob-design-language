@@ -1,0 +1,429 @@
+---
+layout: ../../layouts/DocsLayout.astro
+title: Tokens | Colors | Corncob
+---
+
+# Color Tokens
+
+Color tokens for the Corncob palette. These can be used in components or directly in your own styles. These are the foundation for colors in Corncob, but we recommend using them as a starting point and building on top of them with your own custom tokens as needed.
+
+The foundation of the color palette is a 10-step scale for each hue, which provides a range of shades from light to dark. This allows for flexibility in design while maintaining consistency across components and applications.
+
+These 10 steps have been crafted to meet current WCAG standards for color contrast, ensuring accessibility and readability across different devices and lighting conditions. By using these token you can ensure that contrast rations are maintained through a simple mathematical formula. For example, if you need a color that is 4.5:1 contrast ratio with `--cc-blue-90`, you can use `--cc-blue-40` or `--cc-yellow-40` or any color that is 40 or less for normal text.
+
+`90 - 40 = 50`, which means it will meet the 4.5:1 contrast ratio requirement for normal text.
+
+In any design system or application, it's important to have a solid foundation of color tokens that can be used consistently across components and applications. It is also important to refer to colors by token names rather than hardcoding hex values or referring to them by their color values (e.g. "light gray") to maintain consistency and make it easier to update colors in the future if needed. We have seen many cases where refering to colors by their name ie "light gray" has resulted in 100's of variations of "light gray" being used across a codebase, which makes it difficult to maintain and update colors in the future. By using token names, you can ensure that all colors are consistent and easily maintainable.
+
+<div class="corn-row">
+  <div class="corn-col-12 corn-col-sm-6 corn-col-lg-4">
+    <h3>Yellow</h3>
+    <div class="docs-color-palette">
+      <div class="docs-color-swatch" style="background-color: var(--cc-yellow-10)">
+          <span class="docs-color-swatch-black-contrast">B: 19.49</span>
+          <span class="docs-color-swatch-white-contrast">W: 1.08</span>
+          <span class="docs-color-swatch-value">10</span>
+      </div>
+      <div class="docs-color-swatch" style="background-color: var(--cc-yellow-20)">
+          <span class="docs-color-swatch-black-contrast">B: 16.26</span>
+          <span class="docs-color-swatch-white-contrast">W: 1.08</span>
+          <span class="docs-color-swatch-value">20</span>
+      </div>
+      <div class="docs-color-swatch" style="background-color: var(--cc-yellow-30)">
+          <span class="docs-color-swatch-black-contrast">B: 13.06</span>
+          <span class="docs-color-swatch-white-contrast">W: 1.29</span>
+          <span class="docs-color-swatch-value">30</span>
+      </div>
+      <div class="docs-color-swatch" style="background-color: var(--cc-yellow-40)">
+          <span class="docs-color-swatch-black-contrast">B: 9.73</span>
+          <span class="docs-color-swatch-white-contrast">W: 2.16</span>
+          <span class="docs-color-swatch-value">40</span>
+      </div>
+      <div class="docs-color-swatch" style="background-color: var(--cc-yellow-50)">
+          <span class="docs-color-swatch-black-contrast">B: 6.41</span>
+          <span class="docs-color-swatch-white-contrast">W: 3.27</span>
+          <span class="docs-color-swatch-value">50</span>
+      </div>
+      <div class="docs-color-swatch docs-color-swatch-dark" style="background-color: var(--cc-yellow-60)">
+          <span class="docs-color-swatch-black-contrast">B: 4.28</span>
+          <span class="docs-color-swatch-white-contrast">W: 4.91</span>
+          <span class="docs-color-swatch-value">60</span>
+      </div>
+      <div class="docs-color-swatch docs-color-swatch-dark" style="background-color: var(--cc-yellow-70)">
+          <span class="docs-color-swatch-black-contrast">B: 2.91</span>
+          <span class="docs-color-swatch-white-contrast">W: 7.22</span>
+          <span class="docs-color-swatch-value">70</span>
+      </div>
+      <div class="docs-color-swatch docs-color-swatch-dark" style="background-color: var(--cc-yellow-80)">
+          <span class="docs-color-swatch-black-contrast">B: 2.09</span>
+          <span class="docs-color-swatch-white-contrast">W: 10.04</span>
+          <span class="docs-color-swatch-value">80</span>
+      </div>
+      <div class="docs-color-swatch docs-color-swatch-dark" style="background-color: var(--cc-yellow-90)">
+          <span class="docs-color-swatch-black-contrast">B: 1.60</span>
+          <span class="docs-color-swatch-white-contrast">W: 13.14</span>
+          <span class="docs-color-swatch-value">90</span>
+      </div>
+      <div class="docs-color-swatch docs-color-swatch-dark" style="background-color: var(--cc-yellow-100)">
+          <span class="docs-color-swatch-black-contrast">B: 1.31</span>
+          <span class="docs-color-swatch-white-contrast">W: 16.00</span>
+          <span class="docs-color-swatch-value">100</span>
+      </div>
+    </div>
+  </div>
+  <div class="corn-col-12 corn-col-sm-6 corn-col-lg-4">
+    <h3>Blue</h3>
+    <div class="docs-color-palette">
+      <div class="docs-color-swatch" style="background-color: var(--cc-blue-10)">
+        <span class="docs-color-swatch-black-contrast">B: 19.49</span>
+        <span class="docs-color-swatch-white-contrast">W: 1.08</span>
+        <span class="docs-color-swatch-value">10</span>
+      </div>
+      <div class="docs-color-swatch" style="background-color: var(--cc-blue-20)">
+        <span class="docs-color-swatch-black-contrast">B: 16.26</span>
+        <span class="docs-color-swatch-white-contrast">W: 1.29</span>
+        <span class="docs-color-swatch-value">20</span>
+      </div>
+      <div class="docs-color-swatch" style="background-color: var(--cc-blue-30)">
+        <span class="docs-color-swatch-black-contrast">B: 13.06</span>
+        <span class="docs-color-swatch-white-contrast">W: 1.61</span>
+        <span class="docs-color-swatch-value">30</span>
+      </div>
+      <div class="docs-color-swatch" style="background-color: var(--cc-blue-40)">
+        <span class="docs-color-swatch-black-contrast">B: 9.73</span>
+        <span class="docs-color-swatch-white-contrast">W: 2.1</span>
+        <span class="docs-color-swatch-value">40</span>      
+      </div>
+      <div class="docs-color-swatch" style="background-color: var(--cc-blue-50)">
+        <span class="docs-color-swatch-black-contrast">B: 6.41</span>
+        <span class="docs-color-swatch-white-contrast">W: 3.27</span>
+        <span class="docs-color-swatch-value">50</span>
+      </div>
+      <div class="docs-color-swatch docs-color-swatch-dark" style="background-color: var(--cc-blue-60)">
+        <span class="docs-color-swatch-black-contrast">B: 4.28</span>
+        <span class="docs-color-swatch-white-contrast">W: 4.91</span>
+        <span class="docs-color-swatch-value">60</span>
+      </div>
+      <div class="docs-color-swatch docs-color-swatch-dark" style="background-color: var(--cc-blue-70)">
+        <span class="docs-color-swatch-black-contrast">B: 2.91</span>
+        <span class="docs-color-swatch-white-contrast">W: 7.22</span>
+        <span class="docs-color-swatch-value">70</span>
+      </div>
+      <div class="docs-color-swatch docs-color-swatch-dark" style="background-color: var(--cc-blue-80)">
+        <span class="docs-color-swatch-black-contrast">B: 2.09</span>
+        <span class="docs-color-swatch-white-contrast">W: 10.04</span>
+        <span class="docs-color-swatch-value">80</span>
+      </div>
+      <div class="docs-color-swatch docs-color-swatch-dark" style="background-color: var(--cc-blue-90)">
+        <span class="docs-color-swatch-black-contrast">B: 1.60</span>
+        <span class="docs-color-swatch-white-contrast">W: 13.14</span>
+        <span class="docs-color-swatch-value">90</span>
+      </div>
+      <div class="docs-color-swatch docs-color-swatch-dark" style="background-color: var(--cc-blue-100)">
+        <span class="docs-color-swatch-black-contrast">B: 1.31</span>
+        <span class="docs-color-swatch-white-contrast">W: 16.00</span>
+        <span class="docs-color-swatch-value">100</span>
+      </div>
+    </div>
+
+  </div>
+  <div class="corn-col-12 corn-col-sm-6 corn-col-lg-4">
+    <h3>Orange</h3>
+    <div class="docs-color-palette">
+      <div class="docs-color-swatch" style="background-color: var(--cc-orange-10)">
+        <span class="docs-color-swatch-black-contrast">B: 19.49</span>
+        <span class="docs-color-swatch-white-contrast">W: 1.08</span>
+        <span class="docs-color-swatch-value">10</span>
+      </div>
+      <div class="docs-color-swatch" style="background-color: var(--cc-orange-20)">
+        <span class="docs-color-swatch-black-contrast">B: 16.26</span>
+        <span class="docs-color-swatch-white-contrast">W: 1.29</span>
+        <span class="docs-color-swatch-value">20</span>
+      </div>
+      <div class="docs-color-swatch" style="background-color: var(--cc-orange-30)">
+        <span class="docs-color-swatch-black-contrast">B: 13.06</span>
+        <span class="docs-color-swatch-white-contrast">W: 2.16</span>
+        <span class="docs-color-swatch-value">30</span>
+      </div>
+      <div class="docs-color-swatch" style="background-color: var(--cc-orange-40)">
+        <span class="docs-color-swatch-black-contrast">B: 9.73</span>
+        <span class="docs-color-swatch-white-contrast">W: 3.27</span>
+        <span class="docs-color-swatch-value">40</span>
+      </div>
+      <div class="docs-color-swatch" style="background-color: var(--cc-orange-50)">
+        <span class="docs-color-swatch-black-contrast">B: 6.41</span>
+        <span class="docs-color-swatch-white-contrast">W: 4.91</span>
+        <span class="docs-color-swatch-value">50</span>
+      </div>
+      <div class="docs-color-swatch docs-color-swatch-dark" style="background-color: var(--cc-orange-60)">
+        <span class="docs-color-swatch-black-contrast">B: 4.28</span>
+        <span class="docs-color-swatch-white-contrast">W: 4.91</span>
+        <span class="docs-color-swatch-value">60</span>
+      </div>
+      <div class="docs-color-swatch docs-color-swatch-dark" style="background-color: var(--cc-orange-70)">
+        <span class="docs-color-swatch-black-contrast">B: 2.91</span>
+        <span class="docs-color-swatch-white-contrast">W: 7.22</span>
+        <span class="docs-color-swatch-value">70</span>
+      </div>
+      <div class="docs-color-swatch docs-color-swatch-dark" style="background-color: var(--cc-orange-80)">
+        <span class="docs-color-swatch-black-contrast">B: 2.09</span>
+        <span class="docs-color-swatch-white-contrast">W: 10.04</span>
+        <span class="docs-color-swatch-value">80</span>
+      </div>
+      <div class="docs-color-swatch docs-color-swatch-dark" style="background-color: var(--cc-orange-90)">
+        <span class="docs-color-swatch-black-contrast">B: 1.60</span>
+        <span class="docs-color-swatch-white-contrast">W: 13.14</span>
+        <span class="docs-color-swatch-value">90</span>
+      </div>
+      <div class="docs-color-swatch docs-color-swatch-dark" style="background-color: var(--cc-orange-100)">
+        <span class="docs-color-swatch-black-contrast">B: 1.31</span>
+        <span class="docs-color-swatch-white-contrast">W: 16.00</span>
+        <span class="docs-color-swatch-value">100</span>
+      </div>
+    </div>    
+  </div>
+<div class="corn-col-12 corn-col-sm-6 corn-col-lg-4">
+    <h3>Green</h3>
+    <div class="docs-color-palette">
+      <div class="docs-color-swatch" style="background-color: var(--cc-green-10)">
+        <span class="docs-color-swatch-black-contrast">B: 19.49</span>
+        <span class="docs-color-swatch-white-contrast">W: 1.08</span>
+        <span class="docs-color-swatch-value">10</span>
+      </div>
+      <div class="docs-color-swatch" style="background-color: var(--cc-green-20)">
+        <span class="docs-color-swatch-black-contrast">B: 16.26</span>
+        <span class="docs-color-swatch-white-contrast">W: 1.29</span>
+        <span class="docs-color-swatch-value">20</span>
+      </div>
+      <div class="docs-color-swatch" style="background-color: var(--cc-green-30)">
+        <span class="docs-color-swatch-black-contrast">B: 13.06</span>
+        <span class="docs-color-swatch-white-contrast">W: 2.16</span>
+        <span class="docs-color-swatch-value">30</span>
+      </div>
+      <div class="docs-color-swatch" style="background-color: var(--cc-green-40)">
+        <span class="docs-color-swatch-black-contrast">B: 9.73</span>
+        <span class="docs-color-swatch-white-contrast">W: 3.27</span>
+        <span class="docs-color-swatch-value">40</span>
+      </div>
+      <div class="docs-color-swatch" style="background-color: var(--cc-green-50)">
+        <span class="docs-color-swatch-black-contrast">B: 6.41</span>
+        <span class="docs-color-swatch-white-contrast">W: 4.91</span>
+        <span class="docs-color-swatch-value">50</span>
+      </div>
+      <div class="docs-color-swatch docs-color-swatch-dark" style="background-color: var(--cc-green-60)">
+        <span class="docs-color-swatch-black-contrast">B: 4.28</span>
+        <span class="docs-color-swatch-white-contrast">W: 4.91</span>
+        <span class="docs-color-swatch-value">60</span>
+      </div>
+      <div class="docs-color-swatch docs-color-swatch-dark" style="background-color: var(--cc-green-70)">
+        <span class="docs-color-swatch-black-contrast">B: 2.91</span>
+        <span class="docs-color-swatch-white-contrast">W: 7.22</span>
+        <span class="docs-color-swatch-value">70</span>
+      </div>
+      <div class="docs-color-swatch docs-color-swatch-dark" style="background-color: var(--cc-green-80)">
+        <span class="docs-color-swatch-black-contrast">B: 2.09</span>
+        <span class="docs-color-swatch-white-contrast">W: 10.04</span>
+        <span class="docs-color-swatch-value">80</span>
+      </div>
+      <div class="docs-color-swatch docs-color-swatch-dark" style="background-color: var(--cc-green-90)">
+        <span class="docs-color-swatch-black-contrast">B: 1.60</span>
+        <span class="docs-color-swatch-white-contrast">W: 13.14</span>
+        <span class="docs-color-swatch-value">90</span>
+      </div>
+      <div class="docs-color-swatch docs-color-swatch-dark" style="background-color: var(--cc-green-100)">
+        <span class="docs-color-swatch-black-contrast">B: 1.31</span>
+        <span class="docs-color-swatch-white-contrast">W: 16.00</span>
+        <span class="docs-color-swatch-value">100</span>
+      </div>
+    </div>    
+  </div>
+  <div class="corn-col-12 corn-col-sm-6 corn-col-lg-4">
+    <h3>Red</h3>
+    <div class="docs-color-palette">
+      <div class="docs-color-swatch" style="background-color: var(--cc-red-10)">
+        <span class="docs-color-swatch-black-contrast">B: 19.49</span>
+        <span class="docs-color-swatch-white-contrast">W: 1.08</span>
+        <span class="docs-color-swatch-value">10</span>
+      </div>
+      <div class="docs-color-swatch" style="background-color: var(--cc-red-20)">
+        <span class="docs-color-swatch-black-contrast">B: 16.26</span>
+        <span class="docs-color-swatch-white-contrast">W: 1.29</span>
+        <span class="docs-color-swatch-value">20</span>
+      </div>
+      <div class="docs-color-swatch" style="background-color: var(--cc-red-30)">
+        <span class="docs-color-swatch-black-contrast">B: 13.06</span>
+        <span class="docs-color-swatch-white-contrast">W: 2.16</span>
+        <span class="docs-color-swatch-value">30</span>
+      </div>
+      <div class="docs-color-swatch" style="background-color: var(--cc-red-40)">
+        <span class="docs-color-swatch-black-contrast">B: 9.73</span>
+        <span class="docs-color-swatch-white-contrast">W: 3.27</span>
+        <span class="docs-color-swatch-value">40</span>
+      </div>
+      <div class="docs-color-swatch" style="background-color: var(--cc-red-50)">
+        <span class="docs-color-swatch-black-contrast">B: 6.41</span>
+        <span class="docs-color-swatch-white-contrast">W: 4.91</span>
+        <span class="docs-color-swatch-value">50</span>
+      </div>
+      <div class="docs-color-swatch docs-color-swatch-dark" style="background-color: var(--cc-red-60)">
+        <span class="docs-color-swatch-black-contrast">B: 4.28</span>
+        <span class="docs-color-swatch-white-contrast">W: 4.91</span>
+        <span class="docs-color-swatch-value">60</span>
+      </div>
+      <div class="docs-color-swatch docs-color-swatch-dark" style="background-color: var(--cc-red-70)">
+        <span class="docs-color-swatch-black-contrast">B: 2.91</span>
+        <span class="docs-color-swatch-white-contrast">W: 7.22</span>
+        <span class="docs-color-swatch-value">70</span>
+      </div>
+      <div class="docs-color-swatch docs-color-swatch-dark" style="background-color: var(--cc-red-80)">
+        <span class="docs-color-swatch-black-contrast">B: 2.09</span>
+        <span class="docs-color-swatch-white-contrast">W: 10.04</span>
+        <span class="docs-color-swatch-value">80</span>
+      </div>
+      <div class="docs-color-swatch docs-color-swatch-dark" style="background-color: var(--cc-red-90)">
+        <span class="docs-color-swatch-black-contrast">B: 1.60</span>
+        <span class="docs-color-swatch-white-contrast">W: 13.14</span>
+        <span class="docs-color-swatch-value">90</span>
+      </div>
+      <div class="docs-color-swatch docs-color-swatch-dark" style="background-color: var(--cc-red-100)">
+        <span class="docs-color-swatch-black-contrast">B: 1.31</span>
+        <span class="docs-color-swatch-white-contrast">W: 16.00</span>
+        <span class="docs-color-swatch-value">100</span>
+      </div>
+    </div>    
+  </div> 
+  <div class="corn-col-12 corn-col-sm-6 corn-col-lg-4">
+    <h3>Gray</h3>
+    <div class="docs-color-palette">
+      <div class="docs-color-swatch" style="background-color: var(--cc-gray-10)">
+        <span class="docs-color-swatch-black-contrast">B: 19.49</span>
+        <span class="docs-color-swatch-white-contrast">W: 1.08</span>
+        <span class="docs-color-swatch-value">10</span>
+      </div>
+      <div class="docs-color-swatch" style="background-color: var(--cc-gray-20)">
+        <span class="docs-color-swatch-black-contrast">B: 16.26</span>
+        <span class="docs-color-swatch-white-contrast">W: 1.29</span>
+        <span class="docs-color-swatch-value">20</span>
+      </div>
+      <div class="docs-color-swatch" style="background-color: var(--cc-gray-30)">
+        <span class="docs-color-swatch-black-contrast">B: 13.06</span>
+        <span class="docs-color-swatch-white-contrast">W: 2.16</span>
+        <span class="docs-color-swatch-value">30</span>
+      </div>
+      <div class="docs-color-swatch" style="background-color: var(--cc-gray-40)">
+        <span class="docs-color-swatch-black-contrast">B: 9.73</span>
+        <span class="docs-color-swatch-white-contrast">W: 3.27</span>
+        <span class="docs-color-swatch-value">40</span>
+      </div>
+      <div class="docs-color-swatch" style="background-color: var(--cc-gray-50)">
+        <span class="docs-color-swatch-black-contrast">B: 6.41</span>
+        <span class="docs-color-swatch-white-contrast">W: 4.91</span>
+        <span class="docs-color-swatch-value">50</span>
+      </div>
+      <div class="docs-color-swatch docs-color-swatch-dark" style="background-color: var(--cc-gray-60)">
+        <span class="docs-color-swatch-black-contrast">B: 4.28</span>
+        <span class="docs-color-swatch-white-contrast">W: 4.91</span>
+        <span class="docs-color-swatch-value">60</span>
+      </div>
+      <div class="docs-color-swatch docs-color-swatch-dark" style="background-color: var(--cc-gray-70)">
+        <span class="docs-color-swatch-black-contrast">B: 2.91</span>
+        <span class="docs-color-swatch-white-contrast">W: 7.22</span>
+        <span class="docs-color-swatch-value">70</span>
+      </div>
+      <div class="docs-color-swatch docs-color-swatch-dark" style="background-color: var(--cc-gray-80)">
+        <span class="docs-color-swatch-black-contrast">B: 2.09</span>
+        <span class="docs-color-swatch-white-contrast">W: 10.04</span>
+        <span class="docs-color-swatch-value">80</span>
+      </div>
+      <div class="docs-color-swatch docs-color-swatch-dark" style="background-color: var(--cc-gray-90)">
+        <span class="docs-color-swatch-black-contrast">B: 1.60</span>
+        <span class="docs-color-swatch-white-contrast">W: 13.14</span>
+        <span class="docs-color-swatch-value">90</span>
+      </div>
+      <div class="docs-color-swatch docs-color-swatch-dark" style="background-color: var(--cc-gray-100)">
+        <span class="docs-color-swatch-black-contrast">B: 1.31</span>
+        <span class="docs-color-swatch-white-contrast">W: 16.00</span>
+        <span class="docs-color-swatch-value">100</span>
+      </div>
+    </div>    
+  </div>
+</div>
+
+```css
+:root {
+  --cc-white: #fff;
+  --cc-black: #000;
+
+  /* cc-yellow CSS Variables */
+  --cc-yellow-10: #faf6ed;
+  --cc-yellow-20: #efe2bb;
+  --cc-yellow-30: #dfcb87;
+  --cc-yellow-40: #c9b03e;
+  --cc-yellow-50: #a58d00;
+  --cc-yellow-60: #837000;
+  --cc-yellow-70: #665600;
+  --cc-yellow-80: #4e4200;
+  --cc-yellow-90: #393000;
+  --cc-yellow-100: #282100;
+
+  /* cc-blue CSS Variables */
+  --cc-blue-10: #d4fffa;
+  --cc-blue-20: #abefe8;
+  --cc-blue-30: #5be0d5;
+  --cc-blue-40: #00c5ba;
+  --cc-blue-50: #009f96;
+  --cc-blue-60: #007f77;
+  --cc-blue-70: #00625c;
+  --cc-blue-80: #004b46;
+  --cc-blue-90: #103633;
+  --cc-blue-100: #002724;
+
+  /* cc-orange CSS Variables */
+  --cc-orange-10: #fef4f3;
+  --cc-orange-20: #fbdcd5;
+  --cc-orange-30: #f4c0b4;
+  --cc-orange-40: #e99e8b;
+  --cc-orange-50: #d47453;
+  --cc-orange-60: #b55429;
+  --cc-orange-70: #8e401e;
+  --cc-orange-80: #6d3015;
+  --cc-orange-90: #52220d;
+  --cc-orange-100: #3b1707;
+
+  /* cc-red CSS Variables */
+  --cc-red-10: #fcf5f5;
+  --cc-red-20: #f5dddd;
+  --cc-red-30: #eec2c1;
+  --cc-red-40: #e69e9c;
+  --cc-red-50: #df6a66;
+  --cc-red-60: #c04944;
+  --cc-red-70: #963733;
+  --cc-red-80: #742926;
+  --cc-red-90: #571d1a;
+  --cc-red-100: #3f1311;
+
+  /* cc-green CSS Variables */
+  --cc-green-10: #ecfbe8;
+  --cc-green-20: #b9f2a5;
+  --cc-green-30: #a6da93;
+  --cc-green-40: #90bd7f;
+  --cc-green-50: #739866;
+  --cc-green-60: #5b7950;
+  --cc-green-70: #465d3d;
+  --cc-green-80: #34472d;
+  --cc-green-90: #263420;
+  --cc-green-100: #192515;
+
+  /* cc-gray CSS Variables */
+  --cc-gray-10: #f7f6f3;
+  --cc-gray-20: #e7e2d7;
+  --cc-gray-30: #d1ccbe;
+  --cc-gray-40: #b5b0a4;
+  --cc-gray-50: #928e84;
+  --cc-gray-60: #747169;
+  --cc-gray-70: #595751;
+  --cc-gray-80: #44423d;
+  --cc-gray-90: #32302c;
+  --cc-gray-100: #23211f;
+
+```

@@ -14,6 +14,7 @@
 // export { CobAlert } from './_archive/alert/alert.js';
 // export { CobBadge } from './_archive/badge/badge.js';
 // export { CobAvatar } from './_archive/avatar/avatar.js';
+export { CornCopyButton } from './buttons/copy-button.js';
 export { CornTooltip } from './tooltips/tooltip.js';
 export { CornPopover } from './popovers/popover.js';
 export { CornExpandable } from './expandables/expandable.js';

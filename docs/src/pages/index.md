@@ -7,6 +7,10 @@ title: Corncob Design Language
 
 Corncob is a framework-neutral design language built with tokens, CSS, and plain JavaScript behavior.
 
+This project is in early development, but you can check out the [Getting Started](./getting-started/) page for installation instructions and a quick preview of the button component.
+
+Corncob is built with the following goals in mind:
+
 ## Goals
 
 - Keep the core package vanilla and portable
@@ -14,13 +18,6 @@ Corncob is a framework-neutral design language built with tokens, CSS, and plain
 - HTML and CSS first, Web Components and JavaScript as needed.
 - 10 Steps Color Palette to ease accessiblity
 - Design Tokens from Primative, Categorical, Components
-
-## Documentation Structure
-
-- [Getting Started](/getting-started/)
-- [Buttons Component](/components/buttons/)
-- [React Integration](/frameworks/react/)
-- [Vue Integration](/frameworks/vue/)
 
 ## Quick Button Preview
 

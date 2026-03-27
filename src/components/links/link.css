@@ -24,6 +24,9 @@
   --cc-link--underline--width--border--active: var(--cc-link--underline--width--border);
   --cc-link--underline--color--text--hover: var(--cc-gray-90);
   --cc-link--underline--color--text--active: var(--cc-black);
+  --cc-link--underline--box-shadow--hover: 0 2px 2px -2px var(--cc-blue-60);
+  --cc-link--underline--box-shadow--focus: 0 2px 2px -2px var(--cc-blue-80);
+  --cc-link--underline--box-shadow--active: none;
 }
 
 a,
@@ -40,23 +43,26 @@ a,
 
   &:hover,
   &:active,
-  &:focus {
+  &:focus-visible {
     text-decoration: none;
   }
 
   &:hover {
-    box-shadow: 0 2px 2px -2px var(--cc-blue-60);
+    border-bottom-color: var(--cc-link--color--border--hover);
+    box-shadow: var(--cc-link--underline--box-shadow--hover);
     color: var(--cc-link--color--text--hover);
   }
 
   &:active {
+    border-bottom-color: var(--cc-link--color--border--active);
+    box-shadow: var(--cc-link--underline--box-shadow--active);
     color: var(--cc-link--color--text--active);
   }
 
   /* Hide the default focus outline. This takes the form of an underline. */
-  &:focus {
+  &:focus-visible {
     border-bottom-color: var(--cc-link--color--border--focus);
-    box-shadow: 0 2px 2px -2px var(--cc-blue-60);
+    box-shadow: var(--cc-link--underline--box-shadow--focus);
     outline: 0;
 
     &:hover {
@@ -69,7 +75,11 @@ a,
   }
 }
 
-.corn-link--underline {
+a {
+  border-bottom-color: var(--cc-link--underline--color--border);
+}
+
+/* .corn-link--underline {
   border-bottom: var(--cc-link--underline--width--border) var(--cc-link--underline--style--border)
     var(--cc-link--underline--color--border);
   color: var(--cc-link--underline--color--text);
@@ -80,7 +90,7 @@ a,
     color: var(--cc-link--underline--color--text--hover);
   }
 
-  &:focus {
+  &:focus-visible {
     border-bottom-color: var(--cc-link--underline--color--border--focus);
     border-bottom-width: var(--cc-link--underline--width--border--focus);
     color: var(--cc-link--underline--color--text--active);
@@ -93,15 +103,6 @@ a,
     box-shadow: none;
     color: var(--cc-link--underline--color--text--active);
   }
-}
+} */
 
-b,
-strong,
-.corn-bold {
-  a,
-  .corn-link,
-  .corn-link--underline {
-    font-family: var(--cc-link--font--family);
-    font-weight: var(--cc-link--font--weight--bold);
-  }
-}
+

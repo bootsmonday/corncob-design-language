@@ -49,6 +49,8 @@
   --cc-button--danger--color--hover: var(--cc-red-20);
   --cc-button--danger--background--active: var(--cc-red-100);
   --cc-button--danger--color--active: var(--cc-red-10);
+  --cc-button--transition--duration: var(--cc-transition--time);
+  --cc-button--transition--easing: var(--cc-transition--easing); 
 }
 
 .corn-button,
@@ -67,6 +69,10 @@
   line-height: 1;
   outline: none;
   padding: var(--cc-button--padding--md);
+  transition: background-color var(--cc-button--transition--duration) var(--cc-button--transition--easing),
+              color var(--cc-button--transition--duration) var(--cc-button--transition--easing),
+              border-color var(--cc-button--transition--duration) var(--cc-button--transition--easing),
+              box-shadow var(--cc-button--transition--duration) var(--cc-button--transition--easing);
   white-space: nowrap;
 
   &:hover {
@@ -77,12 +83,12 @@
     background-color: var(--cc-button--background--active);
   }
 
-  &:focus {
+  &:focus-visible {
     border-color: var(--cc-white);
     box-shadow: var(--cc-button--box-shadow--focus);
   }
 
-  &:active:focus {
+  &:active:focus-visible {
     border-color: var(--cc-border--color);
     box-shadow: var(--cc-button--box-shadow--active-focus);
   }
@@ -216,4 +222,23 @@
 
 .corn-button--icon {
   border-radius: var(--cc-button--border-radius--round);
+}
+
+.corn-copy-button--anchor {
+  position: relative;
+}
+
+.corn-copy-button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: translate(0, -100%);
+  transition: opacity 150ms ease-in-out;
+
+  .corn-button {
+    &.corn-copied {
+      background-color: var(--cc-green-40);
+      color: var(--cc-green-100);
+    }
+  }  
 }

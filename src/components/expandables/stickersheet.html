@@ -2,22 +2,45 @@
 <div class="expandables-demo">
   <h2>Corn Expandables</h2>
 
-  <h3>Default (Top)</h3>
+  <h3>Default</h3>
 
-  <corn-expandable class="corn-expandable corn-panel-menu">
+  <corn-expandable class="corn-expandable">
     <details slot="details">
-      <summary>
+      <summary class="corn-expandable-button">
         Summary
         <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="corn-icon">
           <use href="/node_modules/@carbon/icons/svg/chevron--right.svg"></use>
         </svg>
       </summary>
-      <div class="corn-expandable--content">details</div>
+      <div class="corn-expandable--content">
+        <div>
+          <h3>heading</h3>
+          <div>content</div>
+        </div>
+      </div>
     </details>
   </corn-expandable>
-  <corn-expandable class="corn-expandable corn-panel-menu">
+  <h4>Start Open</h4>
+  <corn-expandable class="corn-expandable" open>
     <details slot="details">
-      <summary>
+      <summary class="corn-expandable-button">
+        Summary
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="corn-icon">
+          <use href="/node_modules/@carbon/icons/svg/chevron--right.svg"></use>
+        </svg>
+      </summary>
+      <div class="corn-expandable--content">
+        <div>
+          <h3>heading</h3>
+          <div>content</div>
+        </div>
+      </div>
+    </details>
+  </corn-expandable>
+  <hr />
+  <corn-expandable class="corn-expandable">
+    <details slot="details">
+      <summary class="corn-expandable-button">
         Summary 2
         <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="corn-icon">
           <use href="/node_modules/@carbon/icons/svg/chevron--right.svg"></use>
@@ -26,9 +49,10 @@
       <div class="corn-expandable--content">details 2</div>
     </details>
   </corn-expandable>
-  <corn-expandable class="corn-expandable corn-panel-menu">
+  <hr />
+  <corn-expandable class="corn-expandable">
     <details slot="details">
-      <summary>
+      <summary class="corn-expandable-button">
         Summary 3
         <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="corn-icon">
           <use href="/node_modules/@carbon/icons/svg/chevron--right.svg"></use>
@@ -39,46 +63,47 @@
   </corn-expandable>
 
   <h3>Accordion Single Open</h3>
-  <corn-expandable class="corn-expandable corn-panel-menu">
-    <details slot="details" name="corn-single">
-      <summary>
-        Summary
-        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="corn-icon">
-          <use href="/node_modules/@carbon/icons/svg/chevron--right.svg"></use>
-        </svg>
-      </summary>
-      <div class="corn-expandable--content">details</div>
-    </details>
-  </corn-expandable>
-  <corn-expandable class="corn-expandable corn-panel-menu">
-    <details slot="details" name="corn-single">
-      <summary>
-        Summary 2
-        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="corn-icon">
-          <use href="/node_modules/@carbon/icons/svg/chevron--right.svg"></use>
-        </svg>
-      </summary>
-      <div class="corn-expandable--content">details 2</div>
-    </details>
-  </corn-expandable>
-  <corn-expandable class="corn-expandable corn-panel-menu">
-    <details slot="details" name="corn-single">
-      <summary>
-        Summary 3
-        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="corn-icon">
-          <use href="/node_modules/@carbon/icons/svg/chevron--right.svg"></use>
-        </svg>
-      </summary>
-      <div class="corn-expandable--content">details</div>
-    </details>
-  </corn-expandable>
-
+  <div class="corn-accordion">
+    <corn-expandable class="corn-expandable">
+      <details slot="details" name="corn-single">
+        <summary class="corn-expandable-button">
+          Summary
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="corn-icon">
+            <use href="/node_modules/@carbon/icons/svg/chevron--right.svg"></use>
+          </svg>
+        </summary>
+        <div class="corn-expandable--content">details</div>
+      </details>
+    </corn-expandable>
+    <corn-expandable class="corn-expandable">
+      <details slot="details" name="corn-single">
+        <summary class="corn-expandable-button">
+          Summary 2
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="corn-icon">
+            <use href="/node_modules/@carbon/icons/svg/chevron--right.svg"></use>
+          </svg>
+        </summary>
+        <div class="corn-expandable--content">details 2</div>
+      </details>
+    </corn-expandable>
+    <corn-expandable class="corn-expandable">
+      <details slot="details" name="corn-single">
+        <summary class="corn-expandable-button">
+          Summary 3
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="corn-icon">
+            <use href="/node_modules/@carbon/icons/svg/chevron--right.svg"></use>
+          </svg>
+        </summary>
+        <div class="corn-expandable--content">details</div>
+      </details>
+    </corn-expandable>
+  </div>
   <hr />
 
   <h3>Nested expandable</h3>
   <corn-expandable class="corn-expandable corn-tree-view">
     <details slot="details">
-      <summary>
+      <summary class="corn-expandable-button">
         <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="corn-icon">
           <use href="/node_modules/@carbon/icons/svg/chevron--right.svg"></use>
         </svg>
@@ -87,7 +112,7 @@
       <div class="corn-expandable--content">
         <corn-expandable class="corn-expandable corn-tree-view">
           <details slot="details">
-            <summary>
+            <summary class="corn-expandable-button">
               <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="corn-icon">
                 <use href="/node_modules/@carbon/icons/svg/chevron--right.svg"></use>
               </svg>

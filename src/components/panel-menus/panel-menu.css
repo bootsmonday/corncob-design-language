@@ -1,0 +1,124 @@
+:root {
+  --cc-panel--border--radius: var(--cc-border--radius);
+  --cc-panel--border--width: var(--cc-border--width);
+  --cc-panel--border--style: var(--cc-border--style);
+  --cc-panel--border--color: rgb(from var(--cc-border--color) r g b / 21%);
+  --cc-panel--shadow: var(--cc-shadow--drop);
+  --cc-panel--padding: var(--cc-size-2);
+  --cc-panel--background: var(--cc-white);
+  --cc-panel-menu--item--transition--timing: 150ms;
+  --cc-panel-menu--item--font--weight: var(--cc-body--font--weight--normal);
+  --cc-panel-menu--item--font--weight--bold: var(--cc-body--font--weight--bold);
+  --cc-panel-menu--item--font--family: var(--cc-body--font--family);
+  --cc-panel-menu--item--color--border: transparent;
+  --cc-panel-menu--item--width--border: 1px;
+  --cc-panel-menu--item--style--border: solid;
+  --cc-panel-menu--item--color--text: var(--cc-gray-60);
+  --cc-panel-menu--item--color--text--hover: var(--cc-gray-70);
+  --cc-panel-menu--item--color--border--hover: var(--cc-gray-70);
+  --cc-panel-menu--item--color--text--active: var(--cc-gray-80);
+  --cc-panel-menu--item--color--border--active: var(--cc-gray-80);
+  --cc-panel-menu--item--color--text--focus: var(--cc-gray-60);
+  --cc-panel-menu--item--color--border--focus: var(--cc-gray-50);
+  --cc-panel-menu--item--underline--box-shadow--hover: 0 2px 2px -2px var(--cc-blue-60);
+  --cc-panel-menu--item--underline--box-shadow--focus: 0 2px 2px -2px var(--cc-blue-80);
+  --cc-panel-menu--item--underline--box-shadow--active: none;
+    
+}
+
+.corn-panel-menu {
+  background: var(--cc-panel--background);
+  border-color: var(--cc-panel--border--color);
+  border-radius: var(--cc-panel--border--radius);
+  border-style: var(--cc-panel--border--style);
+  border-width: var(--cc-panel--border--width);
+  box-shadow: var(--cc-panel--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: calc(var(--cc-panel--padding) / 2) 0;
+
+  details {
+    border-width: 0;
+    padding: 0;
+  }
+}
+
+.corn-panel-menu--item {
+  border-bottom: var(--cc-panel-menu--item--width--border) var(--cc-panel-menu--item--style--border)
+    var(--cc-panel-menu--item--color--border);
+  color:  var(--cc-panel-menu--item--color--text);
+  font-weight: 500;
+  padding: 0 calc(var(--cc-panel--padding) / 2);
+  transition:
+    border-bottom-color  var(--cc-panel-menu--item--transition--timing),
+    box-shadow  var(--cc-panel-menu--item--transition--timing);
+
+  &:hover,
+  &:active,
+  &:focus-visible {
+    text-decoration: none;
+  }
+
+  &:hover {
+    border-bottom-color:  var(--cc-panel-menu--item--color--border--hover);
+    box-shadow:  var(--cc-panel-menu--item--underline--box-shadow--hover);
+    color:  var(--cc-panel-menu--item--color--text--hover);
+  }
+
+  &:active {
+    box-shadow:  var(--cc-panel-menu--item--underline--box-shadow--active);
+    color:  var(--cc-panel-menu--item--color--text--active);
+  }
+
+  /* Hide the default focus outline. This takes the form of an underline. */
+  &:focus-visible {
+    border-bottom-color: var(--cc-panel-menu--item--color--border--focus);
+    box-shadow:  var(--cc-panel-menu--item--underline--box-shadow--focus);
+    outline: 0;
+
+    &:hover {
+      border-bottom-color:  var(--cc-panel-menu--item--color--border--hover);
+    }
+
+    &:active {
+      border-bottom-color: transparent;
+    }
+  }
+
+  summary& {
+     padding: 0 calc(var(--cc-panel--padding) / 2);
+  }
+
+  &.corn-panel-menu--item--active, 
+  &[aria-current="page"] {
+    color: var(--cc-panel-menu--item--color--text--active);
+
+    &::before {
+      background-color: var(--cc-blue-60);
+      border-radius: var(--cc-panel--border--radius);
+      content: "";
+      height: 100%;
+      left: 0;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: .25rem;
+    }
+  }
+}
+
+.corn-panel-menu--submenu {
+  background-color: var(--cc-gray-10);
+  border-bottom: rgb(from var(--cc-border--color) r g b / 21%) var(--cc-border--width) var(--cc-border--style);
+  border-top: rgb(from var(--cc-border--color) r g b / 21%) var(--cc-border--width) var(--cc-border--style);
+  display: flex;
+  flex-direction: column;
+  font-size: var(--cc-size--1);
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+
+  .corn-panel-menu--item {
+    font-size: var(--cc-size--1);
+  }
+}

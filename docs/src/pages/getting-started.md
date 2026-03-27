@@ -8,20 +8,35 @@ title: Getting Started | Corncob
 ## Install
 
 ```bash
-npm install @corncob/edl
-```
-
-### Optional framework wrappers
-
-```bash
-npm install @corncob/edl-react
-npm install @corncob/edl-vue
+npm install @corncob/design-language
 ```
 
 ## Include Styles
 
+This contains the base styles for all the components and design tokens. You can also import individual component styles if you want to reduce the amount of CSS included in your project.
+
 ```js
-import '@corncob/edl/style.css';
+import '@corncob/design-language/style.css';
+```
+
+HTML version:
+
+```html
+<link rel="stylesheet" href="./corncob-design-language.css" />
+```
+
+## Include Scripts
+
+You can also include the JavaScript file for any components that require behavior. This is optional and only needed for components that have interactive behavior.
+
+```js
+import '@corncob/design-language';
+```
+
+HTML version:
+
+```html
+<script type="module" src="/corncob-design-language.esm.js"></script>
 ```
 
 ## Use Markup
@@ -30,31 +45,3 @@ import '@corncob/edl/style.css';
 <button class="corn-button">Save</button>
 <button class="corn-button corn-button--secondary">Cancel</button>
 ```
-
-## React Wrapper
-
-```jsx
-import '@corncob/edl/style.css';
-import { CcButton } from '@corncob/edl-react';
-
-export function Example() {
-  return <CcButton variant="danger">Delete</CcButton>;
-}
-```
-
-## Vue Wrapper
-
-```js
-import '@corncob/edl/style.css';
-import { CcButton } from '@corncob/edl-vue';
-```
-
-## Development and Build
-
-```bash
-npm run docs:dev
-npm run docs:build
-npm run docs:preview
-```
-
-Production files are generated into `dist-docs/`.

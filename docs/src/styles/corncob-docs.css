@@ -1,7 +1,25 @@
-pre {
+.corn-docs-code {
+  border: 1px solid var(--cc-border--color);
   border-radius: var(--cc-border--radius);
-  margin: 2rem 0.5rem;  
-  padding: 0.5rem;
+  margin: 1rem 0;
+
+  .corn-button-bar {
+    /* margin: 1rem 0; */
+  }
+
+  pre {
+    margin: 0;
+    padding: 1rem 0.5rem;
+    
+  }
+
+}
+
+.corn-sidebar {
+  .corn-panel-menu {
+    position: sticky;
+    top: 1rem;
+  }
 }
 
 .docs-color-palette {

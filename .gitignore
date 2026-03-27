@@ -8,7 +8,7 @@ dist-docs/
 coverage/
 .env
 .env.local
-_archive/
+*_archive/
 .npm
 .eslintcache
 .stylelintcache

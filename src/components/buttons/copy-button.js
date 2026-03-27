@@ -1,3 +1,5 @@
+const template = document.createElement('template');
+
 export class CornCopyButton extends HTMLElement {
   /**
    * Observed attributes for the copy button.
@@ -16,7 +18,9 @@ export class CornCopyButton extends HTMLElement {
    * @param {*} newValue
    */
   attributeChangedCallback(name, oldValue, newValue) {
-    this._cacheElements();
+    if (name === 'copyselector' && newValue !== oldValue && newValue) {
+      this._copyTarget = document.querySelector(newValue);
+    }
   }
 
   /**
@@ -24,7 +28,7 @@ export class CornCopyButton extends HTMLElement {
    * It finds the closest anchor element, caches the necessary elements and messages, and adds event listeners for the copy functionality.
    */
   connectedCallback() {
-    this.parent = this.closest('.corn-copy-button--anchor');
+    console.log('is connected to the DOM', this.isConnected);
     this._cacheElements();
     this._addEventListeners();
   }
@@ -55,7 +59,7 @@ export class CornCopyButton extends HTMLElement {
         evt.target.classList.add('corn-copied');
         setTimeout(() => {
           evt.target.classList.remove('corn-copied');
-          this._copyMessage.textContent = '';
+          //this._copyMessage.textContent = '';
         }, 500);
       },
       (err) => {
@@ -87,11 +91,8 @@ export class CornCopyButton extends HTMLElement {
    * It ensures that the component always has the correct target element and messages based on its current configuration.
    */
   _cacheElements() {
-    this._copyselector = this.getAttribute('copyselector');
-    this._copysuccess = this.getAttribute('copysuccess');
-    this._copyfailure = this.getAttribute('copyfailure');
-    this._copyMessage = this.querySelector('.corn-copy-button--message');
-    this._copyTarget = document.querySelector(this._copyselector);
+    this._copyMessage = this.querySelector('[role="status"]');
+    console.log('copy message element', this._copyMessage);
   }
 
   /**

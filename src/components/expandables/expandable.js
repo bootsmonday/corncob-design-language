@@ -31,13 +31,11 @@ export class CornExpandable extends HTMLElement {
    * This setup allows for better modularity and reusability of the component while maintaining a clean separation of concerns.
    */
   constructor() {
-    console.log('constructor');
     super(); // 1. Always call super first
     this.isOpen = false;
     // 2. Create the shadow root
     const shadow = this.attachShadow({ mode: 'open' });
     shadow.appendChild(template.content.cloneNode(true));
-    console.log(this.open);
   }
 
   /**

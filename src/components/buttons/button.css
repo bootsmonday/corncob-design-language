@@ -224,17 +224,7 @@
   border-radius: var(--cc-button--border-radius--round);
 }
 
-.corn-copy-button--anchor {
-  position: relative;
-}
-
 .corn-copy-button {
-  position: absolute;
-  right: 0;
-  top: 0;
-  transform: translate(0, -100%);
-  transition: opacity 150ms ease-in-out;
-
   .corn-button {
     &.corn-copied {
       background-color: var(--cc-green-40);

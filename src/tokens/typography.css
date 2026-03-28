@@ -1,8 +1,8 @@
 /* Typography Tokens */
 :root {
   /* Font Family */
-  --font-family: 'IBM Plex Sans', sans-serif;
-  --font-family-mono: 'Monaco', 'Courier New', 'monospace';
+    --cc-font-family: system-ui, -apple-system, "Segoe UI", roboto, "Helvetica Neue", arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --cc-font-family-mono: "SFMono-Regular", consolas, "Liberation Mono", menlo, courier, monospace;
 
   /* Font Sizes */
 

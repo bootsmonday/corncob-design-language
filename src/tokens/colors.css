@@ -1,90 +1,88 @@
 /* Color Tokens */
 :root {
-  /* Mustard CSS Variables */
-  --cc-yellow-10: #fcf5ed;
-  --cc-yellow-20: #fedeb0;
-  --cc-yellow-30: #f3c578;
-  --cc-yellow-40: #d9a947;
-  --cc-yellow-50: #b38718;
-  --cc-yellow-60: #8f6b11;
-  --cc-yellow-70: #6f530b;
-  --cc-yellow-80: #553f06;
-  --cc-yellow-90: #3f2e03;
-  --cc-yellow-100: #2d1f02;
+  /* cc-yellow CSS Variables */ 
+  --cc-yellow-10: #faf6ed;
+  --cc-yellow-20: #efe2bb;
+  --cc-yellow-30: #dfcb87;
+  --cc-yellow-40: #c9b03e;
+  --cc-yellow-50: #a58d00;
+  --cc-yellow-60: #837000;
+  --cc-yellow-70: #665600;
+  --cc-yellow-80: #4e4200;
+  --cc-yellow-90: #393000;
+  --cc-yellow-100: #282100;
 
-  /* Burnt Orange CSS Variables */
-  --cc-orange-10: #fff4f2;
-  --cc-orange-20: #ffdad3;
-  --cc-orange-30: #ffbcad;
-  --cc-orange-40: #ff9473;
-  --cc-orange-50: #ed6400;
-  --cc-orange-60: #be4e00;
-  --cc-orange-70: #943c00;
-  --cc-orange-80: #732c00;
-  --cc-orange-90: #561f00;
-  --cc-orange-100: #3e1500;
+  /* cc-blue CSS Variables */ 
+  --cc-blue-10: #d4fffa;
+  --cc-blue-20: #abefe8;
+  --cc-blue-30: #5be0d5;
+  --cc-blue-40: #00c5ba;
+  --cc-blue-50: #009f96;
+  --cc-blue-60: #007f77;
+  --cc-blue-70: #00625c;
+  --cc-blue-80: #004b46;
+  --cc-blue-90: #103633;
+  --cc-blue-100: #002724;
 
-  /* Avocado CSS Variables */
-  --cc-green-10: #eafcdc;
-  --cc-green-20: #c3f098;
-  --cc-green-30: #9edf47;
-  --cc-green-40: #83c307;
-  --cc-green-50: #699d04;
-  --cc-green-60: #527d03;
-  --cc-green-70: #3f6102;
-  --cc-green-80: #2f4a01;
-  --cc-green-90: #213600;
-  --cc-green-100: #162600;
+  /* cc-orange CSS Variables */ 
+  --cc-orange-10: #fef4f3;
+  --cc-orange-20: #fbdcd5;
+  --cc-orange-30: #f4c0b4;
+  --cc-orange-40: #e99e8b;
+  --cc-orange-50: #d47453;
+  --cc-orange-60: #b55429;
+  --cc-orange-70: #8e401e;
+  --cc-orange-80: #6d3015;
+  --cc-orange-90: #52220d;
+  --cc-orange-100: #3b1707;
 
-  /* Muted Teal CSS Variables */
-  --cc-blue-10: #e9fafa;
-  --cc-blue-20: #bdebed;
-  --cc-blue-30: #97d7d9;
-  --cc-blue-40: #5ac0c2;
-  --cc-blue-50: #479b9d;
-  --cc-blue-60: #377b7d;
-  --cc-blue-70: #295f61;
-  --cc-blue-80: #1e484a;
-  --cc-blue-90: #143536;
-  --cc-blue-100: #0c2526;
+  /* cc-red CSS Variables */ 
+  --cc-red-10: #fcf5f5;
+  --cc-red-20: #f5dddd;
+  --cc-red-30: #eec2c1;
+  --cc-red-40: #e69e9c;
+  --cc-red-50: #df6a66;
+  --cc-red-60: #c04944; 
+  --cc-red-70: #963733;
+  --cc-red-80: #742926;
+  --cc-red-90: #571d1a;
+  --cc-red-100: #3f1311;
 
-  /* Warm Taupe CSS Variables */
-  --cc-gray-10: #f7f6f6;
-  --cc-gray-20: #e3e2e3;
-  --cc-gray-30: #cecbcd;
-  --cc-gray-40: #b3afb2;
-  --cc-gray-50: #928c90;
-  --cc-gray-60: #746f73;
-  --cc-gray-70: #5a5659;
-  --cc-gray-80: #444143;
-  --cc-gray-90: #323031;
-  --cc-gray-100: #232122;
+  /* cc-green CSS Variables */ 
+  --cc-green-10: #ecfbe8;
+  --cc-green-20: #b9f2a5;
+  --cc-green-30: #a6da93;
+  --cc-green-40: #90bd7f;
+  --cc-green-50: #739866;
+  --cc-green-60: #5b7950;
+  --cc-green-70: #465d3d;
+  --cc-green-80: #34472d;
+  --cc-green-90: #263420;
+  --cc-green-100: #192515;
 
-  /* Coral Red CSS Variables */
-  --cc-red-10: #fff4f4;
-  --cc-red-20: #ffdada;
-  --cc-red-30: #fbb;
-  --cc-red-40: #ff9191;
-  --cc-red-50: #eb6161;
-  --cc-red-60: #d92727;
-  --cc-red-70: #b30000;
-  --cc-red-80: #8b0000;
-  --cc-red-90: #690000;
-  --cc-red-100: #4d0000;
-  --cc-black: #000;
+  /* cc-gray CSS Variables */ 
+  --cc-gray-10: #f7f6f3;
+  --cc-gray-20: #e7e2d7;
+  --cc-gray-30: #d1ccbe;
+  --cc-gray-40: #b5b0a4;
+  --cc-gray-50: #928e84;
+  --cc-gray-60: #747169;
+  --cc-gray-70: #595751;
+  --cc-gray-80: #44423d;
+  --cc-gray-90: #32302c;
+  --cc-gray-100: #23211f;
+
+  /* Base Colors */
   --cc-white: #fff;
+  --cc-black: #000;
 
-  /* Semantic Colors */
-  --color-success: var(--cc-green-60);
-  --color-success-light: var(--cc-green-20);
-  --color-success-dark: var(--cc-green-80);
+/* Foundation Colors */
+  --cc-body--background: var(--cc-yellow-10);
 
-  /* Danger */
-  --color-danger: var(--cc-red-60);
-  --color-danger-light: var(--cc-red-20);
-  --color-danger-dark: var(--cc-red-80);
+  /* --color-success: var(  Danger */
 
-  /* Warning */
+  /* --color-danger: var(-
+  Warning */
   --color-warning: var(--cc-yellow-60);
   --color-warning-light: var(--cc-yellow-20);
   --color-warning-dark: var(--cc-yellow-80);

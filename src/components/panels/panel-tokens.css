@@ -1,8 +1,0 @@
-:root {
-  --cc-panel--border--radius: var(--cc-border--radius);
-  --cc-panel--border--width: var(--cc-border--width);
-  --cc-panel--border--style: var(--cc-border--style);
-  --cc-panel--border--color: rgb(from var(--cc-border--color) r g b / 21%);
-  --cc-panel--shadow: var(--cc-shadow--drop);
-  --cc-panel--padding: var(--cc-size-2);
-}

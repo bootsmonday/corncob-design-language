@@ -281,7 +281,6 @@ export class CornPopover extends HTMLElement {
    * This is a crucial part of managing the lifecycle of custom elements and ensuring that they behave correctly in dynamic applications where elements may be added and removed frequently.
    */
   disconnectedCallback() {
-    console.log('disconnect call back');
     this._removeEventListeners();
   }
 }

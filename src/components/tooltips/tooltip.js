@@ -8,7 +8,7 @@ export class CornTooltip extends HTMLElement {
   }
 
   connectedCallback() {
-    this.parent = this.closest('.corn-tooltip');
+    this.parent = this.closest('.corn-tooltip--anchor');
     if (!this.parent) return;
     if (!this._position) this._position = 'top';
     this.classPrefix = 'corn-tooltip--';
@@ -81,13 +81,11 @@ export class CornTooltip extends HTMLElement {
     };
   }
 
-  _intersectionCallback(entries) {
-    if (entries[0].isIntersecting === true) {
-      this._currentRatio = entries[0].intersectionRatio;
-      this._positionContent();
-    } else {
-      this._positionContent();
+  _resizeObserverCallback(entries) {
+    if (!entries || entries.length === 0) {
+      return;
     }
+    this._positionContent();
   }
 
   _positionContent() {
@@ -133,15 +131,27 @@ export class CornTooltip extends HTMLElement {
       this.classList.remove(this.overlapClass);
       this.classList.add(this.classPrefix + this._position);
     }
-    this.resizeObserver = new ResizeObserver((entries) => this._intersectionCallback(entries));
+    this.resizeObserver = new ResizeObserver((entries) => this._resizeObserverCallback(entries));
     this.resizeObserver.observe(this.scrollEl);
   }
+
   _close() {
-    this.resizeObserver.unobserve(this.scrollEl);
+    if (this.resizeObserver && this.scrollEl) {
+      this.resizeObserver.unobserve(this.scrollEl);
+      this.resizeObserver.disconnect();
+      this.resizeObserver = null;
+    }
   }
+
+  /**
+   * TODO need to check if we added the ID or if it was generated, if it was generated we can remove it, but if it was added by the user we should probably leave it
+   */
   disconnectedCallback() {
-    console.log('disconnect call back');
-    this.resizeObserver.unobserve(this.scrollEl);
+    if (this.resizeObserver && this.scrollEl) {
+      this.resizeObserver.unobserve(this.scrollEl);
+      this.resizeObserver.disconnect();
+      this.resizeObserver = null;
+    }
     this._removeEventListeners();
     const parentLabelledby = new Set(
       (this.parent.getAttribute('aria-labelledby') || '').split(' ')

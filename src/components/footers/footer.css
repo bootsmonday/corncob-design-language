@@ -1,3 +1,7 @@
+:root {
+  --cc-footer--copyright--font--size: var(--cc-size--1);
+}
+
 .corn-footer {
   display: flex;
   flex-direction: column;
@@ -30,6 +34,6 @@
 }
 
 .corn-footer--copyright {
-  font-size: var(--cc-size--1);
+  font-size: var(--cc-footer--copyright--font--size);
   text-align: center;
 }

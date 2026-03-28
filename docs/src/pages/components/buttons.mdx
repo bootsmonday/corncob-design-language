@@ -1,0 +1,213 @@
+---
+layout: ../../layouts/DocsLayout.astro
+title: 'Component | Button | Corncob'
+---
+
+import CodeSample from '../../layouts/partials/CodeSample.astro';
+import CloseIcon from '@carbon/icons/svg/32/close.svg';
+
+# Buttons
+
+Buttons are built from shared token values and semantic variants. They contain styles for the following states hover, active, focus, and disabled. The default button is the primary variant, and secondary and danger variants are also available. Size modifiers are also available for extra-small through extra-large buttons.
+
+## Default Button
+
+<div class="corn-form--row">
+  <button class="corn-button corn-button--md">MD Button</button>
+  <button class="corn-button corn-button--md corn-button--secondary">MD Secondary</button>
+  <button class="corn-button corn-button--md corn-button--danger">MD Danger</button>
+  <button class="corn-button corn-button--md corn-button" disabled>
+    MD Disabled
+  </button>
+</div>
+
+<CodeSample id="default-button-code">
+  ```html
+  <button class="corn-button">Primary</button>
+  <button class="corn-button corn-button--secondary">Secondary</button>
+  <button class="corn-button corn-button--danger">Danger</button>
+  ```
+</CodeSample>
+
+## Size Modifiers
+
+Medium is the default size and does not require a modifier class. The size modifiers:
+
+- `corn-button--xs`
+- `corn-button--sm`
+- `corn-button--md`
+- `corn-button--lg`
+- `corn-button--xl`
+
+### Extra Small
+
+<div class="corn-form--row">
+  <button class="corn-button corn-button--xs">XS Button</button>
+  <button class="corn-button corn-button--xs corn-button--secondary">XS Secondary</button>
+  <button class="corn-button corn-button--xs corn-button--danger">XS Danger</button>
+  <button class="corn-button corn-button--xs corn-button" disabled>
+    XS Disabled
+  </button>
+</div>
+
+### Small
+
+<div class="corn-form--row">
+  <button class="corn-button corn-button--sm">SM Button</button>
+  <button class="corn-button corn-button--sm corn-button--secondary">SM Secondary</button>
+  <button class="corn-button corn-button--sm corn-button--danger">SM Danger</button>
+  <button class="corn-button corn-button--sm corn-button" disabled>
+    SM Disabled
+  </button>
+</div>
+
+### Medium (Default)
+
+<div class="corn-form--row">
+  <button class="corn-button corn-button--md">MD Button</button>
+  <button class="corn-button corn-button--md corn-button--secondary">MD Secondary</button>
+  <button class="corn-button corn-button--md corn-button--danger">MD Danger</button>
+  <button class="corn-button corn-button--md corn-button" disabled>
+    MD Disabled
+  </button>
+</div>
+
+### Large
+
+<div class="corn-form--row">
+  <button class="corn-button corn-button--lg">LG Button</button>
+  <button class="corn-button corn-button--lg corn-button--secondary">LG Secondary</button>
+  <button class="corn-button corn-button--lg corn-button--danger">LG Danger</button>
+  <button class="corn-button corn-button--lg corn-button" disabled>
+    LG Disabled
+  </button>
+</div>
+
+### Extra Large
+
+<div class="corn-form--row">
+  <button class="corn-button corn-button--xl">XL Button</button>
+  <button class="corn-button corn-button--xl corn-button--secondary">XL Secondary</button>
+  <button class="corn-button corn-button--xl corn-button--danger">XL Danger</button>
+  <button class="corn-button corn-button--xl corn-button" disabled>
+    XL Disabled
+  </button>
+</div>
+
+## Icon Buttons
+
+Icon buttons are used for actions that can be represented by an icon without text. They use the same classes as regular buttons, but also include an icon element. The `aria-label` attribute should be used to provide a label for screen readers.
+Add `corn-button--icon` to the button class list to apply the icon button styles.
+
+## Icon Only (XS)
+
+<div class="corn-form--row">
+  <button class="corn-button corn-button--icon corn-button--xs" aria-label="Close">
+    <CloseIcon class="corn-icon" />
+  </button>
+  <button
+    class="corn-button corn-button--icon corn-button--secondary corn-button--xs"
+    aria-label="Close"
+  >
+    <CloseIcon class="corn-icon" />
+  </button>
+  <button
+    class="corn-button corn-button--icon corn-button--danger corn-button--xs"
+    aria-label="Close"
+  >
+    <CloseIcon class="corn-icon" />
+  </button>
+  <button class="corn-button corn-button--icon corn-button--xs" aria-label="Close" disabled>
+    <CloseIcon class="corn-icon" />
+  </button>
+</div>
+<hr />
+
+### Icon Only (sm)
+
+<div class="corn-form--row">
+  <button class="corn-button corn-button--icon corn-button--sm" aria-label="Close">
+    <CloseIcon class="corn-icon" />
+  </button>
+  <button
+    class="corn-button corn-button--icon corn-button--secondary corn-button--sm"
+    aria-label="Close"
+  >
+    <CloseIcon class="corn-icon" />
+  </button>
+  <button
+    class="corn-button corn-button--icon corn-button--danger corn-button--sm"
+    aria-label="Close"
+  >
+    <CloseIcon class="corn-icon" />
+  </button>
+  <button class="corn-button corn-button--icon corn-button--sm" aria-label="Close" disabled>
+    <CloseIcon class="corn-icon" />
+  </button>
+</div>
+<hr />
+
+### Icon Only (md)
+
+<div class="corn-form--row">
+  <button class="corn-button corn-button--icon" aria-label="Close">
+    <CloseIcon class="corn-icon" />
+  </button>
+  <button class="corn-button corn-button--icon corn-button--secondary" aria-label="Close">
+    <CloseIcon class="corn-icon" />
+  </button>
+  <button class="corn-button corn-button--icon corn-button--danger" aria-label="Close">
+    <CloseIcon class="corn-icon" />
+  </button>
+  <button class="corn-button corn-button--icon" aria-label="Close" disabled>
+    <CloseIcon class="corn-icon" />
+  </button>
+</div>
+<hr />
+
+### Icon Only (lg)
+
+<div class="corn-form--row">
+  <button class="corn-button corn-button--icon corn-button--lg" aria-label="Close">
+    <CloseIcon class="corn-icon" />
+  </button>
+  <button
+    class="corn-button corn-button--icon corn-button--secondary corn-button--lg"
+    aria-label="Close"
+  >
+    <CloseIcon class="corn-icon" />
+  </button>
+  <button
+    class="corn-button corn-button--icon corn-button--danger corn-button--lg"
+    aria-label="Close"
+  >
+    <CloseIcon class="corn-icon" />
+  </button>
+  <button class="corn-button corn-button--icon corn-button--lg" aria-label="Close" disabled>
+    <CloseIcon class="corn-icon" />
+  </button>
+</div>
+<hr />
+
+### Icon Only (xl)
+
+<div class="corn-form--row">
+  <button class="corn-button corn-button--icon corn-button--xl" aria-label="Close">
+    <CloseIcon class="corn-icon" />
+  </button>
+  <button
+    class="corn-button corn-button--icon corn-button--secondary corn-button--xl"
+    aria-label="Close"
+  >
+    <CloseIcon class="corn-icon" />
+  </button>
+  <button
+    class="corn-button corn-button--icon corn-button--danger corn-button--xl"
+    aria-label="Close"
+  >
+    <CloseIcon class="corn-icon" />
+  </button>
+  <button class="corn-button corn-button--icon corn-button--xl" aria-label="Close" disabled>
+    <CloseIcon class="corn-icon" />
+  </button>
+</div>

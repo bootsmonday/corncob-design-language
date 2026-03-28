@@ -1,0 +1,25 @@
+{
+  "name": "@corncob/edl-vue",
+  "version": "0.1.0",
+  "description": "Vue wrappers for Corncob EDL",
+  "type": "module",
+  "main": "src/index.js",
+  "module": "src/index.js",
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "sideEffects": false,
+  "scripts": {
+    "build": "echo \"@corncob/edl-vue has no build step\"",
+    "test": "echo \"No tests yet for @corncob/edl-vue\""
+  },
+  "peerDependencies": {
+    "@corncob/edl": "^1.0.0",
+    "vue": "^3.4.0 || ^3.5.0"
+  },
+  "peerDependenciesMeta": {
+    "@corncob/edl": {
+      "optional": true
+    }
+  }
+}

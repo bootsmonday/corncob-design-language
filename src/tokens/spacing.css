@@ -27,7 +27,3 @@
   --transition-base: 300ms ease-in-out;
   --transition-slow: 500ms ease-in-out;
 }
-
-main {
-  padding: 0 2rem;
-}

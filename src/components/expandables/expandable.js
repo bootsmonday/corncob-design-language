@@ -16,6 +16,13 @@ template.innerHTML = `
 
 export class CornExpandable extends HTMLElement {
   /**
+   * Returns an array of attribute names to be observed for changes.
+   * When any of these attributes change, the attributeChangedCallback is invoked.
+   */
+  static get observedAttributes() {
+    return ['name', 'open'];
+  }
+  /**
    * Constructor is called when the element is created.
    * Note:
    * 1. Always call super() first in the constructor of a subclass to ensure that the parent class is properly initialized before accessing 'this'.
@@ -32,21 +39,13 @@ export class CornExpandable extends HTMLElement {
   }
 
   /**
-   * Returns an array of attribute names to be observed for changes.
-   * When any of these attributes change, the attributeChangedCallback is invoked.
-   */
-  static get observedAttributes() {
-    return ['name'];
-  }
-
-  /**
    * Called when one of the observed attributes is added, removed, or changed.
    * TODO: Implement logic to handle changes to the 'name' attribute, such as updating internal state or modifying the component's appearance based on the new value.
    * @param {string} name - The name of the attribute that changed.
    * @param {string} oldValue - The previous value of the attribute.
    * @param {string} newValue - The new value of the attribute.
    */
-  attributeChangeCallback(name, oldValue, newValue) {
+  attributeChangedCallback(name, oldValue, newValue) {
     console.log('attribute changed', name, oldValue, newValue);
   }
 
@@ -58,8 +57,19 @@ export class CornExpandable extends HTMLElement {
   connectedCallback() {
     this._cacheElements();
     this._addEventListeners();
+    this._checkInitialOpenState();
   }
 
+  /**
+   * _checkInitialOpenState is a method that checks if the 'open' attribute is present on the component when it is first connected to the DOM.
+   * If the 'open' attribute is found, it calls the _open method to set the details element to an open state.
+   * This allows the component to be initialized in an open state if desired by simply adding the 'open' attribute in the HTML markup, providing flexibility in how the component can be used and displayed when it is first rendered.
+   */
+  _checkInitialOpenState() {
+    if (this.hasAttribute('open')) {
+      this._open(this.details);
+    }
+  }
   /**
    * _cacheElements is a method that retrieves and stores references to important child elements within the component. It uses the shadow DOM's querySelector to find elements based on their slot names and class names. This
    * method is essential for ensuring that the component can efficiently access and manipulate its internal elements without repeatedly querying the DOM, which can improve performance and maintainability.

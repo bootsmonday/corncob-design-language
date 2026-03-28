@@ -1,18 +1,32 @@
-corn-expandable {
+:root {
+  --cc-expandable--border-radius: var(--cc-border--radius);
+  --cc-expandable--border-width: var(--cc-border--width);
+  --cc-expandable--border-style: var(--cc-border--style);
+  --cc-expandable--border-color: rgb(from var(--cc-border--color) r g b / 21%);
+  --cc-expandable--color: var(--cc-gray-90);
+  --cc-expandable--color--hover: var(--cc-gray-100);
+  --cc-expandable--color--active: var(--cc-black);
+  --cc-expandable--focus-ring: var(--cc-form--item--focus-ring);
+  --cc-expandable--icon--background: var(--cc-gray-20);
+  --cc-expandable--icon--background--hover: var(--cc-gray-30);
+  --cc-expandable--icon--background--active: transparent;
+}
+
+.corn-expandable {
   display: flex;
 
-  &.corn-panel-menu {
-    summary > .corn-icon {
-      margin-left: auto;
-    }
-  }
+  
+  
 
   details {
+    background: var(--cc-white);
+    border-color: var(--cc-expandable--border-color);
+    border-radius: var(--cc-expandable--border-radius);
+    border-style: var(--cc-expandable--border-style);
+    border-width: var(--cc-expandable--border-width);
     display: flex;
     flex-basis: 100%;
     flex-direction: column;
-    margin: 0;
-    overflow: hidden;
     padding: 0.5rem;
 
     &.corn-expandable--open {
@@ -26,55 +40,79 @@ corn-expandable {
       > .corn-expandable--content {
         grid-template-rows: minmax(0, 1fr);
         opacity: 1;
+        overflow: visible;
       }
     }
   }
 
-  details details {
-    margin-left: 1.25rem;
+  .corn-expandable--content {
+    box-sizing: border-box;
+  }
+
+  details .corn-expandable {
+    margin-left: 0.5rem;
+
+    details {
+      border-width: 0;
+    }
   }
 
   summary {
     align-items: center;
-    border-radius: var(--cc-border--radius);
-    color: var(--cc-gray-90);
     cursor: pointer;
     display: inline-flex;
     flex: 1 1 0%;
     font-weight: 500;
     gap: 0.25rem;
     outline: none;
+    padding: 0.25rem 0;
 
-    &:focus-visible {
-      .corn-icon {
-        box-shadow: var(--cc-focus-ring);
-      }
-    }
 
-    &:hover {
-      color: var(--cc-gray-100);
 
-      .corn-icon {
-        background-color: var(--cc-gray-20);
-      }
-    }
 
-    &:active {
-      color: var(--cc-black);
 
-      .corn-icon {
-        background-color: transparent;
-      }
+    > .corn-icon {
+        margin-left: auto;
     }
 
     .corn-icon {
       border-radius: 50%;
       height: 1rem;
       padding: 0.25rem;
+      transform: rotate(0deg);
+      transform-origin: center;
       transition: transform var(--cc-transition--easing) var(--cc-transition--time);
       width: 1rem;
     }
   }
+}
+
+.corn-expandable-button {
+  color: var(--cc-expandable--color);
+
+
+    &:focus-visible {
+      .corn-icon {
+        box-shadow: var(--cc-expandable--focus-ring);
+      }
+    }
+
+    &:hover {
+      color: var(--cc-expandable--color--hover);
+
+      .corn-icon {
+        background-color: var(--cc-expandable--icon--background--hover);
+      }
+    } 
+
+    &:active {
+      color: var(--cc-expandable--color--active);
+
+      .corn-icon {
+        background-color: var(--cc-expandable--icon--background--active);
+      }
+    }
+  
 }
 
 .corn-expandable--content {
@@ -85,4 +123,42 @@ corn-expandable {
   transition:
     grid-template-rows var(--cc-transition--easing) var(--cc-transition--time),
     opacity var(--cc-transition--easing) var(--cc-transition--time);
+}
+
+.corn-tree-view {
+  summary > .corn-icon {
+    margin-left: 0;
+  }
+}
+
+.corn-accordion {
+  display: flex;
+  flex-direction: column;
+
+  .corn-expandable {
+    details {
+      border-bottom-width: 0;
+      border-radius: 0;
+    }
+
+    &:first-child {
+      details {
+        border-top-left-radius: var(--cc-expandable--border-radius);
+        border-top-right-radius: var(--cc-expandable--border-radius);
+      }
+    }
+
+     &:not(:first-child) {
+      details {
+        border-top-width: var(--cc-expandable--border-width);
+      }
+    }
+
+     &:last-child {
+      details {
+        border-bottom-width: var(--cc-expandable--border-width);
+        border-radius: 0 0 var(--cc-expandable--border-radius) var(--cc-expandable--border-radius);
+      }
+    }
+  } 
 }

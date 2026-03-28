@@ -1,19 +1,22 @@
 :root {
-  --cc-form--item--focus-ring: var(--cc-focus-ring);
-  --cc-form--item--color--background: rgb(from var(--cc-gray-10) r g b / 66.2%);
+  --cc-form--item--focus-ring: 0 0 0 3px var(--cc-blue-60);
+  --cc-form--item--focus-ring--active: none;
+  --cc-form--item--color--background: rgb(from var(--cc-gray-10) r g b / 87.2%);
   --cc-form--item--color--background--hover: rgb(from var(--cc-white) r g b / 87.2%);
   --cc-form--item--color-background--selected: rgb(from var(--cc-blue-20) r g b / 87.2%);
   --cc-form--item--color-background--selected--hover: rgb(from var(--cc-blue-10) r g b / 87.2%);
   --cc-form--item--border: var(--cc-border--width) var(--cc-border--style) var(--cc-border--color);
+  --cc-form--item--border--color--focus: var(--cc-white);
+  --cc-form--item--border--color--active: var(--cc-border--color);
   --cc-form--item--border--radius: var(--cc-border--radius);
   --cc-form--item--border--radius--xs: var(--cc-border--radius--xs);
   --cc-form--item--color--text: var(--cc-gray-90);
-  --cc-form--item--font--size--xs: var(--cc-size--1);
-  --cc-form--item--font--size--sm: var(--cc-size-0);
-  --cc-form--item--font--size--md: var(--cc-size-1);
-  --cc-form--item--font--size--lg: var(--cc-size-2);
-  --cc-form--item--font--size--xl: var(--cc-size-3);
-  --cc-form--item--input--padding: 0 var(--cc-size-0);
+  --cc-form--item--font-size--xs: var(--cc-size--1);
+  --cc-form--item--font-size--sm: var(--cc-size-0);
+  --cc-form--item--font-size--md: var(--cc-size-1);
+  --cc-form--item--font-size--lg: var(--cc-size-2);
+  --cc-form--item--font-size--xl: var(--cc-size-3);
+  --cc-form--item--padding: 0 var(--cc-size-0);
   --cc-form--item--size--xs: var(--cc-size-2);
   --cc-form--item--size--sm: var(--cc-size-4);
   --cc-form--item--size--md: var(--cc-size-5);
@@ -22,6 +25,24 @@
   --cc-form--item--input--label--color: var(--cc-blue-60);
   --cc-form--item--input--label--font-weight: 500;
   --cc-form--item--color-indicator: var(--cc-blue-70);
-  --cc-form--item--control--size: var(--cc-size-1);
-  --cc-form--item--control--size--xs: var(--cc-size-0);
+  --cc-form--control--font-size--xs: var(--cc-size-1);
+  --cc-form--control--font-size--sm: var(--cc-size-2);
+  --cc-form--control--font-size--md: var(--cc-size-3);
+  --cc-form--control--font-size--lg: var(--cc-size-4);
+  --cc-form--control--font-size--xl: var(--cc-size-5);
+  --cc-form--widget--size--xs: var(--cc-size-0);
+  --cc-form--widget--size--sm: var(--cc-size-0);
+  --cc-form--widget--size--md: var(--cc-size-2);
+  --cc-form--widget--size--lg: var(--cc-size-2);
+  --cc-form--widget--size--xl: var(--cc-size-3);
+  --cc-form--widget--color: var(--cc-blue-70);
+  --cc-form--widget--color--hover: var(--cc-blue-80);
+  --cc-form--widget--background--selected: var(--cc-form--item--color-background--selected);
+  --cc-form--widget--background--selected--hover: var(
+    --cc-form--item--color-background--selected--hover
+  ) !important;
+  --cc-form--item--background--disabled: rgb(from var(--cc-gray-80) r g b / 5.4%) !important;
+  --cc-form--item--border-color--disabled: rgb(from var(--cc-gray-80) r g b / 40.2%) !important;
+  --cc-form--item--color--disabled: rgb(from var(--cc-gray-80) r g b / 40.2%) !important;
+  --cc-form--item--focus-ring--disabled: none !important;
 }

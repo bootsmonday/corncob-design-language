@@ -1,6 +1,6 @@
-# Corncob DL (Design Language)
+# Corncob Design Language
 
-# Currently Vaporware
+# Project is in progress, but here is a quick overview of the project:
 
 A lightweight, accessible, and responsive vanilla JavaScript design system with no dependencies. Built for enterprise applications with a focus on accessibility, performance, and modern CSS features.
 
@@ -16,7 +16,7 @@ A lightweight, accessible, and responsive vanilla JavaScript design system with 
 ## Installation
 
 ```bash
-npm install @corncob/edl
+npm install @corncob/design-language
 ```
 
 ## Usage
@@ -24,17 +24,17 @@ npm install @corncob/edl
 ### Via CDN/Script Tags
 
 ```html
-<link rel="stylesheet" href="node_modules/@corncob/edl/dist/edl.css" />
-<script src="node_modules/@corncob/edl/dist/edl.js"></script>
+<link rel="stylesheet" href="node_modules/@corncob/design-language/dist/design-language.css" />
+<script src="node_modules/@corncob/design-language/dist/design-language.js"></script>
 
-<button class="cob-button cob-button--primary">Click me</button>
+<button class="corn-button corn-button--primary">Click me</button>
 ```
 
 ### Via ES Modules
 
 ```js
-import '@corncob/edl/dist/edl.css';
-import '@corncob/edl/dist/edl.esm.js';
+import '@corncob/design-language/dist/design-language.css';
+import '@corncob/design-language/dist/design-language.esm.js';
 ```
 
 ## Components
@@ -57,50 +57,6 @@ import '@corncob/edl/dist/edl.esm.js';
 ## Design Tokens
 
 The design system uses CSS custom properties for easy customization:
-
-```css
-/* Colors */
---color-primary: #007bff;
---color-secondary: #6c757d;
---color-success: #28a745;
---color-danger: #dc3545;
-
-/* Typography */
---font-family: Inter, ui-sans-serif, system-ui, sans-serif;
---font-size-base: 1rem;
-
-/* Spacing */
---spacing-unit: 12px;
-
-/* Shadows */
---shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-```
-
-Customize by overriding in your CSS:
-
-```css
-:root {
-  --color-primary: #ff6b6b;
-  --spacing-unit: 16px;
-}
-```
-
-## Dark Mode
-
-Enable dark mode by adding `[data-theme="dark"]` to the root element:
-
-```html
-<html data-theme="dark">
-  <!-- Content -->
-</html>
-```
-
-Or use automatic detection:
-
-```js
-const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
-```
 
 ## Development
 

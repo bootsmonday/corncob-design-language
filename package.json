@@ -1,16 +1,20 @@
 {
-  "name": "@corncob/edl",
+  "name": "@corncob/design-language",
   "version": "1.0.0",
   "description": "Corncob Design Language - A vanilla JavaScript design system",
-  "main": "dist/edl.js",
-  "module": "dist/edl.esm.js",
-  "style": "dist/edl.css",
+  "main": "dist/corncob-design-language.js",
+  "module": "dist/corncob-design-language.esm.js",
+  "style": "dist/corncob-design-language.css",
   "files": [
     "dist"
   ],
+  "workspaces": [
+    "packages/react",
+    "packages/vue"
+  ],
   "exports": {
-    ".": "./dist/corncob-edl.esm.js",
-    "./style.css": "./dist/corncob-edl.css"
+    ".": "./dist/corncob-design-language.esm.js",
+    "./style.css": "./dist/corncob-design-language.css"
   },
   "sideEffects": [
     "**/*.css"
@@ -19,6 +23,11 @@
     "dev": "vite --host",
     "build": "vite build",
     "preview": "vite preview --host 0.0.0.0 --port 4173",
+    "docs:dev": "astro dev --root docs --host",
+    "docs:build": "astro build --root docs",
+    "docs:preview": "astro preview --root docs --host --port 4322",
+    "wrappers:build": "npm run -w @corncob/design-language-react build && npm run -w @corncob/design-language-vue build",
+    "wrappers:test": "npm run -w @corncob/design-language-react test && npm run -w @corncob/design-language-vue test",
     "test": "jest",
     "test:watch": "jest --watch",
     "lint:css": "stylelint src/**/*.css",
@@ -33,20 +42,32 @@
   "author": "Corncob Team",
   "license": "MIT",
   "devDependencies": {
+    "@astrojs/mdx": "^5.0.3",
+    "@astrojs/react": "^5.0.1",
+    "@astrojs/vue": "^6.0.1",
     "@babel/preset-env": "^7.29.2",
     "@carbon/icons": "^11.76.0",
+    "@fontsource-variable/ibm-plex-sans": "^5.2.8",
+    "@fontsource/ibm-plex-mono": "^5.2.7",
     "@happy-dom/jest-environment": "^20.8.4",
     "@testing-library/dom": "^10.4.1",
+    "astro": "^6.0.8",
     "esbuild": "^0.27.4",
     "happy-dom": "^20.8.4",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^29.7.0",
     "jsdom": "^22.1.0",
+    "modern-normalize": "^3.0.1",
     "prettier": "^3.1.0",
     "stylelint": "^17.4.0",
     "stylelint-config-standard": "^40.0.0",
     "stylelint-order": "^7.0.1",
     "vite": "^7.3.1",
     "vite-plugin-string": "^1.2.3"
+  },
+  "dependencies": {
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "vue": "^3.5.30"
   }
 }

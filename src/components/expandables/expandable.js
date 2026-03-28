@@ -45,7 +45,7 @@ export class CornExpandable extends HTMLElement {
    * @param {string} oldValue - The previous value of the attribute.
    * @param {string} newValue - The new value of the attribute.
    */
-  attributeChangeCallback(name, oldValue, newValue) {
+  attributeChangedCallback(name, oldValue, newValue) {
     console.log('attribute changed', name, oldValue, newValue);
   }
 

@@ -29,7 +29,6 @@
   box-shadow: var(--cc-popover--box-shadow);
   box-sizing: border-box;
   color: var(--cc-popover--color);
-  display: flex;
   display: none;
   flex-direction: column;
   font-size: var(--cc-popover--font-size);

@@ -12,11 +12,11 @@
       "sizes": ["sm", "md", "lg"],
       "jsRequired": false,
       "accessibility": "Fully keyboard accessible, proper ARIA roles",
-      "example": "<button class=\"corn-button corn-button--primary\">Primary Action</button>",
+      "example": "<button class=\"corn-button\">Primary Action</button>",
       "fullExamples": {
-        "primary": "<button class=\"corn-button corn-button--primary\">Primary</button>",
-        "secondary": "<button class=\"corn-button corn-button--secondary\">Secondary</button>",
-        "large-danger": "<button class=\"corn-button corn-button--danger corn-button--lg\">Large Danger</button>"
+        "primary": "<button class=\"corn-button\">Primary</button>",
+        "secondary": "<button class=\"corn-button\">Secondary</button>",
+        "large-danger": "<button class=\"corn-button corn-button--lg\">Large Danger</button>"
       }
     },
     "input": {

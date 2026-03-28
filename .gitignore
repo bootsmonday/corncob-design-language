@@ -12,3 +12,4 @@ _archive/
 .npm
 .eslintcache
 .stylelintcache
+.git_disabled/

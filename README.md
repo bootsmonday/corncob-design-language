@@ -82,7 +82,7 @@ Copy this when asking an AI to build pages with Corncob:
 
 ### For AI Tools
 
-Download or reference [`components.json`](components.json) — this machine-readable manifest helps AI coding assistants understand every component perfectly.
+Download or reference [`components.json`](components.json) — this machine-readable manifest helps AI coding assistants better understand the core components and their common variants (it is not an exhaustive list of every component).
 
 ## Development & Contribution
 

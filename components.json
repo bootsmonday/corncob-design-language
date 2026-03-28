@@ -31,9 +31,10 @@
     },
     "select": {
       "name": "Select",
-      "description": "Custom dropdown with keyboard navigation",
+      "description": "Custom dropdown with keyboard navigation (planned, not yet implemented in JS/CSS)",
       "baseClass": "corn-select",
-      "jsRequired": true,
+      "jsRequired": false,
+      "implemented": false,
       "example": "<select class=\"corn-select\"></select>"
     },
     "checkbox": {

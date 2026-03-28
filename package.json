@@ -1,6 +1,6 @@
 {
   "name": "@corncob/design-language",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Corncob Design Language - A vanilla JavaScript design system",
   "main": "dist/corncob-design-language.js",
   "module": "dist/corncob-design-language.esm.js",
@@ -40,7 +40,7 @@
     "enterprise"
   ],
   "author": "Corncob Team",
-  "license": "MIT",
+  "license": "BSL-1.0",
   "devDependencies": {
     "@astrojs/mdx": "^5.0.3",
     "@astrojs/react": "^5.0.1",

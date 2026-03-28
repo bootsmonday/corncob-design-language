@@ -1,6 +1,6 @@
 {
   "name": "@corncob/design-language",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Corncob Design Language - A vanilla JavaScript design system",
   "main": "dist/corncob-design-language.js",
   "module": "dist/corncob-design-language.esm.js",
@@ -40,7 +40,7 @@
     "enterprise"
   ],
   "author": "Corncob Team",
-  "license": "MIT",
+  "license": "BSL-1.0",
   "devDependencies": {
     "@astrojs/mdx": "^5.0.3",
     "@astrojs/react": "^5.0.1",
@@ -65,7 +65,7 @@
     "vite": "^7.3.1",
     "vite-plugin-string": "^1.2.3"
   },
-  "dependencies": {
+  "peerDependencies": {
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "vue": "^3.5.30"

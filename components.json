@@ -1,0 +1,168 @@
+{
+  "name": "Corncob Design Language",
+  "version": "0.0.1",
+  "description": "Lightweight, accessible vanilla JS design system. Perfect for AI-assisted website and application development.",
+  "prefix": "corn-",
+  "components": {
+    "button": {
+      "name": "Button",
+      "description": "Primary action and interactive button component",
+      "baseClass": "corn-button",
+      "variants": ["primary", "secondary", "outline", "ghost", "danger"],
+      "sizes": ["sm", "md", "lg"],
+      "jsRequired": false,
+      "accessibility": "Fully keyboard accessible, proper ARIA roles",
+      "example": "<button class=\"corn-button\">Primary Action</button>",
+      "fullExamples": {
+        "primary": "<button class=\"corn-button\">Primary</button>",
+        "secondary": "<button class=\"corn-button\">Secondary</button>",
+        "large-danger": "<button class=\"corn-button corn-button--lg\">Large Danger</button>"
+      }
+    },
+    "input": {
+      "name": "Input",
+      "description": "Text input field with label and error state support",
+      "baseClass": "corn-text-input",
+      "variants": ["error"],
+      "sizes": ["sm", "md", "lg"],
+      "jsRequired": false,
+      "accessibility": "Paired with corn-label, supports aria-invalid",
+      "example": "<label class=\"corn-label\">Label <input type=\"text\" class=\"corn-text-input\" /></label>"
+    },
+    "select": {
+      "name": "Select",
+      "description": "Custom dropdown with keyboard navigation (planned, not yet implemented in JS/CSS)",
+      "baseClass": "corn-select",
+      "jsRequired": false,
+      "implemented": false,
+      "example": "<select class=\"corn-select\"></select>"
+    },
+    "checkbox": {
+      "name": "Checkbox",
+      "description": "Checkbox input for single or grouped selections",
+      "baseClass": "corn-checkbox",
+      "jsRequired": false,
+      "example": "<label><input type=\"checkbox\" class=\"corn-checkbox\"> Option</label>"
+    },
+    "radio": {
+      "name": "Radio",
+      "description": "Radio button for single selection in a group",
+      "baseClass": "corn-radio",
+      "jsRequired": false,
+      "example": "<label><input type=\"radio\" name=\"group\" class=\"corn-radio\"> Option</label>"
+    },
+    "toggle": {
+      "name": "Toggle",
+      "description": "On/off switch (toggle)",
+      "baseClass": "corn-toggle",
+      "jsRequired": true,
+      "example": "<label class=\"corn-toggle\"><input type=\"checkbox\"><span class=\"corn-toggle__slider\"></span></label>"
+    },
+    "card": {
+      "name": "Card",
+      "description": "Content container with optional header, body, and footer",
+      "baseClass": "corn-card",
+      "subComponents": ["corn-card__header", "corn-card__body", "corn-card__footer"],
+      "jsRequired": false,
+      "example": "<div class=\"corn-card\"><div class=\"corn-card__header\">Title</div><div class=\"corn-card__body\">Content</div></div>"
+    },
+    "modal": {
+      "name": "Modal",
+      "description": "Accessible dialog/modal with focus trap and ESC support",
+      "baseClass": "corn-modal",
+      "jsRequired": true,
+      "accessibility": "Includes focus management and ARIA dialog role",
+      "example": "<div class=\"corn-modal\" role=\"dialog\">...</div>"
+    },
+    "tabs": {
+      "name": "Tabs",
+      "description": "Horizontal tab navigation",
+      "baseClass": "corn-tabs",
+      "jsRequired": true,
+      "example": "<div class=\"corn-tabs\">...</div>"
+    },
+    "table": {
+      "name": "Table",
+      "description": "Data table with striped rows and hover states",
+      "baseClass": "corn-table",
+      "variants": ["striped", "hover"],
+      "jsRequired": false,
+      "example": "<table class=\"corn-table striped\">...</table>"
+    },
+    "alert": {
+      "name": "Alert",
+      "description": "Status banners (success, info, warning, error)",
+      "baseClass": "corn-alert",
+      "variants": ["success", "info", "warning", "error"],
+      "jsRequired": false,
+      "example": "<div class=\"corn-alert corn-alert--success\">Success message</div>"
+    },
+    "badge": {
+      "name": "Badge",
+      "description": "Small status or count indicator",
+      "baseClass": "corn-badge",
+      "variants": ["primary", "secondary", "success", "danger"],
+      "jsRequired": false,
+      "example": "<span class=\"corn-badge corn-badge--primary\">New</span>"
+    },
+    "avatar": {
+      "name": "Avatar",
+      "description": "User avatar with image or initials fallback",
+      "baseClass": "corn-avatar",
+      "jsRequired": false,
+      "example": "<div class=\"corn-avatar\">JD</div>"
+    },
+    "tooltip": {
+      "name": "Tooltip",
+      "description": "Web Component tooltip that shows on hover/focus. Must be placed inside a .corn-tooltip--anchor parent.",
+      "customElement": "corn-tooltip",
+      "baseClass": "corn-tooltip",
+      "positions": ["top", "right", "bottom", "left"],
+      "jsRequired": true,
+      "accessibility": "Automatically adds role=tooltip and aria-labelledby to the anchor",
+      "example": "<button class=\"corn-button corn-tooltip--anchor\">Hover me<corn-tooltip class=\"corn-tooltip\" position=\"top\">Tooltip text</corn-tooltip></button>"
+    },
+    "popover": {
+      "name": "Popover",
+      "description": "Web Component popover panel toggled by a .corn-pop trigger. Must be placed inside a .corn-popover--anchor parent.",
+      "customElement": "corn-popover",
+      "baseClass": "corn-popover",
+      "positions": ["top", "right", "bottom", "left"],
+      "jsRequired": true,
+      "accessibility": "Trigger uses aria-controls pointing to the popover id; closes on outside click and ESC",
+      "example": "<div class=\"corn-popover--anchor\"><button class=\"corn-button corn-pop\" aria-controls=\"my-popover\">Open</button><corn-popover position=\"bottom\" id=\"my-popover\" class=\"corn-popover\"><ul><li><a href=\"#\">Item 1</a></li></ul></corn-popover></div>"
+    },
+    "expandable": {
+      "name": "Expandable",
+      "description": "Web Component animated expand/collapse panel wrapping a native <details> element. Use the name attribute on <details> children for accordion behavior.",
+      "customElement": "corn-expandable",
+      "baseClass": "corn-expandable",
+      "attributes": ["open", "name"],
+      "jsRequired": true,
+      "accessibility": "Built on native <details>/<summary> for keyboard and screen-reader support",
+      "example": "<corn-expandable class=\"corn-expandable\"><details slot=\"details\"><summary class=\"corn-expandable-button\">Summary</summary><div class=\"corn-expandable--content\">Content here</div></details></corn-expandable>"
+    },
+    "button-bar": {
+      "name": "Button Bar",
+      "description": "Web Component toolbar that automatically moves overflowing buttons into an overflow popover menu.",
+      "customElement": "corn-button-bar",
+      "baseClass": "corn-button-bar",
+      "variants": ["corn-button-bar--toolbar"],
+      "jsRequired": true,
+      "accessibility": "Overflow button uses aria-controls; all actions remain keyboard accessible",
+      "example": "<corn-button-bar class=\"corn-button-bar\"><button class=\"corn-button corn-button--xs\">Action 1</button><button class=\"corn-button corn-button--xs\">Action 2</button><div class=\"corn-popover--anchor corn-button-bar--more\"><button class=\"corn-button corn-button--xs corn-pop\" aria-controls=\"bar-overflow\">More</button><corn-popover position=\"bottom\" id=\"bar-overflow\" class=\"corn-popover\"></corn-popover></div></corn-button-bar>"
+    }
+  },
+  "designTokens": {
+    "description": "All themable CSS custom properties",
+    "file": "src/tokens.css",
+    "note": "Override in :root or .dark selector"
+  },
+  "recommendedSystemPrompt": "You are an expert frontend developer using the Corncob Design Language. Use only `corn-*` class names and vanilla HTML/JS. Never use Tailwind, Bootstrap, or any other CSS framework. Prioritize accessibility (WCAG 2.1 AA), semantic HTML, and clean code. Use the official component variants and sizes exactly as documented in components.json.",
+  "aiUsageTips": [
+    "Always pair inputs with corn-label",
+    "Use semantic HTML elements where possible (button, nav, main, etc.)",
+    "For modals, ensure proper focus trap and ARIA attributes",
+    "Prefer data attributes for JS initialization when needed"
+  ]
+}

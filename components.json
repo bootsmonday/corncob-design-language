@@ -22,12 +22,12 @@
     "input": {
       "name": "Input",
       "description": "Text input field with label and error state support",
-      "baseClass": "corn-input",
+      "baseClass": "corn-text-input",
       "variants": ["error"],
       "sizes": ["sm", "md", "lg"],
       "jsRequired": false,
       "accessibility": "Paired with corn-label, supports aria-invalid",
-      "example": "<label class=\"corn-label\">Label <input type=\"text\" class=\"corn-input\" /></label>"
+      "example": "<label class=\"corn-label\">Label <input type=\"text\" class=\"corn-text-input\" /></label>"
     },
     "textarea": {
       "name": "Textarea",

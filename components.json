@@ -29,14 +29,6 @@
       "accessibility": "Paired with corn-label, supports aria-invalid",
       "example": "<label class=\"corn-label\">Label <input type=\"text\" class=\"corn-text-input\" /></label>"
     },
-    "textarea": {
-      "name": "Textarea",
-      "description": "Resizable multi-line text input",
-      "baseClass": "corn-textarea",
-      "variants": ["error"],
-      "jsRequired": false,
-      "example": "<textarea class=\"corn-textarea\" rows=\"4\"></textarea>"
-    },
     "select": {
       "name": "Select",
       "description": "Custom dropdown with keyboard navigation",

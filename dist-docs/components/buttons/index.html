@@ -1,0 +1,18 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="Corncob documentation"><title>Corncob Design Language</title><link rel="stylesheet" href="/_astro/DocsLayout.Cx9LBHr_.css"></head> <body> <header class="docs-header corn-panel"> <div> <p class="docs-eyebrow">Corncob EDL</p> <h1>Corncob Documentation</h1> </div> <nav aria-label="Primary"> <ul class="docs-nav"> <li><a href="/">Overview</a></li> <li><a href="/getting-started/">Getting Started</a></li> <li><a href="/components/buttons/">Buttons</a></li> <li><a href="/frameworks/react/">React</a></li> <li><a href="/frameworks/vue/">Vue</a></li> </ul> </nav> </header> <main class="docs-main"> <article class="docs-content corn-panel"> <h1 id="buttons">Buttons</h1>
+<p>Buttons are built from shared token values and semantic variants.</p>
+<div class="docs-demo-row">
+  <button class="corn-button">Primary</button>
+  <button class="corn-button corn-button--secondary">Secondary</button>
+  <button class="corn-button corn-button--danger">Danger</button>
+  <button class="corn-button corn-button--sm">Small</button>
+  <button class="corn-button corn-button--xl">XL</button>
+</div>
+<h2 id="html-api">HTML API</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="html"><code><span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">button</span><span style="color:#B392F0"> class</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"corn-button"</span><span style="color:#E1E4E8">>Primary&#x3C;/</span><span style="color:#85E89D">button</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">button</span><span style="color:#B392F0"> class</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"corn-button corn-button--secondary"</span><span style="color:#E1E4E8">>Secondary&#x3C;/</span><span style="color:#85E89D">button</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">button</span><span style="color:#B392F0"> class</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"corn-button corn-button--danger"</span><span style="color:#E1E4E8">>Danger&#x3C;/</span><span style="color:#85E89D">button</span><span style="color:#E1E4E8">></span></span></code></pre>
+<h2 id="notes">Notes</h2>
+<ul>
+<li>Keep class naming token-driven.</li>
+<li>Wrappers should only map props to class names.</li>
+</ul> </article> </main> </body></html>

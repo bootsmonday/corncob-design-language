@@ -1,0 +1,15 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="React adapter guidance for Corncob EDL"><title>React | Corncob</title><link rel="stylesheet" href="/_astro/DocsLayout.Cx9LBHr_.css"></head> <body> <header class="docs-header corn-panel"> <div> <p class="docs-eyebrow">Corncob EDL</p> <h1>Corncob Documentation</h1> </div> <nav aria-label="Primary"> <ul class="docs-nav"> <li><a href="/">Overview</a></li> <li><a href="/getting-started/">Getting Started</a></li> <li><a href="/components/buttons/">Buttons</a></li> <li><a href="/frameworks/react/">React</a></li> <li><a href="/frameworks/vue/">Vue</a></li> </ul> </nav> </header> <main class="docs-main"> <article class="docs-content corn-panel">  <h1>React Version</h1> <p>
+React wrappers should stay thin. Map React props to Corncob class names and keep style logic in the core
+    CSS package.
+</p> <div class="docs-demo-row"><button class="corn-button">React Primary</button><button class="corn-button corn-button--secondary">React Secondary</button><button class="corn-button corn-button--danger">React Danger</button></div> <h2>Wrapper Pattern</h2> <pre class="docs-code"><code>import &quot;@corncob/edl/style.css&quot;;
+import { CcButton } from &quot;@corncob/edl-react&quot;;
+
+export function ToolbarActions() {
+  return (
+    &lt;div&gt;
+      &lt;CcButton size=&quot;sm&quot;&gt;Save&lt;/CcButton&gt;
+      &lt;CcButton variant=&quot;secondary&quot; size=&quot;sm&quot;&gt;Cancel&lt;/CcButton&gt;
+      &lt;CcButton variant=&quot;danger&quot; size=&quot;sm&quot;&gt;Delete&lt;/CcButton&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>  </article> </main> </body></html>

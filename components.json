@@ -113,10 +113,43 @@
     },
     "tooltip": {
       "name": "Tooltip",
-      "description": "CSS-based tooltip with accessibility fallbacks",
+      "description": "Web Component tooltip that shows on hover/focus. Must be placed inside a .corn-tooltip--anchor parent.",
+      "customElement": "corn-tooltip",
       "baseClass": "corn-tooltip",
-      "jsRequired": false,
-      "example": "<span class=\"corn-tooltip\" data-tooltip=\"Tooltip text\">Hover me</span>"
+      "positions": ["top", "right", "bottom", "left"],
+      "jsRequired": true,
+      "accessibility": "Automatically adds role=tooltip and aria-labelledby to the anchor",
+      "example": "<button class=\"corn-button corn-tooltip--anchor\">Hover me<corn-tooltip class=\"corn-tooltip\" position=\"top\">Tooltip text</corn-tooltip></button>"
+    },
+    "popover": {
+      "name": "Popover",
+      "description": "Web Component popover panel toggled by a .corn-pop trigger. Must be placed inside a .corn-popover--anchor parent.",
+      "customElement": "corn-popover",
+      "baseClass": "corn-popover",
+      "positions": ["top", "right", "bottom", "left"],
+      "jsRequired": true,
+      "accessibility": "Trigger uses aria-controls pointing to the popover id; closes on outside click and ESC",
+      "example": "<div class=\"corn-popover--anchor\"><button class=\"corn-button corn-pop\" aria-controls=\"my-popover\">Open</button><corn-popover position=\"bottom\" id=\"my-popover\" class=\"corn-popover\"><ul><li><a href=\"#\">Item 1</a></li></ul></corn-popover></div>"
+    },
+    "expandable": {
+      "name": "Expandable",
+      "description": "Web Component animated expand/collapse panel wrapping a native <details> element. Use the name attribute on <details> children for accordion behavior.",
+      "customElement": "corn-expandable",
+      "baseClass": "corn-expandable",
+      "attributes": ["open", "name"],
+      "jsRequired": true,
+      "accessibility": "Built on native <details>/<summary> for keyboard and screen-reader support",
+      "example": "<corn-expandable class=\"corn-expandable\"><details slot=\"details\"><summary class=\"corn-expandable-button\">Summary</summary><div class=\"corn-expandable--content\">Content here</div></details></corn-expandable>"
+    },
+    "button-bar": {
+      "name": "Button Bar",
+      "description": "Web Component toolbar that automatically moves overflowing buttons into an overflow popover menu.",
+      "customElement": "corn-button-bar",
+      "baseClass": "corn-button-bar",
+      "variants": ["corn-button-bar--toolbar"],
+      "jsRequired": true,
+      "accessibility": "Overflow button uses aria-controls; all actions remain keyboard accessible",
+      "example": "<corn-button-bar class=\"corn-button-bar\"><button class=\"corn-button corn-button--xs\">Action 1</button><button class=\"corn-button corn-button--xs\">Action 2</button><div class=\"corn-popover--anchor corn-button-bar--more\"><button class=\"corn-button corn-button--xs corn-pop\" aria-controls=\"bar-overflow\">More</button><corn-popover position=\"bottom\" id=\"bar-overflow\" class=\"corn-popover\"></corn-popover></div></corn-button-bar>"
     }
   },
   "designTokens": {

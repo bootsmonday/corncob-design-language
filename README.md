@@ -86,7 +86,7 @@ Download or reference [`components.json`](components.json) — this machine-read
 
 ## Development & Contribution
 
-### Instal & Run Locally
+### Install & Run Locally
 
 ```bash
 git clone https://github.com/bootsmonday/corncob-design-language.git

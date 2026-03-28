@@ -1,0 +1,51 @@
+<!-- Popover Component Demo -->
+<div class="buttonbar-demo">
+  <h2>Corn Button Bar</h2>
+
+  <h3>Basic Button Bar</h3>
+  <corn-button-bar class="corn-button-bar">
+    <button class="corn-button corn-button--xs">Button 1</button>
+    <button class="corn-button corn-button--sm">Button 2</button>
+    <button class="corn-button corn-button--xs">Button 3</button>
+    <button class="corn-button corn-button--xs">Button 4</button>
+    <button class="corn-button corn-button--xs">Button 5</button>
+    <button class="corn-button corn-button--xs">Button 6</button>
+    <button class="corn-button corn-button--xs">Button 7</button>
+    <button class="corn-button corn-button--xs">Button 8</button>
+    <div class="corn-popover--anchor corn-button-bar--more">
+      <button class="corn-button corn-button--xs corn-pop" aria-controls="button-bar-popover">
+        More
+      </button>
+      <corn-popover position="bottom" id="button-bar-popover" class="corn-popover"></corn-popover>
+    </div>
+  </corn-button-bar>
+  <hr />
+  <h3>Complex Button Bar</h3>
+  <corn-button-bar class="corn-button-bar corn-button-bar--toolbar">
+    <button class="corn-button corn-button--xs">Button 1</button>
+    <button class="corn-button corn-button--sm">Button 2</button>
+    <button class="corn-button corn-button--xs">Button 3</button>
+    <button class="corn-button corn-button--xs">Button 4</button>
+    <button class="corn-button corn-button--xs">Button 5</button>
+    <button class="corn-button corn-button--xs">Button 6</button>
+    <div class="corn-popover--anchor">
+      <button class="corn-button corn-pop corn-button--xs" aria-controls="nest-popover-bottom">
+        Popover
+      </button>
+      <corn-popover position="bottom" id="nest-popover-bottom" class="corn-popover">
+        <ul>
+          <li><a href="#">Item 1</a></li>
+          <li><a href="#">Item 2</a></li>
+          <li><a href="#">Item 3</a></li>
+        </ul>
+      </corn-popover>
+    </div>
+    <button class="corn-button corn-button--xs">Button 8</button>
+    <div class="corn-popover--anchor corn-button-bar--more">
+      <button class="corn-button corn-button--xs corn-pop" aria-controls="button-bar-popover">
+        More
+      </button>
+      <corn-popover position="bottom" id="button-bar-popover" class="corn-popover"></corn-popover>
+    </div>
+  </corn-button-bar>
+</div>

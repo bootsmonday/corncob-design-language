@@ -1,0 +1,101 @@
+.corn-form--row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+fieldset.corn-form--item:has(input[disabled]) {
+  background-color: transparent !important;
+}
+
+.corn-form--item {
+  display: inline-flex;
+  flex-direction: column;
+  flex-grow: 1;
+
+  .corn-status {
+    margin-top: 0.25rem;
+  }
+
+  &:has(input[disabled]) {
+    box-shadow: var(--cc-form--item--focus-ring--disabled);
+    color: var(--cc-form--item--color--disabled);
+    cursor: not-allowed !important;
+
+    input {
+      &[type='radio'],
+      &[type='checkbox'] {
+        background-color: var(--cc-form--item--background--disabled);
+        border-color: var(--cc-form--item--border-color--disabled);
+      }
+
+      &::placeholder {
+        color: var(--cc-form--item--color--disabled);
+      }
+
+      color: var(--cc-form--item--color--disabled);
+      cursor: not-allowed !important;
+
+      &[type='radio'] {
+        &::after {
+          background-color: var(--cc-form--item--color--disabled);
+        }
+      }
+
+      &::after {
+        border-color: var(--cc-form--item--border-color--disabled);
+      }
+    }
+
+    label {
+      color: var(--cc-form--item--color--disabled);
+      cursor: not-allowed !important;
+    }
+
+    .corn-status {
+      color: var(--cc-form--item--color--disabled);
+      cursor: not-allowed !important;
+    }
+  }
+}
+
+.corn-status {
+  align-items: center;
+  color: currentcolor;
+  display: inline-flex;
+  gap: 0.25rem;
+  text-shadow: var(--cc-shadow--shadow--text--reverse);
+  width: 100%;
+
+  .corn-icon {
+    color: currentcolor;
+    fill: currentcolor;
+    height: var(--cc-size-1);
+    margin-left: 0.25rem;
+    width: var(--cc-size-1);
+  }
+}
+
+.corn-status--success {
+  .corn-status {
+    color: var(--cc-green-60);
+  }
+
+  .corn-text-input {
+    label {
+      color: var(--cc-green-60);
+    }
+  }
+}
+
+.corn-status--warning {
+  .corn-status {
+    color: var(--cc-yellow-60);
+  }
+}
+
+.corn-status--error {
+  .corn-status {
+    color: var(--cc-red-60);
+  }
+}

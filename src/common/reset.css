@@ -1,0 +1,72 @@
+/* Reset and Base Styles */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+transition:
+    background-color var(--transition-base),
+    color var(--transition-base);
+}
+
+/* Form Resets */
+button,
+input,
+textarea,
+select,
+optgroup {
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+}
+
+hr {
+  border-color: rgb(from var(--cc-border--color) r g b / 86.2%);
+  border-radius: 1px;
+  border-style: solid;
+  margin: var(--cc-spacing-2) 0;
+}
+
+.corn-assistive-text {
+  border: 0;
+  clip-path: inset(50%); /* Modern browsers */
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

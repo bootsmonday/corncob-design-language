@@ -1,0 +1,45 @@
+---
+import '../../../dist/corncob-design-language.css';
+import '../styles/corncob-docs.css';
+import NavigationBar from './partials/NavigationBar.astro';
+import SideBar from './partials/SideBar.astro';
+
+const {
+  title = 'Corncob Design Language',
+  description = 'Corncob is a framework-neutral design language built with tokens, CSS, and plain JavaScript behavior.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <script type="module" src="/corncob-design-language.esm.js"></script>
+  </head>
+  <body class="corn-body">
+    <NavigationBar />
+
+    <main class="corn-main corn-container">
+      <div class="corn-row">
+        <div class="corn-col-12">
+          <h1>{title}</h1>
+          <p>{description}</p>
+        </div>
+      </div>
+      <div class="corn-row">
+        <aside class="corn-sidebar corn-col corn-col-sm-4 corn-col-lg-3">
+          <SideBar />
+        </aside>
+
+        <article class="corn-content corn-col corn-col-sm-8 corn-col-lg-9">
+          <div class="corn-panel">
+            <slot />
+          </div>
+        </article>
+      </div>
+    </main>
+  </body>
+</html>

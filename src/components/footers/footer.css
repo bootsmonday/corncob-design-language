@@ -1,0 +1,39 @@
+:root {
+  --cc-footer--copyright--font--size: var(--cc-size--1);
+}
+
+.corn-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.corn-footer--content {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.corn-footer--content--section {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 0.5rem;
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    list-style: none;
+    padding: 0;
+  }
+
+  margin-bottom: 1rem;
+}
+
+.corn-footer--copyright {
+  font-size: var(--cc-footer--copyright--font--size);
+  text-align: center;
+}

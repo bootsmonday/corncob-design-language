@@ -1,0 +1,22 @@
+/* Popover Component */
+.corn-button-bar {
+  align-items: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  position: relative;
+
+  &.corn-button-bar--toolbar {
+    justify-content: flex-end;
+  }
+}
+
+
+.corn-button-bar--more:has(.corn-popover:empty) {
+  margin-right: -0.5rem;
+
+  .corn-pop,
+  .corn-popover {
+    display: none;
+  }
+}

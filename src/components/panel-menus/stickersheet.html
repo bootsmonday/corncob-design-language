@@ -1,0 +1,28 @@
+<!-- Expandable Component Demo -->
+<div class="panel-menu-demo">
+  <h2>Corn Panel Menu</h2>
+
+  <div class="corn-panel-menu">
+    <a href="#" class="corn-panel-menu--item">Menu Item 1</a>
+    <a href="#" class="corn-panel-menu--item">Menu Item 2</a>
+    <corn-expandable class="corn-expandable">
+      <details slot="details">
+        <summary class="corn-panel-menu--item corn-expandable-button">
+          Menu Category
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="corn-icon">
+            <use href="/node_modules/@carbon/icons/svg/chevron--right.svg"></use>
+          </svg>
+        </summary>
+        <div class="corn-expandable--content">
+          <div class="corn-panel-menu--submenu">
+            <a href="#" class="corn-panel-menu--item corn-panel-menu--item--active"
+              >Sub Menu Item 1</a
+            >
+            <a href="#" class="corn-panel-menu--item">Sub Menu Item 2</a>
+          </div>
+        </div>
+      </details>
+    </corn-expandable>
+    <a href="#" class="corn-panel-menu--item corn-panel-menu--item--active">Menu Item 3</a>
+  </div>
+</div>

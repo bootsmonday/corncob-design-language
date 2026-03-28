@@ -1,0 +1,6 @@
+:root {
+  --cc-transition--easing: ease-out;
+  --cc-transition--time: 150ms;
+  --cc-transition--time--fast: 83ms;
+  --cc-transition--time--slow: 333ms;
+}

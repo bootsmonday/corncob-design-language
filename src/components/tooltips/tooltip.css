@@ -1,0 +1,88 @@
+:root {
+  --cc-tooltip--background: var(--cc-black);
+  --cc-tooltip--color: var(--cc-white);
+  --cc-tooltip--font-size: var(--cc-size--1);
+  --cc-tooltip--padding: 0.25rem 0.5rem;
+  --cc-tooltip--border-radius: var(--cc-border--radius);
+  --cc-tooltip--box-shadow: var(--cc-shadow--drop);
+  --cc-tooltip--transition: opacity var(--cc-transition--easing) var(--cc-transition--time);
+}
+
+.corn-tooltip--anchor {
+  position: relative;
+
+  &:not([disabled]):hover,
+  &:not([disabled]):focus-within {
+    corn-tooltip {
+      opacity: 1;
+    }
+  }
+
+  &.corn-tooltip--top-left {
+    .corn-tooltip--content {
+      inset: -2.5rem auto auto 0;
+      transform: translate(0, 0);
+    }
+  }
+
+  &.corn-tooltip--top-right {
+    .corn-tooltip--content {
+      inset: -2.5rem 0 auto auto;
+      transform: translate(0, 0);
+    }
+  }
+
+  &.corn-tooltip--bottom-left {
+    .corn-tooltip--content {
+      inset: auto auto -2.5rem 0;
+      transform: translate(0, 0);
+    }
+  }
+
+  &.corn-tooltip--bottom-right {
+    .corn-tooltip--content {
+      inset: auto 0 -2.5rem auto;
+      transform: translate(0, 0);
+    }
+  }
+
+  &.corn-tooltip--bottom {
+    .corn-tooltip--content {
+      inset: auto auto -2.5rem 50%;
+    }
+  }
+}
+
+.corn-tooltip {
+  background: var(--cc-tooltip--background);
+  border-radius: var(--cc-tooltip--border-radius);
+  bottom: calc(100% + 0.25rem);
+  box-shadow: var(--cc-tooltip--box-shadow);
+  color: var(--cc-tooltip--color);
+  font-size: var(--cc-tooltip--font-size);
+  left: 50%;
+  line-height: 1;
+  opacity: 0;
+  padding: var(--cc-tooltip--padding);
+  position: absolute;
+  transform: translate(-50%, 0);
+  transition: var(--cc-tooltip--transition);
+  white-space: nowrap;
+
+  &.corn-tooltip--bottom {
+    bottom: auto;
+    top: calc(100% + 0.25rem);
+  }
+
+  &.corn-tooltip--right {
+    bottom: auto;
+    left: calc(100% + 0.25rem);
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+
+  &.corn-tooltip--left {
+    inset: 50% calc(100% + 0.25rem) auto auto;
+    transform: translate(0, -50%);
+  }
+}

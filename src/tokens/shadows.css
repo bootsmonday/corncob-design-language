@@ -1,0 +1,11 @@
+:root {
+/* standard shadow */
+  --cc-shadow--drop: 0 1px 8px 0px rgb(from var(--cc-black) r g b / 6%);
+  --cc-shadow--drop--heavy: 0 1px 8px 0px rgb(from var(--cc-black) r g b / 12%);
+  --cc-shadow--inset: inset 0 0 18px 0 rgb(from var(--cc-black) r g b / 23%);
+  --cc-shadow--inset--heavy: inset 0 0 18px 0 rgb(from var(--cc-black) r g b / 36%);
+
+  /* this should pass accessibity with white text on a pretty much any background */
+  --cc-shadow--text: 0 0 2px rgb(from var(--cc-black) r g b / 48%);
+  --cc-shadow--text--reverse: 0 0 1px rgb(from var(--cc-white) r g b / 48%);
+}

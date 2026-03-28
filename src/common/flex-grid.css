@@ -1,0 +1,454 @@
+:root {
+  /* Breakpoints */
+  --breakpoint-xs: 0px;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  --breakpoint-xxl: 1400px;
+
+  /* Container max-widths */
+  --container-sm: 540px;
+  --container-md: 720px;
+  --container-lg: 960px;
+  --container-xl: 1140px;
+  --container-xxl: 1320px;
+
+  /* Grid settings */
+  --grid-gutter: 1rem;
+  --grid-columns: 12;
+}
+
+.container {
+  box-sizing: border-box;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+@media (width >= 576px) {
+   .container { 
+    max-width: var(--container-sm); 
+  } 
+}
+
+@media (width >= 768px) { 
+  .container { 
+    max-width: var(--container-md); 
+  } 
+}
+
+@media (width >= 992px) { 
+  .container { 
+    max-width: var(--container-lg); 
+  } 
+}
+
+@media (width >= 1200px) { 
+  .container { 
+    max-width: var(--container-xl); 
+  } 
+}
+
+@media (width >= 1400px) { 
+  .container { 
+    max-width: var(--container-xxl); 
+  } 
+}
+
+/* Flex Grid */
+
+/* Don't use gap, as it will add width messing with the columns 
+ Instead, use negative margins on the row and padding on the columns to create gutters 
+ This allows the columns to maintain their width while still having gutters between them
+ Gap works for grid, but not for flexbox, so we have to use this method for our flex grid */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: calc(var(--grid-gutter) / -2);
+  margin-right: calc(var(--grid-gutter) / -2);
+}
+
+.col {
+  flex: 0 0 100%;
+  max-width: 100%;
+  padding-left: calc(var(--grid-gutter) / 2);
+  padding-right: calc(var(--grid-gutter) / 2);
+}
+
+/* === XS (default - no media query) === */
+.col-1 {
+  flex: 0 0 8.333%;
+  max-width: 8.333%;
+}
+
+.col-2 {
+  flex: 0 0 16.667%;
+  max-width: 16.667%;
+}
+
+.col-3 {
+  flex: 0 0 25%;
+  max-width: 25%;
+}
+
+.col-4 {
+  flex: 0 0 33.333%;
+  max-width: 33.333%;
+}
+
+.col-5 {
+  flex: 0 0 41.667%;
+  max-width: 41.667%;
+}
+
+.col-6 {
+  flex: 0 0 50%;
+  max-width: 50%;
+}
+
+.col-7 {
+  flex: 0 0 58.333%;
+  max-width: 58.333%;
+}
+
+.col-8 {
+  flex: 0 0 66.667%;
+  max-width: 66.667%;
+}
+
+.col-9 {
+  flex: 0 0 75%;
+  max-width: 75%;
+}
+
+.col-10 {
+  flex: 0 0 83.333%;
+  max-width: 83.333%;
+}
+
+.col-11 {
+  flex: 0 0 91.667%;
+  max-width: 91.667%;
+}
+
+.col-12 {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+
+/* === SM ≥ 576px === */
+@media (width >= 576px) {
+  .col-sm-1  { 
+    flex: 0 0 8.333%; 
+    max-width: 8.333%; 
+  }
+
+  .col-sm-2  { 
+    flex: 0 0 16.667%; 
+    max-width: 16.667%; 
+  }
+
+  .col-sm-3  { 
+    flex: 0 0 25%; 
+    max-width: 25%; 
+  }
+
+  .col-sm-4  { 
+    flex: 0 0 33.333%; 
+    max-width: 33.333%; 
+  }
+
+  .col-sm-5  { 
+    flex: 0 0 41.667%; 
+    max-width: 41.667%; 
+  }
+
+  .col-sm-6  { 
+    flex: 0 0 50%; 
+    max-width: 50%; 
+  }
+
+  .col-sm-7  { 
+    flex: 0 0 58.333%; 
+    max-width: 58.333%; 
+  }
+
+  .col-sm-8  { 
+    flex: 0 0 66.667%; 
+    max-width: 66.667%; 
+  }
+
+  .col-sm-9  { 
+    flex: 0 0 75%; 
+    max-width: 75%; 
+  }
+
+  .col-sm-10 { 
+    flex: 0 0 83.333%; 
+    max-width: 83.333%; 
+  }
+
+  .col-sm-11 { 
+    flex: 0 0 91.667%; 
+    max-width: 91.667%; 
+  }
+
+  .col-sm-12 { 
+    flex: 0 0 100%; 
+    max-width: 100%; 
+  }
+}
+
+/* === MD ≥ 768px === */
+@media (width >= 768px) {
+  .col-md-1  { 
+    flex: 0 0 8.333%; 
+    max-width: 8.333%; 
+  }
+
+  .col-md-2  { 
+    flex: 0 0 16.667%; 
+    max-width: 16.667%; 
+  }
+
+  .col-md-3  { 
+    flex: 0 0 25%; 
+    max-width: 25%; 
+  }
+
+  .col-md-4  { 
+    flex: 0 0 33.333%; 
+    max-width: 33.333%; 
+  }
+
+  .col-md-5  { 
+    flex: 0 0 41.667%; 
+    max-width: 41.667%; 
+  }
+
+  .col-md-6  { 
+    flex: 0 0 50%; 
+    max-width: 50%; 
+  }
+
+  .col-md-7  { 
+    flex: 0 0 58.333%; 
+    max-width: 58.333%; 
+  }
+
+  .col-md-8  { 
+    flex: 0 0 66.667%; 
+    max-width: 66.667%; 
+  }
+
+  .col-md-9  { 
+    flex: 0 0 75%; 
+    max-width: 75%; 
+  }
+
+  .col-md-10 { 
+    flex: 0 0 83.333%; 
+    max-width: 83.333%; 
+  }
+
+  .col-md-11 { 
+    flex: 0 0 91.667%; 
+    max-width: 91.667%; 
+  }
+
+  .col-md-12 { 
+    flex: 0 0 100%; 
+    max-width: 100%; 
+  }
+}
+
+/* === LG ≥ 992px === */
+@media (width >= 992px) {
+  .col-lg-1  { 
+    flex: 0 0 8.333%; 
+    max-width: 8.333%; 
+  }
+
+  .col-lg-2  { 
+    flex: 0 0 16.667%; 
+    max-width: 16.667%; 
+  }
+
+  .col-lg-3  { 
+    flex: 0 0 25%; 
+    max-width: 25%; 
+  }
+
+  .col-lg-4  { 
+    flex: 0 0 33.333%; 
+    max-width: 33.333%; 
+  }
+
+  .col-lg-5  { 
+    flex: 0 0 41.667%; 
+    max-width: 41.667%; 
+  }
+
+  .col-lg-6  { 
+    flex: 0 0 50%; 
+    max-width: 50%; 
+  }
+
+  .col-lg-7  { 
+    flex: 0 0 58.333%; 
+    max-width: 58.333%; 
+  }
+
+  .col-lg-8  { 
+    flex: 0 0 66.667%; 
+    max-width: 66.667%; 
+  }
+
+  .col-lg-9  { 
+    flex: 0 0 75%; 
+    max-width: 75%; 
+  }
+
+  .col-lg-10 { 
+    flex: 0 0 83.333%; 
+    max-width: 83.333%; 
+  }
+
+  .col-lg-11 { 
+    flex: 0 0 91.667%; 
+    max-width: 91.667%; 
+  }
+
+  .col-lg-12 { 
+    flex: 0 0 100%; 
+    max-width: 100%; 
+  }
+}
+
+/* === XL ≥ 1200px === */
+@media (width >= 1200px) {
+  .col-xl-1  { 
+    flex: 0 0 8.333%; 
+    max-width: 8.333%; 
+  }
+
+  .col-xl-2  { 
+    flex: 0 0 16.667%; 
+    max-width: 16.667%; 
+  }
+
+  .col-xl-3  { 
+    flex: 0 0 25%; 
+    max-width: 25%; 
+  }
+
+  .col-xl-4  { 
+    flex: 0 0 33.333%; 
+    max-width: 33.333%; 
+  }
+
+  .col-xl-5  { 
+    flex: 0 0 41.667%; 
+    max-width: 41.667%; 
+  }
+
+  .col-xl-6  { 
+    flex: 0 0 50%; 
+    max-width: 50%; 
+  }
+
+  .col-xl-7  { 
+    flex: 0 0 58.333%; 
+    max-width: 58.333%; 
+  }
+
+  .col-xl-8  { 
+    flex: 0 0 66.667%; 
+    max-width: 66.667%; 
+  }
+
+  .col-xl-9  { 
+    flex: 0 0 75%; 
+    max-width: 75%; 
+  }
+
+  .col-xl-10 { 
+    flex: 0 0 83.333%; 
+    max-width: 83.333%; 
+  }
+
+  .col-xl-11 { 
+    flex: 0 0 91.667%; 
+    max-width: 91.667%; 
+  }
+
+  .col-xl-12 { 
+    flex: 0 0 100%; 
+    max-width: 100%; 
+  }
+}
+
+/* === XXL ≥ 1400px === */
+@media (width >= 1400px) {
+  .col-xxl-1  { 
+    flex: 0 0 8.333%; 
+    max-width: 8.333%; 
+  }
+
+  .col-xxl-2  { 
+    flex: 0 0 16.667%; 
+    max-width: 16.667%; 
+  }
+
+  .col-xxl-3  { 
+    flex: 0 0 25%; 
+    max-width: 25%; 
+  }
+
+  .col-xxl-4  { 
+    flex: 0 0 33.333%; 
+    max-width: 33.333%; 
+  }
+
+  .col-xxl-5  { 
+    flex: 0 0 41.667%; 
+    max-width: 41.667%; 
+  }
+
+  .col-xxl-6  { 
+    flex: 0 0 50%; 
+    max-width: 50%; 
+  }
+
+  .col-xxl-7  { 
+    flex: 0 0 58.333%; 
+    max-width: 58.333%; 
+  }
+
+  .col-xxl-8  { 
+    flex: 0 0 66.667%; 
+    max-width: 66.667%; 
+  }
+
+  .col-xxl-9  { 
+    flex: 0 0 75%; 
+    max-width: 75%; 
+  }
+
+  .col-xxl-10 { 
+    flex: 0 0 83.333%; 
+    max-width: 83.333%; 
+  }
+
+  .col-xxl-11 { 
+    flex: 0 0 91.667%; 
+    max-width: 91.667%; 
+  }
+
+  .col-xxl-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+

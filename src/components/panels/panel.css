@@ -1,0 +1,24 @@
+:root {
+  --cc-panel--border--radius: var(--cc-border--radius);
+  --cc-panel--border--width: var(--cc-border--width);
+  --cc-panel--border--style: var(--cc-border--style);
+  --cc-panel--border--color: rgb(from var(--cc-border--color) r g b / 21%);
+  --cc-panel--shadow: var(--cc-shadow--drop);
+  --cc-panel--padding: var(--cc-size-2);
+  --cc-panel--background: var(--cc-white);
+}
+
+.corn-panel {
+  background: var(--cc-panel--background);
+  border-color: var(--cc-panel--border--color);
+  border-radius: var(--cc-panel--border--radius);
+  border-style: var(--cc-panel--border--style);
+  border-width: var(--cc-panel--border--width);
+  box-shadow: var(--cc-panel--shadow);
+  padding: var(--cc-panel--padding);
+
+  .corn-panel {
+    border-style: var(--cc-panel--border--style);
+    box-shadow: none;
+  }
+}

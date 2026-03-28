@@ -1,0 +1,37 @@
+.corn-body {
+  background: var(--cc-body--background);
+
+  /* font-family: var(--cc-font-family); */
+}
+
+.corn-main {
+  padding-top: var(--cc-size-2);
+}
+
+hr {
+  border-color: rgb(from var(--cc-border--color) r g b / 67.2%);
+  border-radius: 1px;
+  border-style: solid;
+  margin: var(--cc-spacing-1) 0;
+}
+
+.corn-assistive-text {
+  border: 0;
+  clip-path: inset(50%); /* Modern browsers */
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

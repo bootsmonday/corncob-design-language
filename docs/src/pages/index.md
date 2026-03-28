@@ -1,0 +1,28 @@
+---
+layout: ../layouts/LandingLayout.astro
+title: Corncob Design Language
+---
+
+# Corncob Design Language
+
+Corncob is a framework-neutral design language built with tokens, CSS, and plain JavaScript behavior.
+
+This project is in early development, but you can check out the [Getting Started](./getting-started/) page for installation instructions and a quick preview of the button component.
+
+Corncob is built with the following goals in mind:
+
+## Goals
+
+- Keep the core package vanilla and portable
+- Utilize as much built-in browser functionality as possible.
+- HTML and CSS first, Web Components and JavaScript as needed.
+- 10 Steps Color Palette to ease accessiblity
+- Design Tokens from Primative, Categorical, Components
+
+## Quick Button Preview
+
+<div class="docs-demo-row">
+  <button class="corn-button">Primary</button>
+  <button class="corn-button corn-button--secondary">Secondary</button>
+  <button class="corn-button corn-button--danger">Danger</button>
+</div>

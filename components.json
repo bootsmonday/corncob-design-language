@@ -1,5 +1,4 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "name": "Corncob Design Language",
   "version": "1.0.0",
   "description": "Lightweight, accessible vanilla JS design system. Perfect for AI-assisted website and application development.",

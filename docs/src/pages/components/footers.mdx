@@ -3,6 +3,200 @@ layout: ../../layouts/DocsLayout.astro
 title: 'Component | Footer | Corncob'
 ---
 
+import LogoX from '@carbon/icons/svg/32/logo--x.svg';
+import LogoFacebook from '@carbon/icons/svg/32/logo--facebook.svg';
+import LogoInstagram from '@carbon/icons/svg/32/logo--instagram.svg';
+import LogoLinkedIn from '@carbon/icons/svg/32/logo--linkedin.svg';
+import LogoGithub from '@carbon/icons/svg/32/logo--github.svg';
 import CodeSample from '../../layouts/partials/CodeSample.astro';
 
 # Footers
+
+Footers are used to provide additional information about the website or application, such as
+copyright information, links to social media profiles, and contact information. They are typically
+located at the bottom of the page and can be designed to be visually distinct from the main content.
+SEO best practices suggest that footers should include important links and information that users
+may need to access frequently, such as contact information, privacy policies, and terms of service.
+Additionally, footers can be used to improve the overall user experience by providing easy access to
+important information and resources.
+
+<div class="corn-panel">
+  <footer class="corn-footer">
+    <div class="corn-footer--intro">
+      The footer is the last section of a page, and typically contains information about the
+      company, links to important pages, and social media links.
+    </div>
+    <div class="corn-footer--content">
+      <div class="corn-footer--content--section">
+        <h3>Company</h3>
+        <ul>
+          <li>
+            {/*prettier-ignore*/}
+            <a href="#" class="corn-link">About Us</a>
+          </li>
+          <li>
+            {/*prettier-ignore*/}
+            <a href="#" class="corn-link">Careers</a>
+          </li>
+          <li>
+            {/*prettier-ignore*/}
+            <a href="#" class="corn-link">Press</a>
+          </li>
+        </ul>
+      </div>
+      <div class="corn-footer--content--section">
+        <h3>Support</h3>
+        <ul>
+          <li>
+            {/*prettier-ignore*/}
+            <a href="#" class="corn-link">Contact Us</a>
+          </li>
+          <li>
+            {/*prettier-ignore*/}
+            <a href="#" class="corn-link">FAQs</a>
+          </li>
+          <li>
+            {/*prettier-ignore*/}
+            <a href="#" class="corn-link">Help Center</a>
+          </li>
+        </ul>
+      </div>
+      <div class="corn-footer--content--section">
+        <h3>Legal</h3>
+        <ul>
+          <li>
+            {/*prettier-ignore*/}
+            <a href="#" class="corn-link">Privacy Policy</a>
+          </li>
+          <li>
+            {/*prettier-ignore*/}
+            <a href="#" class="corn-link">Terms of Service</a>
+          </li>
+          <li>
+            {/*prettier-ignore*/}
+            <a href="#" class="corn-link">Cookie Policy</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="corn-footer--social">
+      <a href="#" class="corn-link" aria-label="X social media">
+        <LogoX />
+      </a>
+      <a href="#" class="corn-link" aria-label="Facebook">
+        <LogoFacebook />
+      </a>
+      <a href="#" class="corn-link" aria-label="Instagram">
+        <LogoInstagram />
+      </a>
+      <a href="#" class="corn-link" aria-label="LinkedIn">
+        <LogoLinkedIn />
+      </a>
+      <a href="#" class="corn-link" aria-label="GitHub">
+        <LogoGithub />
+      </a>
+    </div>
+    <div class="corn-footer--copyright">&copy; 2026 Your Company. All rights reserved.</div>
+  </footer>
+</div>
+
+<CodeSample id="footer-code">
+  ```html
+  <footer class="corn-footer">
+    <div class="corn-footer--intro">
+      The footer is the last section of a page, and typically contains information about the
+      company, links to important pages, and social media links.
+    </div>
+    <div class="corn-footer--content">
+      <div class="corn-footer--content--section">
+        <h3>Company</h3>
+        <ul>
+          <li>
+            <a href="#" class="corn-link">
+              About Us
+            </a>
+          </li>
+          <li>
+            <a href="#" class="corn-link">
+              Careers
+            </a>
+          </li>
+          <li>
+            <a href="#" class="corn-link">
+              Press
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="corn-footer--content--section">
+        <h3>Support</h3>
+        <ul>
+          <li>
+            <a href="#" class="corn-link">
+              Contact Us
+            </a>
+          </li>
+          <li>
+            <a href="#" class="corn-link">
+              FAQs
+            </a>
+          </li>
+          <li>
+            <a href="#" class="corn-link">
+              Help Center
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="corn-footer--content--section">
+        <h3>Legal</h3>
+        <ul>
+          <li>
+            <a href="#" class="corn-link">
+              Privacy Policy
+            </a>
+          </li>
+          <li>
+            <a href="#" class="corn-link">
+              Terms of Service
+            </a>
+          </li>
+          <li>
+            <a href="#" class="corn-link">
+              Cookie Policy
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="corn-footer--social">
+      <a href="#" class="corn-link" aria-label="X social media">
+        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" class="corn-icon">
+          <use href="/node_modules/@carbon/icons/svg/32/logo--x.svg"></use>
+        </svg>
+      </a>
+      <a href="#" class="corn-link" aria-label="Facebook">
+        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" class="corn-icon">
+          <use href="/node_modules/@carbon/icons/svg/32/logo--facebook.svg"></use>
+        </svg>
+      </a>
+      <a href="#" class="corn-link" aria-label="Instagram">
+        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" class="corn-icon">
+          <use href="/node_modules/@carbon/icons/svg/32/logo--instagram.svg"></use>
+        </svg>
+      </a>
+      <a href="#" class="corn-link" aria-label="LinkedIn">
+        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" class="corn-icon">
+          <use href="/node_modules/@carbon/icons/svg/32/logo--linkedin.svg"></use>
+        </svg>
+      </a>
+      <a href="#" class="corn-link" aria-label="GitHub">
+        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" class="corn-icon">
+          <use href="/node_modules/@carbon/icons/svg/32/logo--github.svg"></use>
+        </svg>
+      </a>
+    </div>
+    <div class="corn-footer--copyright">&copy; 2026 Your Company. All rights reserved.</div>
+  </footer>
+  ```
+</CodeSample>

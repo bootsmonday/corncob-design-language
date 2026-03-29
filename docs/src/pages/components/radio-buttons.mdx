@@ -1,8 +1,101 @@
 ---
 layout: ../../layouts/DocsLayout.astro
-title: 'Component | Radio Button | Corncob'
+title: 'Component | Radio Buttons | Corncob'
 ---
 
 import CodeSample from '../../layouts/partials/CodeSample.astro';
 
 # Radio Buttons
+
+Radio buttons are used to allow users to select a single option from a set. They can be used in forms, settings, and anywhere else where a single selection is needed.
+Corncob radio buttons are standard HTML radio buttons styled to fit the Corncob design system.
+They can be used in various states such as checked, unchecked, and disabled.
+
+## Default Radio Buttons
+
+    <fieldset class="corn-form--item corn-radio-button-group">
+      <legend>Group Label</legend>
+      <div class="corn-radio-button">
+        <input type="radio" id="example1" name="example" checked/>
+        <label for="example1">Radio Button One</label>
+      </div>
+      <div class="corn-radio-button">
+        <input type="radio" id="example2" name="example" />
+        <label for="example2">Radio Button Two</label>
+      </div>
+    </fieldset>
+
+<CodeSample id="default-radio-code">
+  ```html
+  <fieldset class="corn-form--item corn-radio-button-group">
+    <legend>Group Label</legend>
+    <div class="corn-radio-button">
+      <input type="radio" id="example1" name="example" checked />
+      <label for="example1">Radio Button One</label>
+    </div>
+    <div class="corn-radio-button">
+      <input type="radio" id="example2" name="example" />
+      <label for="example2">Radio Button Two</label>
+    </div>
+  </fieldset>
+  ```
+</CodeSample>
+## Disabled Radio Buttons
+
+    <fieldset class="corn-form--item corn-radio-button-group">
+      <legend>Group Label</legend>
+      <div class="corn-radio-button">
+        <input type="radio" id="example3" name="example-disabled" disabled />
+        <label for="example3">Disabled Radio Button</label>
+      </div>
+      <div class="corn-radio-button">
+        <input type="radio" id="example4" name="example-disabled" disabled checked/>
+        <label for="example4">Disabled Radio Button</label>
+      </div>
+    </fieldset>
+
+<CodeSample id="disabled-radio-code">
+  ```html
+  <fieldset class="corn-form--item corn-radio-button-group">
+    <legend>Group Label</legend>
+    <div class="corn-radio-button">
+      <input type="radio" id="example3" name="example-disabled" disabled />
+      <label for="example3">Disabled Radio Button</label>
+    </div>
+    <div class="corn-radio-button">
+      <input type="radio" id="example4" name="example-disabled" disabled checked />
+      <label for="example4">Disabled Radio Button</label>
+    </div>
+  </fieldset>
+  ```
+</CodeSample>
+
+## Inline Radio Buttons
+
+    <fieldset class="corn-form--item corn-radio-button-group corn-radio-button-group--inline">
+      <legend>Group Label</legend>
+      <div class="corn-radio-button">
+        <input type="radio" id="example6" name="example-inline" checked />
+        <label for="example6">Inline Radio Button One</label>
+      </div>
+      <div class="corn-radio-button">
+        <input type="radio" id="example7" name="example-inline" />
+        <label for="example7">Inline Radio Button Two</label>
+      </div>
+    </fieldset>
+
+<CodeSample id="inline-radio-code">
+  ```html
+  <fieldset class="corn-form--item corn-radio-button-group corn-radio-button-group--inline">
+    <legend>Group Label</legend>
+    <div class="corn-radio-button">
+      <input type="radio" id="example6" name="example-inline" checked />
+      <label for="example6">Inline Radio Button One</label>
+    </div>
+    <div class="corn-radio-button">
+      <input type="radio" id="example7" name="example-inline" />
+      <label for="example7">Inline Radio Button Two</label>
+    </div>
+  </fieldset>
+  ```
+</CodeSample>

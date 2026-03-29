@@ -27,7 +27,7 @@
 
 .corn-company--logo {
   align-items: baseline;
-  display: flex;
+  display: inline-flex;
 }
 
 .corn-header--nav {

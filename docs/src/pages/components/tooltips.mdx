@@ -1,8 +1,107 @@
 ---
 layout: ../../layouts/DocsLayout.astro
-title: 'Component | Tooltip | Corncob'
+title: 'Component | Tooltips | Corncob'
 ---
 
 import CodeSample from '../../layouts/partials/CodeSample.astro';
 
 # Tooltips
+
+Tooltips are used to provide additional information about an element on the page. They can be triggered by hovering over an element or by focusing on it with the keyboard. Tooltips can contain any type of content, including text, images, and interactive elements.
+
+Tooltips are built with the `corn-tooltip` web component and can be positioned in any of the following directions: top, right, bottom, and left. The tooltip will automatically adjust its position to stay within the viewport if there is not enough space in the specified direction.
+
+The Tooltip component uses the `position` attribute to determine where to display the tooltip content in relation to the anchor element. The anchor element is the element that triggers the tooltip when interacted with. The tooltip content is defined within the `corn-tooltip` element and can include any HTML content, such as text, images, or interactive elements like links and buttons.
+
+Tooltips are designed to be accessible and include appropriate ARIA attributes to ensure that they can be used by all users, including those using assistive technologies. The tooltip will automatically manage focus and keyboard interactions to provide a seamless user experience. You should make sure that you have the appropriate ARIA attributes on the trigger element (e.g., `aria-controls`) to associate it with the tooltip `id` for better accessibility.
+
+The `corn-tooltip--anchor` class is used to wrap the trigger element and the tooltip content, ensuring that they are properly associated and that the tooltip is positioned correctly in relation to the trigger element.
+
+## Default Tooltip
+
+<button class="corn-button corn-tooltip--anchor">
+  Default (Top)
+  {/* prettier-ignore */}
+  <corn-tooltip position="top" class="corn-tooltip">Default tooltip</corn-tooltip>
+</button>
+
+<CodeSample id="default-tooltip-code">
+  ```html
+  <button class="corn-button corn-tooltip--anchor">
+    Default (Top)
+    <corn-tooltip position="top" class="corn-tooltip">
+      Default tooltip
+    </corn-tooltip>
+  </button>
+  ```
+</CodeSample>
+
+## Position Modifiers
+
+The default position for the tooltip is `top`, but it can be positioned in any of the following directions:
+
+- `top`
+- `right`
+- `bottom`
+- `left`
+
+<div class="corn-tooltip--anchor">
+  <button class="corn-button corn-tooltip--anchor" aria-controls="tooltip-right">
+    Right
+  </button>
+  {/* prettier-ignore */}
+  <corn-tooltip position="right" id="tooltip-right" class="corn-tooltip">Right tooltip</corn-tooltip>
+</div>
+
+<CodeSample id="position-modifiers-code-right">
+  ```html
+  <div class="corn-tooltip--anchor">
+    <button class="corn-button corn-tooltip--anchor" aria-controls="tooltip-right">
+      Right
+    </button>
+    <corn-tooltip position="right" id="tooltip-right" class="corn-tooltip">
+      Right tooltip
+    </corn-tooltip>
+  </div>
+  ```
+</CodeSample>
+
+<div class="corn-tooltip--anchor">
+  <button class="corn-button corn-tooltip--anchor" aria-controls="tooltip-bottom">
+    Bottom
+  </button>
+  {/* prettier-ignore */}
+  <corn-tooltip position="bottom" id="tooltip-bottom" class="corn-tooltip">Bottom tooltip</corn-tooltip>
+</div>
+
+<CodeSample id="position-modifiers-code-bottom">
+  ```html
+  <div class="corn-tooltip--anchor">
+    <button class="corn-button corn-tooltip--anchor" aria-controls="tooltip-bottom">
+      Bottom
+    </button>
+    <corn-tooltip position="bottom" id="tooltip-bottom" class="corn-tooltip">
+      Bottom tooltip
+    </corn-tooltip>
+  </div>
+  ```
+</CodeSample>
+<div class="corn-tooltip--anchor">
+  <button class="corn-button corn-tooltip--anchor" aria-controls="tooltip-left">
+    Left
+  </button>
+  {/* prettier-ignore */}
+  <corn-tooltip position="left" id="tooltip-left" class="corn-tooltip">Left tooltip</corn-tooltip>
+</div>
+<CodeSample id="position-modifiers-code-left">
+  ```html
+  <div class="corn-tooltip--anchor">
+    <button class="corn-button corn-tooltip--anchor" aria-controls="tooltip-left">
+      Left
+    </button>
+    <corn-tooltip position="left" id="tooltip-left" class="corn-tooltip">
+      Left tooltip
+    </corn-tooltip>
+  </div>
+  ```
+</CodeSample>

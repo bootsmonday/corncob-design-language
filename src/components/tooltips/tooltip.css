@@ -9,6 +9,7 @@
 }
 
 .corn-tooltip--anchor {
+  display: inline-flex;
   position: relative;
 
   &:not([disabled]):hover,

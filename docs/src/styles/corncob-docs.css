@@ -22,6 +22,18 @@
   }
 }
 
+p > code {
+  background-color: var(--cc-yellow-20);
+}
+
+p{
+  line-height: 1.3rem;
+}
+
+.corn-panel .docs-demo-panel {
+    box-shadow: var(--cc-panel--shadow);
+}
+
 .docs-color-palette {
   border: 1px solid var(--cc-border--color);
   border-radius: var(--cc-border--radius);

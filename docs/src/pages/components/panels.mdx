@@ -6,3 +6,54 @@ title: 'Component | Panel | Corncob'
 import CodeSample from '../../layouts/partials/CodeSample.astro';
 
 # Panels
+
+Panels are used to group related content and provide a visual separation between different sections of a page.
+They can be used for various purposes such as displaying information, grouping form elements, or creating card-like layouts. Corncob panels are simple containers with a border and padding that can be used to create a variety of layouts.
+
+<div class="corn-panel docs-demo-panel">
+  <h2>Panel Title</h2>
+  <p>
+    This is a panel. It can be used to group related content and provide a visual separation between
+    different sections of a page. This panel is using the "docs-demo-panel" class to apply a shadow
+    for visual separation from the page background. Nested panels will not have a shadow to reduce
+    visual noise when multiple panels are nested within each other.
+  </p>
+</div>
+
+<CodeSample id="default-panel-code">
+  ```html
+  <div class="corn-panel">
+    <h2>Panel Title</h2>
+    <p>
+      This is a panel. It can be used to group related content and provide a visual separation
+      between different sections of a page.
+    </p>
+  </div>
+  ```
+</CodeSample>
+
+Nested panels can also be used to create more complex layouts.
+Top level panels will have a shadow to help visually separate them from nested panels, which will have no shadow.
+This allows for more visual separation between nested panels and their parent panel and reduces visual noise when multiple panels are nested within each other.
+
+<div class="corn-panel docs-demo-panel">
+  <h2>Outer Panel</h2>
+  <p>This is the outer panel.</p>
+  <div class="corn-panel">
+    <h3>Inner Panel</h3>
+    <p>This is the inner panel.</p>
+  </div>
+</div>
+
+<CodeSample id="nested-panel-code">
+  ```html
+  <div class="corn-panel">
+    <h2>Outer Panel</h2>
+    <p>This is the outer panel.</p>
+    <div class="corn-panel">
+      <h3>Inner Panel</h3>
+      <p>This is the inner panel.</p>
+    </div>
+  </div>
+  ```
+</CodeSample>

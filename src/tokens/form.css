@@ -25,7 +25,7 @@
   --cc-form--item--input--label--color: var(--cc-blue-60);
   --cc-form--item--input--label--font-weight: 500;
   --cc-form--item--color-indicator: var(--cc-blue-70);
-  --cc-form--control--font-size--xs: var(--cc-size-1);
+  --cc-form--control--font-size--xs: var(--cc-size-0);
   --cc-form--control--font-size--sm: var(--cc-size-2);
   --cc-form--control--font-size--md: var(--cc-size-3);
   --cc-form--control--font-size--lg: var(--cc-size-4);

@@ -6,3 +6,163 @@ title: 'Component | Text Input | Corncob'
 import CodeSample from '../../layouts/partials/CodeSample.astro';
 
 # Text Inputs
+
+Text inputs are used to capture user input in a single line. They can be used for various purposes, such as capturing names, email addresses, or any other short text.
+
+Corncob provides a simple and elegant design for text inputs, ensuring a consistent user experience across your application.
+
+Corncob form elements should be wrapped in a container with the class `corn-form--item` to ensure proper spacing and alignment. Each form element should also include a `corn-status` element to display validation messages or other status information.
+
+This allows for proper styling of status messages and ensures that they are visually associated with the corresponding form element. The `corn-status` element can be used to display error messages, success messages, or any other relevant information related to the form input.
+
+How the content of the `corn-status` is populated is up to the developer, but it should be used consistently across the application to provide a clear and cohesive user experience.
+
+## Basic Text Input
+
+<div class="corn-form--item">
+  <div class="corn-text-input">
+    <input id="input--md" name="input" placeholder="Enter Full Name..." />
+    <label for="input--md">What is your name?</label>
+  </div>
+  <div class="corn-status">status text</div>
+</div>
+
+<CodeSample id="basic-text-input-code">
+  ```html
+  <div class="corn-form--item">
+    <div class="corn-text-input">
+      <input id="input--md" name="input" placeholder="Enter Full Name..." />
+      <label for="input--md">What is your name?</label>
+    </div>
+  </div>
+  ```
+</CodeSample>
+
+## Size Modifiers
+
+The default size for the text input is `md`, but it can be modified to `xs`, `sm`, `lg`, or `xl` using the corresponding class on the `corn-text-input` element.
+
+- `corn-text-input--xs`
+- `corn-text-input--sm`
+- `corn-text-input--md`
+- `corn-text-input--lg`
+- `corn-text-input--xl`
+
+### Extra Small (xs)
+
+The `xs` size is the smallest size available for text inputs. It is designed for use in compact spaces where a smaller input field is needed.
+This should not be used as the default size for text inputs, but it can be used in specific contexts where space is limited, such as in a table or a navigation bar.
+
+<div class="corn-form--item">
+  <div class="corn-text-input corn-text-input--xs">
+    <input id="input--xs" name="input" placeholder="Enter Full Name..." />
+    <label for="input--xs" class="corn-assistive-text">
+      What is your name?
+    </label>
+  </div>
+</div>
+
+<CodeSample id="extra-small-text-input-code">
+  ```html
+  <div class="corn-form--item">
+    <div class="corn-text-input corn-text-input--xs">
+      <input id="input--xs" name="input" placeholder="Enter Full Name..." />
+      <label for="input--xs" class="corn-assistive-text">
+        What is your name?
+      </label>
+    </div>
+  </div>
+  ```
+</CodeSample>
+
+### Small (sm)
+
+The `sm` size is slightly larger than `xs` and is suitable for use in situations where a smaller input field is needed, but there is more space available than for the `xs` size. It can be used in forms where space is limited, such as in a sidebar or a mobile layout.
+
+<div class="corn-form--item">
+  <div class="corn-text-input corn-text-input--sm">
+    <input id="input--sm" name="input" placeholder="Enter Full Name..." />
+    <label for="input--sm" class="corn-assistive-text">
+      What is your name?
+    </label>
+  </div>
+</div>
+
+<CodeSample id="small-text-input-code">
+  ```html
+  <div class="corn-form--item">
+    <div class="corn-text-input corn-text-input--sm">
+      <input id="input--sm" name="input" placeholder="Enter Full Name..." />
+      <label for="input--sm" class="corn-assistive-text">
+        What is your name?
+      </label>
+    </div>
+  </div>
+  ```
+</CodeSample>
+
+### Medium (md, default)
+
+The `md` size is the default size for text inputs and is suitable for most use cases. It provides a good balance between usability and space efficiency, making it a versatile choice for various form layouts. It can be used in standard forms, such as registration or contact forms, where a moderate amount of space is available.
+
+<div class="corn-form--item">
+  <div class="corn-text-input corn-text-input--md">
+    <input id="input--md" name="input" placeholder="Enter Full Name..." />
+    <label for="input--md">What is your name?</label>
+  </div>
+</div>
+
+<CodeSample id="medium-text-input-code">
+  ```html
+  <div class="corn-form--item">
+    <div class="corn-text-input corn-text-input--md">
+      <input id="input--md" name="input" placeholder="Enter Full Name..." />
+      <label for="input--md">What is your name?</label>
+    </div>
+  </div>
+  ```
+</CodeSample>
+
+### Large (lg)
+
+The `lg` size is larger than the default `md` size and is suitable for use in situations where a more prominent input field is desired. It can be used in forms where the input field needs to stand out, such as in a hero section or a landing page.
+
+<div class="corn-form--item">
+  <div class="corn-text-input corn-text-input--lg">
+    <input id="input--lg" name="input" placeholder="Enter Full Name..." />
+    <label for="input--lg">What is your name?</label>
+  </div>
+</div>
+
+<CodeSample id="large-text-input-code">
+  ```html
+  <div class="corn-form--item">
+    <div class="corn-text-input corn-text-input--lg">
+      <input id="input--lg" name="input" placeholder="Enter Full Name..." />
+      <label for="input--lg">What is your name?</label>
+    </div>
+  </div>
+  ```
+</CodeSample>
+
+### Extra Large (xl)
+
+The `xl` size is the largest size available for text inputs and is designed for use in situations where a very prominent input field is needed. It can be used in forms where the input field needs to be the focal point, such as in a sign-up form or a newsletter subscription form.
+
+<div class="corn-form--item">
+  <div class="corn-text-input corn-text-input--xl">
+    <input id="input--xl" name="input" placeholder="Enter Full Name..." />
+    <label for="input--xl">What is your name?</label>
+  </div>
+</div>
+
+<CodeSample id="extra-large-text-input-code">
+  ```html
+  <div class="corn-form--item">
+    <div class="corn-text-input corn-text-input--xl">
+      <input id="input--xl" name="input" placeholder="Enter Full Name..." />
+      <label for="input--xl">What is your name?</label>
+    </div>
+  </div>
+  ```
+</CodeSample>

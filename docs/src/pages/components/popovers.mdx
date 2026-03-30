@@ -17,22 +17,23 @@ Popovers are designed to be accessible and include appropriate ARIA attributes t
 
 The `corn-popover--anchor` class is used to wrap the trigger element and the popover content, ensuring that they are properly associated and that the popover is positioned correctly in relation to the trigger element.
 
-## Default Popover
-
 <div class="corn-popover--anchor">
   <button class="corn-button corn-pop" aria-controls="popover-top">
-    Default (Top)
+    Default
   </button>
   <corn-popover position="top" id="popover-top" class="corn-popover">
     <ul>
       <li>
-        <a href="#">Item 1</a>
+        {/*prettier-ignore*/}
+        <a href="#" class="corn-link">Item 1</a>
       </li>
       <li>
-        <a href="#">Item 2</a>
+        {/*prettier-ignore*/}
+        <a href="#" class="corn-link">Item 2</a>
       </li>
       <li>
-        <a href="#">Item 3</a>
+        {/*prettier-ignore*/}
+        <a href="#" class="corn-link">Item 3</a>
       </li>
     </ul>
   </corn-popover>
@@ -70,6 +71,60 @@ The default position for the popover is `top`, but it can be positioned in any o
 - `bottom`
 - `left`
 
+### Popover Top (Default)
+
+<div class="corn-popover--anchor">
+  <button class="corn-button corn-pop" aria-controls="popover-top">
+    Top
+  </button>
+  <corn-popover position="top" id="popover-top" class="corn-popover">
+    <ul>
+      <li>
+        {/*prettier-ignore*/}
+        <a href="#" class="corn-link">Item 1</a>
+      </li>
+      <li>
+        {/*prettier-ignore*/}
+        <a href="#" class="corn-link">Item 2</a>
+      </li>
+      <li>
+        {/*prettier-ignore*/}
+        <a href="#" class="corn-link">Item 3</a>
+      </li>
+    </ul>
+  </corn-popover>
+</div>
+
+<CodeSample id="position-modifiers-code-top">
+  ```html
+  <div class="corn-popover--anchor">
+    <button class="corn-button corn-pop" aria-controls="popover-top">
+      Top
+    </button>
+    <corn-popover position="top" id="popover-top" class="corn-popover">
+      <ul>
+        <li>
+          <a href="#" class="corn-link">
+            Item 1
+          </a>
+        </li>
+        <li>
+          <a href="#" class="corn-link">
+            Item 2
+          </a>
+        </li>
+        <li>
+          <a href="#" class="corn-link">
+            Item 3
+          </a>
+        </li>
+      </ul>
+    </corn-popover>
+  </div>
+  ```
+</CodeSample>
+### Popover Right
+
 <div class="corn-popover--anchor">
   <button class="corn-button corn-pop" aria-controls="popover-right">
     Right
@@ -77,13 +132,16 @@ The default position for the popover is `top`, but it can be positioned in any o
   <corn-popover position="right" id="popover-right" class="corn-popover">
     <ul>
       <li>
-        <a href="#">Item 1</a>
+        {/*prettier-ignore*/}
+        <a href="#" class="corn-link">Item 1</a>
       </li>
       <li>
-        <a href="#">Item 2</a>
+        {/*prettier-ignore*/}
+        <a href="#" class="corn-link">Item 2</a>
       </li>
       <li>
-        <a href="#">Item 3</a>
+        {/*prettier-ignore*/}
+        <a href="#" class="corn-link">Item 3</a>
       </li>
     </ul>
   </corn-popover>
@@ -112,6 +170,8 @@ The default position for the popover is `top`, but it can be positioned in any o
   ```
 </CodeSample>
 
+### Popover Bottom
+
 <div class="corn-popover--anchor">
   <button class="corn-button corn-pop" aria-controls="popover-bottom">
     Bottom
@@ -119,13 +179,16 @@ The default position for the popover is `top`, but it can be positioned in any o
   <corn-popover position="bottom" id="popover-bottom" class="corn-popover">
     <ul>
       <li>
-        <a href="#">Item 1</a>
+        {/*prettier-ignore*/}
+        <a href="#" class="corn-link">Item 1</a>
       </li>
       <li>
-        <a href="#">Item 2</a>
+        {/*prettier-ignore*/}
+        <a href="#" class="corn-link">Item 2</a>
       </li>
       <li>
-        <a href="#">Item 3</a>
+        {/*prettier-ignore*/}
+        <a href="#" class="corn-link">Item 3</a>
       </li>
     </ul>
   </corn-popover>
@@ -153,6 +216,9 @@ The default position for the popover is `top`, but it can be positioned in any o
   </div>
   ```
 </CodeSample>
+
+### Popover Left
+
 <div class="corn-popover--anchor">
   <button class="corn-button corn-pop" aria-controls="popover-left">
     Left
@@ -160,13 +226,16 @@ The default position for the popover is `top`, but it can be positioned in any o
   <corn-popover position="left" id="popover-left" class="corn-popover">
     <ul>
       <li>
-        <a href="#">Item 1</a>
+        {/*prettier-ignore*/}
+        <a href="#" class="corn-link">Item 1</a>
       </li>
       <li>
-        <a href="#">Item 2</a>
+        {/*prettier-ignore*/}
+        <a href="#" class="corn-link">Item 2</a>
       </li>
       <li>
-        <a href="#">Item 3</a>
+        {/*prettier-ignore*/}
+        <a href="#" class="corn-link">Item 3</a>
       </li>
     </ul>
   </corn-popover>

@@ -257,7 +257,7 @@ export class CornPopover extends HTMLElement {
     this.classList.add('corn-popover--open');
     this.isOpen = true;
     this.focusableElements = this._getAllFocusableElements();
-    this.focusableElements[0]?.focus();
+    this.focusableElements[0]?.focus({ focusVisible: true });
     this._positionContent();
     document.addEventListener('click', this._clickListener);
   }

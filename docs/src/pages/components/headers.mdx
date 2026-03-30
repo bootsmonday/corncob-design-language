@@ -3,6 +3,113 @@ layout: ../../layouts/DocsLayout.astro
 title: 'Component | Header | Corncob'
 ---
 
+import Logo from '../../../../dist/corncob-design-language.svg';
 import CodeSample from '../../layouts/partials/CodeSample.astro';
+import UserIcon from '@carbon/icons/svg/32/user.svg';
+import QuestionAnsweringIcon from '@carbon/icons/svg/32/question-answering.svg';
 
 # Headers
+
+Headers are used to provide structure and hierarchy to your content. They help users understand the organization of information and navigate through your application.
+Corncob provides a simple and elegant design for headers, ensuring a consistent user experience across your application.
+
+# Default Header
+
+<div class="corn-panel">
+  <header class="corn-header">
+    <div class="corn-company">
+      <div class="corn-company--logo">
+        <Logo class="corn-logo" />
+      </div>
+      <div class="corn-company--name">Company</div>
+    </div>
+    <div class="corn-header--title">Title</div>
+    <nav class="corn-header--nav">
+      <corn-button-bar class="corn-button-bar">
+        {/*prettier-ignore*/}
+        <a href="#" class="corn-link">Link 1</a>
+        {/*prettier-ignore*/}
+        <a href="#" class="corn-link">Link 2</a>
+        {/*prettier-ignore*/}
+        <a href="#" class="corn-link">Link 3</a>
+        {/*prettier-ignore*/}
+        <a href="#" class="corn-link">Link 4</a>
+        <div class="corn-popover--anchor corn-button-bar--more">
+          <button class="corn-button corn-button--xs corn-pop" aria-controls="button-bar-popover">
+            More
+          </button>
+          <corn-popover
+            position="bottom"
+            id="button-bar-popover"
+            class="corn-popover"
+          ></corn-popover>
+        </div>
+      </corn-button-bar>
+    </nav>
+    <div class="corn-header--actions">
+      <button
+        class="corn-button corn-button--icon  corn-button--xs"
+        aria-label="Question Answering"
+      >
+        <QuestionAnsweringIcon class="corn-icon" />
+      </button>
+      <button class="corn-button corn-button--icon  corn-button--xs" aria-label="User">
+        <UserIcon class="corn-icon" />
+      </button>
+    </div>
+  </header>
+</div>
+
+<CodeSample id="default-header-code">
+  ```html
+  <header class="corn-header">
+    <div class="corn-company">
+      <div class="corn-company--logo">
+        <Logo class="corn-logo" />
+      </div>
+      <div class="corn-company--name">Company</div>
+    </div>
+    <div class="corn-header--title">Title</div>
+    <nav class="corn-header--nav">
+      <corn-button-bar class="corn-button-bar">
+        <a href="#" class="corn-link">
+          Link 1
+        </a>
+        <a href="#" class="corn-link" class="corn-link">
+          Link 2
+        </a>
+        <a href="#" class="corn-link">
+          Link 3
+        </a>
+        <a href="#" class="corn-link">
+          Link 4
+        </a>
+        <div class="corn-popover--anchor corn-button-bar--more">
+          <button class="corn-button corn-button--xs corn-pop" aria-controls="button-bar-popover">
+            More
+          </button>
+          <corn-popover
+            position="bottom"
+            id="button-bar-popover"
+            class="corn-popover"
+          ></corn-popover>
+        </div>
+      </corn-button-bar>
+    </nav>
+    <div class="corn-header--actions">
+      <button
+        class="corn-button corn-button--icon corn-button--secondary corn-button--xs"
+        aria-label="Question Answering"
+      >
+        <QuestionAnsweringIcon />
+      </button>
+      <button
+        class="corn-button corn-button--icon corn-button--secondary corn-button--xs"
+        aria-label="User"
+      >
+        <UserIcon />
+      </button>
+    </div>
+  </header>
+  ```
+</CodeSample>

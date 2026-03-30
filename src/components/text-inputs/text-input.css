@@ -7,11 +7,11 @@
   --cc-text-input--border-radius: var(--cc-border--radius);
   --cc-text-input--border-radius--xs: var(--cc-border--radius--xs);
   --cc-text-input--color: var(--cc-form--color--text);
-  --cc-text-input--font-size--xs: var(--cc-form--item--font--size--xs);
-  --cc-text-input--font-size--sm: var(--cc-form--item--font--size--sm);
-  --cc-text-input--font-size--md: var(--cc-form--item--font--size--md);
-  --cc-text-input--font-size--lg: var(--cc-form--item--font--size--lg);
-  --cc-text-input--font-size--xl: var(--cc-form--item--font--size--xl);
+  --cc-text-input--font-size--xs: var(--cc-form--item--font-size--xs);
+  --cc-text-input--font-size--sm: var(--cc-form--item--font-size--sm);
+  --cc-text-input--font-size--md: var(--cc-form--item--font-size--md);
+  --cc-text-input--font-size--lg: var(--cc-form--item--font-size--lg);
+  --cc-text-input--font-size--xl: var(--cc-form--item--font-size--xl);
   --cc-text-input--height--xs: var(--cc-form--item--size--xs);
   --cc-text-input--height--sm: var(--cc-form--item--size--sm);
   --cc-text-input--height--md: var(--cc-form--item--size--md);
@@ -43,7 +43,6 @@
   justify-content: center;
   line-height: 1;
   outline: none;
-  padding: var(--cc-text-input--padding);
   position: relative;
   transition:
     box-shadow var(--cc-transition--time) var(--cc-transition--easing),
@@ -68,8 +67,11 @@
     background-color: transparent;
     border: none;
     color: var(--cc-text-input--color);
+    display: flex;
+    flex-grow: 1;
     margin-bottom: var(--cc-spacing--1);
     outline: none;
+    padding: var(--cc-text-input--padding);
 
     &::placeholder {
       opacity: 0;
@@ -161,7 +163,6 @@
   font-size: var(--cc-text-input--font-size--sm);
   height: var(--cc-text-input--height--sm);
   line-height: 1;
-  padding: 0 var(--cc-size-0);
 
   input {
     align-self: center;

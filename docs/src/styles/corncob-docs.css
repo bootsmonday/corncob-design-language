@@ -16,10 +16,11 @@
 }
 
 .corn-sidebar {
-  .corn-panel-menu {
+    .corn-sidenav {
     position: sticky;
     top: 1rem;
-  }
+
+    }
 }
 
 p > code {

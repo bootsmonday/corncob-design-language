@@ -9,6 +9,7 @@ const {
   title = 'Corncob Design Language',
   description = 'Corncob is a framework-neutral design language built with tokens, CSS, and plain JavaScript behavior.',
 } = Astro.props;
+const { headings } = Astro.props;
 ---
 
 <!doctype html>
@@ -32,7 +33,19 @@ const {
       </div>
       <div class="corn-row">
         <aside class="corn-sidebar corn-col corn-col-sm-4 corn-col-lg-3">
-          <SideBar />
+          <div class="corn-sidenav">
+            <SideBar />
+            <p>Contents:</p>
+            <ul>
+              {
+                headings.map((heading) => (
+                  <li>
+                    <a href={`#${heading.slug}`}>{heading.text}</a>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
         </aside>
 
         <article class="corn-content corn-col corn-col-sm-8 corn-col-lg-9">

@@ -1,15 +1,20 @@
 :root {
-  --cc-header--company--font--size: var(--cc-size-3);
+  --cc-header--company--font--size: var(--cc-size-2);
   --cc-header--company--font--weight: 500;
-  --cc-header--title--font--size: var(--cc-size-2);
-  --cc-header--title--font--weight: 500;
+  --cc-header--title--font--size: var(--cc-size-1);
+  --cc-header--title--font--weight: 400;
 }
 
 .corn-header {
   align-items: center;
   display: flex;
   gap: 1rem;
-  padding: 1rem 2rem 0;
+  line-height: 1;
+  padding: 1rem 1rem 0;
+
+  .corn-link {
+    line-height: 1;
+  }
 }
 
 .corn-company {
@@ -19,7 +24,9 @@
   font-size: var(--cc-header--company--font--size);
   font-weight: var(--cc-header--company--font--weight);
   gap: 0.25rem;
+  line-height: 1;
 }
+
 
 .corn-company--name {
   white-space: nowrap;
@@ -31,26 +38,29 @@
 }
 
 .corn-header--nav {
+  display: flex;
   gap: 1rem;
   width: 100%;
 
   .corn-button-bar {
     flex-grow: 1;
+    line-height: 1;
   }
 }
 
 .corn-header--title {
   font-size: var(--cc-header--title--font--size);
   font-weight: var(--cc-header--title--font--weight);
-  padding-right: 1rem;
+  line-height: 1;
   white-space: nowrap;
 }
 
 .corn-header--actions {
   align-items: baseline;
   display: flex;
-  gap: 0.5rem;
+  gap: 0.25rem;
   justify-content: flex-end;
+  line-height: 1;
 }
 
 .corn-company--logo img,

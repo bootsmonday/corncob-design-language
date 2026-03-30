@@ -18,10 +18,10 @@ Popovers are designed to be accessible and include appropriate ARIA attributes t
 The `corn-popover--anchor` class is used to wrap the trigger element and the popover content, ensuring that they are properly associated and that the popover is positioned correctly in relation to the trigger element.
 
 <div class="corn-popover--anchor">
-  <button class="corn-button corn-pop" aria-controls="popover-top">
+  <button class="corn-button corn-pop" aria-controls="popover-default">
     Default
   </button>
-  <corn-popover position="top" id="popover-top" class="corn-popover">
+  <corn-popover position="top" id="popover-default" class="corn-popover">
     <ul>
       <li>
         {/*prettier-ignore*/}
@@ -42,10 +42,10 @@ The `corn-popover--anchor` class is used to wrap the trigger element and the pop
 <CodeSample id="default-popover-code">
   ```html
   <div class="corn-popover--anchor">
-    <button class="corn-button corn-pop" aria-controls="popover-top">
+    <button class="corn-button corn-pop" aria-controls="popover-default">
       Default (Top)
     </button>
-    <corn-popover position="top" id="popover-top" class="corn-popover">
+    <corn-popover position="top" id="popover-default" class="corn-popover">
       <ul>
         <li>
           <a href="#">Item 1</a>

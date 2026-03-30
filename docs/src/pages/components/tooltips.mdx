@@ -13,7 +13,7 @@ Tooltips are built with the `corn-tooltip` web component and can be positioned i
 
 The Tooltip component uses the `position` attribute to determine where to display the tooltip content in relation to the anchor element. The anchor element is the element that triggers the tooltip when interacted with. The tooltip content is defined within the `corn-tooltip` element and can include any HTML content, such as text, images, or interactive elements like links and buttons.
 
-Tooltips are designed to be accessible and include appropriate ARIA attributes to ensure that they can be used by all users, including those using assistive technologies. The tooltip will automatically manage focus and keyboard interactions to provide a seamless user experience. You should make sure that you have the appropriate ARIA attributes on the trigger element (e.g., `aria-controls`) to associate it with the tooltip `id` for better accessibility.
+Tooltips are designed to be accessible and include appropriate ARIA attributes to ensure that they can be used by all users, including those using assistive technologies. The tooltip will automatically manage focus and keyboard interactions to provide a seamless user experience. The component automatically sets `aria-labelledby` on the `.corn-tooltip--anchor` element to associate it with the tooltip's `id`, so no additional ARIA attributes are required on the trigger element.
 
 The `corn-tooltip--anchor` class is used to wrap the trigger element and the tooltip content, ensuring that they are properly associated and that the tooltip is positioned correctly in relation to the trigger element.
 
@@ -46,7 +46,7 @@ The default position for the tooltip is `top`, but it can be positioned in any o
 - `left`
 
 <div class="corn-tooltip--anchor">
-  <button class="corn-button corn-tooltip--anchor" aria-controls="tooltip-right">
+  <button class="corn-button">
     Right
   </button>
   {/* prettier-ignore */}
@@ -56,7 +56,7 @@ The default position for the tooltip is `top`, but it can be positioned in any o
 <CodeSample id="position-modifiers-code-right">
   ```html
   <div class="corn-tooltip--anchor">
-    <button class="corn-button corn-tooltip--anchor" aria-controls="tooltip-right">
+    <button class="corn-button">
       Right
     </button>
     <corn-tooltip position="right" id="tooltip-right" class="corn-tooltip">
@@ -67,7 +67,7 @@ The default position for the tooltip is `top`, but it can be positioned in any o
 </CodeSample>
 
 <div class="corn-tooltip--anchor">
-  <button class="corn-button corn-tooltip--anchor" aria-controls="tooltip-bottom">
+  <button class="corn-button">
     Bottom
   </button>
   {/* prettier-ignore */}
@@ -77,7 +77,7 @@ The default position for the tooltip is `top`, but it can be positioned in any o
 <CodeSample id="position-modifiers-code-bottom">
   ```html
   <div class="corn-tooltip--anchor">
-    <button class="corn-button corn-tooltip--anchor" aria-controls="tooltip-bottom">
+    <button class="corn-button">
       Bottom
     </button>
     <corn-tooltip position="bottom" id="tooltip-bottom" class="corn-tooltip">
@@ -87,7 +87,7 @@ The default position for the tooltip is `top`, but it can be positioned in any o
   ```
 </CodeSample>
 <div class="corn-tooltip--anchor">
-  <button class="corn-button corn-tooltip--anchor" aria-controls="tooltip-left">
+  <button class="corn-button">
     Left
   </button>
   {/* prettier-ignore */}
@@ -96,7 +96,7 @@ The default position for the tooltip is `top`, but it can be positioned in any o
 <CodeSample id="position-modifiers-code-left">
   ```html
   <div class="corn-tooltip--anchor">
-    <button class="corn-button corn-tooltip--anchor" aria-controls="tooltip-left">
+    <button class="corn-button">
       Left
     </button>
     <corn-tooltip position="left" id="tooltip-left" class="corn-tooltip">

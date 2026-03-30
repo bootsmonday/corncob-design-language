@@ -33,7 +33,27 @@
   margin-bottom: 1rem;
 }
 
+.corn-footer--social {
+  display: flex;
+  gap: 0.5rem;
+
+  .corn-link {
+    svg {
+      height: 2rem;
+      width: 2rem;
+    }
+
+    align-items: center;
+    display: inline-flex;
+    height: 2rem;
+    justify-content: center;
+    width: 2rem;
+  }
+}
+
 .corn-footer--copyright {
+  align-items: center;
+  display: flex;
   font-size: var(--cc-footer--copyright--font--size);
-  text-align: center;
+  justify-content: center;
 }

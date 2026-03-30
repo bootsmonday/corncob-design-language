@@ -2,7 +2,188 @@
 layout: ../../layouts/DocsLayout.astro
 title: 'Component | Expandable | Corncob'
 ---
-
+import ChevronRight from '@carbon/icons/svg/chevron--right.svg';
 import CodeSample from '../../layouts/partials/CodeSample.astro';
 
 # Expandables
+
+Expandables allow hiding and showing content, reducing UI clutter by letting users reveal additional details on demand. Common patterns include accordions, collapsible panels, dropdowns, and tree views.
+
+Corncob's `<corn-expandable>` web component builds on native [`<details>`/`<summary>` elements](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details). This provides excellent accessibility and performance—no JavaScript needed for basic expand/collapse.
+
+However, native elements lack smooth height transition animations. `<corn-expandable>` adds these via JavaScript-driven CSS class toggling on open/close.
+
+## Usage
+
+The component requires:
+
+- `<corn-expandable class="corn-expandable">`
+- Inside: `<details slot="details">`
+  - `<summary class="corn-expandable-button">` (header + icon)
+  - Content in `<div class="corn-expandable--content">`
+
+Corncob's CSS handles the expand/collapse animation by toggling classes on the content div when the details element opens/closes.
+
+### Default (Closed)
+
+<corn-expandable class="corn-expandable">
+  <details slot="details">
+    <summary class="corn-expandable-button">Summary<ChevronRight class="corn-icon" /></summary>
+    <div class="corn-expandable--content">
+      <div>
+        <h3>heading</h3>
+        <div>content</div>
+      </div>
+    </div>
+  </details>
+</corn-expandable>
+
+```html
+<corn-expandable class="corn-expandable">
+  <details slot="details">
+    <summary class="corn-expandable-button">
+      Summary
+      <ChevronRight class="corn-icon" />
+    </summary>
+    <div class="corn-expandable--content">
+      <div>
+        <h3>heading</h3>
+        <div>content</div>
+      </div>
+    </div>
+  </details>
+</corn-expandable>
+```
+
+### Open by Default
+
+Add `open` attribute to `<corn-expandable>`.
+
+<corn-expandable class="corn-expandable" open>
+  <details slot="details">
+    <summary class="corn-expandable-button">Summary<ChevronRight class="corn-icon" /></summary>
+    <div class="corn-expandable--content">
+      <div>
+        <h3>heading</h3>
+        <div>content</div>
+      </div>
+    </div>
+  </details>
+</corn-expandable>
+
+```html
+<corn-expandable class="corn-expandable" open>
+  <details slot="details">
+    <summary class="corn-expandable-button">
+      Summary
+      <ChevronRight class="corn-icon" />
+    </summary>
+    <div class="corn-expandable--content">
+      <div>
+        <h3>heading</h3>
+        <div>content</div>
+      </div>
+    </div>
+  </details>
+</corn-expandable>
+```
+
+## Accordion (Single Open)
+
+Wrap multiple in `<div class="corn-accordion">`. 
+Add `name="corn-single"` to each `<details>` for mutual exclusivity, same as native details behavior.
+
+  <div class="corn-accordion">
+    <corn-expandable class="corn-expandable">
+      <details slot="details" name="corn-single">
+        <summary class="corn-expandable-button">Summary<ChevronRight class="corn-icon" /></summary>
+        <div class="corn-expandable--content">details</div>
+      </details>
+    </corn-expandable>
+    <corn-expandable class="corn-expandable">
+      <details slot="details" name="corn-single">
+        <summary class="corn-expandable-button">Summary 2<ChevronRight class="corn-icon" /></summary>
+        <div class="corn-expandable--content">details 2</div>
+      </details>
+    </corn-expandable>
+    <corn-expandable class="corn-expandable">
+      <details slot="details" name="corn-single">
+        <summary class="corn-expandable-button">Summary 3<ChevronRight class="corn-icon" /></summary>
+        <div class="corn-expandable--content">details</div>
+      </details>
+    </corn-expandable>
+  </div>
+
+```html
+  <div class="corn-accordion">
+    <corn-expandable class="corn-expandable">
+      <details slot="details" name="corn-single">
+        <summary class="corn-expandable-button">
+          Summary
+          <ChevronRight class="corn-icon" />
+        </summary>
+        <div class="corn-expandable--content">details</div>
+      </details>
+    </corn-expandable>
+    <corn-expandable class="corn-expandable">
+      <details slot="details" name="corn-single">
+        <summary class="corn-expandable-button">
+          Summary 2
+          <ChevronRight class="corn-icon" />
+        </summary>
+        <div class="corn-expandable--content">details 2</div>
+      </details>
+    </corn-expandable>
+    <corn-expandable class="corn-expandable">
+      <details slot="details" name="corn-single">
+        <summary class="corn-expandable-button">
+          Summary 3
+          <ChevronRight class="corn-icon" />
+        </summary>
+        <div class="corn-expandable--content">details</div>
+      </details>
+    </corn-expandable>
+  </div>
+```
+
+## Nested / Tree View
+
+Supports recursion. Add `corn-tree-view` class for styling.
+
+  <corn-expandable class="corn-expandable corn-tree-view">
+    <details slot="details">
+      <summary class="corn-expandable-button"><ChevronRight class="corn-icon" />Summary</summary>
+      <div class="corn-expandable--content">
+        <corn-expandable class="corn-expandable corn-tree-view">
+          <details slot="details">
+            <summary class="corn-expandable-button"><ChevronRight class="corn-icon" />Summary 2</summary>
+            <div class="corn-expandable--content">More details</div>
+          </details>
+        </corn-expandable>
+      </div>
+    </details>
+  </corn-expandable>
+
+```html
+  <corn-expandable class="corn-expandable corn-tree-view">
+    <details slot="details">
+      <summary class="corn-expandable-button">
+        <ChevronRight class="corn-icon" />
+        Summary
+      </summary>
+      <div class="corn-expandable--content">
+        <corn-expandable class="corn-expandable corn-tree-view">
+          <details slot="details">
+            <summary class="corn-expandable-button">
+              <ChevronRight class="corn-icon" />
+              Summary 2
+            </summary>
+            <div class="corn-expandable--content">More details</div>
+          </details>
+        </corn-expandable>
+      </div>
+    </details>
+  </corn-expandable>
+```
+
+See [stickersheet.html](/src/components/expandables/stickersheet.html) for full demos.

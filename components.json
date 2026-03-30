@@ -42,7 +42,7 @@
       "description": "Checkbox input for single or grouped selections",
       "baseClass": "corn-checkbox",
       "jsRequired": false,
-      "example": "<label><input type=\"checkbox\" class=\"corn-checkbox\"> Option</label>"
+      "example": "<div class=\"corn-checkbox\"><input type=\"checkbox\" id=\"example1\" name=\"example\" /><label for=\"example1\">Checkbox One xs</label></div>"
     },
     "radio": {
       "name": "Radio",
@@ -64,6 +64,8 @@
       "baseClass": "corn-card",
       "subComponents": ["corn-card__header", "corn-card__body", "corn-card__footer"],
       "jsRequired": false,
+      "implemented": false,
+
       "example": "<div class=\"corn-card\"><div class=\"corn-card__header\">Title</div><div class=\"corn-card__body\">Content</div></div>"
     },
     "modal": {
@@ -71,6 +73,7 @@
       "description": "Accessible dialog/modal with focus trap and ESC support",
       "baseClass": "corn-modal",
       "jsRequired": true,
+      "implemented": false,
       "accessibility": "Includes focus management and ARIA dialog role",
       "example": "<div class=\"corn-modal\" role=\"dialog\">...</div>"
     },
@@ -79,6 +82,7 @@
       "description": "Horizontal tab navigation",
       "baseClass": "corn-tabs",
       "jsRequired": true,
+      "implemented": false,
       "example": "<div class=\"corn-tabs\">...</div>"
     },
     "table": {
@@ -87,6 +91,7 @@
       "baseClass": "corn-table",
       "variants": ["striped", "hover"],
       "jsRequired": false,
+      "implemented": false,
       "example": "<table class=\"corn-table striped\">...</table>"
     },
     "alert": {
@@ -95,6 +100,7 @@
       "baseClass": "corn-alert",
       "variants": ["success", "info", "warning", "error"],
       "jsRequired": false,
+      "implemented": false,
       "example": "<div class=\"corn-alert corn-alert--success\">Success message</div>"
     },
     "badge": {
@@ -103,6 +109,7 @@
       "baseClass": "corn-badge",
       "variants": ["primary", "secondary", "success", "danger"],
       "jsRequired": false,
+      "implemented": false,
       "example": "<span class=\"corn-badge corn-badge--primary\">New</span>"
     },
     "avatar": {
@@ -110,6 +117,7 @@
       "description": "User avatar with image or initials fallback",
       "baseClass": "corn-avatar",
       "jsRequired": false,
+      "implemented": false,
       "example": "<div class=\"corn-avatar\">JD</div>"
     },
     "tooltip": {

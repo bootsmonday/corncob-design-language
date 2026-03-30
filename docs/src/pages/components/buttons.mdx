@@ -21,14 +21,6 @@ Buttons are built from shared token values and semantic variants. They contain s
   </button>
 </div>
 
-<CodeSample id="default-button-code">
-  ```html
-  <button class="corn-button">Primary</button>
-  <button class="corn-button corn-button--secondary">Secondary</button>
-  <button class="corn-button corn-button--danger">Danger</button>
-  ```
-</CodeSample>
-
 ## Size Modifiers
 
 Medium is the default size and does not require a modifier class.
@@ -52,6 +44,11 @@ Size modifiers:
   </button>
 </div>
 
+<CodeSample id="extra-small-button-code">
+  ```html
+  <button class="corn-button corn-button--xs">XS Button</button>
+  ```
+</CodeSample>
 ### Small
 
 <div class="corn-form--row">
@@ -63,7 +60,15 @@ Size modifiers:
   </button>
 </div>
 
+<CodeSample id="small-button-code">
+  ```html
+  <button class="corn-button corn-button--sm">SM Button</button>
+  ```
+</CodeSample>
 ### Medium (Default)
+
+This modifier is not necessary for medium buttons, but it can be used for
+consistency in code when the button size is being dynamically set.
 
 <div class="corn-form--row">
   <button class="corn-button corn-button--md">MD Button</button>
@@ -73,7 +78,11 @@ Size modifiers:
     MD Disabled
   </button>
 </div>
-
+<CodeSample id="medium-button-code">
+  ```html
+  <button class="corn-button corn-button--md">MD Button</button>
+  ```
+</CodeSample>
 ### Large
 
 <div class="corn-form--row">
@@ -84,7 +93,11 @@ Size modifiers:
     LG Disabled
   </button>
 </div>
-
+<CodeSample id="large-button-code">
+  ```html
+  <button class="corn-button corn-button--lg">LG Button</button>
+  ```
+</CodeSample>
 ### Extra Large
 
 <div class="corn-form--row">
@@ -95,13 +108,18 @@ Size modifiers:
     XL Disabled
   </button>
 </div>
+<CodeSample id="extra-large-button-code">
+  ```html
+  <button class="corn-button corn-button--xl">XL Button</button>
+  ```
+</CodeSample>
 
 ## Icon Buttons
 
 Icon buttons are used for actions that can be represented by an icon without text. They use the same classes as regular buttons, but also include an icon element. The `aria-label` attribute should be used to provide a label for screen readers.
 Add `corn-button--icon` to the button class list to apply the icon button styles.
 
-## Icon Only (XS)
+### Icon Only (xs)
 
 <div class="corn-form--row">
   <button class="corn-button corn-button--icon corn-button--xs" aria-label="Close">
@@ -123,7 +141,14 @@ Add `corn-button--icon` to the button class list to apply the icon button styles
     <CloseIcon class="corn-icon" />
   </button>
 </div>
-<hr />
+
+<CodeSample id="extra-small-icon-button-code">
+  ```html
+  <button class="corn-button corn-button--icon corn-button--xs" aria-label="Close">
+    <CloseIcon class="corn-icon" />
+  </button>
+  ```
+</CodeSample>
 
 ### Icon Only (sm)
 
@@ -147,7 +172,14 @@ Add `corn-button--icon` to the button class list to apply the icon button styles
     <CloseIcon class="corn-icon" />
   </button>
 </div>
-<hr />
+
+<CodeSample id="small-icon-button-code">
+  ```html
+  <button class="corn-button corn-button--icon corn-button--sm" aria-label="Close">
+    <CloseIcon class="corn-icon" />
+  </button>
+  ```
+</CodeSample>
 
 ### Icon Only (md)
 
@@ -165,7 +197,13 @@ Add `corn-button--icon` to the button class list to apply the icon button styles
     <CloseIcon class="corn-icon" />
   </button>
 </div>
-<hr />
+<CodeSample id="medium-icon-button-code">
+  ```html
+  <button class="corn-button corn-button--icon" aria-label="Close">
+    <CloseIcon class="corn-icon" />
+  </button>
+  ```
+</CodeSample>
 
 ### Icon Only (lg)
 
@@ -189,7 +227,14 @@ Add `corn-button--icon` to the button class list to apply the icon button styles
     <CloseIcon class="corn-icon" />
   </button>
 </div>
-<hr />
+
+<CodeSample id="large-icon-button-code">
+  ```html
+  <button class="corn-button corn-button--icon corn-button--lg" aria-label="Close">
+    <CloseIcon class="corn-icon" />
+  </button>
+  ```
+</CodeSample>
 
 ### Icon Only (xl)
 
@@ -213,3 +258,11 @@ Add `corn-button--icon` to the button class list to apply the icon button styles
     <CloseIcon class="corn-icon" />
   </button>
 </div>
+
+<CodeSample id="extra-large-icon-button-code">
+  ```html
+  <button class="corn-button corn-button--icon corn-button--xl" aria-label="Close">
+    <CloseIcon class="corn-icon" />
+  </button>
+  ```
+</CodeSample>

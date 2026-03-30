@@ -12,3 +12,82 @@ Corncob checkboxes are standard HTML checkboxes styled to fit the Corncob design
 They can be used in various states such as checked, unchecked, and disabled.
 
 ## Default Checkboxes
+
+<fieldset class="corn-form--item corn-checkbox-group">
+  <legend>Group Label</legend>
+  <div class="corn-checkbox">
+    <input type="checkbox" id="example1" name="example" />
+    <label for="example1">Checkbox One</label>
+  </div>
+  <div class="corn-checkbox">
+    <input type="checkbox" id="example2" name="example" />
+    <label for="example2">Checkbox Two</label>
+  </div>
+</fieldset>
+
+<CodeSample id="default-checkbox-code">
+  ```html
+  <fieldset class="corn-form--item corn-checkbox-group">
+    <legend>Group Label</legend>
+    <div class="corn-checkbox">
+      <input type="checkbox" id="example1" name="example" />
+      <label for="example1">Checkbox One</label>
+    </div>
+    <div class="corn-checkbox">
+      <input type="checkbox" id="example2" name="example" />
+      <label for="example2">Checkbox Two</label>
+    </div>
+  </fieldset>
+  ```
+</CodeSample>
+## Disabled Checkboxes
+
+<fieldset class="corn-form--item corn-checkbox-group">
+  <legend>Group Label</legend>
+  <div class="corn-checkbox">
+    <input type="checkbox" id="example3" name="example" disabled />
+    <label for="example3">Disabled Checkbox</label>
+  </div>
+</fieldset>
+
+<CodeSample id="disabled-checkbox-code">
+  ```html
+  <fieldset class="corn-form--item corn-checkbox-group">
+    <legend>Group Label</legend>
+    <div class="corn-checkbox">
+      <input type="checkbox" id="example3" name="example" disabled />
+      <label for="example3">Disabled Checkbox</label>
+    </div>
+  </fieldset>
+  ```
+</CodeSample>
+
+## Inline Checkboxes
+
+<fieldset class="corn-form--item corn-checkbox-group corn-checkbox-group--inline">
+  <legend>Group Label</legend>
+  <div class="corn-checkbox">
+    <input type="checkbox" id="example4" name="example" />
+    <label for="example4">Inline Checkbox One</label>
+  </div>
+  <div class="corn-checkbox">
+    <input type="checkbox" id="example5" name="example" />
+    <label for="example5">Inline Checkbox Two</label>
+  </div>
+</fieldset>
+
+<CodeSample id="inline-checkbox-code">
+  ```html
+  <fieldset class="corn-form--item corn-checkbox-group corn-checkbox-group--inline">
+    <legend>Group Label</legend>
+    <div class="corn-checkbox">
+      <input type="checkbox" id="example4" name="example" />
+      <label for="example4">Inline Checkbox One</label>
+    </div>
+    <div class="corn-checkbox">
+      <input type="checkbox" id="example5" name="example" />
+      <label for="example5">Inline Checkbox Two</label>
+    </div>
+  </fieldset>
+  ```
+</CodeSample>

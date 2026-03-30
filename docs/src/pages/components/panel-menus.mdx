@@ -2,7 +2,50 @@
 layout: ../../layouts/DocsLayout.astro
 title: 'Component | Panel Menu | Corncob'
 ---
-
+import ChevronRight from '@carbon/icons/svg/chevron--right.svg';
 import CodeSample from '../../layouts/partials/CodeSample.astro';
 
+Panel menus are a common UI pattern for organizing and navigating content. They typically consist of a list of items that can be expanded to reveal sub-items, allowing users to drill down into more specific content without overwhelming the interface.
+
+Panel menus take advantage of Corncob's `<corn-expandable>` component to create a nested, collapsible navigation structure.
+
+Add the class `corn-panel-menu--item--active` to indicate the active menu item. This can be applied to both top-level and sub-menu items.
 # Panel Menus
+
+  <div class="corn-panel-menu">
+    <a href="#" class="corn-panel-menu--item">Menu Item 1</a>
+    <a href="#" class="corn-panel-menu--item">Menu Item 2</a>
+    <corn-expandable class="corn-expandable">
+      <details slot="details">
+        <summary class="corn-panel-menu--item corn-expandable-button">Menu Category<ChevronRight class="corn-icon" /></summary>
+        <div class="corn-expandable--content">
+          <div class="corn-panel-menu--submenu">
+            <a href="#" class="corn-panel-menu--item">Sub Menu Item 1</a>
+            <a href="#" class="corn-panel-menu--item">Sub Menu Item 2</a>
+          </div>
+        </div>
+      </details>
+    </corn-expandable>
+    <a href="#" class="corn-panel-menu--item corn-panel-menu--item--active">Menu Item 3</a>
+  </div>
+
+<CodeSample>
+```html
+  <div class="corn-panel-menu">
+    <a href="#" class="corn-panel-menu--item">Menu Item 1</a>
+    <a href="#" class="corn-panel-menu--item">Menu Item 2</a>
+    <corn-expandable class="corn-expandable">
+      <details slot="details">
+        <summary class="corn-panel-menu--item corn-expandable-button">Menu Category<ChevronRight class="corn-icon" /></summary>
+        <div class="corn-expandable--content">
+          <div class="corn-panel-menu--submenu">
+            <a href="#" class="corn-panel-menu--item">Sub Menu Item 1</a>
+            <a href="#" class="corn-panel-menu--item">Sub Menu Item 2</a>
+          </div>
+        </div>
+      </details>
+    </corn-expandable>
+    <a href="#" class="corn-panel-menu--item corn-panel-menu--item--active">Menu Item 3</a>
+  </div>
+```
+</CodeSample>

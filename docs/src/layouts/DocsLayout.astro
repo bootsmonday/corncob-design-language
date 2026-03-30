@@ -38,7 +38,7 @@ const { headings } = Astro.props;
             <p>Contents:</p>
             <ul>
               {
-                headings.map((heading) => (
+                headings?.map((heading) => (
                   <li>
                     <a href={`#${heading.slug}`}>{heading.text}</a>
                   </li>

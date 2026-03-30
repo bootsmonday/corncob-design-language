@@ -53,7 +53,7 @@
 
 .corn-footer--copyright {
   align-items: center;
-  display:flex;
+  display: flex;
   font-size: var(--cc-footer--copyright--font--size);
   justify-content: center;
 }

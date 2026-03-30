@@ -35,16 +35,20 @@ const { headings } = Astro.props;
         <aside class="corn-sidebar corn-col corn-col-sm-4 corn-col-lg-3">
           <div class="corn-sidenav">
             <SideBar />
-            <p>Contents:</p>
-            <ul>
-              {
-                headings?.map((heading) => (
-                  <li>
-                    <a href={`#${heading.slug}`}>{heading.text}</a>
-                  </li>
-                ))
-              }
-            </ul>
+            {headings?.length && (
+              <>
+                <p>Contents:</p>
+                <ul>
+                  {
+                    headings?.map((heading) => (
+                      <li>
+                        <a href={`#${heading.slug}`}>{heading.text}</a>
+                      </li>
+                    ))
+                  }
+                </ul>
+              </>
+            )}
           </div>
         </aside>
 

@@ -6,7 +6,7 @@
   --cc-text-input--border--color--active: var(--cc-form--item--border--color--active);
   --cc-text-input--border-radius: var(--cc-border--radius);
   --cc-text-input--border-radius--xs: var(--cc-border--radius--xs);
-  --cc-text-input--color: var(--cc-form--color--text);
+  --cc-text-input--color: var(--cc-form--item--color--text);
   --cc-text-input--font-size--xs: var(--cc-form--item--font-size--xs);
   --cc-text-input--font-size--sm: var(--cc-form--item--font-size--sm);
   --cc-text-input--font-size--md: var(--cc-form--item--font-size--md);
@@ -22,7 +22,7 @@
   --cc-text-input--label--font-weight: 500;
   --cc-text-input--focus-ring: var(--cc-form--item--focus-ring);
   --cc-text-input--focus-ring--active: var(--cc-form--item--focus-ring--active);
-  --cc-text-input--color--disabled: var(--cc-form--color--text--disabled);
+  --cc-text-input--color--disabled: var(--cc-form--item--color--disabled);
   --cc-text-input--background--disabled: var(--cc-form--item--background--disabled);
   --cc-text-input--background--disabled--hover: var(--cc-form--item--background--disabled);
   --cc-text-input--border-color--disabled: var(--cc-form--item--border-color--disabled);

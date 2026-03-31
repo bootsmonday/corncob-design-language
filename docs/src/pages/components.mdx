@@ -1,0 +1,66 @@
+---
+layout: ../layouts/DocsLayout.astro
+title: Components | Corncob
+
+---
+
+export const base = import.meta.env.BASE_URL;
+
+
+
+# Components
+Components are the building blocks of a design system. They are reusable, self-contained pieces of UI that can be used across different parts of a product or application. Components are typically made up of a combination of design tokens, classes and HTML, and they are designed to be flexible and adaptable to different use cases.
+
+Components start with a base level of styling that is consistent with the overall design system, but they can be customized and extended to meet the specific needs of different products or applications. For example, a button component may have a default style that includes a specific color, typography, and spacing, but it can be customized to have different colors, sizes, or states (such as hover or active) depending on the context in which it is used.
+
+Complex components are built up from simpler components, and they can be composed together to create more complex UI elements. For example a Panel Menu component may be made up of an Expandable component, a Link component, and an Icon component. This allows for a high degree of flexibility and reusability, as components can be easily combined and customized to create a wide variety of UI elements while still maintaining consistency with the overall design system. 
+
+## Component List
+Corncob's design system includes a variety of components that are commonly used in user interfaces, such as buttons, forms, navigation elements, and more. Each component is designed to be consistent with the overall visual language of the design system, while also being flexible enough to accommodate different use cases and contexts. 
+
+### Buttons
+<a href={base + `components/buttons`}>Buttons</a> are one of the most common components in a design system, and they are used to trigger actions or navigate to different parts of a product or application. They typically include a label, an optional icon, and a visual style that indicates their purpose and state (such as primary, secondary, disabled, etc.). Buttons can be used for things like submitting forms, opening modals, or navigating to different pages.
+
+### Checkboxes
+<a href={base + `components/checkboxes`}>Checkboxes</a> are used to allow users to select one or more options from a list. They typically include a square box that can be checked or unchecked, and they are often used for things like forms, surveys, and other user input scenarios.
+
+### Expandables
+<a href={base + `components/expandables`}>Expandables</a> are used to show or hide additional content on a page. They typically consist of a header that can be clicked to expand or collapse the content, and they are often used for things like FAQs, accordions, and other scenarios where users may want to see more or less information.
+
+Corncob's Expandable component is designed to be flexible and adaptable to different use cases, like a Tree View, an Accordion, or a simple Show/Hide interaction. It can be customized with different styles, icons, and behaviors to fit the specific needs of a product or application.
+
+Expandables are [Web Components](https://developer.mozilla.org/en-US/docs/Web/API/Web_components). This means that they can be used in any web-based project, regardless of the framework or library being used. They are built using standard web technologies like HTML, CSS, and JavaScript, and they can be easily integrated into any project by including the necessary files and using the appropriate HTML tags.
+
+### Footers
+<a href={base + `components/footers`}>Footers</a> are used to provide additional information or navigation options at the bottom of a page. They typically include things like copyright information, links to social media, and other relevant information.
+
+### Headers
+<a href={base + `components/headers`}>Headers</a> are used to provide a consistent structure and hierarchy to a page. They typically include things like a logo, navigation links, and other relevant information.
+
+### Links
+<a href={base + `components/links`}>Links</a> are used to navigate between different pages or sections of a website or application. They typically include descriptive text and may also include icons or other visual indicators of their purpose or state.
+
+### Panels
+<a href={base + `components/panels`}>Panels</a> are used to group related content together and provide a visual structure to a page. They typically include things like a header, body content, and other relevant information.
+
+### Panel Menus
+<a href={base + `components/panel-menus`}>Panel Menus</a> are used to provide a navigational structure within a panel. They typically include things like a list of links or options that can be expanded or collapsed to show or hide additional content.
+
+Panel Menus are Web Components.
+
+### Popovers
+<a href={base + `components/popovers`}>Popovers</a> are used to provide additional information or options in a small, contextual overlay. They typically include things like a header, body content, and other relevant information, and they are often used for things like tooltips, dropdowns, and other contextual interactions.
+
+Popovers are Web Components.
+
+### Radio Buttons
+<a href={base + `components/radio-buttons`}>Radio Buttons</a> are used to allow users to select one option from a list of mutually exclusive options. They typically include a circular button that can be selected or deselected, and they are often used for things like forms, surveys, and other user input scenarios.
+
+### Text Inputs
+<a href={base + `components/text-inputs`}>Text Inputs</a> are used to allow users to enter text-based information. They typically include a field for users to type in, and they may also include things like labels, placeholders, and other relevant information to help guide users in providing the correct input. Text inputs are commonly used in forms, search bars, and other user input scenarios.
+
+### Tooltips
+<a href={base + `components/tooltips`}>Tooltips</a> are used to provide additional information or context when users hover over or focus on an element, typically appearing as small labels that clarify icons, abbreviations, or interactive controls.
+
+Tooltips are Web Components.
+

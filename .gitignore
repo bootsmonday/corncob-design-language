@@ -13,3 +13,5 @@ _archive/
 .eslintcache
 .stylelintcache
 .git_disabled/
+
+docs/public/

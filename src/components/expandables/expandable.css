@@ -15,9 +15,6 @@
 .corn-expandable {
   display: flex;
 
-  
-  
-
   details {
     background: var(--cc-white);
     border-color: var(--cc-expandable--border-color);
@@ -40,9 +37,14 @@
       > .corn-expandable--content {
         grid-template-rows: minmax(0, 1fr);
         opacity: 1;
-        overflow: visible;
-      }
+      } 
     }
+
+    &.corn-expandable--animating {
+      > .corn-expandable--content {
+        overflow: hidden;
+      }
+    }         
   }
 
   .corn-expandable--content {
@@ -119,7 +121,6 @@
   display: grid;
   grid-template-rows: minmax(0, 0fr);
   opacity: 0;
-  overflow: hidden;
   transition:
     grid-template-rows var(--cc-transition--easing) var(--cc-transition--time),
     opacity var(--cc-transition--easing) var(--cc-transition--time);

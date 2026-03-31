@@ -136,7 +136,8 @@ export class CornExpandable extends HTMLElement {
       this.detailCollection.forEach((detail) => {
         if (detail === this.details) return;
         if (detail.open) {
-          this._close(detail, evt);
+          this._close(detail);
+          this.nextEvt = evt;
           closingDetail = detail;
         }
       });
@@ -160,15 +161,39 @@ export class CornExpandable extends HTMLElement {
     details.open = true;
     window.requestAnimationFrame(() => {
       details.classList.add('corn-expandable--open');
+      details.classList.add('corn-expandable--animating');
     });
     details.querySelector('.corn-expandable--content').addEventListener(
       'transitionend',
-      (evt) => {
-        if (evt.propertyName !== 'grid-template-rows') return;
-      },
-      { once: true }
+      this._openTranisitionEnd
     );
+    // details.querySelector('.corn-expandable--content').addEventListener(
+    //   'transitionend',
+    //   (evt) => {
+    //     if (evt.propertyName !== 'grid-template-rows') return;
+    //   },
+    //   { once: true }
+    // );
   }
+  _openTranisitionEnd = (evt) => {
+    console.log('open transition ended', evt.propertyName, evt.target);
+    if (evt.propertyName !== 'grid-template-rows') return;
+    evt.target.parentElement.removeEventListener('transitionend', this._openTranisitionEnd);
+    evt.target.parentElement.classList.remove('corn-expandable--animating');
+  };
+
+  _closeTranisitionEnd = (evt) => {
+    console.log('transition ended', evt.propertyName, this, this.nextEvt);
+    if (evt.propertyName !== 'grid-template-rows') return;
+    evt.target.parentElement.open = false;
+    evt.target.parentElement.classList.remove('corn-expandable--animating')
+    evt.target.removeEventListener('transitionend', this._closeTranisitionEnd);
+    this.isAnimating = false;
+    if (this.nextEvt) {
+      this._toggle(this.nextEvt);
+      this.nextEvt = null;
+    }
+  };
 
   /**
    * _close is a method that closes the details element by removing the 'corn-expandable--open' class and setting its open property to false.
@@ -176,22 +201,26 @@ export class CornExpandable extends HTMLElement {
    * @param {Event} [nextEvt] - An optional event object representing the next event to be processed after closing. This allows for chaining of open/close actions if multiple details elements are being toggled in sequence.
    * This method also listens for the 'transitionend' event on the content element to ensure that the open property is only set to false after the closing transition has completed, providing a smooth user experience.
    */
-  _close(details, nextEvt) {
+  _close(details) {
     details.classList.remove('corn-expandable--open');
+    details.classList.add('corn-expandable--animating');
     this.isAnimating = true;
     details.querySelector('.corn-expandable--content').addEventListener(
       'transitionend',
-      (evt) => {
+      this._closeTranisitionEnd
+    );
+    /*
+    (evt) => {
+         console.log('transition ended', evt.propertyName);
         if (evt.propertyName !== 'grid-template-rows') return;
-
+       
         details.open = false;
         this.isAnimating = false;
         if (nextEvt) {
           this._toggle(nextEvt);
         }
-      },
-      { once: true }
-    );
+      }
+        */
   }
 
   /**

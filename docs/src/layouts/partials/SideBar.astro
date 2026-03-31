@@ -2,6 +2,8 @@
 import ChevronRight from '@carbon/icons/svg/chevron--right.svg';
 
 const { pathname } = Astro.url;
+const base = import.meta.env.BASE_URL;
+const normalizedBase = base.replace(/\/$/, '') || '/';
 
 // A utility function can help handle edge cases like trailing slashes or nested routes
 const isActive = (href) => {
@@ -12,7 +14,7 @@ const isActive = (href) => {
   // Check for direct match or if current page is a sub-path of the link (e.g., /blog/post-1 and /blog)
   return (
     normalizedPathname === normalizedHref ||
-    (normalizedHref !== '/' && normalizedPathname.startsWith(normalizedHref + '/'))
+    (normalizedHref !== normalizedBase && normalizedPathname.startsWith(normalizedHref + '/'))
   );
 };
 
@@ -21,13 +23,13 @@ const isComponentsSection = pathname.includes('/components') ? true : null;
 ---
 
 <div class="corn-panel-menu">
-  <a href="/" class="corn-panel-menu--item" aria-current={isActive('/') ? 'page' : false}
+  <a href={base} class="corn-panel-menu--item" aria-current={isActive(base) ? 'page' : false}
     >Overview</a
   >
   <a
-    href="/getting-started/"
+    href={`${base}getting-started/`}
     class="corn-panel-menu--item"
-    aria-current={isActive('/getting-started/') ? 'page' : false}>Getting Started</a
+    aria-current={isActive(`${base}getting-started/`) ? 'page' : false}>Getting Started</a
   >
   <corn-expandable class="corn-expandable" open={isTokensSection} data-test={pathname}>
     <details slot="details">
@@ -38,44 +40,44 @@ const isComponentsSection = pathname.includes('/components') ? true : null;
       <div class="corn-expandable--content">
         <div class="corn-panel-menu--submenu">
           <a
-            href="/tokens/animations"
+            href={`${base}tokens/animations`}
             class="corn-panel-menu--item"
-            aria-current={isActive('/tokens/animations') ? 'page' : false}>Animation</a
+            aria-current={isActive(`${base}tokens/animations`) ? 'page' : false}>Animation</a
           >
           <a
-            href="/tokens/colors"
+            href={`${base}tokens/colors`}
             class="corn-panel-menu--item"
-            aria-current={isActive('/tokens/colors') ? 'page' : false}>Colors</a
+            aria-current={isActive(`${base}tokens/colors`) ? 'page' : false}>Colors</a
           >
           <a
-            href="/tokens/borders"
+            href={`${base}tokens/borders`}
             class="corn-panel-menu--item"
-            aria-current={isActive('/tokens/borders') ? 'page' : false}>Borders</a
+            aria-current={isActive(`${base}tokens/borders`) ? 'page' : false}>Borders</a
           >
           <a
-            href="/tokens/forms"
+            href={`${base}tokens/forms`}
             class="corn-panel-menu--item"
-            aria-current={isActive('/tokens/forms') ? 'page' : false}>Forms</a
+            aria-current={isActive(`${base}tokens/forms`) ? 'page' : false}>Forms</a
           >
           <a
-            href="/tokens/shadows"
+            href={`${base}tokens/shadows`}
             class="corn-panel-menu--item"
-            aria-current={isActive('/tokens/shadows') ? 'page' : false}>Shadows</a
+            aria-current={isActive(`${base}tokens/shadows`) ? 'page' : false}>Shadows</a
           >
           <a
-            href="/tokens/sizes"
+            href={`${base}tokens/sizes`}
             class="corn-panel-menu--item"
-            aria-current={isActive('/tokens/sizes') ? 'page' : false}>Sizes</a
+            aria-current={isActive(`${base}tokens/sizes`) ? 'page' : false}>Sizes</a
           >
           <!-- <a
-            href="/tokens/spacing"
+            href={`${base}tokens/spacing`}
             class="corn-panel-menu--item"
-            aria-current={isActive('/tokens/spacing') ? 'page' : false}>Spacing</a
+            aria-current={isActive(`${base}tokens/spacing`) ? 'page' : false}>Spacing</a
           > -->
           <a
-            href="/tokens/typography"
+            href={`${base}tokens/typography`}
             class="corn-panel-menu--item"
-            aria-current={isActive('/tokens/typography') ? 'page' : false}>Typography</a
+            aria-current={isActive(`${base}tokens/typography`) ? 'page' : false}>Typography</a
           >
         </div>
       </div>
@@ -90,64 +92,65 @@ const isComponentsSection = pathname.includes('/components') ? true : null;
       <div class="corn-expandable--content">
         <div class="corn-panel-menu--submenu">
           <a
-            href="/components/buttons"
+            href={`${base}components/buttons`}
             class="corn-panel-menu--item"
-            aria-current={isActive('/components/buttons') ? 'page' : false}>Buttons</a
+            aria-current={isActive(`${base}components/buttons`) ? 'page' : false}>Buttons</a
           >
           <a
-            href="/components/checkboxes"
+            href={`${base}components/checkboxes`}
             class="corn-panel-menu--item"
-            aria-current={isActive('/components/checkboxes') ? 'page' : false}>Checkboxes</a
+            aria-current={isActive(`${base}components/checkboxes`) ? 'page' : false}>Checkboxes</a
           >
           <a
-            href="/components/expandables"
+            href={`${base}components/expandables`}
             class="corn-panel-menu--item"
-            aria-current={isActive('/components/expandables') ? 'page' : false}>Expandables</a
+            aria-current={isActive(`${base}components/expandables`) ? 'page' : false}>Expandables</a
           >
           <a
-            href="/components/footers"
+            href={`${base}components/footers`}
             class="corn-panel-menu--item"
-            aria-current={isActive('/components/footers') ? 'page' : false}>Footers</a
+            aria-current={isActive(`${base}components/footers`) ? 'page' : false}>Footers</a
           >
           <a
-            href="/components/headers"
+            href={`${base}components/headers`}
             class="corn-panel-menu--item"
-            aria-current={isActive('/components/headers') ? 'page' : false}>Headers</a
+            aria-current={isActive(`${base}components/headers`) ? 'page' : false}>Headers</a
           >
           <a
-            href="/components/links"
+            href={`${base}components/links`}
             class="corn-panel-menu--item"
-            aria-current={isActive('/components/links') ? 'page' : false}>Links</a
+            aria-current={isActive(`${base}components/links`) ? 'page' : false}>Links</a
           >
           <a
-            href="/components/panel-menus"
+            href={`${base}components/panel-menus`}
             class="corn-panel-menu--item"
-            aria-current={isActive('/components/panel-menus') ? 'page' : false}>Panel Menus</a
+            aria-current={isActive(`${base}components/panel-menus`) ? 'page' : false}>Panel Menus</a
           >
           <a
-            href="/components/panels/"
+            href={`${base}components/panels/`}
             class="corn-panel-menu--item"
-            aria-current={isActive('/components/panels') ? 'page' : false}>Panels</a
+            aria-current={isActive(`${base}components/panels`) ? 'page' : false}>Panels</a
           >
           <a
-            href="/components/popovers"
+            href={`${base}components/popovers`}
             class="corn-panel-menu--item"
-            aria-current={isActive('/components/popovers') ? 'page' : false}>Popovers</a
+            aria-current={isActive(`${base}components/popovers`) ? 'page' : false}>Popovers</a
           >
           <a
-            href="/components/radio-buttons"
+            href={`${base}components/radio-buttons`}
             class="corn-panel-menu--item"
-            aria-current={isActive('/components/radio-buttons') ? 'page' : false}>Radio Buttons</a
+            aria-current={isActive(`${base}components/radio-buttons`) ? 'page' : false}
+            >Radio Buttons</a
           >
           <a
-            href="/components/text-inputs"
+            href={`${base}components/text-inputs`}
             class="corn-panel-menu--item"
-            aria-current={isActive('/components/text-inputs') ? 'page' : false}>Text Inputs</a
+            aria-current={isActive(`${base}components/text-inputs`) ? 'page' : false}>Text Inputs</a
           >
           <a
-            href="/components/tooltips"
+            href={`${base}components/tooltips`}
             class="corn-panel-menu--item"
-            aria-current={isActive('/components/tooltips') ? 'page' : false}>Tooltips</a
+            aria-current={isActive(`${base}components/tooltips`) ? 'page' : false}>Tooltips</a
           >
         </div>
       </div>

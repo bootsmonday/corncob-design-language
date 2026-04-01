@@ -1,5 +1,5 @@
-// Update this if your dev server runs on a different port
-const baseurl = "http://0.0.0.0:5173"; 
+// Update this if your dev server runs on a different port or base URL
+const baseurl = process.env.BACKSTOP_BASE_URL || "http://127.0.0.1:5173";
 const url = `${baseurl}/stickersheets/text-inputs.html`;
 const defaultSelectors = '#test-stickersheet';
 

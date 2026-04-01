@@ -36,7 +36,7 @@ function requireModulesRecursively(dir, searchName) {
 
 // Usage Example:
 // Starting from the current directory, find all files containing 'visual'
-const visualModules = requireModulesRecursively(__dirname + '/src/components/', 'visual');
+const visualModules = requireModulesRecursively(path.join(__dirname, 'src', 'components'), 'visual');
 
 const testConfig = {
   "id": "backstop_default",

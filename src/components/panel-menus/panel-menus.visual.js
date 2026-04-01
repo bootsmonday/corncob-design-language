@@ -1,5 +1,5 @@
 // Update this if your dev server runs on a different port
-const baseurl = "http://0.0.0.0:5173"; 
+const baseurl = process.env.BASEURL || "http://127.0.0.1:5173";
 const url = `${baseurl}/stickersheets/panel-menus.html`;
 const defaultSelectors = '#test-stickersheet';
 

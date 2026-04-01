@@ -22,7 +22,7 @@
   "scripts": {
     "is:dev": "node testing/check-dev.js",
     "start-if-not-dev": "npm run is:dev || npm run dev",
-    "visual:test": "backstop test --config='backstop.config.js'",
+    "visual:test": "npm run is:dev && backstop test --config='backstop.config.js'",
     "visual:approve": "backstop approve --config='backstop.config.js'",
     "visual:reference": "npm run is:dev && backstop reference --config='backstop.config.js'",
     "dev": "vite --host ",

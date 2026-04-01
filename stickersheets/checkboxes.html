@@ -1,34 +1,30 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Corncob Design Language - Text Inputs</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap"
-      rel="stylesheet"
-    />
-    <script type="module" blocking="render">
-      // Import all components
-      import '/src/index.js';
-    </script>
-    <link rel="stylesheet" href="./src/stickersheet.css" />
-  </head>
-  <body>
-    <main>
-      <include src="./src/stickersheet-header.html"></include>
-      <div class="stickersheet">
-        <include
-          src="./src/stickersheet-controls.html"
-          locals='{"title": "Welcome Home", "theme": "dark"}'
-        ></include>
-        <include
-          src="../src/components/checkboxes/stickersheet.html"
-          locals='{"title": "Welcome Home", "theme": "dark"}'
-        ></include>
-      </div>
-    </main>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Corncob Design Language - Text Inputs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap"
+    rel="stylesheet" />
+  <script type="module" blocking="render">
+    // Import all components
+    import '/src/index.js';
+  </script>
+  <link rel="stylesheet" href="./src/stickersheet.css" />
+</head>
+
+<body>
+  <include src="./src/stickersheet-header.html"></include>
+  <main>
+    <include src="./src/stickersheet-controls.html" locals='{"title": "Welcome Home", "theme": "dark"}'></include>
+    <div class="stickersheet" id="test-stickersheet">
+      <include src="../src/components/checkboxes/stickersheet.html" locals='{"title": "Welcome Home", "theme": "dark"}'>
+      </include>
+    </div>
+  </main>
+</body>
+
 </html>

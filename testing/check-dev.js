@@ -1,20 +1,29 @@
-const { execSync } = require('child_process');
+const net = require('net');
 
 // Port is default Vite port, can be overridden by environment variable
-const port = process.env.PORT || 5173;
-const isWindows = process.platform === 'win32';
+const port = parseInt(process.env.PORT || '5173', 10);
 
-const cmd = isWindows 
-  ? `netstat -ano | findstr :${port}` 
-  : `lsof -i :${port}`;
+const socket = net.connect({ port, host: '127.0.0.1' });
 
-try {
-  // Execute the command
-  execSync(cmd, { stdio: 'ignore' }); 
-  // If no error was thrown, the port is OPEN
-  process.exit(0); 
-} catch (err) {
-  // If an error was thrown, the port is CLOSED/FREE
-  console.error(`Port ${port} is not open. Start the development server to continue testing.`);
-  process.exit(1); 
-}
+socket.setTimeout(5000);
+
+socket.once('connect', () => {
+  socket.destroy();
+  process.exit(0);
+});
+
+socket.once('timeout', () => {
+  socket.destroy();
+  console.error(`Timed out checking port ${port}. Start the development server to continue testing.`);
+  process.exit(1);
+});
+
+socket.once('error', (err) => {
+  socket.destroy();
+  if (err.code === 'ECONNREFUSED') {
+    console.error(`Port ${port} is not open. Start the development server to continue testing.`);
+  } else {
+    console.error(`Unexpected error checking port ${port}: ${err.message}`);
+  }
+  process.exit(1);
+});

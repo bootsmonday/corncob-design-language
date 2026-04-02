@@ -156,4 +156,27 @@ const isComponentsSection = pathname.includes('/components') ? true : null;
       </div>
     </details>
   </corn-expandable>
+  <corn-expandable class="corn-expandable" open={isComponentsSection} data-test={pathname}>
+    <details slot="details">
+      <summary class="corn-panel-menu--item corn-expandable-button">
+        Testing
+        <ChevronRight class="corn-icon" aria-hidden="true" />
+      </summary>
+      <div class="corn-expandable--content">
+        <div class="corn-panel-menu--submenu">
+          <a
+            href={`${base}testing/overview`}
+            class="corn-panel-menu--item"
+            aria-current={isActive(`${base}testing/overview`) ? 'page' : false}>Overview</a
+          >
+          <a
+            href={`${base}testing/accessibility`}
+            class="corn-panel-menu--item"
+            aria-current={isActive(`${base}testing/accessibility`) ? 'page' : false}
+            >Accessibility</a
+          >
+        </div>
+      </div>
+    </details>
+  </corn-expandable>
 </div>

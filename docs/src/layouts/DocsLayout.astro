@@ -9,7 +9,10 @@ const {
   title = 'Corncob Design Language',
   description = 'Corncob is a framework-neutral design language built with tokens, CSS, and plain JavaScript behavior.',
 } = Astro.props;
-const { headings } = Astro.props;
+const { headings = [], dynamicHeadings = [] } = Astro.props;
+const allHeadings = [...headings, ...dynamicHeadings].filter(
+  (heading, index, all) => all.findIndex((candidate) => candidate.slug === heading.slug) === index
+);
 const base = import.meta.env.BASE_URL;
 ---
 
@@ -38,11 +41,11 @@ const base = import.meta.env.BASE_URL;
           <div class="corn-sidenav">
             <SideBar />
             {
-              headings?.length && (
+              allHeadings?.length && (
                 <>
                   <p>Contents:</p>
                   <ul>
-                    {headings?.map((heading) => (
+                    {allHeadings?.map((heading: { slug: string; text: string }) => (
                       <li>
                         <a href={`#${heading.slug}`}>{heading.text}</a>
                       </li>

@@ -1,0 +1,18 @@
+---
+layout: ../../layouts/DocsLayout.astro
+title: 'Testing | Overview | Corncob'
+---
+
+# Testing
+Testing is an important part of the design and development process. It helps ensure that our components are accessible, performant, and work as expected across different browsers and devices. In this section, we will cover different types of testing, including unit testing, integration testing, end-to-end testing, and accessibility testing. We will also provide examples and best practices for each type of testing to help you get started with testing your components effectively.
+
+## Unit Testing
+Unit testing involves testing individual components or functions in isolation to ensure they work as expected. Corncob components are built with modularity in mind, making them easier to test. Corncob uses Jest as the testing framework for unit tests. You can write tests for your components by creating a `__tests__` directory within your component's folder and adding test files with the `.test.js` extension.
+
+## Visual Regression Testing
+Visual regression testing is a type of testing that ensures that the visual appearance of your components does not change unexpectedly. This is especially important for design systems like Corncob, where consistency in design is crucial. Visual regression tests compare screenshots of your components against a baseline to detect any unintended visual changes. 
+Corncob uses BackstopJS for visual regression testing. Backstop tests are set up in the component source directory and follow a similar naming convention to unit tests, with the addition of `.visual.js` to indicate that they are visual regression tests.
+
+## Accessibility Testing
+Accessibility testing is crucial to ensure that your components are usable by everyone, including people with disabilities. Corncob components are designed with accessibility in mind and are tested using Axe Core, a popular accessibility testing tool. It is important to note that Axe Core is not a comprehensive accessibility testing solution and should be used in conjunction with manual testing. Remember just because a component is accessible does not mean that it is usable. Usability testing is also an important part of the design and development process, and it involves testing how easy it is for users to interact with your components.
+

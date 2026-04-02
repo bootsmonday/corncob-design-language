@@ -1,47 +1,49 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Corncob Design Language - Component Gallery</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="./src/stickersheet.css" />
-    <style>
-      body {
-        display: none;
-      }
-    </style>
-    <script type="module" blocking="render">
-      // Import all components
-      import '/src/index.js';
-      document.body.style.display = 'block';
-    </script>
-  </head>
-  <body>
-    <main>
-      <include src="./src/stickersheet-header.html"></include>
-      <div class="main">
-        <ul>
-          <li><a href="./buttons-standard.html">Buttons</a></li>
-          <li><a href="./button-bars.html">Button Bars</a></li>
-          <li><a href="./checkboxes.html">Checkboxes</a></li>
-          <li><a href="./expandables.html">Expandables</a></li>
-          <li><a href="./footers.html">Footers</a></li>
-          <li><a href="./headers.html">Headers</a></li>
-          <li><a href="./links.html">Links</a></li>
-          <li><a href="./panels.html">Panels</a></li>
-          <li><a href="./panel-menus.html">Panel Menus</a></li>
-          <li><a href="./popovers.html">Popovers</a></li>
-          <li><a href="./radio-buttons.html">Radio Buttons</a></li>
-          <li><a href="./text-inputs.html">Text Inputs</a></li>
-          <li><a href="./tooltips.html">Tooltips</a></li>
-        </ul>
-      </div>
-    </main>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Corncob Design Language - Component Gallery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="./src/stickersheet.css" />
+  <style>
+    body {
+      display: none;
+    }
+  </style>
+  <script type="module" blocking="render">
+    // Import all components
+    import '/src/index.js';
+    document.body.style.display = 'block';
+  </script>
+</head>
+
+<body>
+  <include src="./src/stickersheet-header.html"></include>
+  <main>
+    <h1>Component Examples</h1>
+    <div class="main">
+      <ul>
+        <li><a href="./buttons-standard.html">Buttons</a></li>
+        <li><a href="./button-bars.html">Button Bars</a></li>
+        <li><a href="./checkboxes.html">Checkboxes</a></li>
+        <li><a href="./expandables.html">Expandables</a></li>
+        <li><a href="./footers.html">Footers</a></li>
+        <li><a href="./headers.html">Headers</a></li>
+        <li><a href="./links.html">Links</a></li>
+        <li><a href="./panels.html">Panels</a></li>
+        <li><a href="./panel-menus.html">Panel Menus</a></li>
+        <li><a href="./popovers.html">Popovers</a></li>
+        <li><a href="./radio-buttons.html">Radio Buttons</a></li>
+        <li><a href="./text-inputs.html">Text Inputs</a></li>
+        <li><a href="./tooltips.html">Tooltips</a></li>
+      </ul>
+    </div>
+  </main>
+</body>
+
 </html>

@@ -3,7 +3,8 @@ const playwright = require('playwright');
 const fs = require('fs/promises');
 const path = require('path');
 
-const STICKERSHEETS_URL = 'http://localhost:5173/stickersheets';
+const PORT = process.env.PORT || '5173';
+const STICKERSHEETS_URL = `http://localhost:${PORT}/stickersheets`;
 
 (async () => {
   const stickersheetsDir = path.resolve(__dirname, '..', '..', 'stickersheets');

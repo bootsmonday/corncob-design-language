@@ -34,6 +34,12 @@ jobs:
       - name: Build project
         run: npm run build
 
+      - name: Run AXE tests
+        uses: cypress-io/github-action@v6
+        with:
+          start: npm run dev
+          wait-on: "http://localhost:5173"
+
       - name: Run accessibility test
         run: npm run accessibility:test
 

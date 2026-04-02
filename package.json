@@ -22,7 +22,8 @@
   "scripts": {
     "is:dev": "node testing/check-dev.js",
     "start-if-not-dev": "npm run is:dev || npm run dev",
-    "accessibility:test": "npm run start-if-not-dev && node ./testing/accessibility/axe-tests.js",
+    "accessibility:test": "npm run is:dev && node ./testing/accessibility/axe-tests.js",
+    "accessibility:test:local": "npm run start-if-not-dev && node ./testing/accessibility/axe-tests.js",
     "visual:test": "npm run is:dev && backstop test --config='backstop.config.js'",
     "visual:approve": "backstop approve --config='backstop.config.js'",
     "visual:reference": "npm run is:dev && backstop reference --config='backstop.config.js'",

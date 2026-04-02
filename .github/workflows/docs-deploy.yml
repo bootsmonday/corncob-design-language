@@ -34,8 +34,8 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Build project
-        run: npm run accessibility:tests
+      - name: Run accessibility test
+        run: npm run accessibility:test
 
       - name: Build docs
         run: npm run docs:build

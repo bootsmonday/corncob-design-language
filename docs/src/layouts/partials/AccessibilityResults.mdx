@@ -1,0 +1,69 @@
+
+import ChevronRight from '@carbon/icons/svg/chevron--right.svg';
+
+<h3 id={props.test.stickerSheet.replace('.html', '')}>{props.test.component}</h3>
+
+Passes: {props.test.results.passes.length}
+
+
+Incomplete: {props.test.results.incomplete.length}
+{props.test.results.incomplete.length > 0 && (
+  props.test.results.incomplete.map((incomplete) => (
+    <corn-expandable class="corn-expandable">
+      <details slot="details">
+        <summary class="corn-expandable-button">
+          <div><strong>{incomplete.id}</strong> </div>
+          <ChevronRight class="corn-icon" />
+        </summary>
+        <div class="corn-expandable--content">
+          <div>{incomplete.description}
+            <ul>
+              {incomplete.nodes.map((node) => (
+                <li>
+                  <code>{node.html}</code>
+                  <ul>
+                    {node.failureSummary.split('\n').map((summary) => (
+                      <li>{summary}</li>
+                    ))}
+                  </ul>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </details>
+    </corn-expandable>
+  ))
+)}
+          
+Violations: {props.test.results.violations.length}
+{props.test.results.violations.length > 0 && (
+  props.test.results.violations.map((violation) => (
+  <corn-expandable class="corn-expandable">
+  <details slot="details">
+    <summary class="corn-expandable-button">
+      <div><strong>{violation.id}</strong></div>
+      <ChevronRight class="corn-icon" />
+    </summary>
+    <div class="corn-expandable--content">
+      <div>
+      {violation.description}
+      <ul>
+        {violation.nodes.map((node) => (
+          <li>
+            <code>{node.html}</code>
+            <ul>
+              {node.failureSummary.split('\n').map((summary) => (
+                <li>{summary}</li>
+              ))}
+            </ul>
+          </li>
+        ))}
+      </ul>
+      </div>
+    </div>
+  </details>
+  </corn-expandable>
+  ))
+
+)}

@@ -1,0 +1,39 @@
+---
+title: 'Testing | Accessibility | Corncob'
+---
+
+import AxeTests from '../../../../testing/accessibility/results/axe-results.json';
+import DocsLayout from '../../layouts/DocsLayout.astro';
+import AccessibilityResults from '../../layouts/partials/AccessibilityResults.mdx';
+
+{/* 
+  collecting dynamic headings from test results to populate the sidebar navigation. 
+  This allows us to link directly to specific test results for each component.
+  We can't use astro's MDX Frontmatter Layout: DocsLayout for dynamic headings, so we handle it manually.
+*/}
+
+export const dynamicHeadings = AxeTests.map((test) => ({
+  slug: test.stickerSheet.replace('.html', ''),
+  text: test.component,
+  depth: 3
+}));
+
+<DocsLayout title="Testing | Accessibility | Corncob" dynamicHeadings={dynamicHeadings}>
+
+## Accessibility Testing with Axe
+
+We use the Axe accessibility testing tool to identify and address accessibility issues in our
+components. Below is a list of accessibility violations that were detected during our testing
+process.
+
+These results are provided so you can understand the types of accessibility issues that may
+exist in your components and take appropriate action to address them.
+
+{
+  AxeTests.map((test) => (
+    <AccessibilityResults key={test.id} test={test} />
+  ))
+}
+
+</DocsLayout>
+

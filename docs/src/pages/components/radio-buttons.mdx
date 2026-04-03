@@ -4,14 +4,16 @@ title: 'Component | Radio Buttons | Corncob'
 ---
 
 import CodeSample from '../../layouts/partials/CodeSample.astro';
+import { Code } from 'astro/components';
+import radioButtonTokens from '../../../../src/components/radio-buttons/radio-button-tokens.css?raw';
 
-# Radio Buttons
+## Radio Buttons
 
 Radio buttons are used to allow users to select a single option from a set. They can be used in forms, settings, and anywhere else where a single selection is needed.
 Corncob radio buttons are standard HTML radio buttons styled to fit the Corncob design system.
 They can be used in various states such as checked, unchecked, and disabled.
 
-## Default Radio Buttons
+### Default Radio Buttons
 
 <fieldset class="corn-form--item corn-radio-button-group">
   <legend>Group Label</legend>
@@ -40,7 +42,8 @@ They can be used in various states such as checked, unchecked, and disabled.
   </fieldset>
   ```
 </CodeSample>
-## Disabled Radio Buttons
+
+### Disabled Radio Buttons
 
 <fieldset class="corn-form--item corn-radio-button-group">
   <legend>Group Label</legend>
@@ -70,7 +73,7 @@ They can be used in various states such as checked, unchecked, and disabled.
   ```
 </CodeSample>
 
-## Inline Radio Buttons
+### Inline Radio Buttons
 
 <fieldset class="corn-form--item corn-radio-button-group corn-radio-button-group--inline">
   <legend>Group Label</legend>
@@ -98,4 +101,9 @@ They can be used in various states such as checked, unchecked, and disabled.
     </div>
   </fieldset>
   ```
+</CodeSample>
+
+## Radio Button Tokens
+<CodeSample id="radio-button-tokens-code">
+  <Code code={radioButtonTokens} lang="css" />
 </CodeSample>

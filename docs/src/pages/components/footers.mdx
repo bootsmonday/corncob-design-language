@@ -9,8 +9,12 @@ import LogoInstagram from '@carbon/icons/svg/32/logo--instagram.svg';
 import LogoLinkedIn from '@carbon/icons/svg/32/logo--linkedin.svg';
 import LogoGithub from '@carbon/icons/svg/32/logo--github.svg';
 import CodeSample from '../../layouts/partials/CodeSample.astro';
+import { Code } from 'astro/components';
+import footerTokens from '../../../../src/components/footers/footer-tokens.css?raw';
 
-# Footers
+
+
+## Footers
 
 Footers are used to provide additional information about the website or application, such as
 copyright information, links to social media profiles, and contact information. They are typically
@@ -199,4 +203,9 @@ important information and resources.
     <div class="corn-footer--copyright">&copy; 2026 Your Company. All rights reserved.</div>
   </footer>
   ```
+</CodeSample>
+
+## Footer Tokens
+<CodeSample id="footer-tokens-code">
+  <Code code={footerTokens} lang="css" />
 </CodeSample>

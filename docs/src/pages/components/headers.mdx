@@ -7,13 +7,16 @@ import Logo from '../../../../dist/corncob-design-language.svg';
 import CodeSample from '../../layouts/partials/CodeSample.astro';
 import UserIcon from '@carbon/icons/svg/32/user.svg';
 import QuestionAnsweringIcon from '@carbon/icons/svg/32/question-answering.svg';
+import { Code } from 'astro/components';
+import headerTokens from '../../../../src/components/headers/header-tokens.css?raw';
 
-# Headers
+
+## Headers
 
 Headers are used to provide structure and hierarchy to your content. They help users understand the organization of information and navigate through your application.
 Corncob provides a simple and elegant design for headers, ensuring a consistent user experience across your application.
 
-# Default Header
+### Default Header
 
 <div class="corn-panel">
   <header class="corn-header">
@@ -113,3 +116,9 @@ Corncob provides a simple and elegant design for headers, ensuring a consistent 
   </header>
   ```
 </CodeSample>
+
+## Header Tokens
+<CodeSample id="header-tokens-code">
+  <Code code={headerTokens} lang="css" />
+</CodeSample>
+

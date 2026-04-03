@@ -4,8 +4,11 @@ title: 'Component | Tooltips | Corncob'
 ---
 
 import CodeSample from '../../layouts/partials/CodeSample.astro';
+import { Code } from 'astro/components';
+import tooltipTokens from '../../../../src/components/tooltips/tooltip-tokens.css?raw';
 
-# Tooltips
+
+## Tooltips
 
 Tooltips are used to provide additional information about an element on the page. They can be triggered by hovering over an element or by focusing on it with the keyboard. Tooltips can contain any type of content, including text, images, and interactive elements.
 
@@ -45,6 +48,26 @@ The default position for the tooltip is `top`, but it can be positioned in any o
 - `bottom`
 - `left`
 
+### Top
+<button class="corn-button corn-tooltip--anchor">
+  Default (Top)
+  {/* prettier-ignore */}
+  <corn-tooltip position="top" class="corn-tooltip">Default tooltip</corn-tooltip>
+</button>
+
+<CodeSample id="default-tooltip-code">
+  ```html
+  <button class="corn-button corn-tooltip--anchor">
+    Default (Top)
+    <corn-tooltip position="top" class="corn-tooltip">
+      Default tooltip
+    </corn-tooltip>
+  </button>
+  ```
+</CodeSample>
+
+### Right
+
 <div class="corn-tooltip--anchor">
   <button class="corn-button">
     Right
@@ -66,6 +89,8 @@ The default position for the tooltip is `top`, but it can be positioned in any o
   ```
 </CodeSample>
 
+### Bottom
+
 <div class="corn-tooltip--anchor">
   <button class="corn-button">
     Bottom
@@ -86,6 +111,8 @@ The default position for the tooltip is `top`, but it can be positioned in any o
   </div>
   ```
 </CodeSample>
+
+### Left
 <div class="corn-tooltip--anchor">
   <button class="corn-button">
     Left
@@ -104,4 +131,9 @@ The default position for the tooltip is `top`, but it can be positioned in any o
     </corn-tooltip>
   </div>
   ```
+</CodeSample>
+
+## Tooltip Tokens
+<CodeSample id="tooltip-tokens-code">
+  <Code code={tooltipTokens} lang="css" />
 </CodeSample>

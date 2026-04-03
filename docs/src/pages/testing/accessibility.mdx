@@ -14,11 +14,14 @@ export const AxeTests = Object.values(import.meta.glob('../../../../testing/acce
   We can't use astro's MDX Frontmatter Layout: DocsLayout for dynamic headings, so we handle it manually.
 */}
 
-export const dynamicHeadings = AxeTests.map((test) => ({
-  slug: test.stickerSheet.replace('.html', ''),
-  text: test.component,
-  depth: 3
-}));
+export const dynamicHeadings = [
+  { slug: 'accessibility-testing-with-axe', text: 'Accessibility Testing with Axe', depth: 2 },
+  ...AxeTests.map((test) => ({
+    slug: test.stickerSheet.replace('.html', ''),
+    text: test.component,
+    depth: 3
+  }))
+];
 
 <DocsLayout title="Testing | Accessibility | Corncob" dynamicHeadings={dynamicHeadings}>
 

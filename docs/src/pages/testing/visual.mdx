@@ -1,0 +1,14 @@
+---
+layout: ../../layouts/DocsLayout.astro
+title: 'Testing | Visual Regression | Corncob'
+---
+
+## Visual Regression Testing
+Visual regression testing is a type of testing that ensures that the visual appearance of your components does not change unexpectedly. This is especially important for design systems like Corncob, where consistency in design is crucial. Visual regression tests compare screenshots of your components against a baseline to detect any unintended visual changes. 
+Corncob uses [BackstopJS](https://github.com/garris/BackstopJS?tab=readme-ov-file#readmeBackstopJS) for visual regression testing. Backstop tests are set up in the component source directory and follow a similar naming convention to unit tests, with the addition of `.visual.js` to indicate that they are visual regression tests.
+
+We chose BackstopJS for visual regression testing because it provides a robust and flexible solution for testing the visual consistency of our components. It allows us to easily set up and run tests, and it provides detailed reports that help us identify and address any visual issues that may arise during development. It also takes advantage of Playwright's powerful browser automation capabilities, which allows us to test our components across different browsers and devices to ensure they look and function as expected for all users. Playwright is compatible with our existing testing setup and provides a seamless integration with our development workflow, making it an ideal choice for our visual regression testing needs.
+
+Visual regression testing is much slower and more resource-intensive than unit testing, so we typically run these tests less frequently, such as before major releases or when significant visual changes are made to components. It's important to review the results of visual regression tests carefully, as they can sometimes produce false positives due to minor rendering differences across browsers or devices. When a visual regression test fails, it's crucial to investigate the cause of the failure and determine whether it's an actual issue that needs to be addressed or a false positive that can be safely ignored. 
+
+Transitions and animations can also cause visual regression tests to fail, so it's important to consider these factors when reviewing test results. Overall, visual regression testing is an essential part of our testing strategy to ensure that our components maintain their visual integrity and provide a consistent user experience across all platforms.

@@ -20,12 +20,10 @@ const isActive = (href) => {
 
 const isTokensSection = pathname.includes('/tokens') ? true : null;
 const isComponentsSection = pathname.includes('/components') ? true : null;
+const isTestingSection = pathname.includes('/testing') ? true : null;
 ---
 
 <div class="corn-panel-menu">
-  <a href={base} class="corn-panel-menu--item" aria-current={isActive(base) ? 'page' : false}
-    >Overview</a
-  >
   <a
     href={`${base}getting-started/`}
     class="corn-panel-menu--item"
@@ -156,7 +154,7 @@ const isComponentsSection = pathname.includes('/components') ? true : null;
       </div>
     </details>
   </corn-expandable>
-  <corn-expandable class="corn-expandable" open={isComponentsSection} data-test={pathname}>
+  <corn-expandable class="corn-expandable" open={isTestingSection} data-test={pathname}>
     <details slot="details">
       <summary class="corn-panel-menu--item corn-expandable-button">
         Testing
@@ -174,6 +172,11 @@ const isComponentsSection = pathname.includes('/components') ? true : null;
             class="corn-panel-menu--item"
             aria-current={isActive(`${base}testing/accessibility`) ? 'page' : false}
             >Accessibility</a
+          >
+          <a
+            href={`${base}testing/visual`}
+            class="corn-panel-menu--item"
+            aria-current={isActive(`${base}testing/visual`) ? 'page' : false}>Visual</a
           >
         </div>
       </div>

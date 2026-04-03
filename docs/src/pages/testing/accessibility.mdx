@@ -22,12 +22,11 @@ export const dynamicHeadings = AxeTests.map((test) => ({
 
 ## Accessibility Testing with Axe
 
-We use the Axe accessibility testing tool to identify and address accessibility issues in our
-components. Below is a list of accessibility violations that were detected during our testing
-process.
+We use [@axe-core/playwright](https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/README.md) to identify and address accessibility issues in our components. Automated tools still struggle with gradients and color contrast, so we use these tests as a starting point to identify potential issues. We then review the results and make necessary adjustments to ensure our components meet accessibility standards.
 
-These results are provided so you can understand the types of accessibility issues that may
-exist in your components and take appropriate action to address them.
+Accessibility is an ongoing effort, and we continuously work to improve our components based on these test results as well as user feedback. Remember, just because something is accessible in automated tests doesn't mean it's fully accessible in all real-world scenarios. 
+
+These are automated tests that run against our sticker sheets, which are the visual representations of our components. The results are categorized into three groups: Passes, Incomplete, and Violations. Below are the detailed results for each component tested.
 
 {
   AxeTests.map((test) => (

@@ -2,9 +2,11 @@
 title: 'Testing | Accessibility | Corncob'
 ---
 
-import AxeTests from '../../../../testing/accessibility/results/axe-results.json';
 import DocsLayout from '../../layouts/DocsLayout.astro';
 import AccessibilityResults from '../../layouts/partials/AccessibilityResults.mdx';
+
+
+export const AxeTests = Object.values(import.meta.glob('../../../../testing/accessibility/results/axe-results.json', { eager: true }))[0]?.default ?? [];
 
 {/* 
   collecting dynamic headings from test results to populate the sidebar navigation. 

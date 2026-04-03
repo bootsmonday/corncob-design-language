@@ -91,9 +91,9 @@ function htmlIncludePlugin() {
 // and serves the index.html as the entry point.
 
 /*
-  Todo: Consider using this plugin to allow for easier development of stickersheets and documentation. This would allow us to create reusable HTML components that can be included in our stickersheets and documentation without having to import them directly into our JS files. We can use the <include> tag to include these components in our HTML files, and we can pass locals to these components to make them more dynamic. For now, we are using the index.html as the entry point and importing components directly into the JS files, but this plugin could provide a more flexible and maintainable way to manage our HTML components in the future.
+  TODO: Consider using this plugin to allow for easier development of stickersheets and documentation. This would allow us to create reusable HTML components that can be included in our stickersheets and documentation without having to import them directly into our JS files. We can use the <include> tag to include these components in our HTML files, and we can pass locals to these components to make them more dynamic. For now, we are using the index.html as the entry point and importing components directly into the JS files, but this plugin could provide a more flexible and maintainable way to manage our HTML components in the future.
   does not work with modifiers like ?raw.
-  Need to config Astro Vite seperately.
+  Need to config Astro Vite separately.
   Leave for now, may use in the future for easier development of stickersheets and documentation. For now, we are using the index.html as the entry point and importing components directly into the JS files.
   resolve: {
     alias: {

@@ -90,8 +90,20 @@ function htmlIncludePlugin() {
 // Vite configuration that allows importing .html components as raw strings
 // and serves the index.html as the entry point.
 
+/*
+  Leave for now, may use in the future for easier development of stickersheets and documentation. For now, we are using the index.html as the entry point and importing components directly into the JS files.
+  resolve: {
+    alias: {
+      '@tokens': '/src/design-system/tokens',
+      '@components': '/src/design-system/components',
+      '@styles': '/src/design-system',
+    },
+  },
+
+  */
 export default defineConfig({
   plugins: [htmlIncludePlugin()],
+
   build: {
     lib: {
       entry: resolve(__dirname, 'src/index.js'),

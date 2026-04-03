@@ -1,0 +1,9 @@
+:root {
+  --cc-tooltip--background: var(--cc-black);
+  --cc-tooltip--color: var(--cc-white);
+  --cc-tooltip--font-size: var(--cc-size--1);
+  --cc-tooltip--padding: 0.25rem 0.5rem;
+  --cc-tooltip--border-radius: var(--cc-border--radius);
+  --cc-tooltip--box-shadow: var(--cc-shadow--drop);
+  --cc-tooltip--transition: opacity var(--cc-transition--easing) var(--cc-transition--time);
+}

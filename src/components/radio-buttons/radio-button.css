@@ -1,32 +1,4 @@
-:root {
-  --cc-radio-button--input--background: var(--cc-form--item--color--background);
-  --cc-radio-button--input--background--hover: var(--cc-form--item--color--background--hover);
-  --cc-radio-button--input--background--checked: var(--cc-form--widget--background--selected);
-  --cc-radio-button--input--background--checked--hover: var(
-    --cc-form--widget--background--selected--hover
-  );
-  --cc-radio-button--input--border: var(--cc-form--item--border);
-  --cc-radio-button--input--border-radius: var(--cc-border--radius--round);
-  --cc-radio-button--input--color--checked: var(--cc-form--widget--color);
-  --cc-radio-button--input--color--checked-hover: var(--cc-form--widget--color--hover);
-  --cc-radio-button--input--border-color--checked: var(--cc-form--item--input--label--color);
-  --cc-radio-button--input--border-color--checked-focus: var(--cc-form--item--input--label--color);
-  --cc-radio-button--input--border-color--checked-active: var(--cc-form--item--input--label--color);
-  --cc-radio-button--input--border-color--checked-hover: var(--cc-form--item--input--label--color);
-  --cc-radio-button--input--focus-ring: var(--cc-form--item--focus-ring);
-  --cc-radio-button--input--focus-ring--active: var(--cc-form--item--focus-ring--active);
-  --cc-radio-button--input--color--text: var(--cc-form--item--color--text);
-  --cc-radio-button--input--font-size--xs: var(--cc-form--item--font--size--xs);
-  --cc-radio-button--input--font-size--sm: var(--cc-form--item--font--size--sm);
-  --cc-radio-button--input--font-size--md: var(--cc-form--item--font--size--md);
-  --cc-radio-button--input--font-size--lg: var(--cc-form--item--font--size--lg);
-  --cc-radio-button--input--font-size--xl: var(--cc-form--item--font--size--xl);
-  --cc-radio-button--input--size--xs: var(--cc-form--widget--size--xs);
-  --cc-radio-button--input--size--sm: var(--cc-form--widget--size--sm);
-  --cc-radio-button--input--size--md: var(--cc-form--widget--size--md);
-  --cc-radio-button--input--size--lg: var(--cc-form--widget--size--lg);
-  --cc-radio-button--input--size--xl: var(--cc-form--widget--size--xl);
-}
+@import './radio-button-tokens.css';
 
 fieldset.corn-radio-button-group {
   border: none;

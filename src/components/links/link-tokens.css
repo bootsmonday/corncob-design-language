@@ -1,0 +1,30 @@
+:root {
+  --cc-link--transition--timing: 150ms;
+  --cc-link--font--weight: var(--cc-body--font--weight--normal);
+  --cc-link--font--weight--bold: var(--cc-body--font--weight--bold);
+  --cc-link--font--family: var(--cc-body--font--family);
+  --cc-link--color--border: transparent;
+  --cc-link--width--border: 1px;
+  --cc-link--style--border: solid;
+  --cc-link--color--text: var(--cc-blue-60);
+  --cc-link--color--text--hover: var(--cc-blue-70);
+  --cc-link--color--border--hover: var(--cc-blue-70);
+  --cc-link--color--text--active: var(--cc-blue-80);
+  --cc-link--color--border--active: var(--cc-blue-80);
+  --cc-link--color--text--focus: var(--cc-blue-60);
+  --cc-link--color--border--focus: var(--cc-blue-50);
+  --cc-link--underline--color--border: var(--cc-blue-50);
+  --cc-link--underline--style--border: solid;
+  --cc-link--underline--width--border: 1px;
+  --cc-link--underline--color--border--hover: var(--cc-blue-50);
+  --cc-link--underline--color--border--active: var(--cc-blue-50);
+  --cc-link--underline--color--border--focus: var(--cc-blue-50);
+  --cc-link--underline--color--text: var(--cc-gray-80);
+  --cc-link--underline--width--border--focus: 1px;
+  --cc-link--underline--width--border--active: var(--cc-link--underline--width--border);
+  --cc-link--underline--color--text--hover: var(--cc-gray-90);
+  --cc-link--underline--color--text--active: var(--cc-black);
+  --cc-link--underline--box-shadow--hover: 0 2px 2px -2px var(--cc-blue-60);
+  --cc-link--underline--box-shadow--focus: 0 2px 2px -2px var(--cc-blue-80);
+  --cc-link--underline--box-shadow--active: none;
+}

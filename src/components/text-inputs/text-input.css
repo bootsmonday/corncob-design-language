@@ -1,33 +1,4 @@
-:root {
-  --cc-text-input--background: var(--cc-form--item--color--background);
-  --cc-text-input--background--hover: var(--cc-form--item--color--background--hover);
-  --cc-text-input--border: var(--cc-border--width) var(--cc-border--style) var(--cc-border--color);
-  --cc-text-input--border--color--focus: var(--cc-form--item--border--color--focus);
-  --cc-text-input--border--color--active: var(--cc-form--item--border--color--active);
-  --cc-text-input--border-radius: var(--cc-border--radius);
-  --cc-text-input--border-radius--xs: var(--cc-border--radius--xs);
-  --cc-text-input--color: var(--cc-form--item--color--text);
-  --cc-text-input--font-size--xs: var(--cc-form--item--font-size--xs);
-  --cc-text-input--font-size--sm: var(--cc-form--item--font-size--sm);
-  --cc-text-input--font-size--md: var(--cc-form--item--font-size--md);
-  --cc-text-input--font-size--lg: var(--cc-form--item--font-size--lg);
-  --cc-text-input--font-size--xl: var(--cc-form--item--font-size--xl);
-  --cc-text-input--height--xs: var(--cc-form--item--size--xs);
-  --cc-text-input--height--sm: var(--cc-form--item--size--sm);
-  --cc-text-input--height--md: var(--cc-form--item--size--md);
-  --cc-text-input--height--lg: var(--cc-form--item--size--lg);
-  --cc-text-input--height--xl: var(--cc-form--item--size--xl);
-  --cc-text-input--padding: 0 var(--cc-size-0);
-  --cc-text-input--label--color: var(--cc-blue-60);
-  --cc-text-input--label--font-weight: 500;
-  --cc-text-input--focus-ring: var(--cc-form--item--focus-ring);
-  --cc-text-input--focus-ring--active: var(--cc-form--item--focus-ring--active);
-  --cc-text-input--color--disabled: var(--cc-form--item--color--disabled);
-  --cc-text-input--background--disabled: var(--cc-form--item--background--disabled);
-  --cc-text-input--background--disabled--hover: var(--cc-form--item--background--disabled);
-  --cc-text-input--border-color--disabled: var(--cc-form--item--border-color--disabled);
-  --cc-text-input--focus-ring--disabled: none !important;
-}
+@import './text-input-tokens.css';
 
 .corn-text-input,
 .corn-text-input--md {

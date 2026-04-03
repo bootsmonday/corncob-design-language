@@ -50,5 +50,5 @@
   --cc-button--danger--background--active: var(--cc-red-100);
   --cc-button--danger--color--active: var(--cc-red-10);
   --cc-button--transition--duration: var(--cc-transition--time);
-  --cc-button--transition--easing: var(--cc-transition--easing); 
+  --cc-button--transition--easing: var(--cc-transition--easing);
 }

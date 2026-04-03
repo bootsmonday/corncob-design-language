@@ -1,0 +1,28 @@
+:root {
+  --cc-checkbox--input--background: var(--cc-form--item--color--background);
+  --cc-checkbox--input--background--hover: var(--cc-form--item--color--background--hover);
+  --cc-checkbox--input--background--checked: var(--cc-form--widget--background--selected);
+  --cc-checkbox--input--background--checked--hover: var(
+    --cc-form--widget--background--selected--hover
+  );
+  --cc-checkbox--input--border: var(--cc-form--item--border);
+  --cc-checkbox--input--border-radius: var(--cc-border--radius);
+  --cc-checkbox--input--color--checked: var(--cc-form--widget--color);
+  --cc-checkbox--input--color--checked-hover: var(--cc-form--widget--color--hover);
+  --cc-checkbox--input--border-color--checked-focus: var(--cc-form--item--input--label--color);
+  --cc-checkbox--input--border-color--checked-active: var(--cc-form--item--input--label--color);
+  --cc-checkbox--input--border-color--checked-hover: var(--cc-form--item--input--label--color);
+  --cc-checkbox--input--focus-ring: var(--cc-form--item--focus-ring);
+  --cc-checkbox--input--focus-ring--active: var(--cc-form--item--focus-ring--active);
+  --cc-checkbox--input--color--text: var(--cc-form--item--color--text);
+  --cc-checkbox--input--font-size--xs: var(--cc-form--item--font-size--xs);
+  --cc-checkbox--input--font-size--sm: var(--cc-form--item--font-size--sm);
+  --cc-checkbox--input--font-size--md: var(--cc-form--item--font-size--md);
+  --cc-checkbox--input--font-size--lg: var(--cc-form--item--font-size--lg);
+  --cc-checkbox--input--font-size--xl: var(--cc-form--item--font-size--xl);
+  --cc-checkbox--input--size--xs: var(--cc-form--widget--size--xs);
+  --cc-checkbox--input--size--sm: var(--cc-form--widget--size--sm);
+  --cc-checkbox--input--size--md: var(--cc-form--widget--size--md);
+  --cc-checkbox--input--size--lg: var(--cc-form--widget--size--lg);
+  --cc-checkbox--input--size--xl: var(--cc-form--widget--size--xl);
+}

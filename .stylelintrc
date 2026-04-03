@@ -2,6 +2,7 @@
   "extends": "stylelint-config-standard",
   "plugins": ["stylelint-order"],
   "rules": {
+    "import-notation": "string",
     "property-no-unknown": null,
     "custom-property-pattern": [
       "^[a-z0-9-]+$",

@@ -1,0 +1,13 @@
+:root {
+  --cc-expandable--border-radius: var(--cc-border--radius);
+  --cc-expandable--border-width: var(--cc-border--width);
+  --cc-expandable--border-style: var(--cc-border--style);
+  --cc-expandable--border-color: rgb(from var(--cc-border--color) r g b / 21%);
+  --cc-expandable--color: var(--cc-gray-90);
+  --cc-expandable--color--hover: var(--cc-gray-100);
+  --cc-expandable--color--active: var(--cc-black);
+  --cc-expandable--focus-ring: var(--cc-form--item--focus-ring);
+  --cc-expandable--icon--background: var(--cc-gray-20);
+  --cc-expandable--icon--background--hover: var(--cc-gray-30);
+  --cc-expandable--icon--background--active: transparent;
+}

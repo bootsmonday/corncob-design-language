@@ -1,30 +1,4 @@
-:root {
-  --cc-panel--border--radius: var(--cc-border--radius);
-  --cc-panel--border--width: var(--cc-border--width);
-  --cc-panel--border--style: var(--cc-border--style);
-  --cc-panel--border--color: rgb(from var(--cc-border--color) r g b / 21%);
-  --cc-panel--shadow: var(--cc-shadow--drop);
-  --cc-panel--padding: var(--cc-size-2);
-  --cc-panel--background: var(--cc-white);
-  --cc-panel-menu--item--transition--timing: 150ms;
-  --cc-panel-menu--item--font--weight: var(--cc-body--font--weight--normal);
-  --cc-panel-menu--item--font--weight--bold: var(--cc-body--font--weight--bold);
-  --cc-panel-menu--item--font--family: var(--cc-body--font--family);
-  --cc-panel-menu--item--color--border: transparent;
-  --cc-panel-menu--item--width--border: 1px;
-  --cc-panel-menu--item--style--border: solid;
-  --cc-panel-menu--item--color--text: var(--cc-gray-60);
-  --cc-panel-menu--item--color--text--hover: var(--cc-gray-70);
-  --cc-panel-menu--item--color--border--hover: var(--cc-gray-70);
-  --cc-panel-menu--item--color--text--active: var(--cc-gray-80);
-  --cc-panel-menu--item--color--border--active: var(--cc-gray-80);
-  --cc-panel-menu--item--color--text--focus: var(--cc-gray-60);
-  --cc-panel-menu--item--color--border--focus: var(--cc-gray-50);
-  --cc-panel-menu--item--underline--box-shadow--hover: 0 2px 2px -2px var(--cc-blue-60);
-  --cc-panel-menu--item--underline--box-shadow--focus: 0 2px 2px -2px var(--cc-blue-80);
-  --cc-panel-menu--item--underline--box-shadow--active: none;
-    
-}
+@import './panel-menu-tokens.css';
 
 .corn-panel-menu {
   background: var(--cc-panel--background);

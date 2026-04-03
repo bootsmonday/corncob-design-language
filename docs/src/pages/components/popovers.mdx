@@ -4,8 +4,11 @@ title: 'Component | Popover | Corncob'
 ---
 
 import CodeSample from '../../layouts/partials/CodeSample.astro';
+import { Code } from 'astro/components';
+import popoverTokens from '../../../../src/components/popovers/popover-tokens.css?raw';
 
-# Popovers
+
+## Popovers
 
 Popovers are used to display additional content or actions related to a specific element on the page. They can be triggered by clicking or hovering over an element, and they can contain any type of content, including text, images, and interactive elements.
 
@@ -123,6 +126,7 @@ The default position for the popover is `top`, but it can be positioned in any o
   </div>
   ```
 </CodeSample>
+
 ### Popover Right
 
 <div class="corn-popover--anchor">
@@ -240,6 +244,7 @@ The default position for the popover is `top`, but it can be positioned in any o
     </ul>
   </corn-popover>
 </div>
+
 <CodeSample id="position-modifiers-code-left">
   ```html
   <div class="corn-popover--anchor">
@@ -261,4 +266,9 @@ The default position for the popover is `top`, but it can be positioned in any o
     </corn-popover>
   </div>
   ```
+</CodeSample>
+
+## Popover Tokens
+<CodeSample id="popover-tokens-code">
+  <Code code={popoverTokens} lang="css" />
 </CodeSample>

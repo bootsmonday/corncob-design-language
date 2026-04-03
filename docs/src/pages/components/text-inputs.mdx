@@ -4,8 +4,10 @@ title: 'Component | Text Input | Corncob'
 ---
 
 import CodeSample from '../../layouts/partials/CodeSample.astro';
+import { Code } from 'astro/components';
+import textInputTokens from '../../../../src/components/text-inputs/text-input-tokens.css?raw';
 
-# Text Inputs
+## Text Inputs
 
 Text inputs are used to capture user input in a single line. They can be used for various purposes, such as capturing names, email addresses, or any other short text.
 
@@ -17,7 +19,7 @@ This allows for proper styling of status messages and ensures that they are visu
 
 How the content of the `corn-status` is populated is up to the developer, but it should be used consistently across the application to provide a clear and cohesive user experience.
 
-## Basic Text Input
+### Basic Text Input
 
 <div class="corn-form--item">
   <div class="corn-text-input">
@@ -165,4 +167,9 @@ The `xl` size is the largest size available for text inputs and is designed for 
     </div>
   </div>
   ```
+</CodeSample>
+
+## Text Input Tokens
+<CodeSample id="text-input-tokens-code">
+  <Code code={textInputTokens} lang="css" />
 </CodeSample>

@@ -4,14 +4,16 @@ title: 'Component | Checkbox | Corncob'
 ---
 
 import CodeSample from '../../layouts/partials/CodeSample.astro';
+import { Code } from 'astro/components';
+import checkboxTokens from '../../../../src/components/checkboxes/checkbox-tokens.css?raw';
 
-# Checkboxes
+## Checkboxes
 
 Checkboxes are used to allow users to select one or more options from a set. They can be used in forms, settings, and anywhere else where multiple selections are needed.
 Corncob checkboxes are standard HTML checkboxes styled to fit the Corncob design system.
 They can be used in various states such as checked, unchecked, and disabled.
 
-## Default Checkboxes
+### Default Checkboxes
 
 <fieldset class="corn-form--item corn-checkbox-group">
   <legend>Group Label</legend>
@@ -40,7 +42,7 @@ They can be used in various states such as checked, unchecked, and disabled.
   </fieldset>
   ```
 </CodeSample>
-## Disabled Checkboxes
+### Disabled Checkboxes
 
 <fieldset class="corn-form--item corn-checkbox-group">
   <legend>Group Label</legend>
@@ -62,7 +64,7 @@ They can be used in various states such as checked, unchecked, and disabled.
   ```
 </CodeSample>
 
-## Inline Checkboxes
+### Inline Checkboxes
 
 <fieldset class="corn-form--item corn-checkbox-group corn-checkbox-group--inline">
   <legend>Group Label</legend>
@@ -90,4 +92,10 @@ They can be used in various states such as checked, unchecked, and disabled.
     </div>
   </fieldset>
   ```
+</CodeSample>
+
+## Checkbox Tokens
+
+<CodeSample id="checkbox-tokens-code">
+  <Code code={checkboxTokens} lang="css" />
 </CodeSample>

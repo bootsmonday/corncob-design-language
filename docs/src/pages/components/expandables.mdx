@@ -4,8 +4,11 @@ title: 'Component | Expandable | Corncob'
 ---
 import ChevronRight from '@carbon/icons/svg/chevron--right.svg';
 import CodeSample from '../../layouts/partials/CodeSample.astro';
+import { Code } from 'astro/components';
+import expandableTokens from '../../../../src/components/expandables/expandable-tokens.css?raw';
 
-# Expandables
+
+## Expandables
 
 Expandables allow hiding and showing content, reducing UI clutter by letting users reveal additional details on demand. Common patterns include accordions, collapsible panels, dropdowns, and tree views.
 
@@ -13,7 +16,7 @@ Corncob's `<corn-expandable>` web component builds on native [`<details>`/`<summ
 
 However, native elements lack smooth height transition animations. `<corn-expandable>` adds these via JavaScript-driven CSS class toggling on open/close.
 
-## Usage
+### Usage
 
 The component requires:
 
@@ -38,6 +41,7 @@ Corncob's CSS handles the expand/collapse animation by toggling classes on the c
   </details>
 </corn-expandable>
 
+<CodeSample id="default-expandable-code">
 ```html
 <corn-expandable class="corn-expandable">
   <details slot="details">
@@ -54,7 +58,7 @@ Corncob's CSS handles the expand/collapse animation by toggling classes on the c
   </details>
 </corn-expandable>
 ```
-
+</CodeSample>
 ### Open by Default
 
 Add `open` attribute to `<corn-expandable>`.
@@ -71,6 +75,7 @@ Add `open` attribute to `<corn-expandable>`.
   </details>
 </corn-expandable>
 
+<CodeSample id="open-expandable-code">
 ```html
 <corn-expandable class="corn-expandable" open>
   <details slot="details">
@@ -87,6 +92,7 @@ Add `open` attribute to `<corn-expandable>`.
   </details>
 </corn-expandable>
 ```
+</CodeSample>
 
 ## Accordion (Single Open)
 
@@ -114,6 +120,7 @@ Add `name="corn-single"` to each `<details>` for mutual exclusivity, same as nat
     </corn-expandable>
   </div>
 
+<CodeSample id="accordion-expandable-code">
 ```html
   <div class="corn-accordion">
     <corn-expandable class="corn-expandable">
@@ -145,6 +152,7 @@ Add `name="corn-single"` to each `<details>` for mutual exclusivity, same as nat
     </corn-expandable>
   </div>
 ```
+</CodeSample>
 
 ## Nested / Tree View
 
@@ -164,6 +172,7 @@ Supports recursion. Add `corn-tree-view` class for styling.
     </details>
   </corn-expandable>
 
+<CodeSample id="tree-view-expandable-code">
 ```html
   <corn-expandable class="corn-expandable corn-tree-view">
     <details slot="details">
@@ -185,5 +194,9 @@ Supports recursion. Add `corn-tree-view` class for styling.
     </details>
   </corn-expandable>
 ```
+</CodeSample>
 
-See [stickersheet.html](/src/components/expandables/stickersheet.html) for full demos.
+## Expandable Tokens
+<CodeSample id="expandable-tokens-code">
+  <Code code={expandableTokens} lang="css" />
+</CodeSample>

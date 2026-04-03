@@ -4,13 +4,16 @@ title: 'Component | Button | Corncob'
 ---
 
 import CodeSample from '../../layouts/partials/CodeSample.astro';
+import { Code } from 'astro/components';
 import CloseIcon from '@carbon/icons/svg/32/close.svg';
 
-# Buttons
+import buttonTokens from '../../../../src/components/buttons/button-tokens.css?raw';
+
+## Buttons
 
 Buttons are built from shared token values and semantic variants. They contain styles for the following states hover, active, focus, and disabled. The default button is the primary variant, and secondary and danger variants are also available. Size modifiers are also available for extra-small through extra-large buttons.
 
-## Default Button
+### Default Button
 
 <div class="corn-form--row">
   <button class="corn-button corn-button--md">MD Button</button>
@@ -265,4 +268,12 @@ Add `corn-button--icon` to the button class list to apply the icon button styles
     <CloseIcon class="corn-icon" />
   </button>
   ```
+</CodeSample>
+
+
+## Button Tokens
+Button styles are built from shared tokens and semantic variants. 
+Below are the tokens used in the button component, which can be found in the `button-tokens.css` file.
+<CodeSample id="button-tokens-code">
+  <Code code={buttonTokens} lang="css" />
 </CodeSample>

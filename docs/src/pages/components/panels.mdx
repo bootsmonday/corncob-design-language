@@ -4,8 +4,11 @@ title: 'Component | Panel | Corncob'
 ---
 
 import CodeSample from '../../layouts/partials/CodeSample.astro';
+import { Code } from 'astro/components';
+import panelTokens from '../../../../src/components/panels/panel-tokens.css?raw';
 
-# Panels
+
+## Panels
 
 Panels are used to group related content and provide a visual separation between different sections of a page.
 They can be used for various purposes such as displaying information, grouping form elements, or creating card-like layouts. Corncob panels are simple containers with a border and padding that can be used to create a variety of layouts.
@@ -39,10 +42,10 @@ Top level panels will have a shadow to help visually separate them from nested p
 This allows for more visual separation between nested panels and their parent panel and reduces visual noise when multiple panels are nested within each other.
 
 <div class="corn-panel docs-demo-panel">
-  <h2>Outer Panel</h2>
+  <h3>Outer Panel</h3>
   <p>This is the outer panel.</p>
   <div class="corn-panel">
-    <h3>Inner Panel</h3>
+    <h4>Inner Panel</h4>
     <p>This is the inner panel.</p>
   </div>
 </div>
@@ -50,12 +53,17 @@ This allows for more visual separation between nested panels and their parent pa
 <CodeSample id="nested-panel-code">
   ```html
   <div class="corn-panel">
-    <h2>Outer Panel</h2>
+    <h3>Outer Panel</h3>
     <p>This is the outer panel.</p>
     <div class="corn-panel">
-      <h3>Inner Panel</h3>
+      <h4>Inner Panel</h4>
       <p>This is the inner panel.</p>
     </div>
   </div>
   ```
+</CodeSample>
+
+## Panel Tokens
+<CodeSample id="panel-tokens-code">
+  <Code code={panelTokens} lang="css" />
 </CodeSample>

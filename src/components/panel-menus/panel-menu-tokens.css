@@ -22,5 +22,5 @@
   --cc-panel-menu--item--color--border--focus: var(--cc-gray-50);
   --cc-panel-menu--item--underline--box-shadow--hover: 0 2px 2px -2px var(--cc-blue-60);
   --cc-panel-menu--item--underline--box-shadow--focus: 0 2px 2px -2px var(--cc-blue-80);
-  --cc-panel-menu--item--underline--box-shadow--active: none;   
+  --cc-panel-menu--item--underline--box-shadow--active: none;
 }

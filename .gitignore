@@ -22,4 +22,6 @@ testing/backstop/backstop_data/bitmaps_reference/
 testing/backstop/backstop_data/html_report/
 testing/backstop/backstop_data/ci_report/
 
+testing/accessibility/results/axe-results.json
+
 

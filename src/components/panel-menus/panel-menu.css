@@ -50,6 +50,7 @@
   color:  var(--cc-panel-menu--item--color--text);
   font-weight: 500;
   padding: 0 calc(var(--cc-panel--padding) / 2);
+  position: relative;
   transition:
     border-bottom-color  var(--cc-panel-menu--item--transition--timing),
     box-shadow  var(--cc-panel-menu--item--transition--timing);

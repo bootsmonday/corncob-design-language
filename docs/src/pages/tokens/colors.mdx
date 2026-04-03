@@ -1,11 +1,50 @@
 ---
-layout: ../../layouts/DocsLayout.astro
 title: Tokens | Colors | Corncob
 ---
 
+import DocsLayout from '../../layouts/DocsLayout.astro'; 
 import CodeSample from '../../layouts/partials/CodeSample.astro';
 
-# Color Tokens
+export const dynamicHeadings = [
+{
+  slug: "color-tokens",
+  text: "Color Tokens",
+  depth: 2},
+ {
+  slug: "yellow",
+  text: "Yellow",
+  depth: 3
+},
+ {
+  slug: "blue",
+  text: "Blue",
+  depth: 3
+},
+ {
+  slug: "orange",
+  text: "Orange",
+  depth: 3
+},
+ {
+  slug: "green",
+  text: "Green",
+  depth: 3
+},
+ {
+  slug: "red",
+  text: "Red",
+  depth: 3
+},
+ {
+  slug: "gray",
+  text: "Gray",
+  depth: 3
+}
+];
+
+
+<DocsLayout title="Tokens | Colors | Corncob" dynamicHeadings={dynamicHeadings}>
+## Color Tokens
 
 Color tokens for the Corncob palette. These can be used in components or directly in your own styles. These are the foundation for colors in Corncob, but we recommend using them as a starting point and building on top of them with your own custom tokens as needed.
 
@@ -19,7 +58,7 @@ In any design system or application, it's important to have a solid foundation o
 
 <div class="corn-row">
   <div class="corn-col-12 corn-col-sm-6 corn-col-lg-4">
-    <h3>Yellow</h3>
+    <h3 id="yellow">Yellow</h3>
     <div class="docs-color-palette">
       <div class="docs-color-swatch" style="background-color: var(--cc-yellow-10)">
           <span class="docs-color-swatch-black-contrast">B: 19.49</span>
@@ -74,7 +113,7 @@ In any design system or application, it's important to have a solid foundation o
     </div>
   </div>
   <div class="corn-col-12 corn-col-sm-6 corn-col-lg-4">
-    <h3>Blue</h3>
+    <h3 id="blue">Blue</h3>
     <div class="docs-color-palette">
       <div class="docs-color-swatch" style="background-color: var(--cc-blue-10)">
         <span class="docs-color-swatch-black-contrast">B: 19.49</span>
@@ -130,7 +169,7 @@ In any design system or application, it's important to have a solid foundation o
 
   </div>
   <div class="corn-col-12 corn-col-sm-6 corn-col-lg-4">
-    <h3>Orange</h3>
+    <h3 id="orange">Orange</h3>
     <div class="docs-color-palette">
       <div class="docs-color-swatch" style="background-color: var(--cc-orange-10)">
         <span class="docs-color-swatch-black-contrast">B: 19.49</span>
@@ -185,7 +224,7 @@ In any design system or application, it's important to have a solid foundation o
     </div>    
   </div>
 <div class="corn-col-12 corn-col-sm-6 corn-col-lg-4">
-    <h3>Green</h3>
+    <h3 id="green">Green</h3>
     <div class="docs-color-palette">
       <div class="docs-color-swatch" style="background-color: var(--cc-green-10)">
         <span class="docs-color-swatch-black-contrast">B: 19.49</span>
@@ -240,7 +279,7 @@ In any design system or application, it's important to have a solid foundation o
     </div>    
   </div>
   <div class="corn-col-12 corn-col-sm-6 corn-col-lg-4">
-    <h3>Red</h3>
+    <h3 id="red">Red</h3>
     <div class="docs-color-palette">
       <div class="docs-color-swatch" style="background-color: var(--cc-red-10)">
         <span class="docs-color-swatch-black-contrast">B: 19.49</span>
@@ -295,7 +334,7 @@ In any design system or application, it's important to have a solid foundation o
     </div>    
   </div> 
   <div class="corn-col-12 corn-col-sm-6 corn-col-lg-4">
-    <h3>Gray</h3>
+    <h3 id="gray">Gray</h3>
     <div class="docs-color-palette">
       <div class="docs-color-swatch" style="background-color: var(--cc-gray-10)">
         <span class="docs-color-swatch-black-contrast">B: 19.49</span>
@@ -433,3 +472,5 @@ In any design system or application, it's important to have a solid foundation o
 ```
 
 </CodeSample>
+
+</DocsLayout>

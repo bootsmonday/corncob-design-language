@@ -94,10 +94,15 @@ export class CornButtonBar extends HTMLElement {
       const moreElement = document.createElement('div');
       moreElement.classList.add('corn-popover--anchor', 'corn-button-bar--more');
 
-      const hasMoreButton = !!this.shadowRoot.querySelector('slot[name="more-button"]')?.assignedElements()[0];
+      const assignedMoreButton = this.shadowRoot.querySelector('slot[name="more-button"]')?.assignedElements()[0];
+      const hasMoreButton = !!assignedMoreButton;
 
-      const moreButton = this.shadowRoot.querySelector('slot[name="more-button"]')?.assignedElements()[0] ?? document.createElement('button');
-      moreButton.classList.add('corn-button', 'corn-button--xs', 'corn-pop');
+      const moreButton = assignedMoreButton ?? document.createElement('button');
+      if (hasMoreButton) {
+        moreButton.classList.add('corn-pop');
+      } else {
+        moreButton.classList.add('corn-button', 'corn-button--xs', 'corn-pop');
+      }
       const moreButtonId = 'button-bar-' + crypto.randomUUID().substring(0, 8);
       moreButton.setAttribute('aria-controls', moreButtonId);
       

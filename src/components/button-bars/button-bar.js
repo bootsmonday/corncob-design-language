@@ -60,7 +60,12 @@ export class CornButtonBar extends HTMLElement {
    * @param {string} newValue - The new value of the attribute.
    */
   attributeChangedCallback(name, oldValue, newValue) {
-    if (name === 'overflow-label') this._overflowLabel = newValue ?? 'More';
+    if (name === 'overflow-label') {
+      this._overflowLabel = newValue ?? 'More';
+      if (this.moreButton && !this.moreButton.textContent.trim()) {
+        this.moreButton.textContent = this._overflowLabel;
+      }
+    }
   }
 
   /**

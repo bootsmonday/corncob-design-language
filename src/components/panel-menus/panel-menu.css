@@ -16,6 +16,10 @@
     border-width: 0;
     padding: 0;
   }
+
+  .corn-expandable--content {
+    margin-top: 0.25rem;
+  }
 }
 
 .corn-panel-menu--item {

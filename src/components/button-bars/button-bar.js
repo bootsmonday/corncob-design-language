@@ -155,6 +155,10 @@ export class CornButtonBar extends HTMLElement {
    */
   _moveOverflowingItems() {
     if (!this._hasOverflow()) {
+      if(!this.initialized) {
+        this.style.removeProperty('visibility');
+        this.initialized = true;
+      };
       return;
     } else {
       const items = Array.from(this.children);
@@ -172,7 +176,6 @@ export class CornButtonBar extends HTMLElement {
       });
       // This makes it look cleaner as you don't see the items moving around before they are moved to the overflow menu on initial load.
       if(!this.initialized) {
-        console.log('Button bar connected and visible');
         this.style.removeProperty('visibility');
         this.initialized = true;
       }

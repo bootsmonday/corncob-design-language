@@ -12,6 +12,9 @@
  */
 const template = document.createElement('template');
 template.innerHTML = `
+    <style>
+      slot { display: contents; }
+    </style>
     <slot></slot>
     <slot name="more-button"></slot>
 `;

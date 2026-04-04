@@ -14,7 +14,6 @@ const template = document.createElement('template');
 template.innerHTML = `
     <slot></slot>
     <slot name="more-button"></slot>
-    </slot>
 `;
 
 export class CornButtonBar extends HTMLElement {

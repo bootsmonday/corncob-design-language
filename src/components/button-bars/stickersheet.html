@@ -1,5 +1,5 @@
 <!-- Popover Component Demo -->
-<div class="buttonbar-demo">
+<div class="buttonbar-demo" style="max-width: 500px;">
   <h2>Corn Button Bar</h2>
 
   <h3>Basic Button Bar</h3>
@@ -12,12 +12,6 @@
     <button class="corn-button corn-button--xs">Button 6</button>
     <button class="corn-button corn-button--xs">Button 7</button>
     <button class="corn-button corn-button--xs">Button 8</button>
-    <div class="corn-popover--anchor corn-button-bar--more">
-      <button class="corn-button corn-button--xs corn-pop" aria-controls="button-bar-popover">
-        More
-      </button>
-      <corn-popover position="bottom" id="button-bar-popover" class="corn-popover"></corn-popover>
-    </div>
   </corn-button-bar>
   <hr />
   <h3>Complex Button Bar</h3>
@@ -41,11 +35,10 @@
       </corn-popover>
     </div>
     <button class="corn-button corn-button--xs">Button 8</button>
-    <div class="corn-popover--anchor corn-button-bar--more">
-      <button class="corn-button corn-button--xs corn-pop" aria-controls="nestedbutton-bar-popover">
-        More
-      </button>
-      <corn-popover position="bottom" id="nested-button-bar-popover" class="corn-popover"></corn-popover>
-    </div>
+    <button class="corn-button corn-button--icon corn-button--xs" aria-label="More" slot="more-button">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="corn-icon">
+        <use href="/node_modules/@carbon/icons/svg/32/overflow-menu--vertical.svg"></use>
+      </svg>
+    </button>
   </corn-button-bar>
 </div>

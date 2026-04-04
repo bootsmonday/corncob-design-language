@@ -19,6 +19,9 @@
   "sideEffects": [
     "**/*.css"
   ],
+  "overrides": {
+    "@ibm/telemetry-js": "npm:empty-npm-package@1.0.0"
+  },
   "scripts": {
     "is:dev": "node testing/check-dev.js",
     "start-if-not-dev": "npm run is:dev || npm run dev",

@@ -3,19 +3,15 @@ import ChevronRight from '@carbon/icons/svg/chevron--right.svg';
 
 const { pathname } = Astro.url;
 const base = import.meta.env.BASE_URL;
-const normalizedBase = base.replace(/\/$/, '') || '/';
 
 // A utility function can help handle edge cases like trailing slashes or nested routes
-const isActive = (href) => {
+const isActive = (href: string) => {
   // Normalize paths by removing trailing slashes, but treat the home page '/' specially
   const normalizedPathname = pathname.replace(/\/$/, '') || '/';
   const normalizedHref = href.replace(/\/$/, '') || '/';
 
-  // Check for direct match or if current page is a sub-path of the link (e.g., /blog/post-1 and /blog)
-  return (
-    normalizedPathname === normalizedHref ||
-    (normalizedHref !== normalizedBase && normalizedPathname.startsWith(normalizedHref + '/'))
-  );
+  // Mark only the exact page link as active to avoid multiple sidebar items being current.
+  return normalizedPathname === normalizedHref;
 };
 
 const isTokensSection = pathname.includes('/tokens') ? true : null;

@@ -102,6 +102,7 @@ export class CornButtonBar extends HTMLElement {
       moreButton.setAttribute('aria-controls', moreButtonId);
       
       if (!hasMoreButton) {
+        moreButton.setAttribute('type', 'button');
         moreButton.textContent = this._overflowLabel || 'More';
       }
 

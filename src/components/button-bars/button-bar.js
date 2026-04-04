@@ -13,14 +13,7 @@
 const template = document.createElement('template');
 template.innerHTML = `
     <style>
-    :host {
-      display: flex;
-      gap: 10px; /* Now applies directly between slotted elements */
-    }
-
-    slot {
-      display: contents;
-    }
+      slot { display: contents; }
     </style>
     <slot></slot>
     <slot name="more-button"></slot>

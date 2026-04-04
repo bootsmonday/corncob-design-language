@@ -3,7 +3,6 @@ import ChevronRight from '@carbon/icons/svg/chevron--right.svg';
 
 const { pathname } = Astro.url;
 const base = import.meta.env.BASE_URL;
-const normalizedBase = base.replace(/\/$/, '') || '/';
 
 // A utility function can help handle edge cases like trailing slashes or nested routes
 const isActive = (href: string) => {

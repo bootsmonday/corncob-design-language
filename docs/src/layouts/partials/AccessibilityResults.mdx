@@ -1,5 +1,5 @@
 
-import ChevronRight from '@carbon/icons/svg/chevron--right.svg';
+import bootstrapIconsSprite from 'bootstrap-icons/bootstrap-icons.svg?url';
 
 <h3 id={props.test.stickerSheet.replace('.html', '')}>{props.test.component}</h3>
 
@@ -13,7 +13,9 @@ Incomplete: {props.test.results.incomplete.length}
       <details slot="details">
         <summary class="corn-expandable-button">
           <div><strong>{incomplete.id}</strong> </div>
-          <ChevronRight class="corn-icon" />
+          <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon" aria-hidden="true">
+            <use href={`${bootstrapIconsSprite}#chevron-right`}></use>
+          </svg>
         </summary>
         <div class="corn-expandable--content">
           <div>{incomplete.description}
@@ -43,7 +45,9 @@ Violations: {props.test.results.violations.length}
   <details slot="details">
     <summary class="corn-expandable-button">
       <div><strong>{violation.id}</strong></div>
-      <ChevronRight class="corn-icon" />
+      <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon" aria-hidden="true">
+        <use href={`${bootstrapIconsSprite}#chevron-right`}></use>
+      </svg>
     </summary>
     <div class="corn-expandable--content">
       <div>

@@ -3,11 +3,7 @@ layout: ../../layouts/DocsLayout.astro
 title: 'Component | Footer | Corncob'
 ---
 
-import LogoX from '@carbon/icons/svg/32/logo--x.svg';
-import LogoFacebook from '@carbon/icons/svg/32/logo--facebook.svg';
-import LogoInstagram from '@carbon/icons/svg/32/logo--instagram.svg';
-import LogoLinkedIn from '@carbon/icons/svg/32/logo--linkedin.svg';
-import LogoGithub from '@carbon/icons/svg/32/logo--github.svg';
+import bootstrapIconsSprite from 'bootstrap-icons/bootstrap-icons.svg?url';
 import CodeSample from '../../layouts/partials/CodeSample.astro';
 import { Code } from 'astro/components';
 import footerTokens from '../../../../src/components/footers/footer-tokens.css?raw';
@@ -85,19 +81,29 @@ important information and resources.
     </div>
     <div class="corn-footer--social">
       <a href="#" class="corn-link" aria-label="X social media">
-        <LogoX />
+        <svg class="corn-icon" aria-hidden="true">
+          <use href={`${bootstrapIconsSprite}#twitter-x`}></use>
+        </svg>
       </a>
       <a href="#" class="corn-link" aria-label="Facebook">
-        <LogoFacebook />
+        <svg class="corn-icon" aria-hidden="true">
+          <use href={`${bootstrapIconsSprite}#facebook`}></use>
+        </svg>
       </a>
       <a href="#" class="corn-link" aria-label="Instagram">
-        <LogoInstagram />
+        <svg class="corn-icon" aria-hidden="true">
+          <use href={`${bootstrapIconsSprite}#instagram`}></use>
+        </svg>
       </a>
       <a href="#" class="corn-link" aria-label="LinkedIn">
-        <LogoLinkedIn />
+        <svg class="corn-icon" aria-hidden="true">
+          <use href={`${bootstrapIconsSprite}#linkedin`}></use>
+        </svg>
       </a>
       <a href="#" class="corn-link" aria-label="GitHub">
-        <LogoGithub />
+        <svg class="corn-icon" aria-hidden="true">
+          <use href={`${bootstrapIconsSprite}#github`}></use>
+        </svg>
       </a>
     </div>
     <div class="corn-footer--copyright">&copy; 2026 Your Company. All rights reserved.</div>
@@ -175,28 +181,28 @@ important information and resources.
     </div>
     <div class="corn-footer--social">
       <a href="#" class="corn-link" aria-label="X social media">
-        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" class="corn-icon">
-          <use href="/node_modules/@carbon/icons/svg/32/logo--x.svg"></use>
+        <svg class="corn-icon" aria-hidden="true">
+          <use href={`${bootstrapIconsSprite}#twitter-x`}></use>
         </svg>
       </a>
       <a href="#" class="corn-link" aria-label="Facebook">
-        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" class="corn-icon">
-          <use href="/node_modules/@carbon/icons/svg/32/logo--facebook.svg"></use>
+        <svg class="corn-icon" aria-hidden="true">
+          <use href={`${bootstrapIconsSprite}#facebook`}></use>
         </svg>
       </a>
       <a href="#" class="corn-link" aria-label="Instagram">
-        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" class="corn-icon">
-          <use href="/node_modules/@carbon/icons/svg/32/logo--instagram.svg"></use>
+        <svg class="corn-icon" aria-hidden="true">
+          <use href={`${bootstrapIconsSprite}#instagram`}></use>
         </svg>
       </a>
       <a href="#" class="corn-link" aria-label="LinkedIn">
-        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" class="corn-icon">
-          <use href="/node_modules/@carbon/icons/svg/32/logo--linkedin.svg"></use>
+        <svg class="corn-icon" aria-hidden="true">
+          <use href={`${bootstrapIconsSprite}#linkedin`}></use>
         </svg>
       </a>
       <a href="#" class="corn-link" aria-label="GitHub">
-        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" class="corn-icon">
-          <use href="/node_modules/@carbon/icons/svg/32/logo--github.svg"></use>
+        <svg class="corn-icon" aria-hidden="true">
+          <use href={`${bootstrapIconsSprite}#github`}></use>
         </svg>
       </a>
     </div>

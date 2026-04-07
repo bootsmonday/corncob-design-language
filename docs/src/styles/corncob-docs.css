@@ -81,3 +81,16 @@ p{
 .docs-color-swatch-dark {
   color: var(--cc-white);
 }
+
+.docs-corn--hero {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.docs-corn--hero-image {
+  border-radius: var(--cc-border--radius);
+  height: 15rem;
+  width: 15rem;
+}

@@ -43,13 +43,13 @@
     border-color: transparent;
     color: var(--cc-gray-100);
     display: inline-flex;
-    padding:  0 0.25rem;
+    padding: 0 0.25rem;
 
     &:hover {
       background: rgb(from var(--cc-gray-80) r g b / 6.8%);
     } 
 
-    &:hover:focus-visible{
+    &:hover:focus-visible {
       border-color: transparent;
     }
 

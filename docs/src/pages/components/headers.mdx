@@ -29,15 +29,15 @@ Corncob provides a simple and elegant design for headers, ensuring a consistent 
     <nav class="corn-header--nav">
       <corn-button-bar class="corn-button-bar">
         {/*prettier-ignore*/}
-        <a href="#" class="corn-link">Link 1</a>
+        <a href="#" class="corn-button corn-button--sm">Link 1</a>
         {/*prettier-ignore*/}
-        <a href="#" class="corn-link">Link 2</a>
+        <a href="#" class="corn-button corn-button--sm">Link 2</a>
         {/*prettier-ignore*/}
-        <a href="#" class="corn-link">Link 3</a>
+        <a href="#" class="corn-button corn-button--sm">Link 3</a>
         {/*prettier-ignore*/}
-        <a href="#" class="corn-link">Link 4</a>
+        <a href="#" class="corn-button corn-button--sm">Link 4</a>
         <div class="corn-popover--anchor corn-button-bar--more">
-          <button class="corn-button corn-button--xs corn-pop" aria-controls="button-bar-popover">
+          <button class="corn-button corn-button--sm corn-pop" aria-controls="button-bar-popover">
             More
           </button>
           <corn-popover
@@ -50,16 +50,16 @@ Corncob provides a simple and elegant design for headers, ensuring a consistent 
     </nav>
     <div class="corn-header--actions">
       <button
-        class="corn-button corn-button--icon  corn-button--xs"
+        class="corn-button corn-button--icon corn-button--xs"
         aria-label="Question Answering"
       >
         <svg class="corn-icon">
           <use href={`${bootstrapIconsSprite}#question`} />
         </svg>
       </button>
-      <button class="corn-button corn-button--icon  corn-button--xs" aria-label="User">
+      <button class="corn-button corn-button--icon corn-button--xs" aria-label="User">
         <svg class="corn-icon">
-          <use href={`${bootstrapIconsSprite}#user`} />
+          <use href={`${bootstrapIconsSprite}#person`} />
         </svg>
       </button>
     </div>
@@ -78,20 +78,20 @@ Corncob provides a simple and elegant design for headers, ensuring a consistent 
     <div class="corn-header--title">Title</div>
     <nav class="corn-header--nav">
       <corn-button-bar class="corn-button-bar">
-        <a href="#" class="corn-link">
+        <a href="#" class="corn-button corn-button--sm">
           Link 1
         </a>
-        <a href="#" class="corn-link" class="corn-link">
+        <a href="#" class="corn-button corn-button--sm">
           Link 2
         </a>
-        <a href="#" class="corn-link">
+        <a href="#" class="corn-button corn-button--sm">
           Link 3
         </a>
-        <a href="#" class="corn-link">
+        <a href="#" class="corn-button corn-button--sm">
           Link 4
         </a>
         <div class="corn-popover--anchor corn-button-bar--more">
-          <button class="corn-button corn-button--xs corn-pop" aria-controls="button-bar-popover">
+          <button class="corn-button corn-button--sm corn-pop" aria-controls="button-bar-popover">
             More
           </button>
           <corn-popover

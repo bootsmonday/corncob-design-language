@@ -3,13 +3,30 @@ layout: ../layouts/LandingLayout.astro
 title: Corncob Design Language
 ---
 
-## Corncob Design Language
+import { Image } from 'astro:assets';
+import cornHero from '../images/corncob-hero.png';
 
-Corncob is a framework-neutral design language built with tokens, CSS, and plain JavaScript behavior.
+<div class="corn-row">
+  <div class="corn-col corn-col-sm-12 corn-col-lg-5 docs-corn--hero" >
+      <Image src={cornHero} alt="Corncob Design Language Logo" class="docs-corn--hero-image" />
+  </div>
+  <div class="corn-col corn-col-sm-12 corn-col-lg-7">
+    <h2 class="corn-title">Corncob Design Language</h2>
+    <p>
+      A framework-neutral design language built with tokens, CSS, and plain JavaScript behavior.    
+    </p>
+    <p>
+      This project is in early development, but you can check out the [Getting Started](./getting-started/) page for installation instructions and a quick preview of the button component.
+    </p>
+  </div>
+</div>
 
-This project is in early development, but you can check out the [Getting Started](./getting-started/) page for installation instructions and a quick preview of the button component.
+Corncob is a design language built with the goal of being framework-neutral, portable, and accessible. It provides a set of design tokens, CSS styles, and JavaScript behaviors that can be used to create consistent and user-friendly interfaces across different platforms and frameworks.
 
-Corncob is built with the following goals in mind:
+Corncob believes in utilizing as much built-in browser functionality as possible, with a focus on HTML and CSS first, and Web Components and JavaScript as needed. The design language includes a 10-step color palette to ease accessibility and provides design tokens for primitives, categorical elements, and components.
+
+Corncob wants to be boring, but in a good way. The goal is to provide a solid foundation for building interfaces without adding unnecessary complexity or flair. By keeping the core package vanilla and portable, Corncob aims to be a reliable and flexible design language that can be easily integrated into any project.
+
 
 ### Goals
 

@@ -33,6 +33,11 @@
   &:focus-visible {
     border-color: var(--cc-white);
     box-shadow: var(--cc-button--box-shadow--focus);
+
+    /* This is for anchor tags that are treated as buttons. */
+    &:hover {
+      box-shadow: var(--cc-button--box-shadow--focus);
+    }
   }
 
   &:active:focus-visible {

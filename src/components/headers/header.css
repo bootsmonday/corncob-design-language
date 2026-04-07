@@ -34,8 +34,30 @@
 
 .corn-header--nav {
   display: flex;
-  gap: 1rem;
+  gap: 0.25rem;
   width: 100%;
+
+  .corn-button {
+    align-items: center;
+    background: transparent;
+    border-color: transparent;
+    color: var(--cc-gray-100);
+    display: inline-flex;
+    padding: 0 0.25rem;
+
+    &:hover {
+      background: rgb(from var(--cc-gray-80) r g b / 6.8%);
+    } 
+
+    &:hover:focus-visible {
+      border-color: transparent;
+    }
+
+
+    &:active {
+      background: rgb(from var(--cc-gray-80) r g b / 15.8%);
+    }
+  }
 
   .corn-button-bar {
     flex-grow: 1;

@@ -5,8 +5,7 @@ title: 'Component | Header | Corncob'
 
 import Logo from '../../../../dist/corncob-design-language.svg';
 import CodeSample from '../../layouts/partials/CodeSample.astro';
-import UserIcon from '@carbon/icons/svg/32/user.svg';
-import QuestionAnsweringIcon from '@carbon/icons/svg/32/question-answering.svg';
+import bootstrapIconsSprite from 'bootstrap-icons/bootstrap-icons.svg?url';
 import { Code } from 'astro/components';
 import headerTokens from '../../../../src/components/headers/header-tokens.css?raw';
 
@@ -54,10 +53,14 @@ Corncob provides a simple and elegant design for headers, ensuring a consistent 
         class="corn-button corn-button--icon  corn-button--xs"
         aria-label="Question Answering"
       >
-        <QuestionAnsweringIcon class="corn-icon" />
+        <svg class="corn-icon">
+          <use href={`${bootstrapIconsSprite}#question`} />
+        </svg>
       </button>
       <button class="corn-button corn-button--icon  corn-button--xs" aria-label="User">
-        <UserIcon class="corn-icon" />
+        <svg class="corn-icon">
+          <use href={`${bootstrapIconsSprite}#user`} />
+        </svg>
       </button>
     </div>
   </header>
@@ -104,13 +107,13 @@ Corncob provides a simple and elegant design for headers, ensuring a consistent 
         class="corn-button corn-button--icon corn-button--secondary corn-button--xs"
         aria-label="Question Answering"
       >
-        <QuestionAnsweringIcon />
+        <svg class="corn-icon"><use href= href="[another icon]" /></svg>
       </button>
       <button
         class="corn-button corn-button--icon corn-button--secondary corn-button--xs"
         aria-label="User"
       >
-        <UserIcon />
+        <svg class="corn-icon"><use href="[Your Icon]" /></svg>
       </button>
     </div>
   </header>

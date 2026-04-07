@@ -5,7 +5,7 @@ title: 'Component | Button | Corncob'
 
 import CodeSample from '../../layouts/partials/CodeSample.astro';
 import { Code } from 'astro/components';
-import CloseIcon from '@carbon/icons/svg/32/close.svg';
+import bootstrapIconsSprite from 'bootstrap-icons/bootstrap-icons.svg?url';
 
 import buttonTokens from '../../../../src/components/buttons/button-tokens.css?raw';
 
@@ -126,29 +126,39 @@ Add `corn-button--icon` to the button class list to apply the icon button styles
 
 <div class="corn-form--row">
   <button class="corn-button corn-button--icon corn-button--xs" aria-label="Close">
-    <CloseIcon class="corn-icon" />
+    <svg class="corn-icon" aria-hidden="true">
+      <use href={`${bootstrapIconsSprite}#x`}></use>
+    </svg>
   </button>
   <button
     class="corn-button corn-button--icon corn-button--secondary corn-button--xs"
     aria-label="Close"
   >
-    <CloseIcon class="corn-icon" />
+    <svg class="corn-icon" aria-hidden="true">
+      <use href={`${bootstrapIconsSprite}#x`}></use>
+    </svg>
   </button>
   <button
     class="corn-button corn-button--icon corn-button--danger corn-button--xs"
     aria-label="Close"
   >
-    <CloseIcon class="corn-icon" />
+    <svg class="corn-icon" aria-hidden="true">
+      <use href={`${bootstrapIconsSprite}#x`}></use>
+    </svg>
   </button>
   <button class="corn-button corn-button--icon corn-button--xs" aria-label="Close" disabled>
-    <CloseIcon class="corn-icon" />
+    <svg class="corn-icon" aria-hidden="true">
+      <use href={`${bootstrapIconsSprite}#x`}></use>
+    </svg>
   </button>
 </div>
 
 <CodeSample id="extra-small-icon-button-code">
   ```html
   <button class="corn-button corn-button--icon corn-button--xs" aria-label="Close">
-    <CloseIcon class="corn-icon" />
+    <svg class="corn-icon" aria-hidden="true">
+      <use href={`${bootstrapIconsSprite}#x`}></use>
+    </svg>
   </button>
   ```
 </CodeSample>
@@ -157,29 +167,39 @@ Add `corn-button--icon` to the button class list to apply the icon button styles
 
 <div class="corn-form--row">
   <button class="corn-button corn-button--icon corn-button--sm" aria-label="Close">
-    <CloseIcon class="corn-icon" />
+    <svg class="corn-icon" aria-hidden="true">
+      <use href={`${bootstrapIconsSprite}#x`}></use>
+    </svg>
   </button>
   <button
     class="corn-button corn-button--icon corn-button--secondary corn-button--sm"
     aria-label="Close"
   >
-    <CloseIcon class="corn-icon" />
+    <svg class="corn-icon" aria-hidden="true">
+      <use href={`${bootstrapIconsSprite}#x`}></use>
+    </svg>
   </button>
   <button
     class="corn-button corn-button--icon corn-button--danger corn-button--sm"
     aria-label="Close"
   >
-    <CloseIcon class="corn-icon" />
+    <svg class="corn-icon" aria-hidden="true">
+      <use href={`${bootstrapIconsSprite}#x`}></use>
+    </svg>
   </button>
   <button class="corn-button corn-button--icon corn-button--sm" aria-label="Close" disabled>
-    <CloseIcon class="corn-icon" />
+    <svg class="corn-icon" aria-hidden="true">
+      <use href={`${bootstrapIconsSprite}#x`}></use>
+    </svg>
   </button>
 </div>
 
 <CodeSample id="small-icon-button-code">
   ```html
   <button class="corn-button corn-button--icon corn-button--sm" aria-label="Close">
-    <CloseIcon class="corn-icon" />
+    <svg class="corn-icon" aria-hidden="true">
+      <use href={`${bootstrapIconsSprite}#x`}></use>
+    </svg>
   </button>
   ```
 </CodeSample>
@@ -188,22 +208,32 @@ Add `corn-button--icon` to the button class list to apply the icon button styles
 
 <div class="corn-form--row">
   <button class="corn-button corn-button--icon" aria-label="Close">
-    <CloseIcon class="corn-icon" />
+    <svg class="corn-icon" aria-hidden="true">
+      <use href={`${bootstrapIconsSprite}#x`}></use>
+    </svg>
   </button>
   <button class="corn-button corn-button--icon corn-button--secondary" aria-label="Close">
-    <CloseIcon class="corn-icon" />
+    <svg class="corn-icon" aria-hidden="true">
+      <use href={`${bootstrapIconsSprite}#x`}></use>
+    </svg>
   </button>
   <button class="corn-button corn-button--icon corn-button--danger" aria-label="Close">
-    <CloseIcon class="corn-icon" />
+    <svg class="corn-icon" aria-hidden="true">
+      <use href={`${bootstrapIconsSprite}#x`}></use>
+    </svg>
   </button>
   <button class="corn-button corn-button--icon" aria-label="Close" disabled>
-    <CloseIcon class="corn-icon" />
+    <svg class="corn-icon" aria-hidden="true">
+      <use href={`${bootstrapIconsSprite}#x`}></use>
+    </svg>
   </button>
 </div>
 <CodeSample id="medium-icon-button-code">
   ```html
   <button class="corn-button corn-button--icon" aria-label="Close">
-    <CloseIcon class="corn-icon" />
+    <svg class="corn-icon" aria-hidden="true">
+      <use href={`${bootstrapIconsSprite}#x`}></use>
+    </svg>
   </button>
   ```
 </CodeSample>
@@ -212,29 +242,39 @@ Add `corn-button--icon` to the button class list to apply the icon button styles
 
 <div class="corn-form--row">
   <button class="corn-button corn-button--icon corn-button--lg" aria-label="Close">
-    <CloseIcon class="corn-icon" />
+    <svg class="corn-icon" aria-hidden="true">
+      <use href={`${bootstrapIconsSprite}#x`}></use>
+    </svg>
   </button>
   <button
     class="corn-button corn-button--icon corn-button--secondary corn-button--lg"
     aria-label="Close"
   >
-    <CloseIcon class="corn-icon" />
+    <svg class="corn-icon" aria-hidden="true">
+      <use href={`${bootstrapIconsSprite}#x`}></use>
+    </svg>
   </button>
   <button
     class="corn-button corn-button--icon corn-button--danger corn-button--lg"
     aria-label="Close"
   >
-    <CloseIcon class="corn-icon" />
+    <svg class="corn-icon" aria-hidden="true">
+      <use href={`${bootstrapIconsSprite}#x`}></use>
+    </svg>
   </button>
   <button class="corn-button corn-button--icon corn-button--lg" aria-label="Close" disabled>
-    <CloseIcon class="corn-icon" />
+    <svg class="corn-icon" aria-hidden="true">
+      <use href={`${bootstrapIconsSprite}#x`}></use>
+    </svg>
   </button>
 </div>
 
 <CodeSample id="large-icon-button-code">
   ```html
   <button class="corn-button corn-button--icon corn-button--lg" aria-label="Close">
-    <CloseIcon class="corn-icon" />
+    <svg class="corn-icon" aria-hidden="true">
+      <use href={`${bootstrapIconsSprite}#x`}></use>
+    </svg>
   </button>
   ```
 </CodeSample>
@@ -243,29 +283,39 @@ Add `corn-button--icon` to the button class list to apply the icon button styles
 
 <div class="corn-form--row">
   <button class="corn-button corn-button--icon corn-button--xl" aria-label="Close">
-    <CloseIcon class="corn-icon" />
+    <svg class="corn-icon" aria-hidden="true">
+      <use href={`${bootstrapIconsSprite}#x`}></use>
+    </svg>
   </button>
   <button
     class="corn-button corn-button--icon corn-button--secondary corn-button--xl"
     aria-label="Close"
   >
-    <CloseIcon class="corn-icon" />
+    <svg class="corn-icon" aria-hidden="true">
+      <use href={`${bootstrapIconsSprite}#x`}></use>
+    </svg>
   </button>
   <button
     class="corn-button corn-button--icon corn-button--danger corn-button--xl"
     aria-label="Close"
   >
-    <CloseIcon class="corn-icon" />
+    <svg class="corn-icon" aria-hidden="true">
+      <use href={`${bootstrapIconsSprite}#x`}></use>
+    </svg>
   </button>
   <button class="corn-button corn-button--icon corn-button--xl" aria-label="Close" disabled>
-    <CloseIcon class="corn-icon" />
+    <svg class="corn-icon" aria-hidden="true">
+      <use href={`${bootstrapIconsSprite}#x`}></use>
+    </svg>
   </button>
 </div>
 
 <CodeSample id="extra-large-icon-button-code">
   ```html
   <button class="corn-button corn-button--icon corn-button--xl" aria-label="Close">
-    <CloseIcon class="corn-icon" />
+    <svg class="corn-icon" aria-hidden="true">
+      <use href={`${bootstrapIconsSprite}#x`}></use>
+    </svg>
   </button>
   ```
 </CodeSample>

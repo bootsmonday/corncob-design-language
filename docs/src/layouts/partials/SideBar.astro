@@ -1,5 +1,5 @@
 ---
-import ChevronRight from '@carbon/icons/svg/chevron--right.svg';
+import bootstrapIconsSprite from 'bootstrap-icons/bootstrap-icons.svg?url';
 
 const { pathname } = Astro.url;
 const base = import.meta.env.BASE_URL;
@@ -29,7 +29,9 @@ const isTestingSection = pathname.includes('/testing') ? true : null;
     <details slot="details">
       <summary class="corn-panel-menu--item corn-expandable-button">
         Tokens
-        <ChevronRight class="corn-icon" aria-hidden="true" />
+        <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon" aria-hidden="true">
+          <use href={`${bootstrapIconsSprite}#chevron-right`}></use>
+        </svg>
       </summary>
       <div class="corn-expandable--content">
         <div class="corn-panel-menu--submenu">
@@ -81,7 +83,9 @@ const isTestingSection = pathname.includes('/testing') ? true : null;
     <details slot="details">
       <summary class="corn-panel-menu--item corn-expandable-button">
         Components
-        <ChevronRight class="corn-icon" aria-hidden="true" />
+        <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon" aria-hidden="true">
+          <use href={`${bootstrapIconsSprite}#chevron-right`}></use>
+        </svg>
       </summary>
       <div class="corn-expandable--content">
         <div class="corn-panel-menu--submenu">
@@ -154,7 +158,9 @@ const isTestingSection = pathname.includes('/testing') ? true : null;
     <details slot="details">
       <summary class="corn-panel-menu--item corn-expandable-button">
         Testing
-        <ChevronRight class="corn-icon" aria-hidden="true" />
+        <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon" aria-hidden="true">
+          <use href={`${bootstrapIconsSprite}#chevron-right`}></use>
+        </svg>
       </summary>
       <div class="corn-expandable--content">
         <div class="corn-panel-menu--submenu">

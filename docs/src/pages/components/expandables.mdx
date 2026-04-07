@@ -2,7 +2,7 @@
 layout: ../../layouts/DocsLayout.astro
 title: 'Component | Expandable | Corncob'
 ---
-import ChevronRight from '@carbon/icons/svg/chevron--right.svg';
+import bootstrapIconsSprite from 'bootstrap-icons/bootstrap-icons.svg?url';
 import CodeSample from '../../layouts/partials/CodeSample.astro';
 import { Code } from 'astro/components';
 import expandableTokens from '../../../../src/components/expandables/expandable-tokens.css?raw';
@@ -31,7 +31,7 @@ Corncob's CSS handles the expand/collapse animation by toggling classes on the c
 
 <corn-expandable class="corn-expandable">
   <details slot="details">
-    <summary class="corn-expandable-button">Summary<ChevronRight class="corn-icon" /></summary>
+    <summary class="corn-expandable-button">Summary<svg class="corn-icon" aria-hidden="true"><use href={`${bootstrapIconsSprite}#chevron-right`}></use></svg></summary>
     <div class="corn-expandable--content">
       <div>
         <h3>heading</h3>
@@ -47,7 +47,9 @@ Corncob's CSS handles the expand/collapse animation by toggling classes on the c
   <details slot="details">
     <summary class="corn-expandable-button">
       Summary
-      <ChevronRight class="corn-icon" />
+      <svg class="corn-icon" aria-hidden="true">
+        <use href={`${bootstrapIconsSprite}#chevron-right`}></use>
+      </svg>
     </summary>
     <div class="corn-expandable--content">
       <div>
@@ -65,7 +67,7 @@ Add `open` attribute to `<corn-expandable>`.
 
 <corn-expandable class="corn-expandable" open>
   <details slot="details">
-    <summary class="corn-expandable-button">Summary<ChevronRight class="corn-icon" /></summary>
+    <summary class="corn-expandable-button">Summary<svg class="corn-icon" aria-hidden="true"><use href={`${bootstrapIconsSprite}#chevron-right`}></use></svg></summary>
     <div class="corn-expandable--content">
       <div>
         <h3>heading</h3>
@@ -81,7 +83,9 @@ Add `open` attribute to `<corn-expandable>`.
   <details slot="details">
     <summary class="corn-expandable-button">
       Summary
-      <ChevronRight class="corn-icon" />
+      <svg class="corn-icon" aria-hidden="true">
+        <use href={`${bootstrapIconsSprite}#chevron-right`}></use>
+      </svg>
     </summary>
     <div class="corn-expandable--content">
       <div>
@@ -102,19 +106,19 @@ Add `name="corn-single"` to each `<details>` for mutual exclusivity, same as nat
   <div class="corn-accordion">
     <corn-expandable class="corn-expandable">
       <details slot="details" name="corn-single">
-        <summary class="corn-expandable-button">Summary<ChevronRight class="corn-icon" /></summary>
+        <summary class="corn-expandable-button">Summary<svg class="corn-icon" aria-hidden="true"><use href={`${bootstrapIconsSprite}#chevron-right`}></use></svg></summary>
         <div class="corn-expandable--content">details</div>
       </details>
     </corn-expandable>
     <corn-expandable class="corn-expandable">
       <details slot="details" name="corn-single">
-        <summary class="corn-expandable-button">Summary 2<ChevronRight class="corn-icon" /></summary>
+        <summary class="corn-expandable-button">Summary 2<svg class="corn-icon" aria-hidden="true"><use href={`${bootstrapIconsSprite}#chevron-right`}></use></svg></summary>
         <div class="corn-expandable--content">details 2</div>
       </details>
     </corn-expandable>
     <corn-expandable class="corn-expandable">
       <details slot="details" name="corn-single">
-        <summary class="corn-expandable-button">Summary 3<ChevronRight class="corn-icon" /></summary>
+        <summary class="corn-expandable-button">Summary 3<svg class="corn-icon" aria-hidden="true"><use href={`${bootstrapIconsSprite}#chevron-right`}></use></svg></summary>
         <div class="corn-expandable--content">details</div>
       </details>
     </corn-expandable>
@@ -127,7 +131,9 @@ Add `name="corn-single"` to each `<details>` for mutual exclusivity, same as nat
       <details slot="details" name="corn-single">
         <summary class="corn-expandable-button">
           Summary
-          <ChevronRight class="corn-icon" />
+          <svg class="corn-icon" aria-hidden="true">
+            <use href={`${bootstrapIconsSprite}#chevron-right`}></use>
+          </svg>
         </summary>
         <div class="corn-expandable--content">details</div>
       </details>
@@ -136,7 +142,9 @@ Add `name="corn-single"` to each `<details>` for mutual exclusivity, same as nat
       <details slot="details" name="corn-single">
         <summary class="corn-expandable-button">
           Summary 2
-          <ChevronRight class="corn-icon" />
+          <svg class="corn-icon" aria-hidden="true">
+            <use href={`${bootstrapIconsSprite}#chevron-right`}></use>
+          </svg>
         </summary>
         <div class="corn-expandable--content">details 2</div>
       </details>
@@ -145,7 +153,9 @@ Add `name="corn-single"` to each `<details>` for mutual exclusivity, same as nat
       <details slot="details" name="corn-single">
         <summary class="corn-expandable-button">
           Summary 3
-          <ChevronRight class="corn-icon" />
+          <svg class="corn-icon" aria-hidden="true">
+            <use href={`${bootstrapIconsSprite}#chevron-right`}></use>
+          </svg>
         </summary>
         <div class="corn-expandable--content">details</div>
       </details>
@@ -160,11 +170,11 @@ Supports recursion. Add `corn-tree-view` class for styling.
 
   <corn-expandable class="corn-expandable corn-tree-view">
     <details slot="details">
-      <summary class="corn-expandable-button"><ChevronRight class="corn-icon" />Summary</summary>
+      <summary class="corn-expandable-button"><svg class="corn-icon" aria-hidden="true"><use href={`${bootstrapIconsSprite}#chevron-right`}></use></svg>Summary</summary>
       <div class="corn-expandable--content">
         <corn-expandable class="corn-expandable corn-tree-view">
           <details slot="details">
-            <summary class="corn-expandable-button"><ChevronRight class="corn-icon" />Summary 2</summary>
+            <summary class="corn-expandable-button"><svg class="corn-icon" aria-hidden="true"><use href={`${bootstrapIconsSprite}#chevron-right`}></use></svg>Summary 2</summary>
             <div class="corn-expandable--content">More details</div>
           </details>
         </corn-expandable>
@@ -177,14 +187,18 @@ Supports recursion. Add `corn-tree-view` class for styling.
   <corn-expandable class="corn-expandable corn-tree-view">
     <details slot="details">
       <summary class="corn-expandable-button">
-        <ChevronRight class="corn-icon" />
+        <svg class="corn-icon" aria-hidden="true">
+          <use href="[url-for-chevron-right]"></use>
+        </svg>
         Summary
       </summary>
       <div class="corn-expandable--content">
         <corn-expandable class="corn-expandable corn-tree-view">
           <details slot="details">
             <summary class="corn-expandable-button">
-              <ChevronRight class="corn-icon" />
+              <svg class="corn-icon" aria-hidden="true">
+                <use href={`${bootstrapIconsSprite}#chevron-right`}></use>
+              </svg>
               Summary 2
             </summary>
             <div class="corn-expandable--content">More details</div>

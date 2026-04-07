@@ -12,14 +12,14 @@ const base = import.meta.env.BASE_URL;
   </div>
   <nav class="corn-header--nav">
     <corn-button-bar class="corn-button-bar">
-      <a href={base} class="corn-link">Overview</a>
-      <a href={`${base}getting-started/`} class="corn-link">Getting Started</a>
-      <a href={`${base}tokens/`} class="corn-link">Tokens</a>
-      <a href={`${base}components/`} class="corn-link">Components</a>
-      <a href={`${base}testing/`} class="corn-link">Testing</a>
-      <a href={`${base}about/`} class="corn-link">About</a>
+      <a href={base} class="corn-button corn-button--sm">Overview</a>
+      <a href={`${base}getting-started/`} class="corn-button corn-button--sm">Getting Started</a>
+      <a href={`${base}tokens/`} class="corn-button corn-button--sm">Tokens</a>
+      <a href={`${base}components/`} class="corn-button corn-button--sm">Components</a>
+      <a href={`${base}testing/`} class="corn-button corn-button--sm">Testing</a>
+      <a href={`${base}about/`} class="corn-button corn-button--sm">About</a>
       <div class="corn-popover--anchor corn-button-bar--more">
-        <button class="corn-button corn-button--xs corn-pop" aria-controls="button-bar-popover">
+        <button class="corn-button corn-button--sm corn-pop" aria-controls="button-bar-popover">
           More
         </button>
         <corn-popover

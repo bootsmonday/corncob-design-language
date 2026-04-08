@@ -27,6 +27,32 @@ hr {
   width: 1px;
 }
 
+
+h1 {
+  margin-bottom: var(--cc-spacing-2);
+}
+
+h2 {
+  margin-bottom: var(--cc-spacing-1);
+}
+
+h3 {
+  margin-bottom: var(--cc-spacing-0);
+}
+
+h4 {
+  margin-bottom: var(--cc-spacing--1);
+}
+
+h5 {
+  margin-bottom: var(--cc-spacing--1);
+}
+
+h6 {
+  margin-bottom: var(--cc-spacing--1);
+}
+
+
 /* Accessibility */
 @media (prefers-reduced-motion: reduce) {
   * {

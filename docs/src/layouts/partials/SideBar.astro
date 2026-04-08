@@ -65,6 +65,11 @@ const isTestingSection = pathname.includes('/testing') ? true : null;
             class="corn-panel-menu--item"
             aria-current={isActive(`${base}tokens/sizes`) ? 'page' : false}>Sizes</a
           >
+          <a
+            href={`${base}tokens/status`}
+            class="corn-panel-menu--item"
+            aria-current={isActive(`${base}tokens/status`) ? 'page' : false}>Status</a
+          >
           <!-- <a
             href={`${base}tokens/spacing`}
             class="corn-panel-menu--item"
@@ -118,6 +123,11 @@ const isTestingSection = pathname.includes('/testing') ? true : null;
             href={`${base}components/links`}
             class="corn-panel-menu--item"
             aria-current={isActive(`${base}components/links`) ? 'page' : false}>Links</a
+          >
+          <a
+            href={`${base}components/messages`}
+            class="corn-panel-menu--item"
+            aria-current={isActive(`${base}components/messages`) ? 'page' : false}>Messages</a
           >
           <a
             href={`${base}components/panel-menus`}

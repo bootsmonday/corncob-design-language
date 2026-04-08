@@ -4,6 +4,8 @@ title: Tokens | Typography | Corncob
 ---
 
 import CodeSample from '../../layouts/partials/CodeSample.astro';
+import { Code } from 'astro/components';
+import typographyTokens from '../../../../src/tokens/typography.css?raw';
 
 ## Typography Tokens
 
@@ -11,17 +13,6 @@ Basic typography tokens for font families, sizes, weights, and line heights. The
 
 Nothing fancy here, just a simple system font stack for the body and a monospaced font stack for code. We don't have strong opinions on which fonts you should use in your projects, [IBM Plex](https://www.ibm.com/plex/) is a popular open source font that pairs well with the system stack and has a lot of weights and styles, [Roboto](https://fonts.adobe.com/fonts/roboto) is another popular choice, and [Inter](https://rsms.me/inter/) is a newer font that has gained a lot of popularity in the design community. We recommend choosing fonts that fit the tone and style of your project, and that have good readability and accessibility.
 
-<CodeSample id="typography-tokens">
-
-```css
-:root {
-  /* Font Family */
-  --cc-font-family:
-    system-ui, -apple-system, 'Segoe UI', roboto, 'Helvetica Neue', arial, 'Noto Sans',
-    'Liberation Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
-    'Noto Color Emoji';
-  --cc-font-family-mono: 'SFMono-Regular', consolas, 'Liberation Mono', menlo, courier, monospace;
-}
-```
-
+<CodeSample id="typography-tokens-code">
+  <Code code={typographyTokens} lang="css" />
 </CodeSample>

@@ -40,7 +40,7 @@
   --cc-form--widget--background--selected: var(--cc-form--item--color-background--selected);
   --cc-form--widget--background--selected--hover: var(
     --cc-form--item--color-background--selected--hover
-  ) !important;
+  );
   --cc-form--item--background--disabled: rgb(from var(--cc-gray-80) r g b / 5.4%) !important;
   --cc-form--item--border-color--disabled: rgb(from var(--cc-gray-80) r g b / 40.2%) !important;
   --cc-form--item--color--disabled: rgb(from var(--cc-gray-80) r g b / 40.2%) !important;

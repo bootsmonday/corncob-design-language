@@ -3,13 +3,13 @@
   --cc-size-ratio: 1.25;
 
   /* 6.554px */
-  --cc-size--4: calc(var(--cc-size-3) / var(--cc-size-ratio));
+  --cc-size--4: calc(var(--cc-size--3) / var(--cc-size-ratio));
 
   /* 8.192px */
-  --cc-size--3: calc(var(--cc-size-2) / var(--cc-size-ratio));
+  --cc-size--3: calc(var(--cc-size--2) / var(--cc-size-ratio));
 
   /* 10.24px */
-  --cc-size--2: calc(var(--cc-size-1) / var(--cc-size-ratio));
+  --cc-size--2: calc(var(--cc-size--1) / var(--cc-size-ratio));
 
   /* 12.8px */
   --cc-size--1: calc(var(--cc-size-0) / var(--cc-size-ratio));

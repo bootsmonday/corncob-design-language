@@ -8,8 +8,9 @@ import './tokens/spacing.css';
 import './tokens/shadows.css';
 import './tokens/sizes.css';
 import './tokens/borders.css';
-import './tokens/animation.css';
-import './tokens/form.css';
+import './tokens/animations.css';
+import './tokens/forms.css';
+import './tokens/status.css';
 
 // Import Components - CSS
 import './components/panels/panel.css';
@@ -17,6 +18,7 @@ import './components/links/link.css';
 import './components/buttons/button.css';
 import './components/text-inputs/text-input.css';
 import './components/tooltips/tooltip.css';
+import './components/messages/message.css';
 import './components/popovers/popover.css';
 import './components/checkboxes/checkbox.css';
 import './components/radio-buttons/radio-button.css';

@@ -40,15 +40,15 @@ if (document.getElementById('ltr')) {
 }
 function getStatusIcon(state) {
   const iconStates = {
-    warning: 'warning',
-    error: 'error',
-    success: 'checkmark--outline',
+    warning: 'exclamation',
+    error: 'x',
+    success: 'check',
   };
   const iconState = iconStates[state];
   if (iconState) {
     return `
         <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="corn-icon">
-        <use href="/node_modules/@carbon/icons/svg/32/${iconState}.svg"></use>
+        <use href="/node_modules/bootstrap-icons/bootstrap-icons.svg#${iconState}"></use>
       </svg>
   `;
   } else {

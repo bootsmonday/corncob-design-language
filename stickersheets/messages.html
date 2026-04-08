@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Panels</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./src/stickersheet.css" />
+    <style>
+      body {
+        display: none;
+      }
+    </style>
+    <script type="module" blocking="render">
+      // Import all components
+      import '/src/index.js';
+      document.body.style.display = 'block';
+    </script>
+  </head>
+
+  <body>
+    <include src="./src/stickersheet-header.html"></include>
+    <main>
+      <h1>Component Examples</h1>
+      <div class="stickersheet" id="test-stickersheet">
+        <include
+          src="../src/components/messages/stickersheet.html"
+          locals='{"title": "Welcome Home", "theme": "dark"}'
+        >
+        </include>
+      </div>
+    </main>
+  </body>
+</html>

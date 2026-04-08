@@ -6,32 +6,34 @@
 
   /* Font Sizes */
 
-  --font-size-xs: var(--cc-size--2);
-  --font-size-base: var(--cc-size-0);
-  --font-size-xl: var(--cc-size-2);
-  --font-size-2xl: var(--cc-size-3);
-  --font-size-3xl: var(--cc-size-4);
-  --font-size-4xl: var(--cc-size-5);
-  --font-weight-thin: 100;
-  --font-weight-light: 300;
-  --font-weight-normal: 400;
-  --font-weight-medium: 500;
-  --font-weight-semibold: 600;
-  --font-weight-bold: 700;
-  --font-weight-extrabold: 800;
+  --cc-font-size--xs: var(--cc-size--2);
+  --cc-font-size--sm: var(--cc-size--1);
+  --cc-font-size--base: var(--cc-size-0);
+  --cc-font-size--lg: var(--cc-size-1);
+  --cc-font-size--xl: var(--cc-size-2);
+  --cc-font-size--2xl: var(--cc-size-3);
+  --cc-font-size--3xl: var(--cc-size-4);
+  --cc-font-size--4xl: var(--cc-size-5);
+  --cc-font-weight--thin: 100;
+  --cc-font-weight--light: 300;
+  --cc-font-weight--normal: 400;
+  --cc-font-weight--medium: 500;
+  --cc-font-weight--semibold: 600;
+  --cc-font-weight--bold: 700;
+  --cc-font-weight--extrabold: 800;
 
   /* Line Heights */
-  --line-height-tight: 1.2;
-  --line-height-normal: 1.5;
-  --line-height-relaxed: 1.75;
-  --line-height-loose: 2;
+  --cc-line-height--tight: 1.2;
+  --cc-line-height--normal: 1.5;
+  --cc-line-height--relaxed: 1.75;
+  --cc-line-height--loose: 2;
 
   /* Letter Spacing */
-  --letter-spacing-tighter: -0.05rem;
-  --letter-spacing-tight: -0.025rem;
-  --letter-spacing-normal: 0rem;
-  --letter-spacing-wide: 0.025rem;
-  --letter-spacing-wider: 0.05rem;
+  --cc-letter-spacing--tighter: -0.05rem;
+  --cc-letter-spacing--tight: -0.025rem;
+  --cc-letter-spacing--normal: 0rem;
+  --cc-letter-spacing--wide: 0.025rem;
+  --cc-letter-spacing--wider: 0.05rem;
 }
 
 h1 {

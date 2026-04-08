@@ -10,7 +10,7 @@ Built for fast development of enterprise applications and websites. Perfect for 
 - **Mobile-first** and fully responsive
 - **AI-Friendly** — Designed from the ground up for reliable code generation by LLMs
 
-**[Live Component Gallery](https://bootsmonday.github.io/corncob-design-language)** (deploy via GitHub Pages or your preferred host)
+**[Corncob Component Documentation](https://bootsmonday.github.io/corncob-design-language)**
 
 ## Why Corncob?
 

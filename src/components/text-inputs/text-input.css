@@ -171,48 +171,69 @@
 
 .corn-status--warning {
   .corn-text-input {
-    border-color: var(--cc-yellow-80);
-    box-shadow: inset 10px 0 0 -2px var(--cc-yellow-40);
-    color: var(--cc-yellow-0);
+    border-color: var(--cc-status--warning--border-color);
+    box-shadow: var(--cc-status--warning--box-shadow);
+    color: var(--cc-status--warning--color);
 
     &:hover {
-      background-color: rgb(from var(--cc-yellow-10) r g b / 87.2%);
+      background-color: rgb(from var(--cc-status--warning--background) r g b / 87.2%);
     }
 
     label {
-      color: var(--cc-yellow-60);
+      color: var(--cc-status--warning--color);
+    }
+  }
+
+  .corn-status {
+    .corn-icon {
+      border: 1px solid var(--cc-status--warning--color);
+      border-radius: 50%;
     }
   }
 }
 
 .corn-status--error {
   .corn-text-input {
-    border-color: var(--cc-red-80);
-    box-shadow: inset 10px 0 0 -2px var(--cc-red-60);
-    color: var(--cc-red-100);
+    border-color: var(--cc-status--error--border-color);
+    box-shadow: var(--cc-status--error--box-shadow);
+    color: var(--cc-status--error--color);
 
     &:hover {
-      background-color: rgb(from var(--cc-red-10) r g b / 87.2%);
+      background-color: rgb(from var(--cc-status--error--background) r g b / 87.2%);
     }
 
     label {
-      color: var(--cc-red-60);
+      color: var(--cc-status--error--color);
+    }
+  }
+
+  .corn-status {
+    .corn-icon {
+      border: 1px solid var(--cc-status--error--color);
+      border-radius: 50%;
     }
   }
 }
 
 .corn-status--success {
   .corn-text-input {
-    border-color: var(--cc-green-80);
-    box-shadow: inset 10px 0 0 -2px var(--cc-green-60);
-    color: var(--cc-green-100);
+    border-color: var(--cc-status--success--border-color);
+    box-shadow: var(--cc-status--success--box-shadow);
+    color: var(--cc-status--success--color);
 
     &:hover {
-      background-color: rgb(from var(--cc-green-10) r g b / 87.2%);
+      background-color: rgb(from var(--cc-status--success--background) r g b / 87.2%);
     }
 
     label {
-      color: var(--cc-green-60);
+      color: var(--cc-status--success--color);
+    }
+  }
+
+  .corn-status {
+    .corn-icon {
+      border: 1px solid var(--cc-status--success--color);
+      border-radius: 50%;
     }
   }
 }

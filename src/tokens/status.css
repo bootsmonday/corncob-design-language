@@ -1,0 +1,20 @@
+
+:root {
+  --cc-status--success--background: var(--cc-green-10);
+  --cc-status--success--box-shadow: inset 10px 0 0 -2px var(--cc-green-40);
+  --cc-status--success--color: var(--cc-green-60);
+  --cc-status--success--border-color: var(--cc-green-40);
+  --cc-status--error--background: var(--cc-red-10);
+  --cc-status--error--box-shadow: inset 10px 0 0 -2px var(--cc-red-40);
+  --cc-status--error--color: var(--cc-red-60);
+  --cc-status--error--border-color: var(--cc-red-40);
+  --cc-status--warning--background: var(--cc-yellow-10);
+  --cc-status--warning--box-shadow: inset 10px 0 0 -2px var(--cc-yellow-40);
+  --cc-status--warning--color: var(--cc-yellow-60);
+  --cc-status--warning--border-color: var(--cc-yellow-40);
+  --cc-status--info--background: var(--cc-blue-10);
+  --cc-status--info--box-shadow: inset 10px 0 0 -2px var(--cc-blue-40);
+  --cc-status--info--color: var(--cc-blue-60);
+  --cc-status--info--border-color: var(--cc-blue-40); 
+}
+

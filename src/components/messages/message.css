@@ -1,0 +1,130 @@
+@import './message-tokens.css';
+
+.corn-message {
+  background: var(--cc-message--background);
+  border-color: var(--cc-message--border--color);
+  border-radius: var(--cc-message--border--radius);
+  border-style: var(--cc-message--border--style);
+  border-width: var(--cc-message--border--width);
+  box-shadow: var(--cc-message--shadow);
+  display: flex;
+  gap: var(--cc-size-0);
+  padding: var(--cc-message--padding);
+
+  &:has(.corn-message--title:only-child) {
+    align-items: center;
+    padding: var(--cc-message--padding--sm);
+
+    .corn-message--title {
+      font-weight: var(--cc-font-weight--medium);
+    }
+
+    .corn-message--status {
+      height: var(--cc-size-3);
+      width: var(--cc-size-3);
+
+      .corn-icon {
+        height: var(--cc-size-1);
+        width: var(--cc-size-1);
+      }
+
+    }
+  }
+
+  &.corn-message--success {
+    background: var(--cc-message--success--background);
+    border-color: var(--cc-message--success--border--color);
+    
+    .corn-message--status {
+      border-color: var(--cc-message--success--border--color);
+      color: var(--cc-message--success--color);
+    }
+
+    .corn-message--title {
+      color: var(--cc-message--success--color);
+    }
+  }
+
+  &.corn-message--warning {
+    background: var(--cc-message--warning--background);
+    border-color: var(--cc-message--warning--border--color);
+    
+    .corn-message--status{
+      border-color: var(--cc-message--warning--border--color);
+      color: var(--cc-message--warning--color);
+    }
+
+    .corn-message--title {
+      color: var(--cc-message--warning--color);
+    }
+  }
+
+  &.corn-message--error {
+    background: var(--cc-message--error--background);
+    border-color: var(--cc-message--error--border--color);
+    
+    .corn-message--status{
+      border-color: var(--cc-message--error--border--color);
+      color: var(--cc-message--error--color);
+    }
+
+    .corn-message--title {
+      color: var(--cc-message--error--color);
+    }
+  }
+
+  &.corn-message--info {
+    background: var(--cc-message--info--background);
+    border-color: var(--cc-message--info--border--color);
+    
+    .corn-message--status{
+      border-color: var(--cc-message--info--border--color);
+      color: var(--cc-message--info--color);
+    }
+
+    .corn-message--title {
+      color: var(--cc-message--info--color);
+    }
+  }
+}
+
+.corn-message--status {
+  align-items: center;
+  border-color: var(--cc-message--status--border--color);
+  border-radius: var(--cc-message--status--border--radius);
+  border-style: var(--cc-message--status--border--style);
+  border-width: var(--cc-message--status--border--width);
+  color: var(--cc-message--status--color);
+  display: inline-flex;
+  flex: 0 0 auto;
+  height: var(--cc-size-5);
+  justify-content: center;
+  width: var(--cc-size-5);
+
+  .corn-icon {
+    color: currentcolor;
+    fill: currentcolor;
+    height: var(--cc-size-3);
+    width: var(--cc-size-3);
+  }
+}
+
+.corn-message--title {
+  color: var(--cc-message--title--color);
+  font-size: var(--cc-font-size--lg);
+  font-weight: var(--cc-font-weight--semibold);
+  margin-bottom: var(--cc-size--4);
+  margin-top: 0;
+
+  &:only-child{
+    margin: 0;
+  }
+}
+
+.corn-message--content {
+  flex: 1 1 auto;
+
+  p {
+    margin: 0;
+  }
+}

@@ -47,7 +47,7 @@ function getStatusIcon(state) {
   const iconState = iconStates[state];
   if (iconState) {
     return `
-        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="corn-icon">
+        <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" class="corn-icon">
         <use href="/node_modules/bootstrap-icons/bootstrap-icons.svg#${iconState}"></use>
       </svg>
   `;

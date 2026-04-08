@@ -1,12 +1,12 @@
 // Update this if your dev server runs on a different port
 const baseurl = process.env.VISUAL_TEST_BASE_URL || "http://127.0.0.1:5173";
-const url = `${baseurl}/stickersheets/panels.html`;
+const url = `${baseurl}/stickersheets/messages.html`;
 const defaultSelectors = '#test-stickersheet';
 
 
 const tests =  [
   {
-    "label": "Panels Visual Test",
+    "label": "Messages Visual Test",
     "cookiePath": "",
     "url": url,
     "referenceUrl": "",

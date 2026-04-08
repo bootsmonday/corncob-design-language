@@ -1,0 +1,248 @@
+---
+layout: ../../layouts/DocsLayout.astro
+title: 'Component | Messages | Corncob'
+---
+
+import CodeSample from '../../layouts/partials/CodeSample.astro';
+import { Code } from 'astro/components';
+import messageTokens from '../../../../src/components/messages/message-tokens.css?raw';
+import bootstrapIconsSprite from 'bootstrap-icons/bootstrap-icons.svg?url';
+
+## Messages
+
+Messages are used to display important information to the user, such as informational, success, error, or warning messages.
+
+In the examples below, you should make sure the headings within the message are appropriately nested within the page's heading structure.
+
+### Page Level Messages
+
+Page level messages are used to display important information about the page. They are typically displayed at the top of the page or section and can be used to provide feedback to the user about their actions, such as form submissions or system notifications.
+
+#### Informational Message
+
+<div class="corn-message corn-message--info">
+  <div class="corn-message--status">
+    <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon" aria-hidden="true">
+      <use href={`${bootstrapIconsSprite}#info-lg`}></use>
+    </svg>
+  </div>
+  <div class="corn-message--content">
+    <h5 class="corn-message--title">Info Message</h5>
+    <p>This is an info message. It provides additional information or context about a situation.</p>
+  </div>
+</div>
+
+<CodeSample id="page-info-message-code">
+  ```html
+  <div class="corn-message corn-message--info">
+    <div class="corn-message--status">
+      <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon" aria-hidden="true"><use href="[information icon]"></use></svg>
+    </div>
+    <div class="corn-message--content">
+      <h5 class="corn-message--title">Info Message</h5>
+      <p>This is an info message. It provides additional information or context about a situation.</p>
+    </div>
+  </div>
+  ```
+</CodeSample>
+
+#### Success Message
+
+<div class="corn-message corn-message--success">
+  <div class="corn-message--status">
+    <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon" aria-hidden="true">
+      <use href={`${bootstrapIconsSprite}#check-lg`}></use>
+    </svg>
+  </div>
+  <div class="corn-message--content">
+    <h5 class="corn-message--title">Success Message</h5>
+    <p>This is a success message. It indicates that an action was completed successfully.</p>
+  </div>
+</div>
+
+<CodeSample id="page-success-message-code">
+  ```html
+  <div class="corn-message corn-message--success">
+    <div class="corn-message--status">
+      <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon" aria-hidden="true"><use href="[success icon]"></use></svg>
+    </div>
+    <div class="corn-message--content">
+      <h5 class="corn-message--title">Success Message</h5>
+      <p>This is a success message. It indicates that an action was completed successfully.</p>
+    </div>
+  </div>
+  ```
+</CodeSample>
+
+#### Warning Message
+
+<div class="corn-message corn-message--warning">
+  <div class="corn-message--status">
+    <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon" aria-hidden="true">
+      <use href={`${bootstrapIconsSprite}#exclamation-triangle`}></use>
+    </svg>
+  </div>
+  <div class="corn-message--content">
+    <h5 class="corn-message--title">Warning Message</h5>
+    <p>This is a warning message. It indicates that there is a potential issue that the user should be aware of.</p>
+  </div>
+</div>
+
+<CodeSample id="page-warning-message-code">
+  ```html
+<div class="corn-message corn-message--warning">
+  <div class="corn-message--status">
+    <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon" aria-hidden="true"><use href="[warning icon]"></use></svg>
+  </div>
+  <div class="corn-message--content">
+    <h5 class="corn-message--title">Warning Message</h5>
+    <p>This is a warning message. It indicates that there is a potential issue that the user should be aware of.</p>
+  </div>
+</div>
+  ```
+</CodeSample>
+
+#### Error Message
+<div class="corn-message corn-message--error">
+  <div class="corn-message--status">
+    <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon" aria-hidden="true">
+      <use href={`${bootstrapIconsSprite}#x-lg`}></use>
+    </svg>
+  </div>
+  <div class="corn-message--content">
+    <h5 class="corn-message--title">Error Message</h5>
+    <p>This is an error message. It indicates that an action was not completed successfully and there is an issue that needs to be addressed.</p>
+  </div>
+</div>
+
+<CodeSample id="page-error-message-code">
+  ```html
+  <div class="corn-message corn-message--error">
+    <div class="corn-message--status">
+      <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon" aria-hidden="true"><use href="[error icon]"></use></svg>
+    </div>
+    <div class="corn-message--content">
+      <h5 class="corn-message--title">Error Message</h5>
+      <p>This is an error message. It indicates that an action was not completed successfully and there is an issue that needs to be addressed.</p>
+    </div>
+  </div>
+  ```
+</CodeSample>
+
+### Header-Only Messages
+
+Header-only messages are used to display short messages that do not require additional context or information. They are typically used for simple notifications or alerts.
+
+#### Informational Message
+<div class="corn-message corn-message--info">
+  <div class="corn-message--status">
+    <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon" aria-hidden="true">
+      <use href={`${bootstrapIconsSprite}#info-lg`}></use>
+    </svg>
+  </div>
+  <div class="corn-message--content">
+    <p class="corn-message--title">This is an info message.</p>
+  </div>
+</div>
+
+<CodeSample id="header-only-info-message-code">
+  ```html
+  <div class="corn-message corn-message--info">
+    <div class="corn-message--status">
+      <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon" aria-hidden="true"><use href="[information icon]"></use></svg>
+    </div>
+    <div class="corn-message--content">
+      <p class="corn-message--title">This is an info message.</p>
+    </div>
+  </div>
+  ```
+</CodeSample>
+
+#### Success Message
+
+<div class="corn-message corn-message--success">
+  <div class="corn-message--status">
+    <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon" aria-hidden="true">
+      <use href={`${bootstrapIconsSprite}#check-lg`}></use>
+    </svg>
+  </div>
+  <div class="corn-message--content">
+    <p class="corn-message--title">This is a success message.</p>
+  </div>
+</div>
+
+<CodeSample id="header-only-success-message-code">
+  ```html
+  <div class="corn-message corn-message--success">
+    <div class="corn-message--status">
+      <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon" aria-hidden="true"><use href="[success icon]"></use></svg>
+    </div>
+    <div class="corn-message--content">
+      <p class="corn-message--title">This is a success message.</p>
+    </div>
+  </div>
+  ```
+</CodeSample>
+
+#### Warning Message
+
+<div class="corn-message corn-message--warning">
+  <div class="corn-message--status">
+    <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon" aria-hidden="true">
+      <use href={`${bootstrapIconsSprite}#exclamation-triangle`}></use>
+    </svg>
+  </div>
+  <div class="corn-message--content">
+    <p class="corn-message--title">This is a warning message.</p>
+  </div>
+</div>
+
+<CodeSample id="header-only-warning-message-code">
+  ```html
+  <div class="corn-message corn-message--warning">
+    <div class="corn-message--status">
+      <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon" aria-hidden="true"><use href="[warning icon]"></use></svg>
+    </div>
+    <div class="corn-message--content">
+      <p class="corn-message--title">This is a warning message.</p>
+    </div>
+  </div>
+  ```
+</CodeSample>
+
+#### Error Message
+
+<div class="corn-message corn-message--error">
+  <div class="corn-message--status">
+    <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon" aria-hidden="true">
+      <use href={`${bootstrapIconsSprite}#x-lg`}></use>
+    </svg>
+  </div>
+  <div class="corn-message--content">
+    <p class="corn-message--title">This is an error message.</p>
+  </div>
+</div>
+
+<CodeSample id="header-only-error-message-code">
+  ```html
+  <div class="corn-message corn-message--error">
+    <div class="corn-message--status">
+      <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon" aria-hidden="true"><use href="[error icon]"></use></svg>
+    </div>
+    <div class="corn-message--content">
+      <p class="corn-message--title">This is an error message.</p>
+    </div>
+  </div>
+  ```
+</CodeSample>
+
+
+
+
+
+
+
+## Message Tokens
+<CodeSample id="message-tokens-code">
+  <Code code={messageTokens} lang="css" />
+</CodeSample>

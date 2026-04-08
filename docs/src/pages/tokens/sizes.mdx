@@ -4,6 +4,8 @@ title: Tokens | Sizes | Corncob
 ---
 
 import CodeSample from '../../layouts/partials/CodeSample.astro';
+import { Code } from 'astro/components';
+import sizesTokens from '../../../../src/tokens/sizes.css?raw';
 
 ## Size Tokens
 
@@ -13,50 +15,6 @@ These sizes are based on a modular scale with a major third ratio (1.25). This m
 
 See [Modular Scale](https://www.modularscale.com/) for more information on modular scales and how to use them in your designs.
 
-<CodeSample id="size-tokens">
-
-```css
-:root {
-  /* Modular Scale Major 3rd */
-  --cc-size-ratio: 1.25;
-
-  /* 6.554px */
-  --cc-size--4: calc(var(--cc-size-3) / var(--cc-size-ratio));
-
-  /* 8.192px */
-  --cc-size--3: calc(var(--cc-size-2) / var(--cc-size-ratio));
-
-  /* 10.24px */
-  --cc-size--2: calc(var(--cc-size-1) / var(--cc-size-ratio));
-
-  /* 12.8px */
-  --cc-size--1: calc(var(--cc-size-0) / var(--cc-size-ratio));
-
-  /* Default 16px */
-
-  --cc-size-0: 1rem;
-
-  /* 20px */
-  --cc-size-1: calc(var(--cc-size-0) * var(--cc-size-ratio));
-
-  /* 25px */
-  --cc-size-2: calc(var(--cc-size-1) * var(--cc-size-ratio));
-
-  /* 31.25 px */
-  --cc-size-3: calc(var(--cc-size-2) * var(--cc-size-ratio));
-
-  /* 39.063px */
-  --cc-size-4: calc(var(--cc-size-3) * var(--cc-size-ratio));
-
-  /* 48.82px */
-  --cc-size-5: calc(var(--cc-size-4) * var(--cc-size-ratio));
-
-  /* 61.035px */
-  --cc-size-6: calc(var(--cc-size-5) * var(--cc-size-ratio));
-
-  /* 72.289px */
-  --cc-size-7: calc(var(--cc-size-6) * var(--cc-size-ratio));
-}
-```
-
+<CodeSample id="sizes-tokens-code">
+  <Code code={sizesTokens} lang="css" />
 </CodeSample>

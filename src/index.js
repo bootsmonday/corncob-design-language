@@ -8,8 +8,8 @@ import './tokens/spacing.css';
 import './tokens/shadows.css';
 import './tokens/sizes.css';
 import './tokens/borders.css';
-import './tokens/animation.css';
-import './tokens/form.css';
+import './tokens/animations.css';
+import './tokens/forms.css';
 import './tokens/status.css';
 
 // Import Components - CSS

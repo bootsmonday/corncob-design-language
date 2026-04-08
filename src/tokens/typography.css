@@ -1,11 +1,10 @@
 /* Typography Tokens */
 :root {
   /* Font Family */
-    --cc-font-family: system-ui, -apple-system, "Segoe UI", roboto, "Helvetica Neue", arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    --cc-font-family-mono: "SFMono-Regular", consolas, "Liberation Mono", menlo, courier, monospace;
+  --cc-font-family: system-ui, -apple-system, "Segoe UI", roboto, "Helvetica Neue", arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --cc-font-family-mono: "SFMono-Regular", consolas, "Liberation Mono", menlo, courier, monospace;
 
   /* Font Sizes */
-
   --cc-font-size--xs: var(--cc-size--2);
   --cc-font-size--sm: var(--cc-size--1);
   --cc-font-size--base: var(--cc-size-0);
@@ -34,28 +33,4 @@
   --cc-letter-spacing--normal: 0rem;
   --cc-letter-spacing--wide: 0.025rem;
   --cc-letter-spacing--wider: 0.05rem;
-}
-
-h1 {
-  margin-bottom: var(--cc-spacing-2);
-}
-
-h2 {
-  margin-bottom: var(--cc-spacing-1);
-}
-
-h3 {
-  margin-bottom: var(--cc-spacing-0);
-}
-
-h4 {
-  margin-bottom: var(--cc-spacing--1);
-}
-
-h5 {
-  margin-bottom: var(--cc-spacing--1);
-}
-
-h6 {
-  margin-bottom: var(--cc-spacing--1);
 }

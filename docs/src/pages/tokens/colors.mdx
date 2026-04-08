@@ -4,6 +4,9 @@ title: Tokens | Colors | Corncob
 
 import DocsLayout from '../../layouts/DocsLayout.astro'; 
 import CodeSample from '../../layouts/partials/CodeSample.astro';
+import { Code } from 'astro/components';
+import colorTokens from '../../../../src/tokens/colors.css?raw';
+
 
 export const dynamicHeadings = [
 {
@@ -390,87 +393,7 @@ In any design system or application, it's important to have a solid foundation o
   </div>
 </div>
 
-<CodeSample id="color-tokens-css">
-
-```css
-:root {
-  --cc-white: #fff;
-  --cc-black: #000;
-
-  /* Yellow */
-  --cc-yellow-10: #faf6ed;
-  --cc-yellow-20: #efe2bb;
-  --cc-yellow-30: #dfcb87;
-  --cc-yellow-40: #c9b03e;
-  --cc-yellow-50: #a58d00;
-  --cc-yellow-60: #837000;
-  --cc-yellow-70: #665600;
-  --cc-yellow-80: #4e4200;
-  --cc-yellow-90: #393000;
-  --cc-yellow-100: #282100;
-
-  /* Blue */
-  --cc-blue-10: #d4fffa;
-  --cc-blue-20: #abefe8;
-  --cc-blue-30: #5be0d5;
-  --cc-blue-40: #00c5ba;
-  --cc-blue-50: #009f96;
-  --cc-blue-60: #007f77;
-  --cc-blue-70: #00625c;
-  --cc-blue-80: #004b46;
-  --cc-blue-90: #103633;
-  --cc-blue-100: #002724;
-
-  /* Orange */
-  --cc-orange-10: #fef4f3;
-  --cc-orange-20: #fbdcd5;
-  --cc-orange-30: #f4c0b4;
-  --cc-orange-40: #e99e8b;
-  --cc-orange-50: #d47453;
-  --cc-orange-60: #b55429;
-  --cc-orange-70: #8e401e;
-  --cc-orange-80: #6d3015;
-  --cc-orange-90: #52220d;
-  --cc-orange-100: #3b1707;
-
-  /* Red */
-  --cc-red-10: #fcf5f5;
-  --cc-red-20: #f5dddd;
-  --cc-red-30: #eec2c1;
-  --cc-red-40: #e69e9c;
-  --cc-red-50: #df6a66;
-  --cc-red-60: #c04944;
-  --cc-red-70: #963733;
-  --cc-red-80: #742926;
-  --cc-red-90: #571d1a;
-  --cc-red-100: #3f1311;
-
-  /* Green */
-  --cc-green-10: #ecfbe8;
-  --cc-green-20: #b9f2a5;
-  --cc-green-30: #a6da93;
-  --cc-green-40: #90bd7f;
-  --cc-green-50: #739866;
-  --cc-green-60: #5b7950;
-  --cc-green-70: #465d3d;
-  --cc-green-80: #34472d;
-  --cc-green-90: #263420;
-  --cc-green-100: #192515;
-
-  /* Gray */
-  --cc-gray-10: #f7f6f3;
-  --cc-gray-20: #e7e2d7;
-  --cc-gray-30: #d1ccbe;
-  --cc-gray-40: #b5b0a4;
-  --cc-gray-50: #928e84;
-  --cc-gray-60: #747169;
-  --cc-gray-70: #595751;
-  --cc-gray-80: #44423d;
-  --cc-gray-90: #32302c;
-  --cc-gray-100: #23211f;
-}
-```
-
+<CodeSample id="color-tokens-code">
+  <Code code={colorTokens} lang="css" />
 </CodeSample>
-
 </DocsLayout>

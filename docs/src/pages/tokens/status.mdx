@@ -1,0 +1,16 @@
+---
+layout: ../../layouts/DocsLayout.astro
+title: Tokens | Status | Corncob
+---
+
+import CodeSample from '../../layouts/partials/CodeSample.astro';
+import { Code } from 'astro/components';
+import statusTokens from '../../../../src/tokens/status.css?raw';
+
+## Status Tokens
+
+Basic status tokens for colors and icons. These can be used in components or directly in your own styles. These are the foundation for status indicators in Corncob, but we recommend using them as a starting point and building on top of them with your own custom tokens as needed.
+
+<CodeSample id="status-tokens-code">
+  <Code code={statusTokens} lang="css" />
+</CodeSample>

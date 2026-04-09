@@ -94,3 +94,8 @@ p{
   height: 15rem;
   width: 15rem;
 }
+
+.docs-corncob-logo {
+  border: 1px solid var(--cc-border--color);
+  border-radius: var(--cc-border--radius--round);
+}

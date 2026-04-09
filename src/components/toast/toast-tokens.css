@@ -1,0 +1,9 @@
+:root {
+  --cc-toast--background: var(--cc-black);
+  --cc-toast--color: var(--cc-white);
+  --cc-toast--font-size: var(--cc-size--1);
+  --cc-toast--padding: 0.25rem 0.5rem;
+  --cc-toast--border-radius: var(--cc-border--radius);
+  --cc-toast--box-shadow: var(--cc-shadow--drop);
+  --cc-toast--transition: opacity var(--cc-transition--easing) var(--cc-transition--time);
+}

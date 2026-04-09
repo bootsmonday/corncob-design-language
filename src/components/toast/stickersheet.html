@@ -1,0 +1,17 @@
+<!-- Toast Component Demo -->
+<div class="toast-demo">
+  <h2>Corn Toast</h2>
+
+  <h3>Default</h3>
+
+  <corn-toast class="corn-toast">
+    <dialog open aria-live="polite" open slot="dialog">
+      This is a default toast. It provides brief feedback about an action or process.
+    </dialog>
+  </corn-toast>
+
+  <button class="corn-button corn-toast--anchor">
+    Default (Top)
+    <corn-toast position="top" class="corn-toast">Default toast</corn-toast>
+  </button>
+</div>

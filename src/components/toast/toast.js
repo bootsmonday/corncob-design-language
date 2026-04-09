@@ -1,7 +1,12 @@
 export class CornToast extends HTMLElement {
+  constructor() {
+    super();
+  }
+
   static get observedAttributes() {
     return ['position'];
   }
+
   attributeChangedCallback(name, oldValue, newValue) {
     if (name === 'position') this._position = newValue;
     this.classList.add('corn-toast--' + this._position);
@@ -38,6 +43,7 @@ export class CornToast extends HTMLElement {
     this.parent.addEventListener('focusin', this._showTooltip);
     this.parent.addEventListener('focusout', this._hideTooltip);
   }
+
   _removeEventListeners() {
     this.parent.removeEventListener('mouseenter', this._showTooltip);
     this.parent.removeEventListener('mouseleave', this._hideTooltip);

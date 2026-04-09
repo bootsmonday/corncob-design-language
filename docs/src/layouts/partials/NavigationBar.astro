@@ -1,12 +1,14 @@
 ---
+import { Image } from 'astro:assets';
 import Logo from '../../../public/assets/corncob-design-language.svg';
+import HeroImage from '../../images/corncob-hero.png';
 const base = import.meta.env.BASE_URL;
 ---
 
 <header class="corn-header">
   <div class="corn-company">
     <div class="corn-company--logo">
-      <Logo aria-hidden="true" />
+      <Image src={HeroImage} alt="Corncob Design Language Logo" class="docs-corncob-logo" />
     </div>
     <div class="corn-company--name">Corncob</div>
   </div>

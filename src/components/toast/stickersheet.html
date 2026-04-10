@@ -1,17 +1,43 @@
 <!-- Toast Component Demo -->
+<script>
+  function createIcon(iconId) {
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+    svg.setAttribute('class', 'corn-icon');
+    svg.setAttribute('aria-hidden', 'true');
+
+    const use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+    use.setAttribute('href', `/node_modules/bootstrap-icons/bootstrap-icons.svg#${iconId}`);
+
+    svg.appendChild(use);
+
+    return svg;
+  }
+
+  const icons = {
+    success: createIcon('check-lg'),
+    warning: createIcon('exclamation-triangle'),
+    error: createIcon('x-lg'),
+    info: createIcon('info-lg'),
+  };
+
+  function randomToast() {
+    const types = ['success', 'warning', 'error', 'info'];
+    const randomType = types[Math.floor(Math.random() * types.length)];
+
+    document.querySelector('.corn-toast').addToast({
+      type: randomType,
+      text: `This is a ${randomType} toast!`,
+      icon: icons[randomType],
+    });
+  }
+</script>
+
 <div class="toast-demo">
   <h2>Corn Toast</h2>
 
   <h3>Default</h3>
+  <button class="corn-button" onclick="randomToast()">Show Toast</button>
 
-  <corn-toast class="corn-toast">
-    <dialog open aria-live="polite" open slot="dialog">
-      This is a default toast. It provides brief feedback about an action or process.
-    </dialog>
-  </corn-toast>
-
-  <button class="corn-button corn-toast--anchor">
-    Default (Top)
-    <corn-toast position="top" class="corn-toast">Default toast</corn-toast>
-  </button>
+  <corn-toast class="corn-toast"></corn-toast>
 </div>

@@ -45,9 +45,9 @@ export class CornExpandable extends HTMLElement {
    * @param {string} oldValue - The previous value of the attribute.
    * @param {string} newValue - The new value of the attribute.
    */
-  attributeChangedCallback(name, oldValue, newValue) {
-    console.log('attribute changed', name, oldValue, newValue);
-  }
+  // attributeChangedCallback(name, oldValue, newValue) {
+  //   console.log('attribute changed', name, oldValue, newValue);
+  // }
 
   /**
    * Called when the element is added to the DOM. This is a good place to perform setup tasks, such as caching references to child elements, adding event listeners, or initializing state.
@@ -163,10 +163,9 @@ export class CornExpandable extends HTMLElement {
       details.classList.add('corn-expandable--open');
       details.classList.add('corn-expandable--animating');
     });
-    details.querySelector('.corn-expandable--content').addEventListener(
-      'transitionend',
-      this._openTranisitionEnd
-    );
+    details
+      .querySelector('.corn-expandable--content')
+      .addEventListener('transitionend', this._openTranisitionEnd);
     // details.querySelector('.corn-expandable--content').addEventListener(
     //   'transitionend',
     //   (evt) => {
@@ -176,17 +175,15 @@ export class CornExpandable extends HTMLElement {
     // );
   }
   _openTranisitionEnd = (evt) => {
-    console.log('open transition ended', evt.propertyName, evt.target);
     if (evt.propertyName !== 'grid-template-rows') return;
     evt.target.parentElement.removeEventListener('transitionend', this._openTranisitionEnd);
     evt.target.parentElement.classList.remove('corn-expandable--animating');
   };
 
   _closeTranisitionEnd = (evt) => {
-    console.log('transition ended', evt.propertyName, this, this.nextEvt);
     if (evt.propertyName !== 'grid-template-rows') return;
     evt.target.parentElement.open = false;
-    evt.target.parentElement.classList.remove('corn-expandable--animating')
+    evt.target.parentElement.classList.remove('corn-expandable--animating');
     evt.target.removeEventListener('transitionend', this._closeTranisitionEnd);
     this.isAnimating = false;
     if (this.nextEvt) {
@@ -205,10 +202,9 @@ export class CornExpandable extends HTMLElement {
     details.classList.remove('corn-expandable--open');
     details.classList.add('corn-expandable--animating');
     this.isAnimating = true;
-    details.querySelector('.corn-expandable--content').addEventListener(
-      'transitionend',
-      this._closeTranisitionEnd
-    );
+    details
+      .querySelector('.corn-expandable--content')
+      .addEventListener('transitionend', this._closeTranisitionEnd);
     /*
     (evt) => {
          console.log('transition ended', evt.propertyName);

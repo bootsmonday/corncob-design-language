@@ -71,6 +71,7 @@ import './components/expandables/expandable.js';
 
 // // Re-export all components for package consumers
 export {
+  CornToast,
   CornCopyButton,
   CornTooltip,
   CornExpandable,

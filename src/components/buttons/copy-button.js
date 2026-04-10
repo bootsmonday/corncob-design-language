@@ -28,7 +28,6 @@ export class CornCopyButton extends HTMLElement {
    * It finds the closest anchor element, caches the necessary elements and messages, and adds event listeners for the copy functionality.
    */
   connectedCallback() {
-    console.log('is connected to the DOM', this.isConnected);
     this._cacheElements();
     this._addEventListeners();
   }
@@ -92,7 +91,6 @@ export class CornCopyButton extends HTMLElement {
    */
   _cacheElements() {
     this._copyMessage = this.querySelector('[role="status"]');
-    console.log('copy message element', this._copyMessage);
   }
 
   /**

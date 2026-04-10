@@ -2,116 +2,224 @@ export class CornToast extends HTMLElement {
   constructor() {
     super();
   }
-
+  /**
+   * Attributes:
+   * - delay: duration in ms before the toast disappears (default: 5000)
+   * - count: maximum number of toasts to show at once (default: 5)
+   */
   static get observedAttributes() {
-    return ['position'];
-  }
-
-  attributeChangedCallback(name, oldValue, newValue) {
-    if (name === 'position') this._position = newValue;
-    this.classList.add('corn-toast--' + this._position);
-  }
-
-  connectedCallback() {
-    this.parent = this.closest('.corn-toast--anchor');
-    if (!this.parent) return;
-    if (!this._position) this._position = 'top';
-    this.classPrefix = 'corn-toast--';
-    this.classList.add(this.classPrefix + this._position);
-    this._cacheElements();
-    this._addEventListeners();
-    this._addAccessiblity();
-  }
-  _addAccessiblity() {
-    this.setAttribute('role', 'tooltip');
-    if (!this.id) this.id = 'corn-toast--' + crypto.randomUUID().substring(0, 8);
-    // Sets don't allow duplicates
-    const parentLabelledby = new Set(
-      (this.parent.getAttribute('aria-labelledby') || '').split(' ')
-    );
-    parentLabelledby.add(this.id);
-    this.parent.setAttribute('aria-labelledby', [...parentLabelledby].join(' ').trim());
-  }
-  _addEventListeners() {
-    this._showTooltip = () => this._open();
-    this._hideTooltip = () => this._close();
-    // Hover listeners
-    this.parent.addEventListener('mouseenter', this._showTooltip);
-    this.parent.addEventListener('mouseleave', this._hideTooltip);
-
-    // Focus listeners (handles tab navigation)
-    this.parent.addEventListener('focusin', this._showTooltip);
-    this.parent.addEventListener('focusout', this._hideTooltip);
-  }
-
-  _removeEventListeners() {
-    this.parent.removeEventListener('mouseenter', this._showTooltip);
-    this.parent.removeEventListener('mouseleave', this._hideTooltip);
-
-    // Focus listeners (handles tab navigation)
-    this.parent.removeEventListener('focusin', this._showTooltip);
-    this.parent.removeEventListener('focusout', this._hideTooltip);
-  }
-
-  _toggle(isActive) {
-    if (isActive) {
-      this._open();
-    } else {
-      this._close();
-    }
-  }
-
-  _cacheElements() {
-    this.observerOptions = {
-      root: document.documentElement,
-      rootMargin: '0px',
-      threshold: 1.0,
-    };
-  }
-
-  _resizeObserverCallback(entries) {
-    if (!entries || entries.length === 0) {
-      return;
-    }
-    this._positionContent();
-  }
-
-  _open() {
-    if (this.overlapClass) {
-      this.classList.remove(this.overlapClass);
-      this.classList.add(this.classPrefix + this._position);
-    }
-    this.resizeObserver = new ResizeObserver((entries) => this._resizeObserverCallback(entries));
-    this.resizeObserver.observe(this.scrollEl);
-  }
-
-  _close() {
-    if (this.resizeObserver && this.scrollEl) {
-      this.resizeObserver.unobserve(this.scrollEl);
-      this.resizeObserver.disconnect();
-      this.resizeObserver = null;
-    }
+    return ['delay', 'count'];
   }
 
   /**
-   * TODO need to check if we added the ID or if it was generated, if it was generated we can remove it, but if it was added by the user we should probably leave it
+   *  Handle changes to observed attributes and update internal state accordingly.
+   * @param {*} name
+   * @param {*} oldValue
+   * @param {*} newValue
    */
-  disconnectedCallback() {
-    if (this.resizeObserver && this.scrollEl) {
-      this.resizeObserver.unobserve(this.scrollEl);
-      this.resizeObserver.disconnect();
-      this.resizeObserver = null;
+  attributeChangedCallback(name, oldValue, newValue) {
+    if (name === 'duration') this._duration = newValue;
+    if (name === 'count') this._count = newValue;
+  }
+
+  /**
+   * Lifecycle method called when the element is added to the DOM. Initializes internal state, creates necessary child elements, and sets up event listeners.
+   * - Initializes _count and _duration from attributes or defaults.
+   * - Creates a <dialog> element for the toast container and a <ul> for the toast list.
+   * - Caches references to these elements for later use.
+   */
+  connectedCallback() {
+    this.setAttribute('popover', 'manual');
+    this._count = this.getAttribute('count') || 5;
+    this._duration = this.getAttribute('duration') || 5000;
+    this._createElements();
+    this._cacheElements();
+  }
+
+  addToast(message) {
+    if (this.matches([':popover-open']) === false) {
+      this.showPopover();
     }
-    this._removeEventListeners();
-    const parentLabelledby = new Set(
-      (this.parent.getAttribute('aria-labelledby') || '').split(' ')
-    );
-    parentLabelledby.delete(this.id);
-    if (parentLabelledby.size === 0) {
-      this.parent.removeAttribute('aria-labelledby');
+    if (this._toastList.childElementCount >= this._count) {
+      this._toastQueue = this._toastQueue || [];
+      this._toastQueue.push(message);
+      console.log('last toast', message.text);
+      return;
+    }
+
+    const toastListItem = document.createElement('li');
+
+    if (message.type) {
+      toastListItem.classList.add(`corn-toast--${message.type}`);
+    }
+
+    const toastItem = document.createElement('div');
+    toastListItem.appendChild(toastItem);
+    toastItem.className = 'corn-toast--item';
+
+    if (message.icon) {
+      this._addIcon(toastItem, message.icon);
+    }
+
+    const toastMessage = document.createElement('span');
+    toastMessage.className = 'corn-toast--message';
+    toastMessage.textContent = message.text;
+    toastItem.appendChild(toastMessage);
+    this._toastList.appendChild(toastListItem);
+
+    setTimeout(() => {
+      this._removeToast(toastListItem);
+
+      if (this._toastQueue && this._toastQueue.length > 0) {
+        this.addToast(this._toastQueue.shift());
+      }
+      if (this._toastList.childElementCount === 0) {
+        this.hidePopover();
+      }
+    }, message.duration || this._duration);
+  }
+
+  _removeToast(toastListItem) {
+    toastListItem.remove();
+  }
+  /**
+   * Adds an optional icon element to the toast item container.
+   * Normalizes the icon input (DOM element or string markup) and appends it to the toast item under a span with the corn-toast--status class.
+   *
+   * @param {*} toastItem
+   * @param {*} icon
+   * @returns
+   */
+
+  _addIcon(toastItem, icon) {
+    const iconElement = this._normalizeIcon(icon);
+
+    if (!iconElement) {
+      return;
+    }
+
+    const iconContainer = document.createElement('span');
+
+    iconContainer.className = 'corn-toast--status';
+    iconContainer.setAttribute('aria-hidden', 'true');
+    iconContainer.appendChild(iconElement);
+
+    toastItem.appendChild(iconContainer);
+  }
+
+  /**
+   *  Normalization strategy:
+   * 1. If it's already a DOM element (SVG, img, span, etc.), clone it and sanitize it.
+   * 2. If it's a string, parse it into a DOM element and sanitize it.
+   * 3. If it's neither, return null.
+   *
+   * @param {*} icon
+   * @returns
+   */
+  _normalizeIcon(icon) {
+    // 1. If it's already a DOM element (SVG, img, span, etc.)
+    if (icon instanceof Element) {
+      return this._sanitizeIcon(icon.cloneNode(true), true);
+    }
+
+    // 2. If it's not a string, reject it
+    if (typeof icon !== 'string') {
+      return null;
+    }
+
+    const markup = icon.trim();
+
+    // 3. Empty string → nothing to do
+    if (!markup) {
+      return null;
+    }
+
+    // 4. Create temporary container and parse the markup
+    // Used for strings like <i class="bi bi-info-circle"></i> or <svg>...</svg>
+    const temp = document.createElement('div'); // Better than <span> for parsing
+
+    // Use setHTML if available for better parsing (e.g., SVG), fallback to innerHTML
+    // setHTML not supported in Safari yet
+    if (typeof temp.setHTML === 'function') {
+      temp.setHTML(markup);
     } else {
-      this.parent.setAttribute('aria-labelledby', [...parentLabelledby].join(' ').trim());
+      temp.innerHTML = markup;
     }
+
+    const iconElement = temp.firstElementChild;
+
+    // No valid element found
+    if (!iconElement) {
+      return null;
+    }
+
+    // 5. Sanitize and validate the root element
+    return this._sanitizeIcon(iconElement, true);
+  }
+
+  /*
+  * Sanitization strategy:
+    - Only allow certain tags at the root level (e.g., span, i, svg, img)
+    - Remove any <script>, <iframe>, <object>, <embed>, <foreignObject> tags anywhere in the tree
+    - Remove any event handler attributes (e.g., onclick) and srcdoc attributes
+    - Block javascript: URLs in href/src/xlink:href attributes
+
+    Basic sanitation, not meant to be comprehensive. For more robust solutions, consider using a library like DOMPurify before sending to this component.
+  */
+  _sanitizeIcon(el, isRoot = false) {
+    const allowedRootTags = new Set(['span', 'i', 'svg', 'img']);
+    const blockedTags = new Set(['script', 'iframe', 'object', 'embed', 'foreignobject']);
+    const tagName = el.tagName?.toLowerCase() || '';
+
+    // Root element must be one of the allowed icon types
+    if (isRoot && !allowedRootTags.has(tagName)) {
+      return null;
+    }
+
+    // Sanitize children recursively
+    Array.from(el.children).forEach((child) => {
+      const childTag = child.tagName?.toLowerCase() || '';
+
+      if (blockedTags.has(childTag)) {
+        child.remove();
+        return;
+      }
+
+      this._sanitizeIcon(child, false); // Not root anymore
+    });
+
+    // Sanitize attributes
+    Array.from(el.attributes).forEach((attr) => {
+      const attrName = attr.name.toLowerCase();
+      const attrValue = attr.value.trim().toLowerCase();
+
+      // Remove dangerous event handlers and srcdoc
+      if (attrName.startsWith('on') || attrName === 'srcdoc') {
+        el.removeAttribute(attr.name);
+        return;
+      }
+
+      // Block javascript: URLs in href/src/xlink:href
+      if (['href', 'xlink:href', 'src'].includes(attrName) && attrValue.startsWith('javascript:')) {
+        el.removeAttribute(attr.name);
+      }
+    });
+
+    return el;
+  }
+
+  _createElements() {
+    const toastList = document.createElement('ul');
+    toastList.setAttribute('aria-live', 'polite');
+    this.appendChild(toastList);
+  }
+
+  _cacheElements() {
+    this._dialog = this.querySelector('dialog');
+    this._toastList = this.querySelector('ul');
   }
 }
-customElements.define('corn-toast', CornToast);
+
+if (!customElements.get('corn-toast')) {
+  customElements.define('corn-toast', CornToast);
+}

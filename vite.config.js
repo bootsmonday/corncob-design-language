@@ -21,7 +21,13 @@ function parseLocals(localsStr) {
   }
 }
 
-function processIncludes(html, parentDir, parentLocals = {}, visited = new Set()) {
+function processIncludes(
+  html,
+  parentDir,
+  parentLocals = {},
+  visited = new Set(),
+  dependencies = new Set()
+) {
   // Flexible regex: supports self-closing tag, quotes, extra whitespace
 
   const includeRegex = /<include\s+src="([^"]+)"(?:\s+locals=(['"])([\s\S]*?)\2)?\s*(?:\/)?>/gi;
@@ -37,6 +43,7 @@ function processIncludes(html, parentDir, parentLocals = {}, visited = new Set()
 
   for (const { full, src, localsStr } of matches) {
     const filePath = path.resolve(parentDir, src.trim());
+    dependencies.add(filePath);
 
     if (visited.has(filePath)) {
       console.warn(`Circular include prevented: ${src}`);
@@ -57,7 +64,13 @@ function processIncludes(html, parentDir, parentLocals = {}, visited = new Set()
 
     const mergedLocals = { ...parentLocals, ...parseLocals(localsStr) };
     content = renderTemplate(content, mergedLocals);
-    content = processIncludes(content, path.dirname(filePath), mergedLocals, new Set(visited));
+    content = processIncludes(
+      content,
+      path.dirname(filePath),
+      mergedLocals,
+      new Set(visited),
+      dependencies
+    );
 
     result = result.replace(full, content);
   }
@@ -78,11 +91,46 @@ where the partial looks like:
 
 */
 function htmlIncludePlugin() {
+  const includeDependenciesByHtmlFile = new Map();
+
   return {
     name: 'custom-html-include-locals',
     enforce: 'pre',
     transformIndexHtml(html, { filename }) {
-      return processIncludes(html, path.dirname(filename));
+      const dependencies = new Set();
+      const transformedHtml = processIncludes(
+        html,
+        path.dirname(filename),
+        {},
+        new Set(),
+        dependencies
+      );
+
+      includeDependenciesByHtmlFile.set(filename, dependencies);
+
+      return transformedHtml;
+    },
+    configureServer(server) {
+      server.watcher.add(path.resolve(__dirname, 'src/**/*.html'));
+      server.watcher.add(path.resolve(__dirname, 'stickersheets/**/*.html'));
+    },
+    handleHotUpdate({ file, server }) {
+      if (!file.endsWith('.html')) {
+        return;
+      }
+
+      const isIncludedHtmlDependency = Array.from(includeDependenciesByHtmlFile.values()).some(
+        (dependencies) => {
+          return dependencies.has(file);
+        }
+      );
+
+      if (!isIncludedHtmlDependency) {
+        return;
+      }
+
+      server.ws.send({ type: 'full-reload' });
+      return [];
     },
   };
 }

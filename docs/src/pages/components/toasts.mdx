@@ -1,0 +1,103 @@
+---
+layout: ../../layouts/DocsLayout.astro
+title: 'Component | Toast | Corncob'
+---
+
+import CodeSample from '../../layouts/partials/CodeSample.astro';
+import { Code } from 'astro/components';
+import toastTokens from '../../../../src/components/toast/toast-tokens.css?raw';
+
+
+## Toasts
+
+Toasts are used to display brief, temporary messages to the user. They can be used for various purposes such as notifications, alerts, or status updates. 
+
+Toast should be used for non-critical messages that do not require immediate attention or action from the user. They are typically displayed for a short duration and then automatically dismissed. 
+
+They should not be used for important information that requires user interaction or for messages that need to be persistent.
+
+They can be used to provide feedback on user actions, such as confirming that an action was successful or providing information about the status of a process. 
+
+When they are used to display Warnings or Errors, they should be used in conjunction with other UI elements that provide more detailed information about the error and how to resolve it.
+
+The default toast component can be used to display simple messages to the user. It can be triggered by calling the `showToast` method on the toast component instance, passing in the message to be displayed and an optional duration for how long the toast should be visible.
+
+Simple Toast messages should last between 3-5 seconds, while more complex messages may require a longer duration 6-8 seconds. It's important to consider the content of the message and the user's ability to read and understand it within the given time frame when determining the appropriate duration for a toast message.
+
+
+<button class="corn-button" onclick="randomToast()">Show Toast</button>
+
+<corn-toast class="corn-toast"></corn-toast>
+
+<CodeSample id="default-toast-code">
+  ```html
+    <corn-toast class="corn-toast"></corn-toast>
+  ```
+</CodeSample>
+
+### Corn Toast Properties 
+
+(Optional)
+
+- `delay`: The duration (in milliseconds) for which the toast should be visible before automatically dismissing. Default is 5000ms (5 seconds).
+- `count`: The maximum number of toasts that can be displayed at once. Default is 5.
+
+<CodeSample id="default-toast-code">
+  ```html
+    <corn-toast class="corn-toast" delay="3000" count="3"></corn-toast>
+  ```
+</CodeSample>
+
+
+### Toast Icons
+
+(Optional) You can also include icons in your toasts to provide visual cues about the type of message being displayed.
+
+#### As an Element
+<CodeSample id="default-toast-code">
+  ```js 
+    const icon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    icon.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+    icon.setAttribute('class', 'corn-icon');
+
+    const use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+    use.setAttribute('href', `/node_modules/bootstrap-icons/bootstrap-icons.svg#${iconId}`);
+
+    icon.appendChild(use);
+  ```
+</CodeSample>
+
+#### As a String
+<CodeSample id="default-toast-code">
+  ```js 
+  const icon = '<i class="bi bi-dice-3-fill corn-icon"></i>';
+  ```
+</CodeSample>
+
+### Sample Toast Message 
+
+(Required)
+- Text (required) is the message to be displayed in the toast
+
+(Optional)
+- Type (optional) can be 'info', 'success', 'warning', or 'error'
+- Icon (optional) can be an SVG element or a string representing an icon
+- Duration (optional) is the time in milliseconds for which the toast should be visible before automatically dismissing. Default is 5000ms (5 seconds).
+
+
+
+<CodeSample id="default-toast-code">
+  ```js 
+    {
+      type: ['info', 'success', 'warning', 'error'],
+      text: `This is a  toast!`,
+      icon: icon,
+      duration: 6000
+    }
+  ```
+</CodeSample>
+
+## Toast Tokens
+<CodeSample id="toast-tokens-code">
+  <Code code={toastTokens} lang="css" />
+</CodeSample>

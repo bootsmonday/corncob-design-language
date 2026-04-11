@@ -1,0 +1,17 @@
+:root {
+  --cc-toast--background: var(--cc-gray-90);
+  --cc-toast--color: var(--cc-white);
+  --cc-toast--font-size: var(--cc-size--1);
+  --cc-toast--padding: var(--cc-size--2) var(--cc-size--1);
+  --cc-toast--border-radius: var(--cc-border--radius);
+  --cc-toast--box-shadow: var(--cc-shadow--drop);
+  --cc-toast--transition: opacity var(--cc-transition--easing) var(--cc-transition--time);
+  --cc-toast--success--background: var(--cc-green-100);
+  --cc-toast--success--color: var(--cc-green-20);
+  --cc-toast--warning--background: var(--cc-yellow-100);
+  --cc-toast--warning--color: var(--cc-yellow-20);
+  --cc-toast--info--background: var(--cc-blue-100);
+  --cc-toast--info--color: var(--cc-blue-20);
+  --cc-toast--error--background: var(--cc-red-100);
+  --cc-toast--error--color: var(--cc-red-20);
+}

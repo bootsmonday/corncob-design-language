@@ -1,0 +1,75 @@
+@import './toast-tokens.css';
+
+.corn-toast {
+  background: transparent;
+  border:none;
+  inset: auto 1.5rem 1.5rem auto;
+  padding: 0;
+  position: fixed;
+  transition: var(--cc-toast--transition);
+  width: max-content;
+
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding-left: 0;
+    position: relative;
+    width: max-content;
+  }
+
+  li {
+    align-items: center;
+    background: var(--cc-toast--background);
+    border: 1px solid var(--cc-border);
+    border-radius: var(--cc-toast--border-radius);
+    box-shadow: var(--cc-toast--box-shadow);
+    color: var(--cc-toast--color);
+    margin-top: var(--cc-size--3);
+    max-width: 15rem;
+    padding: var(--cc-toast--padding);
+  }
+
+  .corn-toast--item{
+    align-items: center;
+    display: flex;
+    gap: var(--cc-size--3);
+  }
+
+  .corn-toast--status {
+    align-items: center;
+    display: inline-flex;
+  }
+
+  .corn-toast--message {
+    align-items: center;
+    display: flex;
+  }
+
+  .corn-toast--icon {
+    display: inline-flex;
+    flex: 0 0 auto;
+  }
+
+  .corn-toast--success {
+    background: var(--cc-toast--success--background);
+    color: var(--cc-toast--success--color);
+  }
+
+  .corn-toast--warning {
+    background: var(--cc-toast--warning--background);
+    color: var(--cc-toast--warning--color);
+  }
+
+  .corn-toast--info {
+    background: var(--cc-toast--info--background);
+    color: var(--cc-toast--info--color);
+  }
+
+  .corn-toast--error {
+    background: var(--cc-toast--error--background);
+    color: var(--cc-toast--error--color);
+  }
+}
+
+

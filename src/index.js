@@ -22,6 +22,7 @@ import './components/messages/message.css';
 import './components/popovers/popover.css';
 import './components/checkboxes/checkbox.css';
 import './components/radio-buttons/radio-button.css';
+import './components/toast/toast.css';
 import './components/expandables/expandable.css';
 import './components/panel-menus/panel-menu.css';
 import './components/button-bars/button-bar.css';
@@ -48,6 +49,7 @@ import './common/grid.css';
 // import './components/_archive/badge/badge.css';
 // import './components/_archive/avatar/avatar.css';
 
+import './components/toast/toast.js';
 import './components/tooltips/tooltip.js';
 import './components/expandables/expandable.js';
 // // Import Components - JavaScript
@@ -69,6 +71,7 @@ import './components/expandables/expandable.js';
 
 // // Re-export all components for package consumers
 export {
+  CornToast,
   CornCopyButton,
   CornTooltip,
   CornExpandable,

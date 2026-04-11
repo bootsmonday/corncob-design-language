@@ -18,32 +18,31 @@ export class CornToast extends HTMLElement {
    * @param {*} newValue
    */
   attributeChangedCallback(name, oldValue, newValue) {
-    if (name === 'duration') this._duration = newValue;
+    if (name === 'delay') this._duration = Number(newValue);
     if (name === 'count') this._count = newValue;
   }
 
   /**
    * Lifecycle method called when the element is added to the DOM. Initializes internal state, creates necessary child elements, and sets up event listeners.
    * - Initializes _count and _duration from attributes or defaults.
-   * - Creates a <dialog> element for the toast container and a <ul> for the toast list.
+   * - Creates a <ul> for the toast list and sets the popover attribute for the Popover API.
    * - Caches references to these elements for later use.
    */
   connectedCallback() {
     this.setAttribute('popover', 'manual');
     this._count = this.getAttribute('count') || 5;
-    this._duration = this.getAttribute('duration') || 5000;
+    this._duration = this.getAttribute('delay') || 5000;
     this._createElements();
     this._cacheElements();
   }
 
   addToast(message) {
-    if (this.matches([':popover-open']) === false) {
+    if (this.matches(':popover-open') === false) {
       this.showPopover();
     }
     if (this._toastList.childElementCount >= this._count) {
       this._toastQueue = this._toastQueue || [];
       this._toastQueue.push(message);
-      console.log('last toast', message.text);
       return;
     }
 
@@ -215,7 +214,6 @@ export class CornToast extends HTMLElement {
   }
 
   _cacheElements() {
-    this._dialog = this.querySelector('dialog');
     this._toastList = this.querySelector('ul');
   }
 }

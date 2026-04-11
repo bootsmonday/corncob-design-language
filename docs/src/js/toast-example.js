@@ -43,7 +43,3 @@ export function randomToast() {
     icon: icons[randomType],
   });
 }
-
-console.log('Toast example script loaded');
-
-window.randomToast = randomToast;

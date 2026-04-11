@@ -8,7 +8,7 @@ export class CornToast extends HTMLElement {
    * - count: maximum number of toasts to show at once (default: 5)
    */
   static get observedAttributes() {
-    return ['delay', 'count'];
+    return ['duration', 'count'];
   }
 
   /**
@@ -25,7 +25,7 @@ export class CornToast extends HTMLElement {
   /**
    * Lifecycle method called when the element is added to the DOM. Initializes internal state, creates necessary child elements, and sets up event listeners.
    * - Initializes _count and _duration from attributes or defaults.
-   * - Creates a <dialog> element for the toast container and a <ul> for the toast list.
+   * - Creates a <ul> for the toast list.
    * - Caches references to these elements for later use.
    */
   connectedCallback() {
@@ -43,7 +43,6 @@ export class CornToast extends HTMLElement {
     if (this._toastList.childElementCount >= this._count) {
       this._toastQueue = this._toastQueue || [];
       this._toastQueue.push(message);
-      console.log('last toast', message.text);
       return;
     }
 
@@ -215,7 +214,6 @@ export class CornToast extends HTMLElement {
   }
 
   _cacheElements() {
-    this._dialog = this.querySelector('dialog');
     this._toastList = this.querySelector('ul');
   }
 }

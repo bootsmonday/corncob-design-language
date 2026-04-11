@@ -88,8 +88,9 @@ Simple Toast messages should last between 3-5 seconds, while more complex messag
 
 <CodeSample id="default-toast-code">
   ```js 
+    const toastTypes = ['info', 'success', 'warning', 'error'];
     {
-      type: ['info', 'success', 'warning', 'error'],
+      type: toastType[n],
       text: `This is a  toast!`,
       icon: icon,
       duration: 6000

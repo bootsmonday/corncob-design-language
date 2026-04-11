@@ -18,7 +18,7 @@ export class CornToast extends HTMLElement {
    * @param {*} newValue
    */
   attributeChangedCallback(name, oldValue, newValue) {
-    if (name === 'duration') this._duration = newValue;
+    if (name === 'delay') this._duration = Number(newValue);
     if (name === 'count') this._count = newValue;
   }
 
@@ -31,13 +31,13 @@ export class CornToast extends HTMLElement {
   connectedCallback() {
     this.setAttribute('popover', 'manual');
     this._count = this.getAttribute('count') || 5;
-    this._duration = this.getAttribute('duration') || 5000;
+    this._duration = this.getAttribute('delay') || 5000;
     this._createElements();
     this._cacheElements();
   }
 
   addToast(message) {
-    if (this.matches([':popover-open']) === false) {
+    if (this.matches(':popover-open') === false) {
       this.showPopover();
     }
     if (this._toastList.childElementCount >= this._count) {

@@ -31,7 +31,7 @@ export class CornToast extends HTMLElement {
   connectedCallback() {
     this.setAttribute('popover', 'manual');
     this._count = this.getAttribute('count') || 5;
-    this._duration = this.getAttribute('delay') || 5000;
+    this._duration = Number(this.getAttribute('delay')) || 5000;
     this._createElements();
     this._cacheElements();
   }

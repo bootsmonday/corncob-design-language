@@ -13,11 +13,11 @@ describe('CornToast', () => {
     document.body.innerHTML = '';
     toast = document.createElement('corn-toast');
     document.body.appendChild(toast);
-    jest.clearAllMocks();
   });
 
   afterEach(() => {
     document.body.innerHTML = '';
+    jest.clearAllMocks();
   });
 
   test('renders toast list on connect', () => {

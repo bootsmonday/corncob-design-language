@@ -10,21 +10,23 @@ import CodeSample from '../layouts/partials/CodeSample.astro';
 
 Configure npm to install the package from GitHub Packages:
 
-<CodeSample>
+<CodeSample id="registry-config">
 ```bash
 npm config set @bootsmonday:registry https://npm.pkg.github.com
 ```
 </CodeSample>
 
-If you have not authenticated to GitHub Packages yet, add a personal access token with package read access to your npm config:
+If you have not authenticated to GitHub Packages yet, create a GitHub personal access token (classic) with the `read:packages` scope (and the `repo` scope if installing from a private repository). Then add it to your npm config:
 
-<CodeSample>
+> **Important:** Do not commit your token to source control. The `npm config set` command writes to your user-level `~/.npmrc` file, but be careful that this token is never added to a project-level `.npmrc` that could be committed.
+
+<CodeSample id="auth-token">
 ```bash
 npm config set //npm.pkg.github.com/:_authToken YOUR_GITHUB_PAT
 ```
 </CodeSample>
 
-<CodeSample>
+<CodeSample id="npm-install">
 ```bash
 npm install @bootsmonday/corncob-design-language@beta
 ```
@@ -34,14 +36,14 @@ npm install @bootsmonday/corncob-design-language@beta
 
 This contains the base styles for all the components and design tokens. You can also import individual component styles if you want to reduce the amount of CSS included in your project.
 
-<CodeSample>
+<CodeSample id="css-import-js">
 ```js
 import '@bootsmonday/corncob-design-language/style.css';
 ```
 </CodeSample>
 
 HTML version:
-<CodeSample>
+<CodeSample id="css-import-html">
 ```html
 <link rel="stylesheet" href="./corncob-design-language.css" />
 ```
@@ -51,7 +53,7 @@ HTML version:
 
 You can also include the JavaScript file for any components that require behavior. This is optional and only needed for components that have interactive behavior.
 
-<CodeSample>
+<CodeSample id="js-import">
 
 ```js
 import '@bootsmonday/corncob-design-language';
@@ -59,14 +61,14 @@ import '@bootsmonday/corncob-design-language';
 </CodeSample>
 HTML version:
 
-<CodeSample>
+<CodeSample id="js-import-html">
 ```html
 <script type="module" src="/assets/corncob-design-language.esm.js"></script>
 ```
 </CodeSample>
 ### Use Markup
 
-<CodeSample>
+<CodeSample id="use-markup">
 ```html
 <button class="corn-button">Save</button>
 <button class="corn-button corn-button--secondary">Cancel</button>

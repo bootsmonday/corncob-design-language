@@ -8,9 +8,25 @@ import CodeSample from '../layouts/partials/CodeSample.astro';
 
 ### Install
 
+Configure npm to install the package from GitHub Packages:
+
 <CodeSample>
 ```bash
-npm install @bootsmonday/corncob-design-language
+npm config set @bootsmonday:registry https://npm.pkg.github.com
+```
+</CodeSample>
+
+If you have not authenticated to GitHub Packages yet, add a personal access token with package read access to your npm config:
+
+<CodeSample>
+```bash
+npm config set //npm.pkg.github.com/:_authToken YOUR_GITHUB_PAT
+```
+</CodeSample>
+
+<CodeSample>
+```bash
+npm install @bootsmonday/corncob-design-language@beta
 ```
 </CodeSample>
 
@@ -20,7 +36,7 @@ This contains the base styles for all the components and design tokens. You can 
 
 <CodeSample>
 ```js
-import '@bootsmonday/corncob-design-language/corncob-design-language.css';
+import '@bootsmonday/corncob-design-language/style.css';
 ```
 </CodeSample>
 

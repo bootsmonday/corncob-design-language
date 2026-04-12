@@ -1,0 +1,83 @@
+name: Publish Prerelease Package
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      channel:
+        description: Prerelease channel (manual runs only)
+        required: true
+        default: beta
+        type: choice
+        options:
+          - beta
+          - next
+          - canary
+      bump:
+        description: Semver bump before prerelease (manual runs only)
+        required: true
+        default: patch
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node + GitHub Packages auth
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+          registry-url: https://npm.pkg.github.com
+          scope: '@bootsmonday'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build package
+        run: npm run build
+
+      - name: Resolve publish channel and version
+        id: release_meta
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if [[ "${{ github.event_name }}" == "push" ]]; then
+            CHANNEL="canary"
+            BASE_VERSION=$(node -p "require('./package.json').version.split('-')[0]")
+            TARGET_VERSION="${BASE_VERSION}-canary.${{ github.run_number }}.${{ github.run_attempt }}"
+            npm version "$TARGET_VERSION" --no-git-tag-version
+          else
+            CHANNEL="${{ inputs.channel }}"
+            BUMP="${{ inputs.bump }}"
+            npm version "$BUMP" --no-git-tag-version
+            npm version prerelease --preid "$CHANNEL" --no-git-tag-version
+          fi
+
+          VERSION=$(node -p "require('./package.json').version")
+          echo "channel=$CHANNEL" >> "$GITHUB_OUTPUT"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Publish to GitHub Packages
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CHANNEL: ${{ steps.release_meta.outputs.channel }}
+          VERSION: ${{ steps.release_meta.outputs.version }}
+        run: |
+          echo "Publishing $VERSION with dist-tag $CHANNEL"
+          npm publish --tag "$CHANNEL"

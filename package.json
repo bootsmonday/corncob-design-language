@@ -1,5 +1,5 @@
 {
-  "name": "@corncob/design-language",
+  "name": "@bootsmonday/corncob-design-language",
   "version": "0.0.1",
   "description": "Corncob Design Language - A vanilla JavaScript design system",
   "main": "dist/corncob-design-language.js",
@@ -19,9 +19,6 @@
   "sideEffects": [
     "**/*.css"
   ],
-  "overrides": {
-    "@ibm/telemetry-js": "npm:empty-npm-package@1.0.0"
-  },
   "scripts": {
     "is:dev": "node testing/check-dev.js",
     "start-if-not-dev": "npm run is:dev || npm run dev",
@@ -37,8 +34,8 @@
     "docs:dev": "npm run docs:sync-dist && cd docs && astro dev --host",
     "docs:build": "npm run docs:sync-dist && cd docs && astro build",
     "docs:preview": "npm run docs:sync-dist && cd docs && astro preview --host --port 4322",
-    "wrappers:build": "npm run -w @corncob/design-language-react build && npm run -w @corncob/design-language-vue build",
-    "wrappers:test": "npm run -w @corncob/design-language-react test && npm run -w @corncob/design-language-vue test",
+    "wrappers:build": "npm run -w @bootsmonday/corncob-design-language-react build && npm run -w @bootsmonday/corncob-design-language-vue build",
+    "wrappers:test": "npm run -w @bootsmonday/corncob-design-language-react test && npm run -w @bootsmonday/corncob-design-language-vue test",
     "test": "jest",
     "test:watch": "jest --watch",
     "lint:css": "stylelint src/**/*.css",
@@ -50,7 +47,7 @@
     "vanilla-js",
     "enterprise"
   ],
-  "author": "Corncob Team",
+  "author": "BootsMonday Corncob Team",
   "license": "BSL-1.0",
   "devDependencies": {
     "@astrojs/mdx": "^5.0.3",

@@ -26,7 +26,7 @@ Corncob is ideal when you want:
 ### 1. Installation
 
 ```bash
-npm install @corncob/design-language
+npm install @bootsmonday/corncob-design-language
 ```
 
 ### 2. Include in Your Project
@@ -34,15 +34,15 @@ npm install @corncob/design-language
 Option A: Use the compiled CSS and JS files
 
 ```html
-<link rel="stylesheet" href="node_modules/@corncob/design-language/dist/corncob.css" />
-<script src="node_modules/@corncob/design-language/dist/corncob.js"></script>
+<link rel="stylesheet" href="node_modules/@bootsmonday/corncob-design-language/dist/corncob.css" />
+<script src="node_modules/@bootsmonday/corncob-design-language/dist/corncob.js"></script>
 ```
 
 Option B: ES Modules
 
 ```javascript
-import '@corncob/design-language/dist/design-language.css';
-import '@corncob/design-language/dist/design-language.esm.js';
+import '@bootsmonday/corncob-design-language/dist/design-language.css';
+import '@bootsmonday/corncob-design-language/dist/design-language.esm.js';
 ```
 
 ## Component Reference

@@ -28,48 +28,21 @@ import './components/panel-menus/panel-menu.css';
 import './components/button-bars/button-bar.css';
 import './components/headers/header.css';
 import './components/footers/footer.css';
+
 // Import Base Styles
 import './common/dark.css';
 import './common/forms.css';
 import './common/page.css';
 import './common/grid.css';
 
-// import './components/_archive/input/input.css';
-// import './components/_archive/textarea/textarea.css';
-// import './components/_archive/select/select.css';
-// import './components/_archive/checkbox/checkbox.css';
-// import './components/_archive/radio/radio.css';
-// import './components/_archive/toggle/toggle.css';
-// import './components/_archive/card/card.css';
-// import './components/_archive/modal/modal.css';
-// import './components/_archive/tabs/tabs.css';
-// import './components/_archive/table/table.css';
-// import './components/_archive/tooltip/tooltip.css';
-// import './components/_archive/alert/alert.css';
-// import './components/_archive/badge/badge.css';
-// import './components/_archive/avatar/avatar.css';
-
+// Import Components - JS
+import './components/popovers/popover.js';
+import './components/buttons/copy-button.js';
 import './components/toast/toast.js';
 import './components/tooltips/tooltip.js';
 import './components/expandables/expandable.js';
-// // Import Components - JavaScript
-// import './components/buttons/button.js';
-// import './components/_archive/input/input.js';
-// import './components/_archive/textarea/textarea.js';
-// import './components/_archive/select/select.js';
-// import './components/_archive/checkbox/checkbox.js';
-// import './components/_archive/radio/radio.js';
-// import './components/_archive/toggle/toggle.js';
-// import './components/_archive/card/card.js';
-// import './components/_archive/modal/modal.js';
-// import './components/_archive/tabs/tabs.js';
-// import './components/_archive/table/table.js';
-// import './components/_archive/tooltip/tooltip.js';
-// import './components/_archive/alert/alert.js';
-// import './components/_archive/badge/badge.js';
-// import './components/_archive/avatar/avatar.js';
 
-// // Re-export all components for package consumers
+// Re-export all components for package consumers
 export {
   CornToast,
   CornCopyButton,
@@ -78,20 +51,3 @@ export {
   CornPopover,
   CornButtonBar,
 } from './components/index.js';
-// export {
-//   CobButton,
-//   CobInput,
-//   CobTextarea,
-//   CobSelect,
-//   CobCheckbox,
-//   CobRadio,
-//   CobToggle,
-//   CobCard,
-//   CobModal,
-//   CobTabs,
-//   CobTable,
-//   CobTooltip,
-//   CobAlert,
-//   CobBadge,
-//   CobAvatar,
-// } from './components/index.js';

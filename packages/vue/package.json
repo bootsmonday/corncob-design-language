@@ -1,5 +1,5 @@
 {
-  "name": "@corncob/edl-vue",
+  "name": "@bootsmonday/corncob-design-language-vue",
   "version": "0.1.0",
   "description": "Vue wrappers for Corncob EDL",
   "type": "module",
@@ -10,15 +10,15 @@
   },
   "sideEffects": false,
   "scripts": {
-    "build": "echo \"@corncob/edl-vue has no build step\"",
-    "test": "echo \"No tests yet for @corncob/edl-vue\""
+    "build": "echo \"@bootsmonday/corncob-design-language-vue has no build step\"",
+    "test": "echo \"No tests yet for @bootsmonday/corncob-design-language-vue\""
   },
   "peerDependencies": {
-    "@corncob/edl": "^1.0.0",
+    "@bootsmonday/corncob-design-language": "^1.0.0",
     "vue": "^3.4.0 || ^3.5.0"
   },
   "peerDependenciesMeta": {
-    "@corncob/edl": {
+    "@bootsmonday/corncob-design-language": {
       "optional": true
     }
   }

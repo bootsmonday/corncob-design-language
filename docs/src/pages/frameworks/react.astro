@@ -1,20 +1,21 @@
 ---
-import DocsLayout from "../../layouts/DocsLayout.astro";
-import ButtonExample from "../../components/react/ButtonExample.jsx";
+import DocsLayout from '../../layouts/DocsLayout.astro';
+import ButtonExample from '../../components/react/ButtonExample.jsx';
 ---
 
 <DocsLayout title="React | Corncob" description="React adapter guidance for Corncob EDL">
   <h1>React Version</h1>
   <p>
-    React wrappers should stay thin. Map React props to Corncob class names and keep style logic in the core
-    CSS package.
+    React wrappers should stay thin. Map React props to Corncob class names and keep style logic in
+    the core CSS package.
   </p>
 
   <ButtonExample />
 
   <h2>Wrapper Pattern</h2>
-  <pre class="docs-code"><code>{`import "@corncob/edl/style.css";
-import { CcButton } from "@corncob/edl-react";
+  <pre
+    class="docs-code"><code>{`import "@bootsmonday/corncob-design-language/corncob-design-language.css";
+import { CcButton } from "@bootsmonday/corncob-design-language-react";
 
 export function ToolbarActions() {
   return (

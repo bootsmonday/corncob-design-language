@@ -1,5 +1,5 @@
 {
-  "name": "@corncob/edl-react",
+  "name": "@bootsmonday/corncob-design-language-react",
   "version": "0.1.0",
   "description": "React wrappers for Corncob EDL",
   "type": "module",
@@ -10,16 +10,16 @@
   },
   "sideEffects": false,
   "scripts": {
-    "build": "echo \"@corncob/edl-react has no build step\"",
-    "test": "echo \"No tests yet for @corncob/edl-react\""
+    "build": "echo \"@bootsmonday/corncob-design-language-react has no build step\"",
+    "test": "echo \"No tests yet for @bootsmonday/corncob-design-language-react\""
   },
   "peerDependencies": {
-    "@corncob/edl": "^1.0.0",
+    "@bootsmonday/corncob-design-language": "^1.0.0",
     "react": "^18.0.0 || ^19.0.0",
     "react-dom": "^18.0.0 || ^19.0.0"
   },
   "peerDependenciesMeta": {
-    "@corncob/edl": {
+    "@bootsmonday/corncob-design-language": {
       "optional": true
     }
   }

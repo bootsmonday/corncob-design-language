@@ -62,6 +62,7 @@
     "@astrojs/vue": "^6.0.1",
     "@axe-core/playwright": "^4.11.1",
     "@babel/preset-env": "^7.29.2",
+    "@changesets/cli": "^2.30.0",
     "@fontsource-variable/ibm-plex-sans": "^5.2.8",
     "@fontsource/ibm-plex-mono": "^5.2.7",
     "@happy-dom/jest-environment": "^20.8.4",

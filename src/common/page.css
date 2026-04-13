@@ -4,10 +4,6 @@
   /* font-family: var(--cc-font-family); */
 }
 
-.corn-main {
-  padding-top: var(--cc-size-2);
-}
-
 hr {
   border-color: rgb(from var(--cc-border--color) r g b / 67.2%);
   border-radius: 1px;

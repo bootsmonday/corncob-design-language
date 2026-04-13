@@ -6,7 +6,10 @@
   "module": "dist/corncob-design-language.esm.js",
   "style": "dist/corncob-design-language.css",
   "files": [
-    "dist"
+    "dist",
+    "DESIGN_SYSTEM_FOR_AI.md",
+    "tokens.json",
+    "components.json"
   ],
   "workspaces": [
     "packages/react",

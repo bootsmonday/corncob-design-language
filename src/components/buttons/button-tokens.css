@@ -31,6 +31,7 @@
   --cc-button--border-color--disabled: var(--cc-form--item--border-color--disabled);
   --cc-button--background: var(--cc-gray-100);
   --cc-button--color: var(--cc-white);
+  --cc-button--color--hover: var(--cc-gray-20);
   --cc-button--border-width: var(--cc-border--width);
   --cc-button--border-style: var(--cc-border--style);
   --cc-button--border-color: var(--cc-border--color);

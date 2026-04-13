@@ -24,13 +24,26 @@
           <button class="corn-button corn-button--sm corn-pop" aria-controls="button-bar-popover">
             More
           </button>
-          <corn-popover position="bottom" id="button-bar-popover" class="corn-popover"></corn-popover>
+          <corn-popover
+            position="bottom"
+            id="button-bar-popover"
+            class="corn-popover"
+          ></corn-popover>
         </div>
       </corn-button-bar>
     </nav>
     <div class="corn-header--actions">
       <button class="corn-button corn-button--xs">Action 1</button>
-      <button class="corn-button corn-button--xs">Action 2</button>
+      <button class="corn-button corn-button--xs corn-button--icon">
+        <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon" aria-hidden="true">
+          <use href="/node_modules/bootstrap-icons/bootstrap-icons.svg#gear"></use>
+        </svg>
+      </button>
+      <a href="#" class="corn-button corn-button--xs corn-button--icon">
+        <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon" aria-hidden="true">
+          <use href="/node_modules/bootstrap-icons/bootstrap-icons.svg#github"></use>
+        </svg>
+      </a>
     </div>
   </header>
 </div>

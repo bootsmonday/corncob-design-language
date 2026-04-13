@@ -25,6 +25,7 @@
   &:hover {
     background-color: var(--cc-button--background--hover);
     box-shadow: none;
+    color: var(--cc-button--color--hover);
   }
 
   &:active {

@@ -32,7 +32,7 @@ This guide explains how AI systems should consume and use the Corncob Design Lan
 - Follow component accessibility requirements in `accessibility` field
 
 **Example Reference**:
-<CodeSample id="components-json-button">
+<div class="corn-docs-code">
 ```json
 {
   "button": {
@@ -44,7 +44,7 @@ This guide explains how AI systems should consume and use the Corncob Design Lan
   }
 }
 ```
-</CodeSample>
+</div>
 
 ### 2. `tokens.json`
 
@@ -107,7 +107,7 @@ This guide explains how AI systems should consume and use the Corncob Design Lan
 ### 1. Form Controls
 
 **Always follow this pattern** (from `tokens.json.patterns.formControl`):
-<CodeSample id="form-control-pattern">
+<div class="corn-docs-code">
 ```html
 <div class="corn-form--item">
   <div class="corn-text-input corn-text-input--md">
@@ -117,19 +117,20 @@ This guide explains how AI systems should consume and use the Corncob Design Lan
   <div class="corn-status">Optional status/error message</div>
 </div>
 ```
-</CodeSample>
+</div>
 
 
 **Validation**:
 
-- ✅ Input and label must have matching `id`/`for` attributes
-- ✅ Always wrap in `corn-form--item`
-- ✅ Include `corn-status` container for validation messages
+- Input and label must have matching `id`/`for` attributes
+- Always wrap in `corn-form--item`
+- Include `corn-status` container for validation messages
 
 ### 2. Grouped Form Elements (Checkboxes/Radio Buttons)
 
 **Always follow this pattern**:
 
+<div class="corn-docs-code">
 ```html
 <fieldset class="corn-form--item corn-checkbox-group">
   <legend>Group Label</legend>
@@ -143,13 +144,14 @@ This guide explains how AI systems should consume and use the Corncob Design Lan
   </div>
 </fieldset>
 ```
+</div>
 
 **Validation**:
 
-- ✅ Use `<fieldset>` with `<legend>` for grouping
-- ✅ All items share same `name` attribute
-- ✅ Each input has unique `id` matching its `label for`
-- ✅ Use `corn-checkbox-group--inline` for inline layout
+- Use `<fieldset>` with `<legend>` for grouping
+- All items share same `name` attribute
+- Each input has unique `id` matching its `label for`
+- Use `corn-checkbox-group--inline` for inline layout
 
 ### 3. Interactive Components (Tooltips, Popovers, Expandables)
 
@@ -160,7 +162,7 @@ This guide explains how AI systems should consume and use the Corncob Design Lan
 - Follow exact pattern structure from `tokens.json.patterns.*`
 
 **Example - Popover**:
-<CodeSample id="popover-pattern">
+<div class="corn-docs-code">
 ```html
 <div class="corn-popover--anchor">
   <button class="corn-button corn-pop" aria-controls="my-popover">Open Menu</button>
@@ -172,14 +174,14 @@ This guide explains how AI systems should consume and use the Corncob Design Lan
   </corn-popover>
 </div>
 ```
-</CodeSample>
+</div>
 
 
 **Validation**:
 
-- ✅ Trigger element uses `aria-controls` pointing to popover `id`
-- ✅ Anchor wrapper has proper class
-- ✅ Position attribute matches options: `top|right|bottom|left`
+- Trigger element uses `aria-controls` pointing to popover `id`
+- Anchor wrapper has proper class
+- Position attribute matches options: `top|right|bottom|left`
 
 ### 4. Class Naming Rules
 
@@ -194,9 +196,9 @@ Examples:
 
 **Validation**:
 
-- ✅ Always include base class (e.g., `corn-button`)
-- ✅ Only use modifiers listed in `components.json` for that component
-- ✅ Never mix unrelated component classes
+- Always include base class (e.g., `corn-button`)
+- Only use modifiers listed in `components.json` for that component
+- Never mix unrelated component classes
 
 ---
 
@@ -204,9 +206,7 @@ Examples:
 
 ### Color References
 
-
-<CodeSample id="color-references">
-
+<div class="corn-docs-code">
 ```json
 // VALID - using semantic names
 background: var(--cc-gray-100);
@@ -216,13 +216,13 @@ color: var(--cc-blue-60);
 border-color: var(--cc-red-80);
 
 // INVALID - hex codes should use token variables instead
-background: #23211f; // ❌ Use var(--cc-gray-100) instead
+background: #23211f; //  Use var(--cc-gray-100) instead
 ```
-</CodeSample>
+</div>
+
 ### Sizing References
 
-<CodeSample id="sizing-references">
-
+<div class="corn-docs-code">
 ```json
 // VALID - using modular scale
 padding: var(--cc-spacing-0);
@@ -234,13 +234,13 @@ font-size: 1rem;
 height: 20px;
 
 // AVOID - hardcoded values that don't match scale
-padding: 15px; // ❌ Use var(--cc-spacing-1) or var(--cc-spacing-2)
+padding: 15px; //  Use var(--cc-spacing-1) or var(--cc-spacing-2)
 ```
-</CodeSample>
+</div>
 
 ### Typography
 
-<CodeSample id="typography-references">
+<div class="corn-docs-code">
 ```json
 // VALID - using token scale
 font-size: var(--cc-font-size--lg);
@@ -250,24 +250,24 @@ font-weight: 600; // or var(--cc-font-weight--semibold)
 font-size: var(--cc-size-1);
 
 // INVALID - random sizes
-font-size: 18px; // ❌ Use token system instead
+font-size: 18px; //  Use token system instead
 ```
-</CodeSample>
+</div>
 
 ### Component Class Validation
 
-<CodeSample id="component-class-validation">
+<div class="corn-docs-code">
 ```json
 // VALID - button with size and variant
 <button class="corn-button corn-button--md corn-button--secondary">
 
 // INVALID - missing base class
-<button class="corn-button--md"> // ❌ Must include corn-button
+<button class="corn-button--md"> //  Must include corn-button
 
 // INVALID - undefined modifier
-<button class="corn-button corn-button--extra-large"> // ❌ Only xs|sm|md|lg|xl
+<button class="corn-button corn-button--extra-large"> // Only xs|sm|md|lg|xl
 ```
-</CodeSample>
+</div>
 
 ---
 
@@ -327,7 +327,7 @@ Whenever these files are updated:
 
 Here's how an AI system should generate a contact form:
 
-<CodeSample id="form-control-pattern">
+<div class="corn-docs-code">
 ```html
 <!-- Structure from tokens.json patterns -->
 <form class="corn-form">
@@ -357,17 +357,16 @@ Here's how an AI system should generate a contact form:
   <button class="corn-button corn-button--md corn-button--primary">Submit</button>
 </form>
 ```
-</CodeSample>
-
+</div>
 
 **Validation checklist**:
 
-- ✅ Uses `corn-form` wrapper class
-- ✅ Form items wrapped in `corn-form--item`
-- ✅ All inputs have matching id/for labels
-- ✅ Checkbox group uses `<fieldset>` + `<legend>`
-- ✅ Button uses valid size and variant
-- ✅ All class names exist in components.json
+- Uses `corn-form` wrapper class
+- Form items wrapped in `corn-form--item`
+- All inputs have matching id/for labels
+- Checkbox group uses `<fieldset>` + `<legend>`
+- Button uses valid size and variant
+- All class names exist in components.json
 
 ---
 
@@ -375,12 +374,14 @@ Here's how an AI system should generate a contact form:
 
 All these components support these sizes: `xs`, `sm`, `md` (default), `lg`, `xl`
 
+<div class="corn-docs-code">
 ```
 corn-button--xs          → Extra small button
 corn-text-input--sm      → Small text input
 corn-checkbox            → Checkbox (no size modifier = default)
 corn-message--info       → Info message (no size system)
 ```
+</div>
 
 ---
 

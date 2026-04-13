@@ -10,3 +10,8 @@ body {
 .stickersheet-controls, h1 {
   padding: 0 2rem;
 }
+
+.corn-company--logo svg,
+.corn-company--logo img {
+ max-height: 32px;
+}

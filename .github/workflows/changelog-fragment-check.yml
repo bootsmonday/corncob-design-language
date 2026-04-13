@@ -1,0 +1,23 @@
+name: Changelog Fragment Check
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  changelog-fragment-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Validate changelog fragment when src changes
+        run: |
+          chmod +x scripts/check-changelog-fragment.sh
+          scripts/check-changelog-fragment.sh "origin/${{ github.base_ref }}" "${{ github.sha }}"

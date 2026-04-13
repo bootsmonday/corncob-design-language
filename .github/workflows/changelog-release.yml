@@ -1,0 +1,57 @@
+name: Changelog Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Release version (example: 0.0.2)
+        required: true
+        type: string
+      releaseDate:
+        description: Release date YYYY-MM-DD (optional)
+        required: false
+        type: string
+      clearFragments:
+        description: Delete processed fragments after changelog update
+        required: true
+        default: true
+        type: boolean
+
+permissions:
+  contents: write
+
+jobs:
+  update-changelog:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Build changelog entry from fragments
+        run: |
+          chmod +x scripts/release-changelog.sh
+          if [ -n "${{ inputs.releaseDate }}" ]; then
+            scripts/release-changelog.sh "${{ inputs.version }}" "${{ inputs.releaseDate }}"
+          else
+            scripts/release-changelog.sh "${{ inputs.version }}"
+          fi
+
+      - name: Delete processed fragments
+        if: ${{ inputs.clearFragments }}
+        run: |
+          find .changelog -maxdepth 1 -type f -name '*.md' ! -name 'README.md' -delete
+
+      - name: Commit updated changelog
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add CHANGELOG.md .changelog
+          if git diff --cached --quiet; then
+            echo "No changelog changes to commit."
+            exit 0
+          fi
+          git commit -m "chore(changelog): release ${{ inputs.version }}"
+          git push

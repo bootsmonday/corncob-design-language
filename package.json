@@ -7,7 +7,6 @@
   "style": "dist/corncob-design-language.css",
   "files": [
     "dist",
-    "CHANGELOG.md",
     "DESIGN_SYSTEM_FOR_AI.md",
     "tokens.json",
     "components.json"
@@ -44,9 +43,8 @@
     "test:watch": "jest --watch",
     "lint:css": "stylelint src/**/*.css",
     "format": "prettier --write \"src/**/*.{js,css,html}\"",
-    "changeset": "changeset",
-    "changeset:version": "changeset version",
-    "changeset:publish": "npm run build && changeset publish"
+    "changelog:check": "bash scripts/check-changelog-fragment.sh",
+    "changelog:release": "bash scripts/release-changelog.sh"
   },
   "keywords": [
     "design-system",
@@ -62,7 +60,6 @@
     "@astrojs/vue": "^6.0.1",
     "@axe-core/playwright": "^4.11.1",
     "@babel/preset-env": "^7.29.2",
-    "@changesets/cli": "^2.30.0",
     "@fontsource-variable/ibm-plex-sans": "^5.2.8",
     "@fontsource/ibm-plex-mono": "^5.2.7",
     "@happy-dom/jest-environment": "^20.8.4",

@@ -56,7 +56,6 @@
       "name": "Link",
       "description": "Navigation links with optional styling for stand-alone usage",
       "baseClass": "corn-link",
-      "variants": ["corn-link--underline"],
       "jsRequired": false,
       "accessibility": "Semantic HTML anchor tags, keyboard navigation support",
       "example": "<a href=\"#\" class=\"corn-link\">Link Text</a>"

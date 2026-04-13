@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import HeroImage from '../../images/corncob-colorized.png';
+import bootstrapIconsSprite from 'bootstrap-icons/bootstrap-icons.svg?url';
 const base = import.meta.env.BASE_URL;
 ---
 
@@ -30,4 +31,13 @@ const base = import.meta.env.BASE_URL;
       </div>
     </corn-button-bar>
   </nav>
+  <div class="corn-header--actions">
+    <a
+      href="https://github.com/bootsmonday/corncob-design-language"
+      class="corn-button corn-button--icon corn-button--xs"
+      aria-label="Corncob Design Language GitHub Repository"
+    >
+      <svg class="corn-icon"><use href={`${bootstrapIconsSprite}#github`}></use></svg>
+    </a>
+  </div>
 </header>

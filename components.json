@@ -90,8 +90,8 @@
       "triggerClass": "corn-pop",
       "positions": ["top", "right", "bottom", "left"],
       "jsRequired": true,
-      "accessibility": "Trigger uses aria-controls, closes on outside click and ESC key",
-      "example": "<div class=\"corn-popover--anchor\"><button class=\"corn-button corn-pop\" aria-controls=\"my-popover\">Open</button><corn-popover position=\"bottom\" id=\"my-popover\" class=\"corn-popover\"><ul><li><a href=\"#\">Item 1</a></li></ul></corn-popover></div>"
+      "accessibility": "Keyboard accessible trigger; closes on outside click and ESC key",
+      "example": "<div class=\"corn-popover--anchor\"><button class=\"corn-button corn-pop\">Open</button><corn-popover position=\"bottom\" id=\"my-popover\" class=\"corn-popover\"><ul><li><a href=\"#\">Item 1</a></li></ul></corn-popover></div>"
     },
     "expandable": {
       "name": "Expandable",

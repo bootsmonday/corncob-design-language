@@ -14,7 +14,7 @@
     "test": "echo \"No tests yet for @bootsmonday/corncob-design-language-vue\""
   },
   "peerDependencies": {
-    "@bootsmonday/corncob-design-language": "^1.0.0",
+    "@bootsmonday/corncob-design-language": "^0.0.1",
     "vue": "^3.4.0 || ^3.5.0"
   },
   "peerDependenciesMeta": {

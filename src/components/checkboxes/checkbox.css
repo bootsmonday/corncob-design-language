@@ -4,6 +4,8 @@ fieldset.corn-checkbox-group {
   border: none;
   display: flex;
   gap: 1rem;
+  margin: 0;
+  padding: 0;
 
   hr {
     margin: 1rem 0;

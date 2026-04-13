@@ -60,6 +60,15 @@
       "accessibility": "Semantic HTML anchor tags, keyboard navigation support",
       "example": "<a href=\"#\" class=\"corn-link\">Link Text</a>"
     },
+    "link-list": {
+      "name": "Link List",
+      "description": "A styled list of links for navigation or related content groups",
+      "baseClass": "corn-link-list",
+      "itemClass": "corn-link",
+      "jsRequired": false,
+      "accessibility": "Semantic HTML list with anchor tags, keyboard navigation support",
+      "example": "<ul class=\"corn-link-list\"><li><a href=\"#\" class=\"corn-link\">Link list item one</a></li><li><a href=\"#\" class=\"corn-link\">Link list item two</a></li><li><a href=\"#\" class=\"corn-link\">Link list item three</a></li></ul>"
+    },
     "message": {
       "name": "Message",
       "description": "Status banners for displaying informational, success, error, and warning messages",

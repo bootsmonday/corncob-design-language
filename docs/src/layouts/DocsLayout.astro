@@ -44,10 +44,12 @@ const base = import.meta.env.BASE_URL;
               allHeadings?.length && (
                 <>
                   <p>Contents:</p>
-                  <ul>
+                  <ul class="corn-link-list">
                     {allHeadings?.map((heading: { slug: string; text: string }) => (
                       <li>
-                        <a href={`#${heading.slug}`}>{heading.text}</a>
+                        <a href={`#${heading.slug}`} class="corn-link">
+                          {heading.text}
+                        </a>
                       </li>
                     ))}
                   </ul>

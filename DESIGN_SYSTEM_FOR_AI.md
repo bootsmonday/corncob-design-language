@@ -192,7 +192,7 @@ Examples:
 
 ### Color References
 
-```json
+```css
 // VALID - using semantic names
 background: var(--cc-gray-100);
 color: var(--cc-blue-60);
@@ -206,7 +206,7 @@ background: #23211f; // ❌ Use var(--cc-gray-100) instead
 
 ### Sizing References
 
-```json
+```css
 // VALID - using modular scale
 padding: var(--cc-spacing-0);
 margin: var(--cc-spacing-2);

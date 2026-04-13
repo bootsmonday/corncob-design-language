@@ -7,6 +7,7 @@
   "style": "dist/corncob-design-language.css",
   "files": [
     "dist",
+    "CHANGELOG.md",
     "DESIGN_SYSTEM_FOR_AI.md",
     "tokens.json",
     "components.json"
@@ -42,7 +43,10 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "lint:css": "stylelint src/**/*.css",
-    "format": "prettier --write \"src/**/*.{js,css,html}\""
+    "format": "prettier --write \"src/**/*.{js,css,html}\"",
+    "changeset": "changeset",
+    "changeset:version": "changeset version",
+    "changeset:publish": "npm run build && changeset publish"
   },
   "keywords": [
     "design-system",

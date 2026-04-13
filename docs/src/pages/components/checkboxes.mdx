@@ -7,6 +7,8 @@ import CodeSample from '../../layouts/partials/CodeSample.astro';
 import { Code } from 'astro/components';
 import checkboxTokens from '../../../../src/components/checkboxes/checkbox-tokens.css?raw';
 
+
+
 ## Checkboxes
 
 Checkboxes are used to allow users to select one or more options from a set. They can be used in forms, settings, and anywhere else where multiple selections are needed.
@@ -22,9 +24,13 @@ They can be used in various states such as checked, unchecked, and disabled.
     <label for="example1">Checkbox One</label>
   </div>
   <div class="corn-checkbox">
-    <input type="checkbox" id="example2" name="example" />
+    <input type="checkbox" id="example2" name="example" checked />
     <label for="example2">Checkbox Two</label>
   </div>
+  <div class="corn-checkbox">
+    <input type="checkbox" id="example3" name="example" />
+    <label for="example3">Checkbox Three</label>
+  </div>      
 </fieldset>
 
 <CodeSample id="default-checkbox-code">
@@ -36,19 +42,24 @@ They can be used in various states such as checked, unchecked, and disabled.
       <label for="example1">Checkbox One</label>
     </div>
     <div class="corn-checkbox">
-      <input type="checkbox" id="example2" name="example" />
+      <input type="checkbox" id="example2" name="example" checked/>
       <label for="example2">Checkbox Two</label>
     </div>
+    <div class="corn-checkbox">
+      <input type="checkbox" id="example3" name="example" />
+      <label for="example3">Checkbox Three</label>
+    </div>    
   </fieldset>
   ```
 </CodeSample>
+
 ### Disabled Checkboxes
 
 <fieldset class="corn-form--item corn-checkbox-group">
   <legend>Group Label</legend>
   <div class="corn-checkbox">
-    <input type="checkbox" id="example3" name="example" disabled />
-    <label for="example3">Disabled Checkbox</label>
+    <input type="checkbox" id="example-disabled" name="example-disabled" disabled />
+    <label for="example-disabled">Disabled Checkbox</label>
   </div>
 </fieldset>
 
@@ -57,8 +68,8 @@ They can be used in various states such as checked, unchecked, and disabled.
   <fieldset class="corn-form--item corn-checkbox-group">
     <legend>Group Label</legend>
     <div class="corn-checkbox">
-      <input type="checkbox" id="example3" name="example" disabled />
-      <label for="example3">Disabled Checkbox</label>
+      <input type="checkbox" id="example-disabled" name="example-disabled" disabled />
+      <label for="example-disabled">Disabled Checkbox</label>
     </div>
   </fieldset>
   ```
@@ -69,26 +80,60 @@ They can be used in various states such as checked, unchecked, and disabled.
 <fieldset class="corn-form--item corn-checkbox-group corn-checkbox-group--inline">
   <legend>Group Label</legend>
   <div class="corn-checkbox">
-    <input type="checkbox" id="example4" name="example" />
-    <label for="example4">Inline Checkbox One</label>
+    <input type="checkbox" id="inline-example1" name="example-inline" checked/>
+    <label for="inline-example1">Inline Checkbox One</label>
   </div>
   <div class="corn-checkbox">
-    <input type="checkbox" id="example5" name="example" />
-    <label for="example5">Inline Checkbox Two</label>
+    <input type="checkbox" id="inline-example2" name="example-inline" />
+    <label for="inline-example2">Inline Checkbox Two</label>
   </div>
+  <div class="corn-checkbox">
+    <input type="checkbox" id="inline-example3" name="example-inline" />
+    <label for="inline-example3">Inline Checkbox Three</label>
+  </div>  
 </fieldset>
 
 <CodeSample id="inline-checkbox-code">
   ```html
-  <fieldset class="corn-form--item corn-checkbox-group corn-checkbox-group--inline">
+<fieldset class="corn-form--item corn-checkbox-group corn-checkbox-group--inline">
+  <legend>Group Label</legend>
+  <div class="corn-checkbox">
+    <input type="checkbox" id="inline-example1" name="example-inline" checked/>
+    <label for="inline-example1">Inline Checkbox One</label>
+  </div>
+  <div class="corn-checkbox">
+    <input type="checkbox" id="inline-example2" name="example-inline" />
+    <label for="inline-example2">Inline Checkbox Two</label>
+  </div>
+  <div class="corn-checkbox">
+    <input type="checkbox" id="inline-example3" name="example-inline" />
+    <label for="inline-example3">Inline Checkbox Three</label>
+  </div>  
+</fieldset>
+  ```
+</CodeSample>
+
+### Indeterminate Checkboxes
+
+Indeterminate checkboxes are used to indicate a state that is neither checked nor unchecked.
+This is commonly used when a checkbox represents a parent selection that has some, but not all, of its child checkboxes selected.
+The indeterminate state is set via JavaScript on the checkbox input element using the `indeterminate` property.
+
+<fieldset class="corn-form--item corn-checkbox-group">
+  <legend>Group Label</legend>
+  <div class="corn-checkbox">
+    <input type="checkbox" id="example-indeterminate" name="example-indeterminate" />
+    <label for="example-indeterminate">Indeterminate checkbox</label>
+  </div>
+</fieldset>
+
+<CodeSample id="indeterminate-checkbox-code">
+  ```html
+  <fieldset class="corn-form--item corn-checkbox-group">
     <legend>Group Label</legend>
     <div class="corn-checkbox">
-      <input type="checkbox" id="example4" name="example" />
-      <label for="example4">Inline Checkbox One</label>
-    </div>
-    <div class="corn-checkbox">
-      <input type="checkbox" id="example5" name="example" />
-      <label for="example5">Inline Checkbox Two</label>
+      <input type="checkbox" id="example-indeterminate" name="example-indeterminate" />
+      <label for="example-indeterminate">Indeterminate checkbox</label>
     </div>
   </fieldset>
   ```
@@ -99,3 +144,13 @@ They can be used in various states such as checked, unchecked, and disabled.
 <CodeSample id="checkbox-tokens-code">
   <Code code={checkboxTokens} lang="css" />
 </CodeSample>
+
+<script>{`
+  document.addEventListener('DOMContentLoaded', () => {
+    const indeterminateCheckbox = document.getElementById('example-indeterminate');
+    if (indeterminateCheckbox) {
+      indeterminateCheckbox.indeterminate = true;
+    }
+  });
+
+`}</script>

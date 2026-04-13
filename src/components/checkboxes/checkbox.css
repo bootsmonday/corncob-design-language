@@ -4,6 +4,8 @@ fieldset.corn-checkbox-group {
   border: none;
   display: flex;
   gap: 1rem;
+  margin: 0;
+  padding: 0;
 
   hr {
     margin: 1rem 0;
@@ -71,7 +73,7 @@ fieldset.corn-checkbox-group {
 
     &::after {
       border-color: var(--cc-checkbox--input--color--checked);
-      border-radius: var(--cc-checkbox--input--border-radius);
+      border-radius: 1px;
       border-style: solid;
       border-width: 0 0.105em 0.105em 0;
       content: '';
@@ -94,6 +96,19 @@ fieldset.corn-checkbox-group {
       &::after {
         opacity: 1;
         scale: 1.05;
+      }
+    }
+
+    &:indeterminate {
+      &::after {
+        border-radius: 1px;
+        border-width: 0.0575em 0;
+        height: 0.105em;
+        margin-top: 0;
+        opacity: 1;
+        scale: 1.05;
+        transform: rotate(0deg);
+        width: 0.5em;
       }
     }
   }
@@ -119,9 +134,6 @@ fieldset.corn-checkbox-group {
       }
     }
 
-    &::after {
-      border-radius: var(--cc-checkbox--input--border-radius);
-    }
   }
 
   label {
@@ -142,9 +154,6 @@ fieldset.corn-checkbox-group {
       }
     }
 
-    &::after {
-      border-radius: var(--cc-checkbox--input--border-radius);
-    }
   }
 
   label {

@@ -13,18 +13,6 @@
   padding: var(--cc-badge--padding);
   vertical-align: middle;
 
-  .corn-badge--status {
-    height: var(--cc-size--1);
-    width: var(--cc-size--1);
-
-    .corn-icon {
-      height: var(--cc-size--1);
-      width: var(--cc-size--1);
-    }
-
-  }
-  
-
   &.corn-badge--success {
     background: var(--cc-badge--success--background);
     border-color: var(--cc-badge--success--border--color);
@@ -84,18 +72,22 @@
 
 .corn-badge--status {
   align-items: center;
+  border-color: var(--cc-badge--status--border--color);
+  border-radius: var(--cc-badge--status--border--radius);
+  border-style: var(--cc-badge--status--border--style);
+  border-width: var(--cc-badge--status--border--width);
   color: var(--cc-badge--status--color);
   display: inline-flex;
   flex: 0 0 auto;
-  height: var(--cc-size-5);
+  height: var(--cc-size--1);
   justify-content: center;
-  width: var(--cc-size-5);
+  width: var(--cc-size--1);
 
   .corn-icon {
     color: currentcolor;
     fill: currentcolor;
-    height: var(--cc-size-3);
-    width: var(--cc-size-3);
+    height: var(--cc-size--1);
+    width: var(--cc-size--1);
   }
 }
 

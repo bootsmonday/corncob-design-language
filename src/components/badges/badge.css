@@ -8,7 +8,7 @@
   border-style: var(--cc-badge--border--style);
   border-width: var(--cc-badge--border--width);
   display: inline-flex;
-  font-size: var(--cc-font-size--md);
+  font-size: var(--cc-font-size--base);
   gap: var(--cc-size--4);
   padding: var(--cc-badge--padding);
   vertical-align: middle;

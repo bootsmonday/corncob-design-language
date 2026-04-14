@@ -13,6 +13,7 @@ import './tokens/forms.css';
 import './tokens/status.css';
 
 // Import Components - CSS
+import './components/badges/badge.css';
 import './components/panels/panel.css';
 import './components/links/link.css';
 import './components/buttons/button.css';

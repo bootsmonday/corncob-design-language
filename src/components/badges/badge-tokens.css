@@ -1,0 +1,27 @@
+:root {
+  --cc-badge--border--radius: 1rem;
+  --cc-badge--border--width: var(--cc-border--width);
+  --cc-badge--border--style: var(--cc-border--style);
+  --cc-badge--border--color: rgb(from var(--cc-border--color) r g b / 21%);
+  --cc-badge--padding: var(--cc-size--5) var(--cc-size--1);
+  --cc-badge--padding--sm: var(--cc-size--5) var(--cc-size--3);
+  --cc-badge--background: var(--cc-gray-10);
+  --cc-badge--title--color: var(--cc-gray-80);
+  --cc-badge--status--border--radius: var(--cc-border--radius--round);
+  --cc-badge--status--color: var(--cc-gray-80);
+  --cc-badge--status--border--color: var(--cc-badge--border--color);
+  --cc-badge--status--border--style: var(--cc-border--style);
+  --cc-badge--status--border--width: var(--cc-border--width);
+  --cc-badge--success--background: var(--cc-status--success--background);
+  --cc-badge--success--color: var(--cc-status--success--color);
+  --cc-badge--success--border--color: var(--cc-status--success--border-color);
+  --cc-badge--warning--background: var(--cc-status--warning--background);
+  --cc-badge--warning--color: var(--cc-status--warning--color);
+  --cc-badge--warning--border--color: var(--cc-status--warning--border-color);
+  --cc-badge--error--background: var(--cc-status--error--background);
+  --cc-badge--error--color: var(--cc-status--error--color);
+  --cc-badge--error--border--color: var(--cc-status--error--border-color);
+  --cc-badge--info--background: var(--cc-status--info--background);
+  --cc-badge--info--color: var(--cc-status--info--color);
+  --cc-badge--info--border--color: var(--cc-status--info--border-color);
+}

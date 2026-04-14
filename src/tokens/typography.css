@@ -5,13 +5,29 @@
   --cc-font-family-mono: "SFMono-Regular", consolas, "Liberation Mono", menlo, courier, monospace;
 
   /* Font Sizes */
+
+  /* 10.24px */
   --cc-font-size--xs: var(--cc-size--2);
+
+   /* 12.8px */
   --cc-font-size--sm: var(--cc-size--1);
+
+   /* 16px */
   --cc-font-size--base: var(--cc-size-0);
+
+   /* 20px */
   --cc-font-size--lg: var(--cc-size-1);
+
+  /* 25px */
   --cc-font-size--xl: var(--cc-size-2);
+
+  /* 31.25 px */
   --cc-font-size--2xl: var(--cc-size-3);
+
+  /* 39.063px */
   --cc-font-size--3xl: var(--cc-size-4);
+
+  /* 48.82px */
   --cc-font-size--4xl: var(--cc-size-5);
   --cc-font-weight--thin: 100;
   --cc-font-weight--light: 300;

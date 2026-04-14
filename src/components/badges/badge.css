@@ -1,0 +1,111 @@
+@import './badge-tokens.css';
+
+.corn-badge {
+  align-items: center;
+  background: var(--cc-badge--background);
+  border-color: var(--cc-badge--border--color);
+  border-radius: var(--cc-badge--border--radius);
+  border-style: var(--cc-badge--border--style);
+  border-width: var(--cc-badge--border--width);
+  display: inline-flex;
+  font-size: var(--cc-font-size--md);
+  gap: var(--cc-size--4);
+  padding: var(--cc-badge--padding);
+  vertical-align: middle;
+
+  .corn-badge--status {
+    height: var(--cc-size--1);
+    width: var(--cc-size--1);
+
+    .corn-icon {
+      height: var(--cc-size--1);
+      width: var(--cc-size--1);
+    }
+
+  }
+  
+
+  &.corn-badge--success {
+    background: var(--cc-badge--success--background);
+    border-color: var(--cc-badge--success--border--color);
+    
+    .corn-badge--status {
+      border-color: var(--cc-badge--success--border--color);
+      color: var(--cc-badge--success--color);
+    }
+
+    .corn-badge--content {
+      color: var(--cc-badge--success--color);
+    }
+  }
+
+  &.corn-badge--warning {
+    background: var(--cc-badge--warning--background);
+    border-color: var(--cc-badge--warning--border--color);
+    
+    .corn-badge--status{
+      border-color: var(--cc-badge--warning--border--color);
+      color: var(--cc-badge--warning--color);
+    }
+
+    .corn-badge--content {
+      color: var(--cc-badge--warning--color);
+    }
+  }
+
+  &.corn-badge--error {
+    background: var(--cc-badge--error--background);
+    border-color: var(--cc-badge--error--border--color);
+    
+    .corn-badge--status{
+      border-color: var(--cc-badge--error--border--color);
+      color: var(--cc-badge--error--color);
+    }
+
+    .corn-badge--content {
+      color: var(--cc-badge--error--color);
+    }
+  }
+
+  &.corn-badge--info {
+    background: var(--cc-badge--info--background);
+    border-color: var(--cc-badge--info--border--color);
+    
+    .corn-badge--status{
+      border-color: var(--cc-badge--info--border--color);
+      color: var(--cc-badge--info--color);
+    }
+
+    .corn-badge--content {
+      color: var(--cc-badge--info--color);
+    }
+  }
+}
+
+.corn-badge--status {
+  align-items: center;
+  color: var(--cc-badge--status--color);
+  display: inline-flex;
+  flex: 0 0 auto;
+  height: var(--cc-size-5);
+  justify-content: center;
+  width: var(--cc-size-5);
+
+  .corn-icon {
+    color: currentcolor;
+    fill: currentcolor;
+    height: var(--cc-size-3);
+    width: var(--cc-size-3);
+  }
+}
+
+.corn-badge--content {
+  display: inline-flex;
+  flex: 1 1 auto;
+}
+
+.corn-badge--sm {
+  font-size: var(--cc-font-size--sm);
+  gap: var(--cc-size--5);
+  padding: var(--cc-badge--padding--sm);
+}

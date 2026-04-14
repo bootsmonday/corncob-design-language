@@ -3,13 +3,13 @@ layout: ../../layouts/DocsLayout.astro
 title: 'Guide | AI Integration | Corncob'
 ---
 
-# Corncob Design System - AI Integration Guide
+## Corncob Design System - AI Integration Guide
 
 This guide explains how AI systems should consume and use the Corncob Design Language files for code generation, validation, and design system enforcement.
 
-## File Structure & Purpose
+### File Structure & Purpose
 
-### 1. `components.json`
+#### `components.json`
 
 **Purpose**: Component inventory and configuration for UI generation.
 
@@ -44,7 +44,7 @@ This guide explains how AI systems should consume and use the Corncob Design Lan
 ```
 </div>
 
-### 2. `tokens.json`
+#### `tokens.json`
 
 **Purpose**: Design token values for styling, spacing, typography, and theming.
 
@@ -68,9 +68,9 @@ This guide explains how AI systems should consume and use the Corncob Design Lan
 
 ---
 
-## How AI Should Reference These Files
+### How AI Should Reference These Files
 
-### For HTML/CSS Generation
+#### For HTML/CSS Generation
 
 1. **Always start with component pattern from `tokens.json`**:
    - Use the provided HTML structure under `patterns.*`
@@ -84,7 +84,7 @@ This guide explains how AI systems should consume and use the Corncob Design Lan
    - Use CSS variables from `tokens.json` in inline styles if customization needed
    - Example: `style="color: var(--cc-gray-100); background: var(--cc-blue-60);"`
 
-### Example Workflow
+#### Example Workflow
 
 **AI Task**: "Create a primary button that's large with an error state"
 
@@ -100,9 +100,9 @@ This guide explains how AI systems should consume and use the Corncob Design Lan
 
 ---
 
-## Best Practices for AI Code Generation
+### Best Practices for AI Code Generation
 
-### 1. Form Controls
+#### Form Controls
 
 **Always follow this pattern** (from `tokens.json.patterns.formControl`):
 <div class="corn-docs-code">
@@ -124,7 +124,7 @@ This guide explains how AI systems should consume and use the Corncob Design Lan
 - Always wrap in `corn-form--item`
 - Include `corn-status` container for validation messages
 
-### 2. Grouped Form Elements (Checkboxes/Radio Buttons)
+#### Grouped Form Elements (Checkboxes/Radio Buttons)
 
 **Always follow this pattern**:
 
@@ -151,7 +151,7 @@ This guide explains how AI systems should consume and use the Corncob Design Lan
 - Each input has unique `id` matching its `label for`
 - Use `corn-checkbox-group--inline` for inline layout
 
-### 3. Interactive Components (Tooltips, Popovers, Expandables)
+#### Interactive Components (Tooltips, Popovers, Expandables)
 
 **Check `jsRequired` field**:
 
@@ -174,14 +174,13 @@ This guide explains how AI systems should consume and use the Corncob Design Lan
 ```
 </div>
 
-
 **Validation**:
 
 - Anchor wrapper uses the proper class and contains the `.corn-pop` trigger element used by the current implementation
 - Trigger element should use `aria-controls` pointing to the popover `id` as an accessibility recommendation
 - Position attribute matches options: `top|right|bottom|left`
 
-### 4. Class Naming Rules
+#### Class Naming Rules
 
 **Modifiers follow pattern**: `corn-[component]--[variant|size]`
 
@@ -200,9 +199,9 @@ Examples:
 
 ---
 
-## Validation Rules for AI Systems
+### Validation Rules for AI Systems
 
-### Color References
+#### Color References
 
 <div class="corn-docs-code">
 ```json
@@ -218,7 +217,7 @@ background: #23211f; //  Use var(--cc-gray-100) instead
 ```
 </div>
 
-### Sizing References
+#### Sizing References
 
 <div class="corn-docs-code">
 ```json
@@ -236,7 +235,7 @@ padding: 15px; //  Use var(--cc-spacing-1) or var(--cc-spacing-2)
 ```
 </div>
 
-### Typography
+#### Typography
 
 <div class="corn-docs-code">
 ```json
@@ -252,7 +251,7 @@ font-size: 18px; //  Use token system instead
 ```
 </div>
 
-### Component Class Validation
+#### Component Class Validation
 
 <div class="corn-docs-code">
 ```json
@@ -269,9 +268,9 @@ font-size: 18px; //  Use token system instead
 
 ---
 
-## Common AI Tasks & How to Handle Them
+### Common AI Tasks & How to Handle Them
 
-### Task 1: Generate a form with validation
+#### Task 1: Generate a form with validation
 
 **Process**:
 
@@ -280,7 +279,7 @@ font-size: 18px; //  Use token system instead
 3. Add `corn-status` element for error/success messages
 4. Use error color from `colors.semantic.error`
 
-### Task 2: Create a status message
+#### Task 2: Create a status message
 
 **Process**:
 
@@ -289,7 +288,7 @@ font-size: 18px; //  Use token system instead
 3. Check `components.message.tokens` for colors
 4. Include icon (SVG structure not specified in token files)
 
-### Task 3: Build navigation menu
+#### Task 3: Build navigation menu
 
 **Process**:
 
@@ -298,7 +297,7 @@ font-size: 18px; //  Use token system instead
 3. Use `corn-expandable` for collapsible items
 4. Apply `.corn-panel-menu--item--active` for current page
 
-### Task 4: Ensure keyboard accessibility
+#### Task 4: Ensure keyboard accessibility
 
 **Process**:
 
@@ -310,7 +309,7 @@ font-size: 18px; //  Use token system instead
 
 ---
 
-## File Update Protocol
+### File Update Protocol
 
 Whenever these files are updated:
 
@@ -321,7 +320,7 @@ Whenever these files are updated:
 
 ---
 
-## Example: Complete Form Generation
+### Example: Complete Form Generation
 
 Here's how an AI system should generate a contact form:
 
@@ -368,7 +367,7 @@ Here's how an AI system should generate a contact form:
 
 ---
 
-## Quick Reference: Component Size Options
+### Quick Reference: Component Size Options
 
 All these components support these sizes: `xs`, `sm`, `md` (default), `lg`, `xl`
 
@@ -383,7 +382,7 @@ corn-message--info       → Info message (no size system)
 
 ---
 
-## Accessibility Minimums (from tokens.json)
+### Accessibility Minimums (from tokens.json)
 
 AI systems **must** ensure:
 

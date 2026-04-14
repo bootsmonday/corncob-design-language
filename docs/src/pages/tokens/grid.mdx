@@ -1,0 +1,220 @@
+---
+title: Tokens | Grid | Corncob
+---
+
+import DocsLayout from '../../layouts/DocsLayout.astro';
+import CodeSample from '../../layouts/partials/CodeSample.astro';
+import { Code } from 'astro/components';
+import gridUtilities from '../../../../src/common/grid.css?raw';
+
+export const dynamicHeadings = [
+  {
+    slug: 'grid-tokens-and-utilities',
+    text: 'Grid Tokens and Utilities',
+    depth: 2
+  },
+  {
+    slug: 'container-and-row',
+    text: 'Container and Row',
+    depth: 3
+  },
+  {
+    slug: 'equal-columns',
+    text: 'Equal Columns',
+    depth: 3
+  },
+  {
+    slug: 'mixed-column-spans',
+    text: 'Mixed Column Spans',
+    depth: 3
+  },
+  {
+    slug: 'responsive-columns',
+    text: 'Responsive Columns',
+    depth: 3
+  },
+  {
+    slug: 'grid-source',
+    text: 'Grid Source',
+    depth: 2
+  }
+];
+
+<DocsLayout title="Tokens | Grid | Corncob" dynamicHeadings={dynamicHeadings}>
+## Grid Tokens and Utilities
+
+Corncob provides a set of grid utilities that provide a responsive 12-column layout using CSS Grid. Use `corn-container` to constrain page width, `corn-row` to create a grid context, and `corn-col-*` classes to control how many columns each item spans.
+
+This grid uses  `CSS Grid` under the hood to lay out the 12-column system that the `corn-row` / `corn-col-*` utilities leverage.
+This allows the grid to take advantage of the features of CSS Grid such as column spanning, responsive layouts, and gap control while still using the `corn-row` / `corn-col-*` utilities to define the 12-column layout.
+
+Flex based grid systems don't apply the gap to wrapped rows of columns, whereas CSS Grid applies the `gap` between the grid items even when the items wrap to the next row.
+
+This is your basic grid system.  Look at [Bootstrap](https://getbootstrap.com/docs/4.0/layout/grid/), [Carbon](https://carbondesignsystem.com/components/grid/overview/), [Tailwind](https://tailwindcss.com/docs/grid-template-columns), [960 grid system](http://960.gs/)  or one of the other popular grid systems for reference on how the 12-column layout works and the types of more complicated layouts that are available.
+
+<style>
+	{`
+		.docs-grid-demo {
+			display: grid;
+			gap: 1rem;
+		}
+
+		.docs-grid-item {
+			align-items: center;
+			background: var(--cc-yellow-20);
+			border: 1px solid var(--cc-border--color);
+			border-radius: var(--cc-border--radius);
+			color: var(--cc-text-color, inherit);
+			display: flex;
+			font-size: var(--cc-size-0);
+			justify-content: center;
+			min-height: 4rem;
+			padding: 0.75rem;
+			text-align: center;
+		}
+
+		.docs-grid-item--accent {
+			background: var(--cc-blue-10);
+		}
+
+		.docs-grid-item--strong {
+			background: var(--cc-orange-20);
+		}
+	`}
+</style>
+
+### Container and Row
+
+`corn-container` centers content and applies max-widths at each breakpoint. It is the outer wrapper you should use for page sections before adding rows and columns.
+
+`corn-row` creates a grid context in which the `corn-col-*` column utilities can be placed. Each `corn-row` should wrap the `corn-col-*` elements that make up the 12-column layout.
+
+<div class="corn-container">
+  <div class="corn-row">
+    <div class="corn-col-12">
+      <div class="docs-grid-demo">
+        <div class="docs-grid-item">This panel is inside  `corn-container`</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<CodeSample id="grid-container-code">
+	```html
+    <div class="corn-container">
+      <div class="corn-row">
+      <!-- page content -->
+      </div>
+    </div>
+	```
+</CodeSample>
+
+### Equal Columns
+
+Use the same span value on each item when you want evenly divided columns. In this example, three items each span 4 columns for a 3-up layout.
+
+<div class="corn-container">
+	<div class="corn-row">
+		<div class="corn-col-4">
+			<div class="docs-grid-item">4 / 12</div>
+		</div>
+		<div class="corn-col-4">
+			<div class="docs-grid-item">4 / 12</div>
+		</div>
+		<div class="corn-col-4">
+			<div class="docs-grid-item">4 / 12</div>
+		</div>
+	</div>
+</div>
+
+<CodeSample id="grid-equal-columns-code">
+	```html
+    <div class="corn-container">
+      <div class="corn-row">
+        <div class="corn-col-4">Column one</div>
+        <div class="corn-col-4">Column two</div>
+        <div class="corn-col-4">Column three</div>
+      </div>
+    </div>
+	```
+</CodeSample>
+
+### Mixed Column Spans
+
+Mix span sizes to create common application layouts like a sidebar with a content area.
+
+<div class="corn-container">
+	<div class="corn-row">
+		<aside class="corn-col-4">
+			<div class="docs-grid-item docs-grid-item--accent">Sidebar 4 / 12</div>
+		</aside>
+		<main class="corn-col-8">
+			<div class="docs-grid-item docs-grid-item--strong">Main content 8 / 12</div>
+		</main>
+	</div>
+</div>
+
+<CodeSample id="grid-mixed-columns-code">
+	```html
+  <div class="corn-container">
+    <div class="corn-row">
+      <aside class="corn-col-4">Sidebar</aside>
+      <main class="corn-col-8">Main content</main>
+    </div>
+  </div>
+	```
+</CodeSample>
+
+### Responsive Columns
+
+Responsive modifiers let each item span different widths at different breakpoints. Here each card is full width by default, becomes 6 columns on small screens, and 4 columns on large screens.
+
+<div class="corn-container">
+	<div class="corn-row">
+		<div class="corn-col-12 corn-col-sm-6 corn-col-lg-4">
+			<div class="docs-grid-item">12 - 6sm - 4lg</div>
+		</div>
+		<div class="corn-col-12 corn-col-sm-6 corn-col-lg-4">
+			<div class="docs-grid-item">12 - 6sm - 4lg</div>
+		</div>
+		<div class="corn-col-12 corn-col-sm-6 corn-col-lg-4">
+			<div class="docs-grid-item">12 - 6sm - 4lg</div>
+		</div>
+    <div class="corn-col-12 corn-col-sm-6 corn-col-lg-4">
+      <div class="docs-grid-item">Card four (wrapped)</div>
+    </div>
+	</div>
+</div>
+
+<CodeSample id="grid-responsive-columns-code">
+	```html
+    <div class="corn-container">
+      <div class="corn-row">
+        <div class="corn-col-12 corn-col-sm-6 corn-col-lg-4">Card one</div>
+        <div class="corn-col-12 corn-col-sm-6 corn-col-lg-4">Card two</div>
+        <div class="corn-col-12 corn-col-sm-6 corn-col-lg-4">Card three</div>
+        <div class="corn-col-12 corn-col-sm-6 corn-col-lg-4">Card four (wrapped)</div>
+      </div>
+    </div>
+	```
+</CodeSample>
+
+
+***Note:***
+
+The `@media` breakpoints do not use css custom properties because variables are not supported inside media queries in css at this time.
+
+The available responsive prefixes are:
+
+- `corn-col-sm-*` for `576px` and up
+- `corn-col-md-*` for `768px` and up
+- `corn-col-lg-*` for `992px` and up
+- `corn-col-xl-*` for `1200px` and up
+- `corn-col-xxl-*` for `1400px` and up
+
+## Grid Source
+
+<CodeSample id="grid-source-code">
+	<Code code={gridUtilities} lang="css" />
+</CodeSample>
+</DocsLayout>

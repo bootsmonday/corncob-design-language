@@ -95,6 +95,11 @@ const isTestingSection = pathname.includes('/testing') ? true : null;
       <div class="corn-expandable--content">
         <div class="corn-panel-menu--submenu">
           <a
+            href={`${base}components/badges`}
+            class="corn-panel-menu--item"
+            aria-current={isActive(`${base}components/badges`) ? 'page' : false}>Badges</a
+          >
+          <a
             href={`${base}components/buttons`}
             class="corn-panel-menu--item"
             aria-current={isActive(`${base}components/buttons`) ? 'page' : false}>Buttons</a

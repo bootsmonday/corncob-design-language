@@ -1,0 +1,252 @@
+---
+layout: ../../layouts/DocsLayout.astro
+title: 'Component | Badges | Corncob'
+---
+
+import CodeSample from '../../layouts/partials/CodeSample.astro';
+import { Code } from 'astro/components';
+import badgeTokens from '../../../../src/components/badges/badge-tokens.css?raw';
+import bootstrapIconsSprite from 'bootstrap-icons/bootstrap-icons.svg?url';
+
+## Badges
+
+Badges are used to display status or contextual information to the user, such as neutral, success, warning, error, or info states.
+
+### Neutral
+Neutral badges are used to indicate a neutral state or status to the user, without implying success, warning, error, or informational context.
+
+<div class="corn-badge">
+  <div class="corn-badge--status">
+    <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon" aria-hidden="true">
+      <use href={`${bootstrapIconsSprite}#dash`}></use>
+    </svg>
+  </div>
+  <div class="corn-badge--content">neutral</div>
+</div>
+
+<CodeSample id="page-neutral-badge-code">
+  ```html
+  <div class="corn-badge">
+    <div class="corn-badge--status">
+      <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon" aria-hidden="true"><use href="[neutral icon]"></use></svg>
+    </div>
+    <div class="corn-badge--content">neutral</div>
+  </div>
+  ```
+</CodeSample>
+
+### Informational
+
+Informational badges are used to convey information to the user that does not indicate success, warning, or error, but provides context or guidance.
+
+<div class="corn-badge corn-badge--info">
+  <div class="corn-badge--status">
+    <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon" aria-hidden="true">
+      <use href={`${bootstrapIconsSprite}#info-lg`}></use>
+    </svg>
+  </div>
+  <div class="corn-badge--content">info</div>
+</div>
+
+<CodeSample id="page-info-badge-code">
+  ```html
+  <div class="corn-badge corn-badge--info">
+    <div class="corn-badge--status">
+      <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon" aria-hidden="true"><use href="[info icon]"></use></svg>
+    </div>
+    <div class="corn-badge--content">info</div>
+  </div>
+  ```
+</CodeSample>
+
+### Success
+
+Success badges are used to indicate to the user that an action or state has completed successfully, or that the status being conveyed is positive or successful.
+
+<div class="corn-badge corn-badge--success">
+  <div class="corn-badge--status">
+    <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon" aria-hidden="true">
+      <use href={`${bootstrapIconsSprite}#check-lg`}></use>
+    </svg>
+  </div>
+  <div class="corn-badge--content">success</div>
+</div>
+
+<CodeSample id="page-success-badge-code">
+  ```html
+  <div class="corn-badge corn-badge--success">
+    <div class="corn-badge--status">
+      <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon" aria-hidden="true"><use href="[success icon]"></use></svg>
+    </div>
+    <div class="corn-badge--content">success</div>
+  </div>
+  ```
+</CodeSample>
+
+### Warning
+
+Warning badges are used to indicate to the user that there is a potential issue or cautionary state that they should be aware of, without indicating an error or failure.
+
+<div class="corn-badge corn-badge--warning">
+  <div class="corn-badge--status">
+    <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon" aria-hidden="true">
+      <use href={`${bootstrapIconsSprite}#exclamation-lg`}></use>
+    </svg>
+  </div>
+  <div class="corn-badge--content">warning</div>
+</div>
+
+<CodeSample id="page-warning-badge-code">
+  ```html
+  <div class="corn-badge corn-badge--warning">
+    <div class="corn-badge--status">
+      <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon" aria-hidden="true"><use href="[warning icon]"></use></svg>
+    </div>
+    <div class="corn-badge--content">warning</div>
+  </div>
+  ```
+</CodeSample>
+
+### Error
+
+Error badges are used to indicate to the user that an action has failed, an error has occurred, or that the status being conveyed represents a negative or erroneous state.
+
+<div class="corn-badge corn-badge--error">
+  <div class="corn-badge--status">
+    <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon" aria-hidden="true">
+      <use href={`${bootstrapIconsSprite}#x-lg`}></use>
+    </svg>
+  </div>
+  <div class="corn-badge--content">error</div>
+</div>
+
+<CodeSample id="page-error-badge-code">
+  ```html
+  <div class="corn-badge corn-badge--error">
+    <div class="corn-badge--status">
+      <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon" aria-hidden="true"><use href="[error icon]"></use></svg>
+    </div>
+    <div class="corn-badge--content">error</div>
+  </div>
+  ```
+</CodeSample>
+
+### Small Badges
+
+Small badges are used to display compact status indicators that do not require additional context or information. They are typically used for simple notifications or alerts.
+
+### Small Neutral
+
+<div class="corn-badge corn-badge--sm">
+  <div class="corn-badge--status">
+    <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon" aria-hidden="true">
+      <use href={`${bootstrapIconsSprite}#dash`}></use>
+    </svg>
+  </div>
+  <div class="corn-badge--content">neutral</div>
+</div>
+
+<CodeSample id="page-neutral-badge-code-sm">
+  ```html
+  <div class="corn-badge corn-badge--sm">
+    <div class="corn-badge--status">
+      <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon" aria-hidden="true"><use href="[neutral icon]"></use></svg>
+    </div>
+    <div class="corn-badge--content">neutral</div>
+  </div>
+  ```
+</CodeSample>
+
+### Small Informational
+
+<div class="corn-badge corn-badge--info corn-badge--sm">
+  <div class="corn-badge--status">
+    <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon" aria-hidden="true">
+      <use href={`${bootstrapIconsSprite}#info-lg`}></use>
+    </svg>
+  </div>
+  <div class="corn-badge--content">info</div>
+</div>
+
+<CodeSample id="page-info-badge-code-sm">
+  ```html
+  <div class="corn-badge corn-badge--info corn-badge--sm">
+    <div class="corn-badge--status">
+      <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon" aria-hidden="true"><use href="[info icon]"></use></svg>
+    </div>
+    <div class="corn-badge--content">info</div>
+  </div>
+  ```
+</CodeSample>
+
+### Small Success
+
+<div class="corn-badge corn-badge--success corn-badge--sm">
+  <div class="corn-badge--status">
+    <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon" aria-hidden="true">
+      <use href={`${bootstrapIconsSprite}#check-lg`}></use>
+    </svg>
+  </div>
+  <div class="corn-badge--content">success</div>
+</div>
+
+<CodeSample id="page-success-badge-code-sm">
+  ```html
+  <div class="corn-badge corn-badge--success corn-badge--sm">
+    <div class="corn-badge--status">
+      <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon" aria-hidden="true"><use href="[success icon]"></use></svg>
+    </div>
+    <div class="corn-badge--content">success</div>
+  </div>
+  ```
+</CodeSample>
+
+### Small Warning
+
+<div class="corn-badge corn-badge--warning corn-badge--sm">
+  <div class="corn-badge--status">
+    <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon" aria-hidden="true">
+      <use href={`${bootstrapIconsSprite}#exclamation-lg`}></use>
+    </svg>
+  </div>
+  <div class="corn-badge--content">warning</div>
+</div>
+
+<CodeSample id="page-warning-badge-code-sm">
+  ```html
+  <div class="corn-badge corn-badge--warning corn-badge--sm">
+    <div class="corn-badge--status">
+      <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon" aria-hidden="true"><use href="[warning icon]"></use></svg>
+    </div>
+    <div class="corn-badge--content">warning</div>
+  </div>
+  ```
+</CodeSample>
+
+### Small Error
+
+<div class="corn-badge corn-badge--error corn-badge--sm">
+  <div class="corn-badge--status">
+    <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon" aria-hidden="true">
+      <use href={`${bootstrapIconsSprite}#x-lg`}></use>
+    </svg>
+  </div>
+  <div class="corn-badge--content">error</div>
+</div>
+
+<CodeSample id="page-error-badge-code-sm">
+```html
+  <div class="corn-badge corn-badge--error corn-badge--sm">
+    <div class="corn-badge--status">
+      <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon" aria-hidden="true"><use href="[error icon]"></use></svg>
+    </div>
+    <div class="corn-badge--content">error</div>
+  </div>
+  ```
+</CodeSample>
+
+
+## Badge Tokens
+<CodeSample id="badge-tokens-code">
+  <Code code={badgeTokens} lang="css" />
+</CodeSample>

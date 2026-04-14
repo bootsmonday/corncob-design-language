@@ -6,7 +6,6 @@
   --cc-badge--padding: var(--cc-size--5) var(--cc-size--1);
   --cc-badge--padding--sm: var(--cc-size--5) var(--cc-size--3);
   --cc-badge--background: var(--cc-gray-10);
-  --cc-badge--title--color: var(--cc-gray-80);
   --cc-badge--status--border--radius: var(--cc-border--radius--round);
   --cc-badge--status--color: var(--cc-gray-80);
   --cc-badge--status--border--color: var(--cc-badge--border--color);

@@ -8,7 +8,6 @@ Entries are generated from markdown fragments in `.changelog/` using
 the "Changelog Release" GitHub Actions workflow.
 
 ## [Unreleased]
-
 ## [0.0.1] - 2026-04-13
 
 ### Added

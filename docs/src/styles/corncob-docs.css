@@ -99,3 +99,19 @@ p{
   border: 1px solid var(--cc-border--color);
   border-radius: var(--cc-border--radius--round);
 }
+
+.docs-icon-dark {
+  display: flex;
+}
+
+.docs-icon-light {
+  display: none;
+}
+
+[data-theme='dark'] .docs-icon-dark {
+  display: none;
+}
+
+[data-theme='dark'] .docs-icon-light {
+  display: flex;
+}

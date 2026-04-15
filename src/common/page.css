@@ -1,5 +1,6 @@
 .corn-body {
   background: var(--cc-body--background);
+  color: var(--cc-body--color);
 
   /* font-family: var(--cc-font-family); */
 }
@@ -14,9 +15,9 @@ hr {
 .corn-icon {
   color: currentcolor;
   display: inline-flex;
+  fill: currentcolor;
   flex: 0 0 auto;
   height: 1rem;
-  stroke: currentcolor;
   width: 1rem;
 }
 

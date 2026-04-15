@@ -1,0 +1,73 @@
+---
+layout: ../../layouts/DocsLayout.astro
+title: 'Component | Modals | Corncob'
+---
+
+import CodeSample from '../../layouts/partials/CodeSample.astro';
+import { Code } from 'astro/components';
+import modalTokens from '../../../../src/components/modals/modal-tokens.css?raw';
+import bootstrapIconsSprite from 'bootstrap-icons/bootstrap-icons.svg?url';
+
+## Modals
+
+Modals are used to display content in a layer above the main page content, typically to capture user attention or require interaction before continuing.
+
+Corncob Modals take advantage of the native `<dialog>` element and are controlled via commands to show and hide the modal from buttons or other interactive elements.
+
+This takes care of the accessibility requirements for modals by leveraging the native `<dialog>` element which handles focus trapping and other accessibility concerns out of the box.
+
+See MDN [dialog element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog) for more information on the native `<dialog>` element and its features.
+
+This modal shows an optional header with a close button that the user can use to dismiss the modal. 
+
+<button class="corn-button" commandfor="corn-modal-example" command="show-modal">
+  Show Modal
+</button>
+
+<dialog closedby="any" class="corn-modal corn-panel" id="corn-modal-example">
+  <div class="corn-modal--header">
+    <h4>Modal Header</h4>
+    <button
+      class="corn-button corn-button--icon corn-button--xs"
+      commandfor="corn-modal-example"
+      command="close"
+      type="button"
+      aria-label="Close"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon">
+        <use href={`${bootstrapIconsSprite}#x`}></use>
+      </svg>
+    </button>
+  </div>
+  <div class="corn-modal--content">
+    <p>This is a modal content area.</p>
+  </div>
+</dialog>
+
+<CodeSample id="page-info-modal-code">
+  ```html
+  <dialog closedby="any" class="corn-modal corn-panel" id="corn-modal-example">
+    <div class="corn-modal--header">
+      <h4>Modal Header</h4>
+      <button
+        class="corn-button corn-button--icon corn-button--xs"
+        commandfor="corn-modal-example"
+        command="close"
+        type="button"
+        aria-label="Close"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon"><use href="[close icon]"></use></svg>
+      </button>
+    </div>
+    <div class="corn-modal--content">
+      <p>This is a modal content area.</p>
+    </div>
+  </dialog>
+  ```
+</CodeSample>
+
+## Modal Tokens
+
+<CodeSample id="modal-tokens-code">
+  <Code code={modalTokens} lang="css" />
+</CodeSample>

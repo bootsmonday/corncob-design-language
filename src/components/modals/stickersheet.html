@@ -1,0 +1,30 @@
+<!-- Toast Component Demo -->
+
+<div class="modal-demo">
+  <h2>Corn Modal</h2>
+
+  <h3>Default</h3>
+  <button class="corn-button" commandfor="corn-modal-example" command="show-modal">
+    Show Modal
+  </button>
+
+  <dialog closedby="any" class="corn-modal corn-panel" id="corn-modal-example">
+    <div class="corn-modal--header">
+      <h4>Modal Header</h4>
+      <button
+        class="corn-button corn-button--icon corn-button--xs"
+        commandfor="corn-modal-example"
+        command="close"
+        type="button"
+        aria-label="Close"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon">
+          <use href="/node_modules/bootstrap-icons/bootstrap-icons.svg#x"></use>
+        </svg>
+      </button>
+    </div>
+    <div class="corn-modal--content">
+      <p>This is a modal content area.</p>
+    </div>
+  </dialog>
+</div>

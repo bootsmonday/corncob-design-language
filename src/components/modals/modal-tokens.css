@@ -1,0 +1,10 @@
+:root {
+  --cc-modal--backdrop--background: rgb(from var(--cc-gray-90) r g b / 80%);
+  --cc-modal--color: var(--cc-white);
+  --cc-modal--font-size: var(--cc-size--1);
+  --cc-modal--padding: var(--cc-size--2) var(--cc-size--1);
+  --cc-modal--border-radius: var(--cc-border--radius);
+  --cc-modal--box-shadow: var(--cc-shadow--drop);
+  --cc-modal--transition-function: var(--cc-transition--easing);
+  --cc-modal--transition-time: var(--cc-transition--time--fast);
+}

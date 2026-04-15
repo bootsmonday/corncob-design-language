@@ -1,6 +1,7 @@
 /* Color Tokens */
 :root {
-  /* cc-yellow CSS Variables */ 
+  /* cc-yellow CSS Variables */
+
   --cc-yellow-10: #fdf6e3;
   --cc-yellow-20: #f1e2b6;
   --cc-yellow-30: #e7cb5a;
@@ -12,7 +13,8 @@
   --cc-yellow-90: #383010;
   --cc-yellow-100: #272109;
 
-  /* cc-orange CSS Variables */ 
+  /* cc-orange CSS Variables */
+
   --cc-orange-10: #fdf5f1;
   --cc-orange-20: #f9ddce;
   --cc-orange-30: #f5c1a1;
@@ -24,7 +26,8 @@
   --cc-orange-90: #452a13;
   --cc-orange-100: #311d0b;
 
-  /* cc-green CSS Variables */ 
+  /* cc-green CSS Variables */
+
   --cc-green-10: #f1f9ed;
   --cc-green-20: #c9edb7;
   --cc-green-30: #98df66;
@@ -36,8 +39,8 @@
   --cc-green-90: #213613;
   --cc-green-100: #16260b;
 
+  /* cc-blue CSS Variables */
 
-  /* cc-blue CSS Variables */ 
   --cc-blue-10: #f3f7fd;
   --cc-blue-20: #d7e3f7;
   --cc-blue-30: #b5cef1;
@@ -49,7 +52,8 @@
   --cc-blue-90: #1a324a;
   --cc-blue-100: #102335;
 
-  /* cc-red CSS Variables */ 
+  /* cc-red CSS Variables */
+
   --cc-red-10: #fbf5f5;
   --cc-red-20: #f3ddde;
   --cc-red-30: #ebc2c4;
@@ -61,7 +65,8 @@
   --cc-red-90: #571d21;
   --cc-red-100: #3f1316;
 
-  /* cc-gray CSS Variables */ 
+  /* cc-gray CSS Variables */
+
   --cc-gray-10: #f8f6f4;
   --cc-gray-20: #e8e1db;
   --cc-gray-30: #d7cabc;

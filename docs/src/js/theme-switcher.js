@@ -7,7 +7,9 @@ function setTheme(theme) {
     theme = newTheme;
   }
 
-  if (theme === 'dark') {
+  const normalizedTheme = theme === 'dark' ? 'dark' : 'light';
+
+  if (normalizedTheme === 'dark') {
     html.setAttribute('data-theme', 'dark');
     html.style.setProperty('color-scheme', 'dark');
   } else {
@@ -15,7 +17,11 @@ function setTheme(theme) {
     html.style.setProperty('color-scheme', 'light');
   }
 
-  localStorage.setItem('theme', theme);
+  try {
+    localStorage.setItem('theme', normalizedTheme);
+  } catch (_) {
+    // storage unavailable (private browsing, sandboxed, or quota exceeded)
+  }
 }
 
 if (typeof window !== 'undefined') {

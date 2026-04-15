@@ -20,6 +20,7 @@ import './components/buttons/button.css';
 import './components/text-inputs/text-input.css';
 import './components/tooltips/tooltip.css';
 import './components/messages/message.css';
+import './components/modals/modal.css';
 import './components/popovers/popover.css';
 import './components/checkboxes/checkbox.css';
 import './components/radio-buttons/radio-button.css';

@@ -43,7 +43,7 @@
   .corn-button {
     align-self: flex-start;
     flex: 0 0 auto;
-    transform: translate(var(--cc-size--2), calc(-1*var(--cc-size--2)));
+    transform: translate(var(--cc-size--2), calc(-1 * var(--cc-size--2)));
   }
 }
 

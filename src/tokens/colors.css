@@ -1,76 +1,88 @@
 /* Color Tokens */
 :root {
-  /* cc-yellow CSS Variables */ 
-  --cc-yellow-10: #faf6ed;
-  --cc-yellow-20: #efe2bb;
-  --cc-yellow-30: #dfcb87;
-  --cc-yellow-40: #c9b03e;
-  --cc-yellow-50: #a58d00;
-  --cc-yellow-60: #837000;
-  --cc-yellow-70: #665600;
-  --cc-yellow-80: #4e4200;
-  --cc-yellow-90: #393000;
-  --cc-yellow-100: #282100;
+/* cc-yellow CSS Variables */ 
 
-  /* cc-blue CSS Variables */ 
-  --cc-blue-10: #d4fffa;
-  --cc-blue-20: #abefe8;
-  --cc-blue-30: #5be0d5;
-  --cc-blue-40: #00c5ba;
-  --cc-blue-50: #009f96;
-  --cc-blue-60: #007f77;
-  --cc-blue-70: #00625c;
-  --cc-blue-80: #004b46;
-  --cc-blue-90: #103633;
-  --cc-blue-100: #002724;
+--cc-yellow-10: #fdf6e3;
+--cc-yellow-20: #f1e2b6;
+--cc-yellow-30: #e7cb5a;
+--cc-yellow-40: #c8af4d;
+--cc-yellow-50: #a28d3c;
+--cc-yellow-60: #81702e;
+--cc-yellow-70: #645622;
+--cc-yellow-80: #4c4218;
+--cc-yellow-90: #383010;
+--cc-yellow-100: #272109;
 
-  /* cc-orange CSS Variables */ 
-  --cc-orange-10: #fef4f3;
-  --cc-orange-20: #fbdcd5;
-  --cc-orange-30: #f4c0b4;
-  --cc-orange-40: #e99e8b;
-  --cc-orange-50: #d47453;
-  --cc-orange-60: #b55429;
-  --cc-orange-70: #8e401e;
-  --cc-orange-80: #6d3015;
-  --cc-orange-90: #52220d;
-  --cc-orange-100: #3b1707;
 
-  /* cc-red CSS Variables */ 
-  --cc-red-10: #fcf5f5;
-  --cc-red-20: #f5dddd;
-  --cc-red-30: #eec2c1;
-  --cc-red-40: #e69e9c;
-  --cc-red-50: #df6a66;
-  --cc-red-60: #c04944; 
-  --cc-red-70: #963733;
-  --cc-red-80: #742926;
-  --cc-red-90: #571d1a;
-  --cc-red-100: #3f1311;
+/* cc-orange CSS Variables */ 
 
-  /* cc-green CSS Variables */ 
-  --cc-green-10: #ecfbe8;
-  --cc-green-20: #b9f2a5;
-  --cc-green-30: #a6da93;
-  --cc-green-40: #90bd7f;
-  --cc-green-50: #739866;
-  --cc-green-60: #5b7950;
-  --cc-green-70: #465d3d;
-  --cc-green-80: #34472d;
-  --cc-green-90: #263420;
-  --cc-green-100: #192515;
+--cc-orange-10: #fdf5f1;
+--cc-orange-20: #f9ddce;
+--cc-orange-30: #f5c1a1;
+--cc-orange-40: #f09e56;
+--cc-orange-50: #c27f44;
+--cc-orange-60: #9b6534;
+--cc-orange-70: #794d27;
+--cc-orange-80: #5d3a1c;
+--cc-orange-90: #452a13;
+--cc-orange-100: #311d0b;
 
-  /* cc-gray CSS Variables */ 
-  --cc-gray-10: #f7f6f3;
-  --cc-gray-20: #e7e2d7;
-  --cc-gray-30: #d1ccbe;
-  --cc-gray-40: #b5b0a4;
-  --cc-gray-50: #928e84;
-  --cc-gray-60: #747169;
-  --cc-gray-70: #595751;
-  --cc-gray-80: #44423d;
-  --cc-gray-90: #32302c;
-  --cc-gray-100: #23211f;
+
+/* cc-green CSS Variables */ 
+
+--cc-green-10: #f1f9ed;
+--cc-green-20: #c9edb7;
+--cc-green-30: #98df66;
+--cc-green-40: #83c158;
+--cc-green-50: #699c45;
+--cc-green-60: #537c36;
+--cc-green-70: #3f6028;
+--cc-green-80: #2f491d;
+--cc-green-90: #213613;
+--cc-green-100: #16260b;
+
+
+/* cc-blue CSS Variables */ 
+
+--cc-blue-10: #f3f7fd;
+--cc-blue-20: #d7e3f7;
+--cc-blue-30: #b5cef1;
+--cc-blue-40: #86b4e9;
+--cc-blue-50: #5692ce;
+--cc-blue-60: #4374a4;
+--cc-blue-70: #335a80;
+--cc-blue-80: #254463;
+--cc-blue-90: #1a324a;
+--cc-blue-100: #102335;
+
+
+/* cc-red CSS Variables */ 
+
+--cc-red-10: #fbf5f5;
+--cc-red-20: #f3ddde;
+--cc-red-30: #ebc2c4;
+--cc-red-40: #e39fa3;
+--cc-red-50: #da6d74;
+--cc-red-60: #bf4952;
+--cc-red-70: #95373f;
+--cc-red-80: #74292f;
+--cc-red-90: #571d21;
+--cc-red-100: #3f1316;
+
+
+/* cc-gray CSS Variables */ 
+
+--cc-gray-10: #f8f6f4;
+--cc-gray-20: #e8e1db;
+--cc-gray-30: #d7cabc;
+--cc-gray-40: #bbafa1;
+--cc-gray-50: #978d81;
+--cc-gray-60: #786f66;
+--cc-gray-70: #5d564f;
+--cc-gray-80: #47413b;
+--cc-gray-90: #34302b;
+--cc-gray-100: #24211e;
+
 
   /* Base Colors */
   --cc-white: #fff;
@@ -78,4 +90,9 @@
 
 /* Foundation Colors */
   --cc-body--background: var(--cc-yellow-10);
+}
+
+:root {
+
+
 }

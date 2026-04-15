@@ -1,7 +1,6 @@
 ---
 import '../../../dist/corncob-design-language.css';
 import '../styles/corncob-docs.css';
-import '../js/theme-switcher.js';
 import NavigationBar from './partials/NavigationBar.astro';
 import SideBar from './partials/SideBar.astro';
 import Footer from './partials/Footer.astro';
@@ -37,7 +36,9 @@ const base = import.meta.env.BASE_URL;
       document.documentElement.style.setProperty('color-scheme', theme);
       document.documentElement.setAttribute('data-theme', theme);
     </script>
-    <script src="../js/theme-switcher.js"></script>
+    <script>
+      import '../js/theme-switcher.js';
+    </script>
 
     <!-- <script is:inline>
       console.log('Docs layout theme init');

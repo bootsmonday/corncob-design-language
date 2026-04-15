@@ -1,0 +1,62 @@
+@import './modal-tokens.css';
+
+.corn-modal {
+  h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+  }
+
+  opacity: 0;
+  padding: var(--cc-size--1);
+  position: fixed;
+  transition:
+    opacity var(--cc-modal--transition-time) var(--cc-modal--transition-function),
+    overlay var(--cc-modal--transition-time) var(--cc-transition--time) allow-discrete,
+    display var(--cc-modal--transition-time) var(--cc-transition--time) allow-discrete;
+  width: max-content;
+
+  &::backdrop {
+    background: var(--cc-modal--backdrop--background);
+    opacity: 0;
+    transition:
+      opacity var(--cc-modal--transition-time) var(--cc-modal--transition-function),
+      overlay var(--cc-modal--transition-time) var(--cc-transition--time) allow-discrete,
+      display var(--cc-modal--transition-time) var(--cc-transition--time) allow-discrete;
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+
+  &:open, &:open::backdrop {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+}
+
+.corn-modal--header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+
+  .corn-button {
+    align-self: flex-start;
+    flex: 0 0 auto;
+    transform: translate(var(--cc-size--2), calc(-1 * var(--cc-size--2)));
+  }
+}
+
+@starting-style {
+  .corn-modal:open {
+    opacity: 0;
+    pointer-events: auto;
+
+    &::backdrop {
+      opacity: 0;
+    }
+
+  }
+
+}
+
+

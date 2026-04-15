@@ -140,6 +140,11 @@ const isTestingSection = pathname.includes('/testing') ? true : null;
             aria-current={isActive(`${base}components/messages`) ? 'page' : false}>Messages</a
           >
           <a
+            href={`${base}components/modals`}
+            class="corn-panel-menu--item"
+            aria-current={isActive(`${base}components/modals`) ? 'page' : false}>Modals</a
+          >
+          <a
             href={`${base}components/panel-menus`}
             class="corn-panel-menu--item"
             aria-current={isActive(`${base}components/panel-menus`) ? 'page' : false}>Panel Menus</a

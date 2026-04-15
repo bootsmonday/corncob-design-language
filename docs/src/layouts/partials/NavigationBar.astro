@@ -38,8 +38,12 @@ const base = import.meta.env.BASE_URL;
       class="corn-button corn-button--icon corn-button--xs"
       aria-label="Toggle dark / light mode"
     >
-      <svg class="corn-icon docs-icon-dark"><use href={`${bootstrapIconsSprite}#moon`}></use></svg>
-      <svg class="corn-icon docs-icon-light"><use href={`${bootstrapIconsSprite}#sun`}></use></svg>
+      <svg class="corn-icon docs-icon-dark" aria-hidden="true"
+        ><use href={`${bootstrapIconsSprite}#moon`}></use></svg
+      >
+      <svg class="corn-icon docs-icon-light" aria-hidden="true"
+        ><use href={`${bootstrapIconsSprite}#sun`}></use></svg
+      >
     </button>
     <a
       href="https://github.com/bootsmonday/corncob-design-language"

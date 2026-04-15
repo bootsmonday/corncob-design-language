@@ -86,4 +86,5 @@
 
   /* Foundation Colors */
   --cc-body--background: var(--cc-gray-10);
+  --cc-body--color: var(--cc-gray-100);
 }

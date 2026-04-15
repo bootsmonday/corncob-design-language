@@ -1,5 +1,6 @@
 .corn-body {
   background: var(--cc-body--background);
+  color: var(--cc-body--color);
 
   /* font-family: var(--cc-font-family); */
 }

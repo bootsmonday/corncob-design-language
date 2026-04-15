@@ -19,9 +19,9 @@
     background: var(--cc-modal--backdrop--background);
     opacity: 0;
     transition:
-    opacity var(--cc-modal--transition-time) var(--cc-modal--transition-function),
-    overlay var(--cc-modal--transition-time) var(--cc-transition--time) allow-discrete,
-    display var(--cc-modal--transition-time) var(--cc-transition--time) allow-discrete;
+      opacity var(--cc-modal--transition-time) var(--cc-modal--transition-function),
+      overlay var(--cc-modal--transition-time) var(--cc-transition--time) allow-discrete,
+      display var(--cc-modal--transition-time) var(--cc-transition--time) allow-discrete;
   }
 
   &:focus-visible {

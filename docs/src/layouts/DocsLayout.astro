@@ -4,6 +4,7 @@ import '../styles/corncob-docs.css';
 import NavigationBar from './partials/NavigationBar.astro';
 import SideBar from './partials/SideBar.astro';
 import Footer from './partials/Footer.astro';
+import themeSwitcherUrl from '../js/theme-switcher.js?url';
 
 const {
   title = 'Corncob Design Language',
@@ -36,9 +37,8 @@ const base = import.meta.env.BASE_URL;
       document.documentElement.style.setProperty('color-scheme', theme);
       document.documentElement.setAttribute('data-theme', theme);
     </script>
-    <script>
-      import '../js/theme-switcher.js';
-    </script>
+
+    <script is:inline src={themeSwitcherUrl}></script>
 
     <!-- <script is:inline>
       console.log('Docs layout theme init');
@@ -85,7 +85,9 @@ const base = import.meta.env.BASE_URL;
         applyTheme(prefersDark ? 'dark' : 'light');
       })();
     </script> -->
-    <script is:inline type="module" src={`${base}assets/corncob-design-language.esm.js`}></script>
+    <script is:inline type="
+      module" src={`${base}assets/corncob-design-language.esm.js`}
+    ></script>
   </head>
   <body class="corn-body">
     <NavigationBar />

@@ -8,7 +8,6 @@
   opacity: 0;
   padding: var(--cc-size--1);
   position: fixed;
-  transition: var(--cc-modal--transition);
   transition:
     opacity var(--cc-modal--transition-time) var(--cc-modal--transition-function),
     overlay var(--cc-modal--transition-time) var(--cc-transition--time) allow-discrete,

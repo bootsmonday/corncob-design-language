@@ -154,10 +154,27 @@
       "name": "Modal",
       "description": "Accessible dialog/modal with focus trap and ESC support (planned, not yet implemented)",
       "baseClass": "corn-modal",
+      "element": "dialog",
+      "subComponents": ["corn-modal--header", "corn-modal--content", "corn-panel"],
+      "attributes": ["id", "closedby"],
+      "commands": ["show-modal", "close"],
       "jsRequired": true,
       "implemented": false,
-      "accessibility": "Includes focus management and ARIA dialog role",
-      "example": "<div class=\"corn-modal\" role=\"dialog\">...</div>"
+      "accessibility": "Use native <dialog> for built-in focus management, keyboard support, and dismiss behavior",
+      "usage": {
+        "trigger": "Use a button with commandfor matching the modal id and command='show-modal'",
+        "closeAction": "Use a button with commandfor matching the modal id and command='close'",
+        "notes": [
+          "closedby='any' allows outside click and ESC key to dismiss",
+          "Keep modal title in header and content in corn-modal--content",
+          "Prefer native dialog semantics instead of custom ARIA dialog wrappers"
+        ]
+      },
+      "example": "<button class=\"corn-button\" commandfor=\"corn-modal-example\" command=\"show-modal\">Show Modal</button><dialog closedby=\"any\" class=\"corn-modal corn-panel\" id=\"corn-modal-example\"><div class=\"corn-modal--header\"><h4>Modal Header</h4><button class=\"corn-button corn-button--icon corn-button--xs\" commandfor=\"corn-modal-example\" command=\"close\" type=\"button\" aria-label=\"Close\">x</button></div><div class=\"corn-modal--content\"><p>This is a modal content area.</p></div></dialog>",
+      "fullExamples": {
+        "withHeader": "<button class=\"corn-button\" commandfor=\"corn-modal-example\" command=\"show-modal\">Show Modal</button><dialog closedby=\"any\" class=\"corn-modal corn-panel\" id=\"corn-modal-example\"><div class=\"corn-modal--header\"><h4>Modal Header</h4><button class=\"corn-button corn-button--icon corn-button--xs\" commandfor=\"corn-modal-example\" command=\"close\" type=\"button\" aria-label=\"Close\">x</button></div><div class=\"corn-modal--content\"><p>This is a modal content area.</p></div></dialog>",
+        "minimal": "<button class=\"corn-button\" commandfor=\"corn-modal-basic\" command=\"show-modal\">Open</button><dialog closedby=\"any\" class=\"corn-modal corn-panel\" id=\"corn-modal-basic\"><div class=\"corn-modal--content\"><p>Basic modal content.</p><button class=\"corn-button\" commandfor=\"corn-modal-basic\" command=\"close\" type=\"button\">Close</button></div></dialog>"
+      }
     },
     "tabs": {
       "name": "Tabs",

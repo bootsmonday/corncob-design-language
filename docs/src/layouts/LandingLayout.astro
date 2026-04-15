@@ -19,6 +19,20 @@ const base = import.meta.env.BASE_URL;
     <meta name="description" content={description} />
     <link rel="icon" href={`${base}assets/favicon.svg`} type="image/svg+xml" />
     <title>{title}</title>
+    <script is:inline>
+      const saved = localStorage.getItem('theme');
+      const theme =
+        saved === 'dark' || saved === 'light'
+          ? saved
+          : window.matchMedia('(prefers-color-scheme: dark)').matches
+            ? 'dark'
+            : 'light';
+
+      document.documentElement.style.setProperty('color-scheme', theme);
+      document.documentElement.setAttribute('data-theme', theme);
+    </script>
+    <script src="../js/theme-switcher.js"></script>
+
     <script is:inline type="module" src={`${base}assets/corncob-design-language.esm.js`}></script>
   </head>
   <body class="corn-body">

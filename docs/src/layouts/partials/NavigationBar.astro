@@ -32,6 +32,15 @@ const base = import.meta.env.BASE_URL;
     </corn-button-bar>
   </nav>
   <div class="corn-header--actions">
+    <button
+      type="button"
+      onclick="setTheme()"
+      class="corn-button corn-button--icon corn-button--xs"
+      aria-label="Toggle dark / light mode"
+    >
+      <svg class="corn-icon docs-icon-dark"><use href={`${bootstrapIconsSprite}#moon`}></use></svg>
+      <svg class="corn-icon docs-icon-light"><use href={`${bootstrapIconsSprite}#sun`}></use></svg>
+    </button>
     <a
       href="https://github.com/bootsmonday/corncob-design-language"
       class="corn-button corn-button--icon corn-button--xs"

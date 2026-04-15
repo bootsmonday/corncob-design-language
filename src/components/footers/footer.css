@@ -36,16 +36,17 @@
   gap: 0.5rem;
 
   .corn-link {
-    svg {
-      height: 2rem;
-      width: 2rem;
-    }
-
     align-items: center;
+    color: var(--cc-footer--social--color);
     display: inline-flex;
     height: 2rem;
     justify-content: center;
     width: 2rem;
+
+    svg {
+      height: 2rem;
+      width: 2rem;
+    }
   }
 }
 

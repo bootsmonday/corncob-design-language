@@ -1,3 +1,4 @@
 :root {
   --cc-footer--copyright--font--size: var(--cc-size--1);
+  --cc-footer--social--color: var(--cc-color--text);
 }

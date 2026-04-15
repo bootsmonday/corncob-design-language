@@ -18,48 +18,87 @@ Corncob is ideal when you want:
 
 - Maximum performance and minimal bundle size
 - Full control over markup and behavior
-- AI tools to generate pixel-perfect, accessible UIs using your exact components
 - Easy theming without fighting a heavy design system
 
 ## Quick Start
 
-### 1. Installation
+### 1. Configure GitHub Packages Registry
 
 ```bash
-npm install @bootsmonday/corncob-design-language
+npm config set @bootsmonday:registry https://npm.pkg.github.com
 ```
 
-### 2. Include in Your Project
+If you have not authenticated to GitHub Packages yet, create a GitHub personal access token (classic) with the `read:packages` scope (and `repo` if installing from a private repository), then add it to your npm config:
+
+> Important: Do not commit your token to source control. This command writes to your user-level `~/.npmrc`.
+
+```bash
+npm config set //npm.pkg.github.com/:_authToken YOUR_GITHUB_PAT
+```
+
+### 2. Installation
+
+```bash
+npm install @bootsmonday/corncob-design-language@beta
+```
+
+### 3. Include in Your Project
 
 Option A: Use the compiled CSS and JS files
 
 ```html
-<link rel="stylesheet" href="node_modules/@bootsmonday/corncob-design-language/dist/corncob.css" />
-<script src="node_modules/@bootsmonday/corncob-design-language/dist/corncob.js"></script>
+<link rel="stylesheet" href="./corncob-design-language.css" />
+<script type="module" src="/assets/corncob-design-language.esm.js"></script>
 ```
 
 Option B: ES Modules
 
 ```javascript
-import '@bootsmonday/corncob-design-language/dist/design-language.css';
-import '@bootsmonday/corncob-design-language/dist/design-language.esm.js';
+import '@bootsmonday/corncob-design-language/style.css';
+import '@bootsmonday/corncob-design-language';
 ```
 
-## Component Reference
+### 4. Use Markup
 
-All components use semantic HTML + `corn-*` class names and Web Components. No JavaScript framework required.
+```html
+<button class="corn-button">Save</button>
+<button class="corn-button corn-button--secondary">Cancel</button>
+```
 
-- Text Input — `corn-text-input`
-- Checkbox / Radio — `corn-checkbox`, `corn-radio`
-- Button — `corn-button` with variants like `corn-button--primary`, `corn-button--secondary`, etc.
-- Popover — `<corn-popover />` with focus management and ARIA support
-- Tooltip — `<corn-tooltip />`
-- Button Bar — `<corn-button-bar />` for grouping buttons with proper spacing and responsive stacking
-- Panel — `corn-panel`
-- Expandable Section — `<corn-expandable />` with smooth height transitions and ARIA attributes
-- Panel Menu — `corn-panel-menu`
-- Headers / Navigation — `corn-header`
-- And more! See the [Component Gallery](https://bootsmonday.github.io/corncob-design-language) for full documentation and examples.
+## About Corncob
+
+Corncob Design Language is a design system created by BootsMonday to provide a consistent and cohesive user experience across products. It is built on the principles of simplicity, accessibility, and scalability, and includes components, patterns, and guidelines to help designers and developers create functional interfaces.
+
+### Our Story
+
+Corncob Design Language was born from a need for a unified system across experiments. The goal was consistency with enough flexibility to support the unique needs of each product. After months of research, design, and development, Corncob Design Language launched in early 2026 as a foundation for future experiments.
+
+### Our Tools
+
+- [Vite](https://vitejs.dev/) for fast development and builds
+- [Astro](https://astro.build/) for documentation
+- [Jest](https://jestjs.io/) for unit testing
+- [BackstopJS](https://github.com/garris/BackstopJS) for visual regression testing
+- [Axe Core](https://www.deque.com/axe/) for accessibility testing
+- [GitHub Actions](https://github.com/features/actions) for automation
+- [Copilot](https://github.com/features/copilot) for AI-assisted development
+- [Grok](https://grok.com/) for AI-assisted code search and second-opinion checks
+
+### Goals
+
+- Keep the core package vanilla and portable
+- Use as much built-in browser functionality as possible
+- HTML and CSS first, Web Components and JavaScript as needed
+- 10-step color palette to ease accessibility
+- Design tokens from primitive, categorical, and component levels
+
+### Documentation
+
+- [Getting Started](https://bootsmonday.github.io/corncob-design-language/getting-started/) - Installation and setup
+- [Components](https://bootsmonday.github.io/corncob-design-language/components/) - Component library and examples
+- [Tokens](https://bootsmonday.github.io/corncob-design-language/tokens/) - Design tokens and theming
+- [Guides](https://bootsmonday.github.io/corncob-design-language/guides/) - Detailed guides for specific use cases
+- [AI Integration Guide](https://bootsmonday.github.io/corncob-design-language/guides/ai-integration/) - AI-assisted code generation guidance
 
 ## AI Usage Guide
 

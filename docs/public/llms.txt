@@ -1,0 +1,11 @@
+Corncob Design Language AI usage rules
+
+- Use only Corncob classes and vanilla HTML and JavaScript.
+- Default layout system: corn-container, corn-row, and corn-col-*.
+- Use the grid for page and section layout unless a component page documents a different internal layout.
+- Start from canonical component code before adding enhancements.
+- Preserve documented class names, child order, and required wrappers.
+- For components with required internal structure, use the grid around the component instead of rewriting the inside.
+- Check components.json for canonical examples, variants, sizes, and JS requirements.
+- Check tokens.json for tokens and common patterns.
+- Read /guides/ai-integration/ for the full contract.

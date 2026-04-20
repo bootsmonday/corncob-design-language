@@ -111,6 +111,8 @@ Copy this when asking an AI to build pages with Corncob:
 > Never use Tailwind, Bootstrap, or any other CSS framework.
 > Prioritize accessibility (WCAG 2.1 AA), semantic HTML, and clean code.
 > Use the official component variants and sizes exactly as documented.
+> Use the Corncob grid for page and section layout unless a component page documents a different internal layout.
+> Start from the canonical component code before adding enhancements or custom wrappers.
 > For modals, always include proper focus management and ARIA attributes."
 
 ### Example AI Prompts
@@ -122,6 +124,16 @@ Copy this when asking an AI to build pages with Corncob:
 ### For AI Tools
 
 Download or reference [`components.json`](components.json) — this machine-readable manifest helps AI coding assistants better understand the core components and their common variants (it is not an exhaustive list of every component).
+
+If you host the documentation site, publish `llms.txt` and `llms-full.txt` so AI agents and crawlers can discover the grid default, canonical component rules, and implementation priorities without scraping every page.
+
+When generating layouts with Corncob:
+
+- use `corn-container`, `corn-row`, and `corn-col-*` by default
+- preserve canonical component structure from the docs before customizing it
+- use component-specific internal layouts only when the docs explicitly define them
+
+See [`DESIGN_SYSTEM_FOR_AI.md`](DESIGN_SYSTEM_FOR_AI.md) for the full AI integration contract.
 
 ## Development & Contribution
 

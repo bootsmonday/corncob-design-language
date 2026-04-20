@@ -14,6 +14,11 @@ export const dynamicHeadings = [
     depth: 2
   },
   {
+    slug: 'ai-layout-default',
+    text: 'AI Layout Default',
+    depth: 3
+  },
+  {
     slug: 'container-and-row',
     text: 'Container and Row',
     depth: 3
@@ -51,6 +56,29 @@ This allows the grid to take advantage of the features of CSS Grid such as colum
 Flex based grid systems don't apply the gap to wrapped rows of columns, whereas CSS Grid applies the `gap` between the grid items even when the items wrap to the next row.
 
 This is your basic grid system.  Look at [Bootstrap](https://getbootstrap.com/docs/4.0/layout/grid/), [Carbon](https://carbondesignsystem.com/components/grid/overview/), [Tailwind](https://tailwindcss.com/docs/grid-template-columns), [960 grid system](http://960.gs/)  or one of the other popular grid systems for reference on how the 12-column layout works and the types of more complicated layouts that are available.
+
+### AI Layout Default
+
+When AI generates a page, section, or general layout in Corncob, this grid is the default layout system.
+
+Use `corn-container`, `corn-row`, and `corn-col-*` unless a component page documents a different internal layout. If a component has its own documented structure, preserve that structure and use the grid around the component rather than replacing it.
+
+<CodeSample id="grid-ai-default-code">
+	```html
+  <main class="corn-main corn-container">
+    <div class="corn-row">
+      <aside class="corn-col-12 corn-col-lg-4">Sidebar</aside>
+      <section class="corn-col-12 corn-col-lg-8">Primary content</section>
+    </div>
+  </main>
+	```
+</CodeSample>
+
+AI should follow this order:
+
+- start from the documented component markup
+- use the grid for page and section composition
+- only add enhancements after the canonical component code is correct
 
 <style>
 	{`

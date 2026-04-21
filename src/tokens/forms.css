@@ -11,6 +11,7 @@
   --cc-form--item--border--radius: var(--cc-border--radius);
   --cc-form--item--border--radius--xs: var(--cc-border--radius--xs);
   --cc-form--item--color--text: var(--cc-gray-90);
+  --cc-form--item--color--text--decoration: rgb(from var(--cc-blue-70) r g b / 87.2%);
   --cc-form--item--font-size--xs: var(--cc-size--1);
   --cc-form--item--font-size--sm: var(--cc-size-0);
   --cc-form--item--font-size--md: var(--cc-size-1);

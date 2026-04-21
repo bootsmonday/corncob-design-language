@@ -27,6 +27,12 @@ fieldset.corn-form--item:has(input[disabled]) {
       &[type='checkbox'] {
         background-color: var(--cc-form--item--background--disabled);
         border-color: var(--cc-form--item--border-color--disabled);
+
+        &:checked {
+          &::after {
+            border-color: var(--cc-form--item--border-color--disabled);
+          }
+        }        
       }
 
       &::placeholder {
@@ -50,6 +56,7 @@ fieldset.corn-form--item:has(input[disabled]) {
     label {
       color: var(--cc-form--item--color--disabled);
       cursor: not-allowed !important;
+      text-decoration-color: var(--cc-form--item--color--disabled);
     }
 
     .corn-status {

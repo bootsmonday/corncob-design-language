@@ -5,9 +5,8 @@
  * It also includes lifecycle methods to manage event listeners and ensure proper cleanup when the component is removed from the DOM.
  */
 
-
 /**
- * Set up template for the CornButtonBar component, which includes a default slot for the main buttons and a named slot for a custom "more" button that triggers the overflow menu. 
+ * Set up template for the CornButtonBar component, which includes a default slot for the main buttons and a named slot for a custom "more" button that triggers the overflow menu.
  * The template is cloned and attached to the shadow DOM of each instance of the CornButtonBar, allowing for encapsulation of styles and structure while still providing flexibility for users to customize the content of the button bar.
  */
 const template = document.createElement('template');
@@ -44,7 +43,7 @@ export class CornButtonBar extends HTMLElement {
   }
 
   /**
-   * observedAttributes is a static getter that returns an array of attribute names that the component wants to observe for changes. In this case, we are observing the 'overflow-label' attribute, which allows users to customize the label of the overflow menu trigger button. 
+   * observedAttributes is a static getter that returns an array of attribute names that the component wants to observe for changes. In this case, we are observing the 'overflow-label' attribute, which allows users to customize the label of the overflow menu trigger button.
    * When this attribute changes, the attributeChangedCallback method will be called, allowing us to update the component's behavior or appearance based on the new value of the attribute. This is a key part of making the component flexible and customizable for different use cases.
    * @returns {string[]} An array of attribute names to observe for changes.
    */
@@ -61,7 +60,7 @@ export class CornButtonBar extends HTMLElement {
    */
   attributeChangedCallback(name, oldValue, newValue) {
     if (name === 'overflow-label') {
-      this._overflowLabel = newValue ?? 'More';
+      this._overflowLabel = newValue ?? '&middot;&middot;&middot;';
       if (this.moreButton && !this.moreButton.textContent.trim()) {
         this.moreButton.textContent = this._overflowLabel;
       }
@@ -74,7 +73,9 @@ export class CornButtonBar extends HTMLElement {
   _addEventListeners() {
     // Using ResizeObserver to detect changes in the size of the button bar and adjust the overflowing items accordingly
     // Use window.requestAnimationFrame to ensure that the DOM updates are processed before calculating the overflowing items, which can help prevent layout thrashing and improve performance.
-    this.resizeObserver = new ResizeObserver(() => window.requestAnimationFrame(() => this._moveOverflowingItems()));
+    this.resizeObserver = new ResizeObserver(() =>
+      window.requestAnimationFrame(() => this._moveOverflowingItems())
+    );
     this.resizeObserver.observe(this);
   }
 
@@ -88,7 +89,6 @@ export class CornButtonBar extends HTMLElement {
     this.resizeObserver.unobserve(this);
     this.resizeObserver.disconnect();
     this.resizeObserver = null;
-
   }
 
   /**
@@ -96,36 +96,38 @@ export class CornButtonBar extends HTMLElement {
    * @returns {HTMLElement} The created overflow container element.
    */
   _createOverflowContainer() {
-      const moreElement = document.createElement('div');
-      moreElement.classList.add('corn-popover--anchor', 'corn-button-bar--more');
+    const moreElement = document.createElement('div');
+    moreElement.classList.add('corn-popover--anchor', 'corn-button-bar--more');
 
-      const assignedMoreButton = this.shadowRoot.querySelector('slot[name="more-button"]')?.assignedElements()[0];
-      const hasMoreButton = !!assignedMoreButton;
+    const assignedMoreButton = this.shadowRoot
+      .querySelector('slot[name="more-button"]')
+      ?.assignedElements()[0];
+    const hasMoreButton = !!assignedMoreButton;
 
-      const moreButton = assignedMoreButton ?? document.createElement('button');
-      if (hasMoreButton) {
-        moreButton.classList.add('corn-pop');
-      } else {
-        moreButton.classList.add('corn-button', 'corn-button--xs', 'corn-pop');
-      }
-      const moreButtonId = 'button-bar-' + crypto.randomUUID().substring(0, 8);
-      moreButton.setAttribute('aria-controls', moreButtonId);
-      
-      if (!hasMoreButton) {
-        moreButton.setAttribute('type', 'button');
-        moreButton.textContent = this._overflowLabel || 'More';
-      }
+    const moreButton = assignedMoreButton ?? document.createElement('button');
+    if (hasMoreButton) {
+      moreButton.classList.add('corn-pop');
+    } else {
+      moreButton.classList.add('corn-button', 'corn-button--xs', 'corn-pop');
+    }
+    const moreButtonId = 'button-bar-' + crypto.randomUUID().substring(0, 8);
+    moreButton.setAttribute('aria-controls', moreButtonId);
 
-      const moreItems = document.createElement('corn-popover');
-      moreItems.setAttribute('position', 'bottom');
-      moreItems.setAttribute('id', moreButtonId);
-      moreItems.classList.add('corn-popover');
+    if (!hasMoreButton) {
+      moreButton.setAttribute('type', 'button');
+      moreButton.innerHTML = this._overflowLabel || '&middot;&middot;&middot;';
+    }
 
-      moreElement.appendChild(moreButton);
-      moreElement.appendChild(moreItems);
+    const moreItems = document.createElement('corn-popover');
+    moreItems.setAttribute('position', 'bottom');
+    moreItems.setAttribute('id', moreButtonId);
+    moreItems.classList.add('corn-popover');
 
-      this.appendChild(moreElement);
-      return moreElement;
+    moreElement.appendChild(moreButton);
+    moreElement.appendChild(moreItems);
+
+    this.appendChild(moreElement);
+    return moreElement;
   }
 
   /**
@@ -134,7 +136,8 @@ export class CornButtonBar extends HTMLElement {
    * Caching these elements allows the component to efficiently access and manipulate them later when handling events or updating the UI, without needing to repeatedly query the DOM.
    */
   _cacheElements() {
-    this.moreElement = this.querySelector('.corn-button-bar--more') ?? this._createOverflowContainer();
+    this.moreElement =
+      this.querySelector('.corn-button-bar--more') ?? this._createOverflowContainer();
 
     this.moreItems = this.moreElement.querySelector('.corn-popover');
     this.moreButton = this.moreElement.querySelector('.corn-pop');
@@ -147,7 +150,6 @@ export class CornButtonBar extends HTMLElement {
    * @returns {boolean} True if there are overflowing items, false otherwise.
    */
   _hasOverflow() {
-   
     const overflowingItems = Array.from(this.moreItems.children);
 
     for (const item of overflowingItems) {
@@ -168,10 +170,10 @@ export class CornButtonBar extends HTMLElement {
    */
   _moveOverflowingItems() {
     if (!this._hasOverflow()) {
-      if(!this.initialized) {
+      if (!this.initialized) {
         this.style.removeProperty('visibility');
         this.initialized = true;
-      };
+      }
       return;
     } else {
       const items = Array.from(this.children);
@@ -188,7 +190,7 @@ export class CornButtonBar extends HTMLElement {
         }
       });
       // This makes it look cleaner as you don't see the items moving around before they are moved to the overflow menu on initial load.
-      if(!this.initialized) {
+      if (!this.initialized) {
         this.style.removeProperty('visibility');
         this.initialized = true;
       }

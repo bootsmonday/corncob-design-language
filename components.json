@@ -4,7 +4,7 @@
   "description": "Lightweight, accessible vanilla JS design system. Perfect for AI-assisted website and application development.",
   "aiIntegrationGuide": "See DESIGN_SYSTEM_FOR_AI.md for documentation on how AI systems should consume these files",
   "prefix": "corn-",
-  "layoutManifest": "See layouts.json for default page and section layout rules.",
+  "layoutManifest": "See DESIGN_SYSTEM_FOR_AI.md for default page and section layout rules.",
   "codeGenerationWorkflow": {
     "rule": "Use canonical component code before enhancing.",
     "steps": [

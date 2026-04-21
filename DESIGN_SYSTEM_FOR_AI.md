@@ -73,7 +73,7 @@ If the canonical version is wrong, enhancement should stop until the base struct
 - Check `jsRequired` to determine if interactivity setup is needed
 - Use `variants` and `sizes` arrays to validate generated classes
 - Follow component accessibility requirements in `accessibility` field
-- Follow `layoutDefaults`, `codeGenerationWorkflow`, and any component-specific `layoutPolicy` metadata
+- Follow `layoutManifest`/`layouts.json`, `codeGenerationWorkflow`, and any component-specific `layoutPolicy` metadata
 
 **Example Reference**:
 

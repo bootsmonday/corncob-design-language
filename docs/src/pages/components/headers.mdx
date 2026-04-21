@@ -15,6 +15,19 @@ import headerTokens from '../../../../src/components/headers/header-tokens.css?r
 Headers are used to provide structure and hierarchy to your content. They help users understand the organization of information and navigate through your application.
 Corncob provides a simple and elegant design for headers, ensuring a consistent user experience across your application.
 
+### AI Implementation Contract
+
+This component's documented example is canonical. Use this code before adding any customization.
+
+AI should preserve these direct children of `corn-header` in this order:
+
+1. `corn-company`
+2. `corn-header--title`
+3. `corn-header--nav`
+4. `corn-header--actions`
+
+Use the Corncob grid around the header for page layout when needed. Do not introduce extra wrappers inside `corn-header` unless the documentation explicitly shows them.
+
 ### Default Header
 
 <div class="corn-panel">
@@ -119,6 +132,18 @@ Corncob provides a simple and elegant design for headers, ensuring a consistent 
   </header>
   ```
 </CodeSample>
+
+Do:
+
+- start from the canonical header markup above
+- replace placeholder content and icons after the structure is in place
+- use `corn-button-bar` and `corn-popover--anchor corn-button-bar--more` as documented when the header includes overflow navigation
+
+Do not:
+
+- wrap the required direct children in a custom brand container
+- move `corn-header--title` inside `corn-company`
+- replace the documented navigation button classes before the canonical header works
 
 ## Header Tokens
 <CodeSample id="header-tokens-code">

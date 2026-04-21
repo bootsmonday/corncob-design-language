@@ -4,7 +4,94 @@
   "description": "Lightweight, accessible vanilla JS design system. Perfect for AI-assisted website and application development.",
   "aiIntegrationGuide": "See DESIGN_SYSTEM_FOR_AI.md for documentation on how AI systems should consume these files",
   "prefix": "corn-",
+  "layoutManifest": "See DESIGN_SYSTEM_FOR_AI.md for default page and section layout rules.",
+  "codeGenerationWorkflow": {
+    "rule": "Use canonical component code before enhancing.",
+    "steps": [
+      "Find the canonical component example in components.json or the component docs page.",
+      "Emit the documented markup without changing required structure, child order, or required classes.",
+      "Place the component inside the Corncob grid for layout unless the component docs specify another layout.",
+      "Apply content changes before visual or behavioral enhancements.",
+      "Enhance only after the canonical markup is correct and validated."
+    ],
+    "avoid": [
+      "Inventing wrapper elements around required component children.",
+      "Replacing Corncob classes with a second framework or custom utility system.",
+      "Starting from a custom interpretation of a component instead of the documented example."
+    ]
+  },
   "components": {
+    "header": {
+      "name": "Header",
+      "description": "Page header with company identity, title, navigation, and actions.",
+      "baseClass": "corn-header",
+      "subComponents": [
+        "corn-company",
+        "corn-company--logo",
+        "corn-company--name",
+        "corn-header--title",
+        "corn-header--nav",
+        "corn-header--actions"
+      ],
+      "relatedComponents": ["button-bar", "popover", "button"],
+      "jsRequired": true,
+      "layoutPolicy": "documented-exception",
+      "canonicalBeforeEnhancing": true,
+      "parentLayoutRule": "Use the Corncob grid around the header for page layout. Do not add extra wrappers inside the corn-header unless the docs explicitly show them.",
+      "requiredDirectChildren": [
+        "corn-company",
+        "corn-header--title",
+        "corn-header--nav",
+        "corn-header--actions"
+      ],
+      "forbiddenPatterns": [
+        "Do not wrap the required direct children in a custom brand container.",
+        "Do not replace corn-button-bar navigation with custom nav button classes when the documented example uses corn-button and corn-button--sm.",
+        "Do not move corn-header--title inside corn-company."
+      ],
+      "enhancementOrder": [
+        "Start with the documented header markup.",
+        "Verify the direct child order of corn-header.",
+        "Replace placeholder content and icons.",
+        "Add page-level grid layout around the header if needed.",
+        "Add optional visual customization without breaking the documented structure."
+      ],
+      "example": "<header class=\"corn-header\"><div class=\"corn-company\"><div class=\"corn-company--logo\" aria-hidden=\"true\">Logo</div><div class=\"corn-company--name\">Company</div></div><div class=\"corn-header--title\">Title</div><nav class=\"corn-header--nav\"><corn-button-bar class=\"corn-button-bar\"><a href=\"#\" class=\"corn-button corn-button--sm\">Link 1</a><a href=\"#\" class=\"corn-button corn-button--sm\">Link 2</a><div class=\"corn-popover--anchor corn-button-bar--more\"><button class=\"corn-button corn-button--sm corn-pop\" aria-controls=\"header-nav-popover\">More</button><corn-popover position=\"bottom\" id=\"header-nav-popover\" class=\"corn-popover\"></corn-popover></div></corn-button-bar></nav><div class=\"corn-header--actions\"><button class=\"corn-button corn-button--icon corn-button--xs\" aria-label=\"User\">User</button></div></header>"
+    },
+    "footer": {
+      "name": "Footer",
+      "description": "Page footer with intro copy, grouped link sections, social links, and copyright.",
+      "baseClass": "corn-footer",
+      "subComponents": [
+        "corn-footer--intro",
+        "corn-footer--content",
+        "corn-footer--content--section",
+        "corn-footer--social",
+        "corn-footer--copyright"
+      ],
+      "relatedComponents": ["link"],
+      "jsRequired": false,
+      "layoutPolicy": "documented-exception",
+      "canonicalBeforeEnhancing": true,
+      "parentLayoutRule": "Use the Corncob grid around the footer for page layout. Preserve the documented footer sections inside the component.",
+      "requiredDirectChildren": [
+        "corn-footer--intro",
+        "corn-footer--content",
+        "corn-footer--social",
+        "corn-footer--copyright"
+      ],
+      "forbiddenPatterns": [
+        "Do not replace corn-footer--content with an unrelated custom grid wrapper when the documented footer structure already provides grouping.",
+        "Do not move social links or copyright outside corn-footer unless the docs explicitly show a variant."
+      ],
+      "enhancementOrder": [
+        "Start with the documented footer markup.",
+        "Replace placeholder headings, links, and company information.",
+        "Place the footer within page layout using the Corncob grid if needed.",
+        "Add optional visual customization after the canonical structure is correct."
+      ],
+      "example": "<footer class=\"corn-footer\"><div class=\"corn-footer--intro\">Footer introduction.</div><div class=\"corn-footer--content\"><div class=\"corn-footer--content--section\"><h3>Company</h3><ul><li><a href=\"#\" class=\"corn-link\">About Us</a></li></ul></div></div><div class=\"corn-footer--social\"><a href=\"#\" class=\"corn-link\" aria-label=\"GitHub\">GitHub</a></div><div class=\"corn-footer--copyright\">© 2026 Your Company. All rights reserved.</div></footer>"
+    },
     "button": {
       "name": "Button",
       "description": "Primary action and interactive button component with multiple variants and sizes",
@@ -29,6 +116,23 @@
       "jsRequired": false,
       "accessibility": "Paired with label, supports aria-invalid, includes assistive text support",
       "subComponents": ["corn-form--item", "corn-status"],
+      "layoutPolicy": "self-contained",
+      "canonicalBeforeEnhancing": true,
+      "parentLayoutRule": "Place form controls within the Corncob grid for page layout, but preserve the corn-form--item and corn-text-input structure inside the control.",
+      "requiredStructure": ["corn-form--item", "corn-text-input", "input", "label"],
+      "recommendedChildren": ["corn-status"],
+      "forbiddenPatterns": [
+        "Do not separate the input and label into unrelated wrapper elements.",
+        "Do not omit corn-form--item when generating standard form layouts.",
+        "Do not replace the documented label association with placeholder text alone."
+      ],
+      "enhancementOrder": [
+        "Start with the documented text input structure.",
+        "Ensure id and for attributes match.",
+        "Add status text or validation state.",
+        "Apply page-level grid layout around the field if needed.",
+        "Add optional visual or behavioral enhancement last."
+      ],
       "example": "<div class=\"corn-form--item\"><div class=\"corn-text-input\"><input id=\"input--md\" name=\"input\" placeholder=\"Enter text...\" /><label for=\"input--md\">Label</label></div><div class=\"corn-status\">status text</div></div>"
     },
     "checkbox": {
@@ -40,6 +144,27 @@
       "layoutModes": ["stacked", "inline"],
       "jsRequired": false,
       "accessibility": "Standard HTML checkbox with label association, keyboard accessible",
+      "layoutPolicy": "self-contained",
+      "canonicalBeforeEnhancing": true,
+      "parentLayoutRule": "Use the Corncob grid around checkbox groups for section layout, but keep grouped checkboxes inside fieldset and legend markup.",
+      "requiredStructure": [
+        "fieldset.corn-form--item.corn-checkbox-group",
+        "legend",
+        "div.corn-checkbox",
+        "input[type=checkbox]",
+        "label"
+      ],
+      "forbiddenPatterns": [
+        "Do not replace a grouped checkbox fieldset with standalone div elements.",
+        "Do not give grouped checkboxes unrelated name values when they belong to the same group.",
+        "Do not omit legend text for grouped checkbox controls."
+      ],
+      "enhancementOrder": [
+        "Start with fieldset, legend, and corn-checkbox items.",
+        "Set ids and matching label for attributes.",
+        "Apply checked, disabled, inline, or indeterminate states.",
+        "Use the Corncob grid around the group if the page layout requires it."
+      ],
       "example": "<fieldset class=\"corn-form--item corn-checkbox-group\"><legend>Options</legend><div class=\"corn-checkbox\"><input type=\"checkbox\" id=\"ex1\" name=\"example\" /><label for=\"ex1\">Checkbox One</label></div></fieldset>"
     },
     "radio": {
@@ -50,6 +175,27 @@
       "layoutModes": ["stacked", "inline"],
       "jsRequired": false,
       "accessibility": "Standard HTML radio button with proper grouping and label association",
+      "layoutPolicy": "self-contained",
+      "canonicalBeforeEnhancing": true,
+      "parentLayoutRule": "Use the Corncob grid around radio groups for section layout, but preserve fieldset, legend, and radio item structure inside the component.",
+      "requiredStructure": [
+        "fieldset.corn-form--item.corn-radio-button-group",
+        "legend",
+        "div.corn-radio-button",
+        "input[type=radio]",
+        "label"
+      ],
+      "forbiddenPatterns": [
+        "Do not replace the radio group fieldset with unrelated wrapper markup.",
+        "Do not use different name values for options in the same radio group.",
+        "Do not omit legend text when grouping radios."
+      ],
+      "enhancementOrder": [
+        "Start with fieldset, legend, and corn-radio-button items.",
+        "Set ids and matching label for attributes.",
+        "Apply checked, disabled, or inline states.",
+        "Use the Corncob grid around the group if the page layout requires it."
+      ],
       "example": "<fieldset class=\"corn-form--item corn-radio-button-group\"><legend>Options</legend><div class=\"corn-radio-button\"><input type=\"radio\" id=\"r1\" name=\"example\" /><label for=\"r1\">Option One</label></div></fieldset>"
     },
     "link": {
@@ -100,6 +246,26 @@
       "positions": ["top", "right", "bottom", "left"],
       "jsRequired": true,
       "accessibility": "Keyboard accessible trigger; closes on outside click and ESC key",
+      "layoutPolicy": "self-contained",
+      "canonicalBeforeEnhancing": true,
+      "parentLayoutRule": "Place popover anchors inside the Corncob grid when needed, but preserve the trigger and corn-popover relationship inside the anchor wrapper.",
+      "requiredStructure": [
+        "corn-popover--anchor",
+        "trigger element with corn-pop",
+        "corn-popover with id",
+        "trigger aria-controls matching the popover id"
+      ],
+      "forbiddenPatterns": [
+        "Do not separate the trigger and corn-popover into different containers.",
+        "Do not omit the anchor wrapper around the trigger and popover.",
+        "Do not use an aria-controls value that does not match the popover id."
+      ],
+      "enhancementOrder": [
+        "Start with corn-popover--anchor, trigger, and corn-popover.",
+        "Match the trigger aria-controls to the popover id.",
+        "Add position and content.",
+        "Place the anchor in the page layout using the Corncob grid if needed."
+      ],
       "example": "<div class=\"corn-popover--anchor\"><button class=\"corn-button corn-pop\">Open</button><corn-popover position=\"bottom\" id=\"my-popover\" class=\"corn-popover\"><ul><li><a href=\"#\">Item 1</a></li></ul></corn-popover></div>"
     },
     "expandable": {
@@ -227,6 +393,27 @@
       "jsRequired": true,
       "implemented": false,
       "example": "<corn-button-bar class=\"corn-button-bar\"><button class=\"corn-button\">Action 1</button></corn-button-bar>"
+    },
+    "panel": {
+      "name": "Panel",
+      "description": "Content container with border and padding for grouping related content.",
+      "baseClass": "corn-panel",
+      "jsRequired": false,
+      "layoutPolicy": "parent-grid",
+      "canonicalBeforeEnhancing": true,
+      "parentLayoutRule": "Use the Corncob grid to arrange panels on the page. The panel itself is the content container and should not be replaced by a custom card wrapper.",
+      "requiredStructure": ["corn-panel"],
+      "forbiddenPatterns": [
+        "Do not replace corn-panel with a custom card class when Corncob panel already fits the need.",
+        "Do not rely on nested custom wrapper divs before using a panel."
+      ],
+      "enhancementOrder": [
+        "Start with a single element using corn-panel.",
+        "Add semantic headings and content.",
+        "Place panels inside the Corncob grid for page layout.",
+        "Use nested panels only when the content hierarchy requires it."
+      ],
+      "example": "<div class=\"corn-panel\"><h2>Panel Title</h2><p>Panel content.</p></div>"
     }
   },
   "designTokens": {
@@ -234,8 +421,11 @@
     "file": "src/tokens.css",
     "note": "Override in :root or .dark selector"
   },
-  "recommendedSystemPrompt": "You are an expert frontend developer using the Corncob Design Language. Use only `corn-*` class names and vanilla HTML/JS. Never use Tailwind, Bootstrap, or any other CSS framework. Prioritize accessibility (WCAG 2.1 AA), semantic HTML, and clean code. Use the official component variants and sizes exactly as documented in components.json.",
+  "recommendedSystemPrompt": "You are an expert frontend developer using the Corncob Design Language. Use only `corn-*` class names and vanilla HTML/JS. Never use Tailwind, Bootstrap, or any other CSS framework. Prioritize accessibility (WCAG 2.1 AA), semantic HTML, and clean code. Use the official component variants and sizes exactly as documented in components.json. Use the Corncob grid for page and section layout unless a component page documents a different internal layout. Start from the canonical component code before adding enhancements or custom wrappers.",
   "aiUsageTips": [
+    "Use corn-container, corn-row, and corn-col-* for page and section layout by default.",
+    "Start from the canonical component example before adding custom styles, wrappers, or behavior.",
+    "Preserve required direct children and child order for documented components such as headers.",
     "Always pair inputs with labels using proper for/id associations",
     "Use semantic HTML elements where possible (button, nav, main, fieldset, legend, details, etc.)",
     "For checkboxes and radio buttons, always use fieldset + legend when grouping",

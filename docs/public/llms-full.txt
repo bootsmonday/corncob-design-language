@@ -1,0 +1,60 @@
+Corncob Design Language AI integration contract
+
+Primary rules
+
+1. Use only Corncob classes and vanilla HTML and JavaScript.
+2. Use the Corncob grid for page and section layout unless a component page documents a different internal layout.
+3. Start from the canonical component code before adding enhancements.
+4. Preserve documented class names, child order, and required relationships.
+5. Use the grid around structured components instead of rewriting their internal DOM.
+
+Default layout
+
+Use this structure by default for general page composition:
+
+<main class="corn-main corn-container">
+  <div class="corn-row">
+    <section class="corn-col-12">...</section>
+  </div>
+</main>
+
+Use responsive spans with:
+
+- corn-col-sm-*
+- corn-col-md-*
+- corn-col-lg-*
+- corn-col-xl-*
+- corn-col-xxl-*
+
+Canonical before enhancement workflow
+
+1. Find the canonical component example in components.json or the component docs page.
+2. Emit the documented markup exactly.
+3. Replace placeholder text, links, icons, and content.
+4. Place the component within the Corncob grid if page layout is needed.
+5. Add optional enhancements only after the canonical component code is correct.
+
+Avoid
+
+- inventing wrapper elements around required component children
+- building a second custom grid system for normal layouts
+- replacing canonical Corncob structure with framework-specific abstractions
+- changing direct child order for documented components such as headers
+
+Structured component example: header
+
+- Required direct children of corn-header:
+  - corn-company
+  - corn-header--title
+  - corn-header--nav
+  - corn-header--actions
+- Use the grid around the header for placement.
+- Do not add custom wrapper containers inside corn-header unless explicitly documented.
+
+Authoritative sources
+
+- /guides/ai-integration/
+- /tokens/grid/
+- /components/headers/ and other component pages
+- components.json
+- tokens.json

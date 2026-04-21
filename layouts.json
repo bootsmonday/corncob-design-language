@@ -1,0 +1,47 @@
+{
+  "name": "Corncob Layout Rules",
+  "version": "0.0.1",
+  "defaultLayoutSystem": "corn-grid",
+  "rule": "Use the Corncob grid for page and section layout unless a component's canonical example documents a different internal layout.",
+  "grid": {
+    "containerClass": "corn-container",
+    "rowClass": "corn-row",
+    "columnClassPattern": "corn-col-{1..12}",
+    "responsiveColumnClassPatterns": [
+      "corn-col-sm-{1..12}",
+      "corn-col-md-{1..12}",
+      "corn-col-lg-{1..12}",
+      "corn-col-xl-{1..12}",
+      "corn-col-xxl-{1..12}"
+    ]
+  },
+  "pageShell": {
+    "canonicalMarkup": "<main class=\"corn-main corn-container\"><div class=\"corn-row\"><section class=\"corn-col-12\">...</section></div></main>",
+    "notes": [
+      "Use corn-container for page width and horizontal alignment.",
+      "Use corn-row to create the grid context.",
+      "Use corn-col-* classes for spans and responsive layout."
+    ]
+  },
+  "layoutRecipes": {
+    "sidebarContent": "<div class=\"corn-row\"><aside class=\"corn-col-12 corn-col-lg-4\">Sidebar</aside><section class=\"corn-col-12 corn-col-lg-8\">Content</section></div>",
+    "cards": "<div class=\"corn-row\"><article class=\"corn-col-12 corn-col-sm-6 corn-col-lg-4\">Card</article></div>",
+    "formSection": "<section class=\"corn-col-12 corn-col-lg-8\"><div class=\"corn-panel\"><form>...</form></div></section>",
+    "twoColumnSplit": "<div class=\"corn-row\"><div class=\"corn-col-12 corn-col-lg-6\">Column A</div><div class=\"corn-col-12 corn-col-lg-6\">Column B</div></div>"
+  },
+  "aiRules": {
+    "useGridByDefault": true,
+    "canonicalBeforeEnhancing": true,
+    "preserveStructuredComponents": true,
+    "notes": [
+      "Apply the grid outside components when arranging sections, cards, sidebars, and page shells.",
+      "Do not create a custom grid system when corn-container, corn-row, and corn-col-* satisfy the layout requirement.",
+      "If a component page shows a required internal structure, preserve that structure and use the grid around it rather than rewriting the inside of the component."
+    ]
+  },
+  "componentLayoutPolicies": {
+    "parent-grid": "The component is placed inside the Corncob grid for page layout.",
+    "self-contained": "The component has a required internal structure but still lives inside the Corncob grid at the page level.",
+    "documented-exception": "The component's docs define a specific internal arrangement that should be preserved exactly before enhancement."
+  }
+}

@@ -82,15 +82,15 @@ fieldset.corn-toggle-group {
 
   &:has(input:disabled) {
     label {
-      background: var(--cc-toggle--background--disabled) !important;
+      background: var(--cc-form--item--background--disabled) !important;
       border-color: transparent !important;
-      color: var(--cc-toggle--color--disabled);
+      color: var(--cc-form--item--color--disabled);
       cursor: not-allowed;
     }
 
     &:has(input:checked) {
       label {
-        background: var(--cc-toggle--background--disabled) !important;
+        background: var(--cc-form--item--background--disabled) !important;
         border-color: var(--cc-form--item--border-color--disabled) !important;
       }
     }

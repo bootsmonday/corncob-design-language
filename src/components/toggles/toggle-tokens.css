@@ -15,7 +15,7 @@
   --cc-toggle--background--checked--hover: var(--cc-form--widget--color--hover);
   --cc-toggle--border: var(--cc-border--width) var(--cc-border--style) transparent;
   --cc-toggle--border-color--hover: var(--cc-border--color);
-  --cc-toggle--border-color--checked: var(--cc-form--widget--border-color);
+  --cc-toggle--border-color--checked: var(--cc-border--color);
   --cc-toggle--border-color--focus: var(--cc-form--item--border--color--focus);
   --cc-toggle--border-radius: var(--cc-border--radius);
   --cc-toggle--color--checked: var(--cc-white);

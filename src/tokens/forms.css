@@ -1,6 +1,6 @@
 :root {
   --cc-form--item--focus-ring: 0 0 0 3px var(--cc-blue-60);
-  --cc-form--item--focus-ring--inverted: inset 0 0 0 2px var(--cc-blue-60), 0 0 0 1px var(--cc-blue-60) ;
+  --cc-form--item--focus-ring--inverted: inset 0 0 0 2px var(--cc-blue-60), 0 0 0 1px var(--cc-blue-60);
   --cc-form--item--focus-ring--active: none;
   --cc-form--item--color--background: rgb(from var(--cc-gray-10) r g b / 87.2%);
   --cc-form--item--color--background--hover: rgb(from var(--cc-white) r g b / 87.2%);

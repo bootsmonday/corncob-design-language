@@ -24,7 +24,7 @@ fieldset.corn-toggle-group {
   border-radius: var(--cc-toggle--border-radius);
   box-shadow: var(--cc-toggle--widget--outline);
   display: flex;
-  gap: 0
+  gap: 0;
 }
 
 .corn-toggle {

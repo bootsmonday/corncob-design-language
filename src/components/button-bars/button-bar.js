@@ -114,8 +114,12 @@ export class CornButtonBar extends HTMLElement {
     moreButton.setAttribute('aria-controls', moreButtonId);
 
     if (!hasMoreButton) {
+      const overflowLabel = this._overflowLabel || '⋯';
       moreButton.setAttribute('type', 'button');
-      moreButton.innerHTML = this._overflowLabel || '&middot;&middot;&middot;';
+      moreButton.textContent = overflowLabel;
+      if (!this._overflowLabel) {
+        moreButton.setAttribute('aria-label', 'More options');
+      }
     }
 
     const moreItems = document.createElement('corn-popover');

@@ -1,0 +1,235 @@
+---
+layout: ../../layouts/DocsLayout.astro
+title: 'Component | Switches | Corncob'
+---
+
+import CodeSample from '../../layouts/partials/CodeSample.astro';
+import { Code } from 'astro/components';
+import toggleTokens from '../../../../src/components/switches/toggle-tokens.css?raw';
+
+
+## Switches
+
+Switches allow users to select one option from a set of mutually exclusive options. They are typically used for settings or preferences where only one option can be active at a time. Corncob switches are styled checkboxes that visually resemble toggle switches. They are built using native `<input type="checkbox">` elements for accessibility and functionality, with custom CSS for the switch appearance.
+
+### Extra Small Switches
+
+<div class="corn-panel">
+<fieldset class="corn-form--item corn-toggle-group corn-toggle--xs" aria-labelledby="legend1">
+  <legend id="legend1">Group Label</legend>
+  <div class="corn-toggles">
+    <div class="corn-toggle">
+      <input type="radio" id="example1" name="example-xs" checked />
+      <label for="example1">One</label>
+    </div>
+    <div class="corn-toggle">
+      <input type="radio" id="example2" name="example-xs" />
+      <label for="example2">Two</label>
+    </div>
+  </div>
+</fieldset>
+</div>
+
+<CodeSample id="default-toggle-code">
+  ```html
+    <fieldset class="corn-form--item corn-toggle-group corn-toggle--xs" aria-labelledby="legend1">
+      <legend id="legend1">Group Label</legend>
+      <div class="corn-toggles">
+        <div class="corn-toggle">
+          <input type="radio" id="example1" name="example-xs" checked />
+          <label for="example1">One</label>
+        </div>
+        <div class="corn-toggle">
+          <input type="radio" id="example2" name="example-xs" />
+          <label for="example2">Two</label>
+        </div>
+      </div>
+    </fieldset>
+  ```
+</CodeSample>
+
+### Small Toggles
+
+<div class="corn-panel">
+<fieldset class="corn-form--item corn-toggle-group corn-toggle--sm" aria-labelledby="legend2">
+  <legend id="legend2">Group Label</legend>
+  <div class="corn-toggles">
+    <div class="corn-toggle">
+      <input type="radio" id="example3" name="example-sm" checked />
+      <label for="example3">One</label>
+    </div>
+    <div class="corn-toggle">
+      <input type="radio" id="example4" name="example-sm" />
+      <label for="example4">Two</label>
+    </div>
+  </div>
+</fieldset>
+</div>
+
+<CodeSample id="default-toggle-code">
+  ```html
+    <fieldset class="corn-form--item corn-toggle-group corn-toggle--sm" aria-labelledby="legend2">
+      <legend id="legend2">Group Label</legend>
+      <div class="corn-toggles">
+        <div class="corn-toggle">
+          <input type="radio" id="example3" name="example-sm" checked />
+          <label for="example3">One</label>
+        </div>
+        <div class="corn-toggle">
+          <input type="radio" id="example4" name="example-sm" />
+          <label for="example4">Two</label>
+        </div>
+      </div>
+    </fieldset>
+  ```
+</CodeSample>
+
+### Medium Toggles
+
+<div class="corn-panel">
+<fieldset class="corn-form--item corn-toggle-group corn-toggle--md" aria-labelledby="legend3">
+  <legend id="legend3">Group Label</legend>
+  <div class="corn-toggles">
+    <div class="corn-toggle">
+      <input type="radio" id="example5" name="example-md" checked />
+      <label for="example5">One</label>
+    </div>
+    <div class="corn-toggle">
+      <input type="radio" id="example6" name="example-md" />
+      <label for="example6">Two</label>
+    </div>
+  </div>
+</fieldset>
+</div>
+
+<CodeSample id="default-toggle-code">
+  ```html
+    <fieldset class="corn-form--item corn-toggle-group corn-toggle--md" aria-labelledby="legend3">
+      <legend id="legend3">Group Label</legend>
+      <div class="corn-toggles">
+        <div class="corn-toggle">
+          <input type="radio" id="example5" name="example-md" checked />
+          <label for="example5">One</label>
+        </div>
+        <div class="corn-toggle">
+          <input type="radio" id="example6" name="example-md" />
+          <label for="example6">Two</label>
+        </div>
+      </div>
+    </fieldset>
+  ```
+</CodeSample>
+
+### Large Toggles
+
+<div class="corn-panel">
+<fieldset class="corn-form--item corn-toggle-group corn-toggle--lg" aria-labelledby="legend4">
+  <legend id="legend4">Group Label</legend>
+  <div class="corn-toggles">
+    <div class="corn-toggle">
+      <input type="radio" id="example7" name="example-lg" checked />
+      <label for="example7">One</label>
+    </div>
+    <div class="corn-toggle">
+      <input type="radio" id="example8" name="example-lg" />
+      <label for="example8">Two</label>
+    </div>
+  </div>
+</fieldset>
+</div>
+<CodeSample id="default-toggle-code">
+  ```html
+    <fieldset class="corn-form--item corn-toggle-group corn-toggle--lg" aria-labelledby="legend4">
+      <legend id="legend4">Group Label</legend>
+      <div class="corn-toggles">
+        <div class="corn-toggle">
+          <input type="radio" id="example7" name="example-lg" checked />
+          <label for="example7">One</label>
+        </div>
+        <div class="corn-toggle">
+          <input type="radio" id="example8" name="example-lg" />
+          <label for="example8">Two</label>
+        </div>
+      </div>
+    </fieldset>
+  ```
+</CodeSample>
+
+### Extra Large Toggles
+
+<div class="corn-panel">
+<fieldset class="corn-form--item corn-toggle-group corn-toggle--xl" aria-labelledby="legend5">
+  <legend id="legend5">Group Label</legend>
+  <div class="corn-toggles">
+    <div class="corn-toggle">
+      <input type="radio" id="example9" name="example-xl" checked />
+      <label for="example9">One</label>
+    </div>
+    <div class="corn-toggle">
+      <input type="radio" id="example10" name="example-xl" />
+      <label for="example10">Two</label>
+    </div>
+  </div>
+</fieldset>
+</div>
+<CodeSample id="default-toggle-code">
+  ```html
+    <fieldset class="corn-form--item corn-toggle-group corn-toggle--xl" aria-labelledby="legend5">
+      <legend id="legend5">Group Label</legend>
+      <div class="corn-toggles">
+        <div class="corn-toggle">
+          <input type="radio" id="example9" name="example-xl" checked />
+          <label for="example9">One</label>
+        </div>
+        <div class="corn-toggle">
+          <input type="radio" id="example10" name="example-xl" />
+          <label for="example10">Two</label>
+        </div>
+      </div>
+    </fieldset>
+  ```
+</CodeSample>
+
+
+### Disabled Toggles
+
+<div class="corn-panel">
+<fieldset class="corn-form--item corn-toggle-group corn-toggle--sm" aria-labelledby="legend2-disabled">
+  <legend id="legend2-disabled">Group Label</legend>
+  <div class="corn-toggles">
+    <div class="corn-toggle">
+      <input type="radio" id="example3-disabled" name="example-sm-disabled" checked disabled/>
+      <label for="example3-disabled">One</label>
+    </div>
+    <div class="corn-toggle">
+      <input type="radio" id="example4-disabled" name="example-sm-disabled" disabled/>
+      <label for="example4-disabled">Two</label>
+    </div>
+  </div>
+</fieldset>
+</div>
+<CodeSample id="disabled-toggle-code">
+  ```html
+<fieldset class="corn-form--item corn-toggle-group corn-toggle--sm" aria-labelledby="legend2-disabled">
+  <legend id="legend2-disabled">Group Label</legend>
+  <div class="corn-toggles">
+    <div class="corn-toggle">
+      <input type="radio" id="example3-disabled" name="example-sm-disabled" checked disabled/>
+      <label for="example3-disabled">One</label>
+    </div>
+    <div class="corn-toggle">
+      <input type="radio" id="example4-disabled" name="example-sm-disabled" disabled/>
+      <label for="example4-disabled">Two</label>
+    </div>
+  </div>
+</fieldset>
+  ```
+</CodeSample>
+
+
+## Toggle Tokens
+
+<CodeSample id="toggle-tokens-code">
+  <Code code={toggleTokens} lang="css" />
+</CodeSample>
+

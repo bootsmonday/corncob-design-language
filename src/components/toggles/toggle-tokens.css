@@ -1,0 +1,24 @@
+:root {
+  --cc-toggle--height--xs: var(--cc-form--item--size--xs);
+  --cc-toggle--height--sm: var(--cc-form--item--size--sm);
+  --cc-toggle--height--md: var(--cc-form--item--size--md);
+  --cc-toggle--height--lg: var(--cc-form--item--size--lg);
+  --cc-toggle--height--xl: var(--cc-form--item--size--xl);
+  --cc-toggle--font-size--md: var(--cc-form--item--font-size--md);
+  --cc-toggle--font-size--xs: var(--cc-form--item--font-size--xs);
+  --cc-toggle--font-size--sm: var(--cc-form--item--font-size--sm);
+  --cc-toggle--font-size--lg: var(--cc-form--item--font-size--lg);
+  --cc-toggle--font-size--xl: var(--cc-form--item--font-size--xl);
+  --cc-toggle--background: var(--cc-form--item--color--background);
+  --cc-toggle--background--hover: var(--cc-form--item--color--background--hover);
+  --cc-toggle--background--checked: var(--cc-form--widget--color);
+  --cc-toggle--background--checked--hover: var(--cc-form--widget--color--hover);
+  --cc-toggle--border: var(--cc-border--width) var(--cc-border--style) transparent;
+  --cc-toggle--border-color--hover: var(--cc-border--color);
+  --cc-toggle--border-color--checked: var(--cc-form--widget--border-color);
+  --cc-toggle--border-color--focus: var(--cc-form--item--border--color--focus);
+  --cc-toggle--border-radius: var(--cc-border--radius);
+  --cc-toggle--color--checked: var(--cc-white);
+  --cc-toggle--focus-ring: var(--cc-form--item--focus-ring);
+  --cc-toggle--widget--outline: inset 0 0 0 2px var(--cc-gray-20);
+}

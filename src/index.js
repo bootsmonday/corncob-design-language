@@ -25,11 +25,13 @@ import './components/popovers/popover.css';
 import './components/checkboxes/checkbox.css';
 import './components/radio-buttons/radio-button.css';
 import './components/toast/toast.css';
+import './components/toggles/toggle.css';
 import './components/expandables/expandable.css';
 import './components/panel-menus/panel-menu.css';
 import './components/button-bars/button-bar.css';
 import './components/headers/header.css';
 import './components/footers/footer.css';
+import './components/switches/switch.css';
 
 // Import Base Styles
 import './common/dark.css';

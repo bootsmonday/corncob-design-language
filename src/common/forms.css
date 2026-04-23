@@ -59,6 +59,10 @@ fieldset.corn-form--item:has(input[disabled]) {
       text-decoration-color: var(--cc-form--item--color--disabled);
     }
 
+    .corn-icon {
+      border-color: var(--cc-form--item--border-color--disabled);
+    }
+
     .corn-status {
       color: var(--cc-form--item--color--disabled);
       cursor: not-allowed !important;

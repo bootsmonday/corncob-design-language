@@ -210,7 +210,36 @@ Example shell:
 - ✅ Each input has unique `id` matching its `label for`
 - ✅ Use `corn-checkbox-group--inline` for inline layout
 
-### 3. Interactive Components (Tooltips, Popovers, Expandables)
+### 3. Toggle Groups (Mutually Exclusive Options)
+
+**Always follow this pattern**:
+
+```html
+<fieldset class="corn-form--item corn-toggle-group corn-toggle--md" aria-labelledby="toggle-legend">
+  <legend id="toggle-legend">Group Label</legend>
+  <div class="corn-toggles">
+    <div class="corn-toggle">
+      <input type="radio" id="toggle-option-1" name="toggle-example" checked />
+      <label for="toggle-option-1">One</label>
+    </div>
+    <div class="corn-toggle">
+      <input type="radio" id="toggle-option-2" name="toggle-example" />
+      <label for="toggle-option-2">Two</label>
+    </div>
+  </div>
+</fieldset>
+```
+
+**Validation**:
+
+- ✅ Use `fieldset.corn-toggle-group` with a `legend`; prefer `aria-labelledby` on the fieldset linked to the legend `id`
+- ✅ Use one shared `name` across options so only one toggle can be selected
+- ✅ Keep unique `id` values and matching `label for` values
+- ✅ Use documented size modifiers on the group: `corn-toggle--xs|sm|md|lg|xl`
+- ✅ For icon toggles, keep icons inside the `<label>` and provide `aria-label` on `.corn-icon`
+- ✅ Apply `disabled` directly on `<input>` when disabling toggle options
+
+### 4. Interactive Components (Tooltips, Popovers, Expandables)
 
 **Check `jsRequired` field**:
 
@@ -238,7 +267,7 @@ Example shell:
 - ✅ Anchor wrapper has proper class
 - ✅ Position attribute matches options: `top|right|bottom|left`
 
-### 4. Class Naming Rules
+### 5. Class Naming Rules
 
 **Modifiers follow pattern**: `corn-[component]--[variant|size]`
 
@@ -255,7 +284,7 @@ Examples:
 - ✅ Only use modifiers listed in `components.json` for that component
 - ✅ Never mix unrelated component classes
 
-### 5. Components With Required Internal Structure
+### 6. Components With Required Internal Structure
 
 Some components define a required internal DOM shape. Headers are the clearest example.
 

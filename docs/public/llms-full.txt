@@ -41,6 +41,15 @@ Avoid
 - replacing canonical Corncob structure with framework-specific abstractions
 - changing direct child order for documented components such as headers
 
+Toggle-specific rules
+
+- Use fieldset.corn-toggle-group with a legend and keep aria-labelledby linked to the legend id.
+- Use one shared radio name across toggle options so selection is mutually exclusive.
+- Keep unique input ids matched by label for attributes.
+- Use only documented size modifiers: corn-toggle--xs, corn-toggle--sm, corn-toggle--md, corn-toggle--lg, corn-toggle--xl.
+- For icon toggles, keep icons inside labels and provide aria-label on .corn-icon.
+- Apply disabled directly on input elements.
+
 Structured component example: header
 
 - Required direct children of corn-header:

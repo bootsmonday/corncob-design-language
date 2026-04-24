@@ -113,6 +113,8 @@ Copy this when asking an AI to build pages with Corncob:
 > Use the official component variants and sizes exactly as documented.
 > Use the Corncob grid for page and section layout unless a component page documents a different internal layout.
 > Start from the canonical component code before adding enhancements or custom wrappers.
+> For toggles, use fieldset.corn-toggle-group with legend, shared radio name, and matching input id/label for.
+> For icon toggles, keep icons inside labels and provide aria-label on .corn-icon.
 > For modals, always include proper focus management and ARIA attributes."
 
 ### Example AI Prompts
@@ -132,6 +134,7 @@ When generating layouts with Corncob:
 - use `corn-container`, `corn-row`, and `corn-col-*` by default
 - preserve canonical component structure from the docs before customizing it
 - use component-specific internal layouts only when the docs explicitly define them
+- use `corn-toggle-group` + `corn-toggles` + `corn-toggle` structure for toggle groups, with shared radio names and matching `id`/`for`
 
 See [`DESIGN_SYSTEM_FOR_AI.md`](DESIGN_SYSTEM_FOR_AI.md) for the full AI integration contract.
 

@@ -28,7 +28,6 @@ fieldset.corn-checkbox-group {
   &:has(input:hover, label:hover) {
     input {
       background-color: var(--cc-form--widget--background--selected--hover);
-      zoom: 1;
 
       &:checked {
         &::after {
@@ -225,3 +224,11 @@ fieldset.corn-checkbox-group--inline {
     width: 100%;
   }
 }
+
+.corn-checkbox--task:has(input:checked) {
+  label {
+    text-decoration: line-through;
+    text-decoration-color: var(--cc-form--item--color--text--decoration);
+  }
+}
+

@@ -222,6 +222,38 @@ If the canonical version is wrong, enhancement should stop until the base struct
 - Each input has unique `id` matching its `label for`
 - Use `corn-checkbox-group--inline` for inline layout
 
+#### Toggle Groups (Mutually Exclusive Options)
+
+**Always follow this pattern**:
+
+<div class="corn-docs-code">
+```html
+<fieldset class="corn-form--item corn-toggle-group corn-toggle--md" aria-labelledby="toggle-legend">
+  <legend id="toggle-legend">Group Label</legend>
+  <div class="corn-toggles">
+    <div class="corn-toggle">
+      <input type="radio" id="toggle-option-1" name="toggle-example" value="one" checked />
+      <label for="toggle-option-1">One</label>
+    </div>
+    <div class="corn-toggle">
+      <input type="radio" id="toggle-option-2" name="toggle-example" value="two" />
+      <label for="toggle-option-2">Two</label>
+    </div>
+  </div>
+</fieldset>
+```
+</div>
+
+**Validation**:
+
+- Use `<fieldset>` with `corn-toggle-group` and include a `<legend>`
+- Prefer `aria-labelledby` on the fieldset linked to the legend `id`
+- Keep one shared `name` across options so only one option can be selected
+- Keep unique `id` values and matching `label for` values
+- Use documented size modifiers on the group: `corn-toggle--xs|sm|md|lg|xl`
+- For icon toggles, keep icons inside the `<label>` and provide `aria-label` on `.corn-icon`
+- Apply `disabled` directly on the `<input>` when disabling toggle options
+
 #### Interactive Components (Tooltips, Popovers, Expandables)
 
 **Check `jsRequired` field**:

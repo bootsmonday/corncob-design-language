@@ -5,6 +5,8 @@ Corncob Design Language AI usage rules
 - Use the grid for page and section layout unless a component page documents a different internal layout.
 - Start from canonical component code before adding enhancements.
 - Preserve documented class names, child order, and required wrappers.
+- For toggles, use fieldset.corn-toggle-group with legend, one shared radio name, and matching input id/label for.
+- For icon toggles, keep icons inside labels and provide aria-label on .corn-icon.
 - For components with required internal structure, use the grid around the component instead of rewriting the inside.
 - Check components.json for canonical examples, variants, sizes, and JS requirements.
 - Check tokens.json for tokens and common patterns.

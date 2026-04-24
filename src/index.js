@@ -31,7 +31,6 @@ import './components/button-bars/button-bar.css';
 import './components/headers/header.css';
 import './components/footers/footer.css';
 import './components/sliders/slider.css';
-import './components/toggles/toggle.css';
 
 // Import Base Styles
 import './common/dark.css';

@@ -239,7 +239,26 @@ Example shell:
 - ✅ For icon toggles, keep icons inside the `<label>` and provide `aria-label` on `.corn-icon`
 - ✅ Apply `disabled` directly on `<input>` when disabling toggle options
 
-### 4. Interactive Components (Tooltips, Popovers, Expandables)
+### 4. Sliders
+
+**Always follow this pattern**:
+
+```html
+<div class="corn-slider corn-slider--md">
+  <label for="slider-id">Label Text</label>
+  <input type="range" min="0" max="100" value="50" id="slider-id" />
+</div>
+```
+
+**Validation**:
+
+- ✅ Wrap in `corn-slider`; the size modifier goes on the same element, not a parent
+- ✅ Always include a `<label>` with `for` matching the input `id`
+- ✅ Always include `min`, `max`, and `value` attributes
+- ✅ Use documented size modifiers: `corn-slider--xs|sm|md|lg|xl`; default (`md`) may omit the modifier
+- ✅ Apply `disabled` directly on `<input>` when disabling the slider
+
+### 5. Interactive Components (Tooltips, Popovers, Expandables)
 
 **Check `jsRequired` field**:
 

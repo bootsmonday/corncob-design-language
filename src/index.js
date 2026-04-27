@@ -31,6 +31,7 @@ import './components/panel-menus/panel-menu.css';
 import './components/button-bars/button-bar.css';
 import './components/headers/header.css';
 import './components/footers/footer.css';
+import './components/sliders/slider.css';
 
 // Import Base Styles
 import './common/dark.css';
@@ -47,6 +48,7 @@ import './components/expandables/expandable.js';
 
 // Re-export all components for package consumers
 export {
+  CornSlider,
   CornToast,
   CornCopyButton,
   CornTooltip,

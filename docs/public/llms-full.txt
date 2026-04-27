@@ -50,6 +50,14 @@ Toggle-specific rules
 - For icon toggles, keep icons inside labels and provide aria-label on .corn-icon.
 - Apply disabled directly on input elements.
 
+Slider-specific rules
+
+- Wrap in corn-slider; the size modifier goes on the same wrapper element.
+- Always include a label with for matching the input id.
+- Always include min, max, and value attributes on the range input.
+- Use only documented size modifiers: corn-slider--xs, corn-slider--sm, corn-slider--md, corn-slider--lg, corn-slider--xl.
+- Apply disabled directly on the input element.
+
 Structured component example: header
 
 - Required direct children of corn-header:

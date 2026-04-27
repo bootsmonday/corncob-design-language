@@ -291,6 +291,39 @@
       "accessibility": "Keyboard navigation with proper ARIA attributes",
       "example": "<div class=\"corn-panel-menu\"><a href=\"#\" class=\"corn-panel-menu--item\">Item 1</a><a href=\"#\" class=\"corn-panel-menu--item corn-panel-menu--item--active\">Item 2</a></div>"
     },
+    "slider": {
+      "name": "Slider",
+      "description": "Styled native HTML range input for selecting a value within a range",
+      "baseClass": "corn-slider",
+      "sizes": ["xs", "sm", "md", "lg", "xl"],
+      "jsRequired": false,
+      "implemented": true,
+      "accessibility": "Always associate a label with the range input using matching id and for attributes",
+      "layoutPolicy": "self-contained",
+      "canonicalBeforeEnhancing": true,
+      "parentLayoutRule": "Use the Corncob grid around sliders for section layout, but keep the label and input inside the corn-slider wrapper.",
+      "requiredStructure": ["div.corn-slider", "label", "input[type=range]"],
+      "forbiddenPatterns": [
+        "Do not place the size modifier on a parent wrapper instead of on corn-slider itself.",
+        "Do not omit the label or disconnect its for attribute from the input id.",
+        "Do not omit min, max, and value attributes on the range input."
+      ],
+      "enhancementOrder": [
+        "Start with the corn-slider wrapper, label, and range input.",
+        "Set id on input and matching for on label.",
+        "Add min, max, and value attributes.",
+        "Apply size modifier class if needed.",
+        "Apply disabled on the input when needed."
+      ],
+      "example": "<div class=\"corn-slider corn-slider--md\"><label for=\"slider-id\">Label Text</label><input type=\"range\" min=\"0\" max=\"100\" value=\"50\" id=\"slider-id\" /></div>",
+      "fullExamples": {
+        "default": "<div class=\"corn-slider\"><label for=\"slider-default\">Label Text</label><input type=\"range\" min=\"0\" max=\"100\" value=\"50\" id=\"slider-default\" /></div>",
+        "medium": "<div class=\"corn-slider corn-slider--md\"><label for=\"slider-md\">Label Text</label><input type=\"range\" min=\"0\" max=\"100\" value=\"50\" id=\"slider-md\" /></div>",
+        "small": "<div class=\"corn-slider corn-slider--sm\"><label for=\"slider-sm\">Label Text</label><input type=\"range\" min=\"0\" max=\"100\" value=\"50\" id=\"slider-sm\" /></div>",
+        "large": "<div class=\"corn-slider corn-slider--lg\"><label for=\"slider-lg\">Label Text</label><input type=\"range\" min=\"0\" max=\"100\" value=\"50\" id=\"slider-lg\" /></div>",
+        "disabled": "<div class=\"corn-slider corn-slider--md\"><label for=\"slider-disabled\">Label Text</label><input type=\"range\" min=\"0\" max=\"100\" value=\"50\" id=\"slider-disabled\" disabled /></div>"
+      }
+    },
     "select": {
       "name": "Select",
       "description": "Custom dropdown with keyboard navigation (planned, not yet implemented)",

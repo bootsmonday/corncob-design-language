@@ -1,9 +1,29 @@
 :root {
-  --cc-tooltip--background: var(--cc-black);
-  --cc-tooltip--color: var(--cc-white);
-  --cc-tooltip--font-size: var(--cc-size--1);
-  --cc-tooltip--padding: 0.25rem 0.5rem;
-  --cc-tooltip--border-radius: var(--cc-border--radius);
-  --cc-tooltip--box-shadow: var(--cc-shadow--drop);
-  --cc-tooltip--transition: opacity var(--cc-transition--easing) var(--cc-transition--time);
+  --cc-slider--height--xs: var(--cc-form--item--size--xs);
+  --cc-slider--height--sm: var(--cc-form--item--size--sm);
+  --cc-slider--height--md: var(--cc-form--item--size--md);
+  --cc-slider--height--lg: var(--cc-form--item--size--lg);
+  --cc-slider--height--xl: var(--cc-form--item--size--xl);
+  --cc-slider--thumb--size--xs: var(--cc-size-1);
+  --cc-slider--thumb--size--sm: var(--cc-size-1);
+  --cc-slider--thumb--size--md: var(--cc-size-2);
+  --cc-slider--thumb--size--lg: var(--cc-size-3);
+  --cc-slider--thumb--size--xl: var(--cc-size-4);
+  --cc-slider--font-size--md:  var(--cc-size--0);
+  --cc-slider--font-size--xs: var(--cc-size--0);
+  --cc-slider--font-size--sm: var(--cc-size--1);
+  --cc-slider--font-size--lg: var(--cc-size-0);
+  --cc-slider--font-size--xl: var(--cc-size-1);
+  --cc-slider--thumb--background: var(--cc-form--widget--color);
+  --cc-slider--thumb--background--border: var(--cc-blue-20);
+  --cc-slider--thumb--background--hover: var(--cc-form--widget--color--hover);
+  --cc-slider--thumb--focus--box-shadow: var(--cc-form--item--focus-ring);
+  --cc-slider--thumb--border-radius: var(--cc-border--radius--round);
+  --cc-slider--track--background: rgb(from var(--cc-gray-20) r g b / 40.2%);
+  --cc-slider--border: var(--cc-form--item--border);
+  --cc-slider--border-radius: var(--cc-border--radius);
+  --cc-slider--border-width: var(--cc-border--width);
+  --cc-slider--border-style: var(--cc-border--style);
+  --cc-slider--border-color: var(--cc-gray-40);
+  --cc-slider--box-shadow: var(--cc-shadow--drop);
 }

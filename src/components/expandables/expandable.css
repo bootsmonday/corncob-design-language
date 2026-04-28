@@ -12,7 +12,7 @@
     display: flex;
     flex-basis: 100%;
     flex-direction: column;
-    padding: 0.5rem;
+    padding: var(--cc-size--3);
 
     &.corn-expandable--open {
       overflow: visible;
@@ -40,7 +40,7 @@
   }
 
   details .corn-expandable {
-    margin-left: 0.5rem;
+    margin-left: var(--cc-size--3);
 
     details {
       border-width: 0;
@@ -53,9 +53,9 @@
     display: inline-flex;
     flex: 1 1 0%;
     font-weight: 500;
-    gap: 0.25rem;
+    gap: var(--cc-size--4);
     outline: none;
-    padding: 0.25rem 0;
+    padding: var(--cc-size--4) 0;
 
 
 
@@ -68,7 +68,7 @@
     .corn-icon {
       border-radius: 50%;
       height: 1rem;
-      padding: 0.25rem;
+      padding: var(--cc-size--5);
       transform: rotate(0deg);
       transform-origin: center;
       transition: transform var(--cc-transition--easing) var(--cc-transition--time);
@@ -79,7 +79,6 @@
 
 .corn-expandable-button {
   color: var(--cc-expandable--color);
-
 
     &:focus-visible {
       .corn-icon {

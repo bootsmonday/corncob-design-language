@@ -41,4 +41,22 @@
 
   /* 72.289 */
   --cc-size-7: calc(var(--cc-size-6) * var(--cc-size-ratio));
+
+  /* 95.36px */
+  --cc-size-8: calc(var(--cc-size-7) * var(--cc-size-ratio));
+
+  /* 119.2px */
+  --cc-size-9: calc(var(--cc-size-8) * var(--cc-size-ratio));
+
+  /* 149.1px */
+  --cc-size-10: calc(var(--cc-size-9) * var(--cc-size-ratio));
+
+  /* 186.265px */
+  --cc-size-11: calc(var(--cc-size-10) * var(--cc-size-ratio));
+
+  /* 232.83px */
+  --cc-size-12: calc(var(--cc-size-11) * var(--cc-size-ratio));
+
+  /* 291.04px */
+  --cc-size-13: calc(var(--cc-size-12) * var(--cc-size-ratio));
 }

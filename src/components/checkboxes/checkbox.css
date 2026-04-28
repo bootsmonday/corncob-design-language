@@ -3,19 +3,19 @@
 fieldset.corn-checkbox-group {
   border: none;
   display: flex;
-  gap: 1rem;
+  gap: var(--cc-size-0);
   margin: 0;
   padding: 0;
 
   hr {
-    margin: 1rem 0;
+    margin: var(--cc-size-0) 0;
   }
 
   legend {
     flex-basis: 100%;
     font-weight: 500;
     line-height: 1;
-    padding-bottom: 1rem;
+    padding-bottom: var(--cc-size-0);
   }
 }
 
@@ -78,7 +78,7 @@ fieldset.corn-checkbox-group {
       content: '';
       font-size: inherit;
       height: 0.5em;
-      margin-top: -0.2rem;
+      margin-top: calc(var(--cc-size--5) * -1);
       opacity: 0;
       scale: 0.65;
       transform: rotate(45deg);
@@ -118,6 +118,27 @@ fieldset.corn-checkbox-group {
     line-height: 2rem;
     padding-left: 0.5rem;
   }
+
+  &:has(input[disabled]) {
+    opacity: 0.5;
+
+    input {
+      background: var(--cc-form--item--background--disabled) !important;
+      border-color: var(--cc-form--item--border-color--disabled) !important;
+      box-shadow: none !important;
+      cursor: not-allowed !important;
+    }
+
+    input::after {
+      border-color: var(--cc-form--item--border-color--disabled) !important;
+    }
+
+    label {
+      color: var(--cc-form--item--color--disabled) !important;
+      cursor: not-allowed !important;
+    }
+  } 
+
 }
 
 .corn-checkbox--xs {
@@ -207,7 +228,7 @@ fieldset.corn-checkbox-group {
 
 fieldset.corn-checkbox-group--inline {
   display: grid;
-  gap: 0.5rem;
+  gap: var(--cc-size--3);
   grid-template-columns: repeat(auto-fit, minmax(min(20rem, 100%), 1fr));
   list-style: none;
   padding: 0;
@@ -230,5 +251,12 @@ fieldset.corn-checkbox-group--inline {
     text-decoration: line-through;
     text-decoration-color: var(--cc-form--item--color--text--decoration);
   }
+
+  &:has(input[disabled]) {
+    label {
+      text-decoration-color: var(--cc-form--item--color--disabled) !important;
+    }
+  }
+
 }
 

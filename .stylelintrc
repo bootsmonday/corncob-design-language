@@ -10,6 +10,7 @@
         "message": "Custom properties must follow pattern cc-[category][--modifier]* (lowercase kebab-case)"
       }
     ],
+    "no-eol-whitespace": true,
     "number-max-precision": 8,
     "order/properties-alphabetical-order": true,
     "selector-class-pattern": "^[a-z0-9\\-]+$",

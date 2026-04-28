@@ -94,16 +94,20 @@
     opacity: 0.5;
 
     &:hover {
-      background-color: var(--cc-text-input--background--disabled--hover);
+      background-color: var(--cc-text-input--background--disabled--hover) !important;
     }
 
     input {
-      color: var(--cc-text-input--color--disabled);
+      color: var(--cc-text-input--color--disabled) !important;
       cursor: not-allowed !important;
+
+      &::placeholder {
+        color: var(--cc-text-input--color--disabled) !important;
+      }
     }
 
     label {
-      color: var(--cc-text-input--color--disabled);
+      color: var(--cc-text-input--color--disabled) !important;
       cursor: not-allowed !important;
     }
   }

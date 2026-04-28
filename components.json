@@ -137,10 +137,10 @@
     },
     "checkbox": {
       "name": "Checkbox",
-      "description": "Checkbox input for single or grouped selections with support for disabled and indeterminate states",
+      "description": "Checkbox input for single or grouped selections with support for disabled, indeterminate, and task (checklist) states",
       "baseClass": "corn-checkbox",
       "groupClass": "corn-checkbox-group",
-      "variants": ["disabled", "indeterminate"],
+      "variants": ["disabled", "indeterminate", "task"],
       "layoutModes": ["stacked", "inline"],
       "jsRequired": false,
       "accessibility": "Standard HTML checkbox with label association, keyboard accessible",
@@ -154,18 +154,24 @@
         "input[type=checkbox]",
         "label"
       ],
+      "variantNotes": {
+        "task": "Add corn-checkbox--task to the div.corn-checkbox wrapper (not the input or fieldset). Use for to-do lists, step trackers, and checklist UIs where the label visually reflects completion (e.g. strikethrough when checked). Do not use for standard multi-select form fields."
+      },
       "forbiddenPatterns": [
         "Do not replace a grouped checkbox fieldset with standalone div elements.",
         "Do not give grouped checkboxes unrelated name values when they belong to the same group.",
-        "Do not omit legend text for grouped checkbox controls."
+        "Do not omit legend text for grouped checkbox controls.",
+        "Do not apply corn-checkbox--task to standard form selection checkboxes; reserve it for task/checklist UIs only."
       ],
       "enhancementOrder": [
         "Start with fieldset, legend, and corn-checkbox items.",
         "Set ids and matching label for attributes.",
         "Apply checked, disabled, inline, or indeterminate states.",
+        "For checklists, add corn-checkbox--task to each div.corn-checkbox wrapper.",
         "Use the Corncob grid around the group if the page layout requires it."
       ],
-      "example": "<fieldset class=\"corn-form--item corn-checkbox-group\"><legend>Options</legend><div class=\"corn-checkbox\"><input type=\"checkbox\" id=\"ex1\" name=\"example\" /><label for=\"ex1\">Checkbox One</label></div></fieldset>"
+      "example": "<fieldset class=\"corn-form--item corn-checkbox-group\"><legend>Options</legend><div class=\"corn-checkbox\"><input type=\"checkbox\" id=\"ex1\" name=\"example\" /><label for=\"ex1\">Checkbox One</label></div></fieldset>",
+      "taskExample": "<fieldset class=\"corn-form--item corn-checkbox-group\"><legend>My Tasks</legend><div class=\"corn-checkbox corn-checkbox--task\"><input type=\"checkbox\" id=\"task-1\" name=\"tasks\" checked /><label for=\"task-1\">Task Complete</label></div><div class=\"corn-checkbox corn-checkbox--task\"><input type=\"checkbox\" id=\"task-2\" name=\"tasks\" /><label for=\"task-2\">Task Incomplete</label></div></fieldset>"
     },
     "radio": {
       "name": "Radio Button",

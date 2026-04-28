@@ -139,6 +139,46 @@ The indeterminate state is set via JavaScript on the checkbox input element usin
   ```
 </CodeSample>
 
+### Task Checkboxes
+A checklist is a group of checkboxes that are visually connected to indicate that they belong together. Checklists are often used for task lists, where each checkbox represents a task that can be marked as complete. Corncob provides a specific style for task checkboxes to differentiate them from regular checkboxes.
+
+<fieldset class="corn-form--item corn-checkbox-group">
+  <legend>Group Label</legend>
+  <div class="corn-checkbox corn-checkbox--task">
+    <input type="checkbox" id="example-task" name="example-task" checked />
+    <label for="example-task">Task Complete</label>
+  </div>
+  <div class="corn-checkbox corn-checkbox--task">
+    <input type="checkbox" id="example-task-2" name="example-task" />
+    <label for="example-task-2">Task Complete</label>
+  </div>
+  <div class="corn-checkbox corn-checkbox--task">
+    <input type="checkbox" id="example-task-3" name="example-task" />
+    <label for="example-task-3">Task Complete</label>
+  </div>
+</fieldset>
+
+<CodeSample id="task-checkbox-code">
+  ```html
+  <fieldset class="corn-form--item corn-checkbox-group">
+    <legend>Group Label</legend>
+    <div class="corn-checkbox corn-checkbox--task">
+      <input type="checkbox" id="example-task" name="example-task" checked />
+      <label for="example-task">Task Complete</label>
+    </div>
+    <div class="corn-checkbox corn-checkbox--task">
+      <input type="checkbox" id="example-task-2" name="example-task" />
+      <label for="example-task-2">Task Complete</label>
+    </div>
+    <div class="corn-checkbox corn-checkbox--task">
+      <input type="checkbox" id="example-task-3" name="example-task" />
+      <label for="example-task-3">Task Complete</label>
+    </div>
+  </fieldset>
+  ```
+</CodeSample>
+
+
 ## Checkbox Tokens
 
 <CodeSample id="checkbox-tokens-code">

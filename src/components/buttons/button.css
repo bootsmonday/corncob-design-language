@@ -48,10 +48,12 @@
   }
 
   &[disabled] {
-    background-color: var(--cc-button--background--disabled);
-    border-color: var(--cc-button--border-color--disabled);
-    color: var(--cc-button--color--disabled);
-    cursor: not-allowed;
+    background: var(--cc-form--item--background--disabled) !important;
+    border-color: var(--cc-form--item--border-color--disabled) !important;
+    box-shadow: none !important;
+    color: var(--cc-form--item--color--disabled) !important;
+    cursor: not-allowed !important;
+    opacity: 0.5;
   }
 
   &.corn-button--icon {

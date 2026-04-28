@@ -3,9 +3,9 @@
 .corn-header {
   align-items: center;
   display: flex;
-  gap: 1rem;
+  gap: var(--cc-size-0);
   line-height: 1;
-  padding: 1rem 1rem 0;
+  padding: var(--cc-size-0) var(--cc-size-0) 0;
 
   .corn-link {
     line-height: 1;
@@ -18,7 +18,7 @@
   flex-grow: 0;
   font-size: var(--cc-header--company--font--size);
   font-weight: var(--cc-header--company--font--weight);
-  gap: 0.25rem;
+  gap: var(--cc-size--5);
   line-height: 1;
 }
 
@@ -34,19 +34,20 @@
 
 .corn-header--nav {
   display: flex;
-  gap: 0.25rem;
+  gap: var(--cc-size--5);
   width: 100%;
 
   .corn-button {
     align-items: center;
     background: transparent;
     border-color: transparent;
-    color: var(--cc-gray-100);
+    color: var(--cc-header--navlink--color);
     display: inline-flex;
-    padding: 0 0.25rem;
+    padding: 0 var(--cc-size--5);
 
     &:hover {
-      background: rgb(from var(--cc-gray-80) r g b / 6.8%);
+      background: var(--cc-header--navlink--background--hover);
+      color: var(--cc-header--navlink--color--hover);
     } 
 
     &:hover:focus-visible {
@@ -54,7 +55,7 @@
     }
 
     &:active {
-      background: rgb(from var(--cc-gray-80) r g b / 15.8%);
+      background: var(--cc-header--navlink--background--active);
     }
   }
 
@@ -74,13 +75,13 @@
 .corn-header--actions {
   align-items: center;
   display: flex;
-  gap: 0.25rem;
+  gap: var(--cc-size--5);
   justify-content: flex-end;
   line-height: 1;
 }
 
 .corn-company--logo img,
 .corn-company--logo svg {
-  height: 2rem;
-  width: 2rem;
+  height: var(--cc-size-3);
+  width: var(--cc-size-3);
 }

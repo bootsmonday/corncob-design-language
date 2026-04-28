@@ -99,6 +99,26 @@ fieldset.corn-radio-button-group {
     line-height: 2rem;
     padding-left: 0.5rem;
   }
+
+  &:has(input[disabled]) {
+     opacity: 0.5;
+
+    input {
+      background: var(--cc-form--item--background--disabled) !important;
+      border-color: var(--cc-form--item--border-color--disabled) !important;
+      box-shadow: none !important;
+      cursor: not-allowed !important;
+    }
+
+    input::after {
+      background: var(--cc-form--item--background--selected--disabled) !important;
+    }
+
+    label {
+      color: var(--cc-form--item--color--disabled) !important;
+      cursor: not-allowed !important;
+    }
+  }  
 }
 
 .corn-radio-button--xs {

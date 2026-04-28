@@ -9,7 +9,7 @@
   box-shadow: var(--cc-panel--shadow);
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: var(--cc-size--3);
   padding: calc(var(--cc-panel--padding) / 2) 0;
 
   details {
@@ -18,7 +18,7 @@
   }
 
   .corn-expandable--content {
-    margin-top: 0.25rem;
+    margin-top: var(--cc-size--5);
   }
 }
 
@@ -82,7 +82,7 @@
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      width: .25rem;
+      width: var(--cc-size--5);
     }
   }
 }
@@ -94,8 +94,8 @@
   display: flex;
   flex-direction: column;
   font-size: var(--cc-size--1);
-  gap: 0.5rem;
-  padding: 0.5rem 0;
+  gap: var(--cc-size--3);
+  padding: var(--cc-size--3) 0;
 
   .corn-panel-menu--item {
     font-size: var(--cc-size--1);

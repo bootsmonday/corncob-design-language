@@ -81,6 +81,8 @@ fieldset.corn-toggle-group {
   }
 
   &:has(input:disabled) {
+    opacity: 0.5;
+
     label {
       background: var(--cc-form--item--background--disabled) !important;
       border-color: transparent !important;

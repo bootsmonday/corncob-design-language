@@ -3,4 +3,8 @@
   --cc-header--company--font--weight: 500;
   --cc-header--title--font--size: var(--cc-size-1);
   --cc-header--title--font--weight: 400;
+  --cc-header--navlink--color: var(--cc-gray-100);
+  --cc-header--navlink--color--hover: var(--cc-black);
+  --cc-header--navlink--background--hover: rgb(from var(--cc-gray-80) r g b / 6.8%);
+  --cc-header--navlink--background--active: rgb(from var(--cc-gray-80) r g b / 15.8%);
 }

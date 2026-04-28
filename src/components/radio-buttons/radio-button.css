@@ -118,7 +118,7 @@ fieldset.corn-radio-button-group {
       color: var(--cc-form--item--color--disabled) !important;
       cursor: not-allowed !important;
     }
-  }  
+  }
 }
 
 .corn-radio-button--xs {

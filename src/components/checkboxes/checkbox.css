@@ -120,7 +120,7 @@ fieldset.corn-checkbox-group {
   }
 
   &:has(input[disabled]) {
-     opacity: 0.5;
+    opacity: 0.5;
 
     input {
       background: var(--cc-form--item--background--disabled) !important;

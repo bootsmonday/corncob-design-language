@@ -56,7 +56,7 @@
 
   /* 232.83px */
   --cc-size-12: calc(var(--cc-size-11) * var(--cc-size-ratio));
-  
+
   /* 291.04px */
   --cc-size-13: calc(var(--cc-size-12) * var(--cc-size-ratio));
 }

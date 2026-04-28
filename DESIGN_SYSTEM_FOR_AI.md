@@ -210,6 +210,38 @@ Example shell:
 - ✅ Each input has unique `id` matching its `label for`
 - ✅ Use `corn-checkbox-group--inline` for inline layout
 
+#### Task Checkboxes (Checklists)
+
+Use `corn-checkbox--task` on the `.corn-checkbox` wrapper to render a checklist-style checkbox. This variant visually differentiates task completion from standard form selections (e.g., strikethrough label when checked). Use it for to-do lists, step trackers, or any UI that represents completable tasks.
+
+**Pattern**:
+
+```html
+<fieldset class="corn-form--item corn-checkbox-group">
+  <legend>My Tasks</legend>
+  <div class="corn-checkbox corn-checkbox--task">
+    <input type="checkbox" id="task-1" name="tasks" checked />
+    <label for="task-1">Task Complete</label>
+  </div>
+  <div class="corn-checkbox corn-checkbox--task">
+    <input type="checkbox" id="task-2" name="tasks" />
+    <label for="task-2">Task Incomplete</label>
+  </div>
+  <div class="corn-checkbox corn-checkbox--task">
+    <input type="checkbox" id="task-3" name="tasks" />
+    <label for="task-3">Another Task</label>
+  </div>
+</fieldset>
+```
+
+**Validation**:
+
+- ✅ Add `corn-checkbox--task` to the `.corn-checkbox` div — not the `<input>` or `<fieldset>`
+- ✅ Still wrap the group in `fieldset.corn-form--item.corn-checkbox-group` with a `<legend>`
+- ✅ Each input has a unique `id` matching its `label for`
+- ✅ Use `checked` attribute to pre-mark completed tasks
+- ❌ Do not use `corn-checkbox--task` for standard multi-select form fields — it is exclusively for task/checklist UIs
+
 ### 3. Toggle Groups (Mutually Exclusive Options)
 
 **Always follow this pattern**:
@@ -294,7 +326,7 @@ Examples:
 
 - Size: `corn-button--xs`, `corn-button--sm`, `corn-button--md`
 - Variant: `corn-button--secondary`, `corn-button--danger`
-- State: `corn-checkbox-group--inline`
+- State: `corn-checkbox-group--inline`, `corn-checkbox--task`
 - Layout: `corn-radio-button-group--inline`
 
 **Validation**:

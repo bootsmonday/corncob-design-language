@@ -4,7 +4,8 @@
 .corn-button--md {
   align-items: center;
   background-color: var(--cc-button--background);
-  border: var(--cc-button--border-width) var(--cc-button--border-style)
+  border:
+    var(--cc-button--border-width) var(--cc-button--border-style)
     var(--cc-button--border-color);
   border-radius: var(--cc-button--border-radius);
   color: var(--cc-button--color);
@@ -16,10 +17,11 @@
   line-height: 1;
   outline: none;
   padding: var(--cc-button--padding--md);
-  transition: background-color var(--cc-button--transition--duration) var(--cc-button--transition--easing),
-              color var(--cc-button--transition--duration) var(--cc-button--transition--easing),
-              border-color var(--cc-button--transition--duration) var(--cc-button--transition--easing),
-              box-shadow var(--cc-button--transition--duration) var(--cc-button--transition--easing);
+  transition:
+    background-color var(--cc-button--transition--duration) var(--cc-button--transition--easing),
+    color var(--cc-button--transition--duration) var(--cc-button--transition--easing),
+    border-color var(--cc-button--transition--duration) var(--cc-button--transition--easing),
+    box-shadow var(--cc-button--transition--duration) var(--cc-button--transition--easing);
   white-space: nowrap;
 
   &:hover {
@@ -186,5 +188,12 @@
       background-color: var(--cc-green-40);
       color: var(--cc-green-100);
     }
-  }  
+  }
+}
+
+.corn-button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--cc-size--3);
+  justify-content: flex-end;
 }

@@ -1,7 +1,7 @@
 .corn-form--row {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: var(--cc-size--3);
 }
 
 fieldset.corn-form--item:has(input[disabled]) {
@@ -14,7 +14,7 @@ fieldset.corn-form--item:has(input[disabled]) {
   flex-grow: 1;
 
   .corn-status {
-    margin-top: 0.25rem;
+    margin-top: var(--cc-size--4);
   }
 
   &:has(input[disabled]) {
@@ -29,7 +29,7 @@ fieldset.corn-form--item:has(input[disabled]) {
     .corn-status {
       color: var(--cc-form--item--color--disabled);
       opacity: 0.5;
-    } 
+    }
   }
 }
 
@@ -37,7 +37,7 @@ fieldset.corn-form--item:has(input[disabled]) {
   align-items: center;
   color: currentcolor;
   display: inline-flex;
-  gap: 0.25rem;
+  gap: var(--cc-size--4);
   text-shadow: var(--cc-shadow--shadow--text--reverse);
   width: 100%;
 
@@ -45,7 +45,7 @@ fieldset.corn-form--item:has(input[disabled]) {
     color: currentcolor;
     fill: currentcolor;
     height: var(--cc-size-1);
-    margin-left: 0.25rem;
+    margin-left: var(--cc-size--4);
     width: var(--cc-size-1);
   }
 }

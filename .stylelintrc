@@ -20,6 +20,12 @@
     "order/properties-alphabetical-order": true,
     "selector-class-pattern": "^[a-z0-9\\-]+$",
     "no-descending-specificity": null,
+    "@stylistic/indentation": 2,
+    "@stylistic/string-quotes": "single",
+    "@stylistic/declaration-block-trailing-semicolon": "always",
+    "@stylistic/declaration-block-semicolon-newline-after": "always-multi-line",
+    "@stylistic/max-line-length": 100,
+    "@stylistic/no-eol-whitespace": true,
     "selector-pseudo-element-no-unknown": [
       true,
       {

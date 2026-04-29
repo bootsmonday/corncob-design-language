@@ -1,4 +1,4 @@
-@import "./button-tokens.css";
+@import './button-tokens.css';
 
 .corn-button,
 .corn-button--md {
@@ -191,7 +191,7 @@
   }
 }
 
-.corn-button--group {
+.corn-button-group {
   display: flex;
   flex-wrap: wrap;
   gap: var(--cc-size--3);

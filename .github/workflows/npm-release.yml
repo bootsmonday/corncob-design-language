@@ -1,0 +1,240 @@
+name: npm Release (Preview + Publish)
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_type:
+        description: Version bump type
+        required: true
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+        default: patch
+      npm_tag:
+        description: npm dist-tag
+        required: true
+        type: choice
+        options:
+          - latest
+          - next
+          - beta
+        default: latest
+      access:
+        description: npm package access
+        required: true
+        type: choice
+        options:
+          - public
+          - restricted
+        default: public
+      confirm_publish:
+        description: Set true to publish after preview
+        required: true
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  id-token: write
+
+concurrency:
+  group: npm-release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  preview:
+    name: Preview release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+          registry-url: https://registry.npmjs.org
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Test
+        run: npm test --if-present
+
+      - name: Build
+        run: npm run build --if-present
+
+      - name: Show current and next version
+        env:
+          RELEASE_TYPE: ${{ inputs.release_type }}
+        run: |
+          CURRENT_VERSION=$(node -p "require('./package.json').version")
+          NEXT_VERSION=$(node -e "
+            const fs = require('fs');
+            const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+            const [base] = pkg.version.split('-');
+            const parts = base.split('.').map(Number);
+            if (parts.length !== 3 || parts.some(Number.isNaN)) {
+              throw new Error('Version must be semver-like x.y.z');
+            }
+            const bump = process.env.RELEASE_TYPE;
+            if (bump === 'patch') parts[2] += 1;
+            else if (bump === 'minor') { parts[1] += 1; parts[2] = 0; }
+            else if (bump === 'major') { parts[0] += 1; parts[1] = 0; parts[2] = 0; }
+            else throw new Error('Unsupported release type: ' + bump);
+            process.stdout.write(parts.join('.'));
+          ")
+
+          echo "Current version: $CURRENT_VERSION"
+          echo "Next version (${RELEASE_TYPE}): $NEXT_VERSION"
+
+      - name: Preview tarball contents
+        run: npm pack --dry-run
+
+      - name: Preview npm publish
+        env:
+          NPM_CONFIG_ACCESS: ${{ inputs.access }}
+          NPM_TAG: ${{ inputs.npm_tag }}
+        run: |
+          npm publish --dry-run --tag "$NPM_TAG" --access "$NPM_CONFIG_ACCESS"
+
+  changelog:
+    name: Update changelog
+    if: ${{ inputs.confirm_publish && github.ref_name == 'main' }}
+    needs: preview
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Compute next version
+        id: next_version
+        env:
+          RELEASE_TYPE: ${{ inputs.release_type }}
+        run: |
+          NEXT_VERSION=$(node -e "
+            const fs = require('fs');
+            const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+            const version = pkg.version;
+            const match = typeof version === 'string'
+              ? version.match(/^(\d+)\.(\d+)\.(\d+)(?:-[0-9A-Za-z.-]+)?$/)
+              : null;
+            if (!match) {
+              console.error('Invalid package.json version: expected x.y.z or x.y.z-..., got ' + JSON.stringify(version));
+              process.exit(1);
+            }
+            const parts = match.slice(1, 4).map(Number);
+            const bump = process.env.RELEASE_TYPE;
+            if (bump === 'patch') parts[2] += 1;
+            else if (bump === 'minor') { parts[1] += 1; parts[2] = 0; }
+            else if (bump === 'major') { parts[0] += 1; parts[1] = 0; parts[2] = 0; }
+            else {
+              console.error('Invalid release type: ' + JSON.stringify(bump));
+              process.exit(1);
+            }
+            process.stdout.write(parts.join('.'));
+          ")
+          echo "version=$NEXT_VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Build changelog from fragments
+        id: changelog_built
+        run: |
+          FRAGMENT_COUNT=$(find .changelog -maxdepth 1 -type f -name '*.md' ! -name 'README.md' | wc -l | tr -d ' ')
+          if [[ "$FRAGMENT_COUNT" -eq 0 ]]; then
+            echo "No changelog fragments found — skipping changelog update."
+            echo "updated=false" >> "$GITHUB_OUTPUT"
+          else
+            chmod +x scripts/release-changelog.sh
+            scripts/release-changelog.sh "${{ steps.next_version.outputs.version }}"
+            find .changelog -maxdepth 1 -type f -name '*.md' ! -name 'README.md' -delete
+            echo "updated=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Commit changelog to main
+        if: steps.changelog_built.outputs.updated == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add CHANGELOG.md .changelog
+          if git diff --cached --quiet; then
+            echo "No staged changelog changes to commit — skipping commit and push."
+          else
+            git commit -m "chore(changelog): release ${{ steps.next_version.outputs.version }}"
+            git push
+          fi
+
+  publish:
+    name: Publish release
+    if: ${{ inputs.confirm_publish && github.ref_name == 'main' }}
+    needs: changelog
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Fetch latest from main
+        run: |
+          git fetch origin main
+          git reset --hard origin/main
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+          registry-url: https://registry.npmjs.org
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Test
+        run: npm test --if-present
+
+      - name: Build
+        run: npm run build --if-present
+
+      - name: Configure git user
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Bump version and create tag
+        id: bump
+        run: |
+          npm version "${{ inputs.release_type }}" -m "chore(release): %s"
+          echo "version=$(node -p \"require('./package.json').version\")" >> "$GITHUB_OUTPUT"
+
+      - name: Push commit and tags
+        run: git push --follow-tags
+
+      - name: Publish to npmjs
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TAG: ${{ inputs.npm_tag }}
+          NPM_CONFIG_ACCESS: ${{ inputs.access }}
+        run: |
+          npm publish --tag "$NPM_TAG" --access "$NPM_CONFIG_ACCESS" --provenance
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ steps.bump.outputs.version }}
+          generate_release_notes: true

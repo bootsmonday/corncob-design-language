@@ -192,5 +192,8 @@
 }
 
 .corn-button--group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--cc-size--3);
   justify-content: flex-end;
 }

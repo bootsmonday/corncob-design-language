@@ -1,6 +1,12 @@
 {
-  "extends": "stylelint-config-standard",
-  "plugins": ["stylelint-order"],
+  "extends": [
+		"stylelint-config-standard",
+		"@stylistic/stylelint-config"
+	],
+  "plugins": [
+    "stylelint-order",
+    "@stylistic/stylelint-plugin"
+  ],
   "rules": {
     "import-notation": "string",
     "property-no-unknown": null,
@@ -10,7 +16,6 @@
         "message": "Custom properties must follow pattern cc-[category][--modifier]* (lowercase kebab-case)"
       }
     ],
-    "no-eol-whitespace": true,
     "number-max-precision": 8,
     "order/properties-alphabetical-order": true,
     "selector-class-pattern": "^[a-z0-9\\-]+$",

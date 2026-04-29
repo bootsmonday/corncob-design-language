@@ -27,24 +27,38 @@ export class CornTooltip extends HTMLElement {
     parentLabelledby.add(this.id);
     this.parent.setAttribute('aria-labelledby', [...parentLabelledby].join(' ').trim());
   }
+
+  handleEvent(evt) {
+    switch (evt.type) {
+      case 'mouseenter':
+      case 'focusin':
+        this._open();
+        break;
+      case 'mouseleave':
+      case 'focusout':
+        this._close();
+        break;
+    }
+  }
+
   _addEventListeners() {
     this._showTooltip = () => this._open();
     this._hideTooltip = () => this._close();
     // Hover listeners
-    this.parent.addEventListener('mouseenter', this._showTooltip);
-    this.parent.addEventListener('mouseleave', this._hideTooltip);
+    this.parent.addEventListener('mouseenter', this);
+    this.parent.addEventListener('mouseleave', this);
 
     // Focus listeners (handles tab navigation)
-    this.parent.addEventListener('focusin', this._showTooltip);
-    this.parent.addEventListener('focusout', this._hideTooltip);
+    this.parent.addEventListener('focusin', this);
+    this.parent.addEventListener('focusout', this);
   }
   _removeEventListeners() {
-    this.parent.removeEventListener('mouseenter', this._showTooltip);
-    this.parent.removeEventListener('mouseleave', this._hideTooltip);
+    this.parent.removeEventListener('mouseenter', this);
+    this.parent.removeEventListener('mouseleave', this);
 
     // Focus listeners (handles tab navigation)
-    this.parent.removeEventListener('focusin', this._showTooltip);
-    this.parent.removeEventListener('focusout', this._hideTooltip);
+    this.parent.removeEventListener('focusin', this);
+    this.parent.removeEventListener('focusout', this);
   }
 
   _toggle(isActive) {

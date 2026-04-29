@@ -29,6 +29,27 @@ export class CornPopover extends HTMLElement {
   }
 
   /**
+   * handleEvent is a method that handles events for the popover component. 
+   * It listens for click and keydown events. When a click event occurs, it calls the _toggle method to open or close the popover. 
+   * When a keydown event occurs, it calls the _trapFocus method to manage keyboard navigation within the popover. This method allows the component to respond to user interactions and provides accessibility features for keyboard users.
+   * By using handleEvent we no longer need to bind the context of the event handlers, as it will automatically use the instance of the class as the context when handling events. This simplifies the code and ensures that the correct context is used when responding to events.
+   * 
+   * @param {*} evt 
+   */
+
+  handleEvent(evt) {
+    switch (evt.type) {
+      case 'click':
+        this._toggle();
+        break;
+      case 'keydown':
+        this._trapFocus(evt);
+        break;
+    }
+  }
+
+
+  /**
    * connectedCallback is called when the element is added to the DOM.
    * In this method, the component looks for its closest ancestor with the class 'corn-popover--anchor' and assigns it to this.parent.
    * It also looks for a child element with the class 'corn-pop' within the parent and assigns it to this.trigger.
@@ -60,8 +81,8 @@ export class CornPopover extends HTMLElement {
    * The clickListener is added to the document when the popover is opened and removed when it's closed to manage event listeners efficiently.
    */
   _addEventListeners() {
-    this.trigger.addEventListener('click', this._toggle);
-    this.addEventListener('keydown', this._trapFocus);
+    this.trigger.addEventListener('click', this);
+    this.addEventListener('keydown', this);
   }
 
   /**
@@ -82,15 +103,15 @@ export class CornPopover extends HTMLElement {
    * _removeEventListeners is a method that removes the event listeners that were added in the _addEventListeners method. It removes the click event listener from the trigger element and the keydown event listener from the popover itself. It also removes the clickListener from the document to prevent it from listening for clicks when the popover is closed. This cleanup is important to avoid memory leaks and unintended behavior when the component is removed from the DOM or when it is no longer needed.
    */
   _removeEventListeners() {
-    this.trigger.removeEventListener('click', this._toggle);
-    this.removeEventListener('keydown', this._trapFocus);
+    this.trigger.removeEventListener('click', this);
+    this.removeEventListener('keydown', this);
     document.removeEventListener('click', this._clickListener);
   }
 
   /**
    * _toggle is a method that toggles the open state of the popover. If the popover is currently open, it calls the _close method to close it. If the popover is currently closed, it calls the _open method to open it. This method is typically called in response to user interactions, such as clicking the trigger element, allowing users to easily open and close the popover as needed.
    */
-  _toggle = () => {
+  _toggle() {
     if (this.isOpen) {
       this._close();
     } else {
@@ -105,7 +126,7 @@ export class CornPopover extends HTMLElement {
    * @param {KeyboardEvent} evt - The keyboard event object.
    * @returns {void}
    */
-  _trapFocus = (evt) => {
+  _trapFocus(evt) {
     if (evt.key === 'Escape') {
       this._close();
       evt.stopPropagation();

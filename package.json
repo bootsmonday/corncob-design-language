@@ -63,6 +63,8 @@
     "@fontsource-variable/ibm-plex-sans": "^5.2.8",
     "@fontsource/ibm-plex-mono": "^5.2.7",
     "@happy-dom/jest-environment": "^20.8.4",
+    "@stylistic/stylelint-config": "^5.0.0",
+    "@stylistic/stylelint-plugin": "^5.1.0",
     "@testing-library/dom": "^10.4.1",
     "astro": "^6.0.8",
     "backstopjs": "^6.3.25",

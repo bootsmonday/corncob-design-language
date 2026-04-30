@@ -1,5 +1,5 @@
 :root {
-/* standard shadow */
+  /* standard shadow */
   --cc-shadow--drop: 0 1px 8px 0px rgb(from var(--cc-black) r g b / 6%);
   --cc-shadow--drop--heavy: 0 1px 8px 0px rgb(from var(--cc-black) r g b / 12%);
   --cc-shadow--inset: inset 0 0 18px 0 rgb(from var(--cc-black) r g b / 23%);

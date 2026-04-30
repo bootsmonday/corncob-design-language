@@ -137,8 +137,7 @@ fieldset.corn-checkbox-group {
       color: var(--cc-form--item--color--disabled) !important;
       cursor: not-allowed !important;
     }
-  } 
-
+  }
 }
 
 .corn-checkbox--xs {
@@ -153,7 +152,6 @@ fieldset.corn-checkbox-group {
         scale: 0.75;
       }
     }
-
   }
 
   label {
@@ -173,7 +171,6 @@ fieldset.corn-checkbox-group {
         scale: 0.75;
       }
     }
-
   }
 
   label {
@@ -257,6 +254,4 @@ fieldset.corn-checkbox-group--inline {
       text-decoration-color: var(--cc-form--item--color--disabled) !important;
     }
   }
-
 }
-

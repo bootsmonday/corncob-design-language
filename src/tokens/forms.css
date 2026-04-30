@@ -2,10 +2,10 @@
   --cc-form--item--focus-ring: 0 0 0 3px var(--cc-blue-60);
   --cc-form--item--focus-ring--inverted: inset 0 0 0 2px var(--cc-blue-60), 0 0 0 1px var(--cc-blue-60);
   --cc-form--item--focus-ring--active: none;
-  --cc-form--item--color--background: rgb(from var(--cc-gray-10) r g b / 87.2%);
-  --cc-form--item--color--background--hover: rgb(from var(--cc-white) r g b / 87.2%);
-  --cc-form--item--color-background--selected: rgb(from var(--cc-blue-20) r g b / 87.2%);
-  --cc-form--item--color-background--selected--hover: rgb(from var(--cc-blue-10) r g b / 87.2%);
+  --cc-form--item--background: rgb(from var(--cc-gray-10) r g b / 87.2%);
+  --cc-form--item--background--hover: rgb(from var(--cc-white) r g b / 87.2%);
+  --cc-form--item--background--selected: rgb(from var(--cc-blue-20) r g b / 87.2%);
+  --cc-form--item--background--selected--hover: rgb(from var(--cc-blue-10) r g b / 87.2%);
   --cc-form--item--border: var(--cc-border--width) var(--cc-border--style) var(--cc-border--color);
   --cc-form--item--border--color--focus: var(--cc-white);
   --cc-form--item--border--color--active: var(--cc-border--color);
@@ -40,10 +40,11 @@
   --cc-form--widget--color: var(--cc-blue-70);
   --cc-form--widget--color--hover: var(--cc-blue-80);
   --cc-form--widget--background: rgb(from var(--cc-gray-20) r g b / 87.2%);
-  --cc-form--widget--background--selected: var(--cc-form--item--color-background--selected);
-  --cc-form--widget--background--selected--hover: var(
-    --cc-form--item--color-background--selected--hover
-  );
+  --cc-form--widget--background--selected: var(--cc-form--item--background--selected);
+  --cc-form--widget--background--selected--hover:
+    var(
+      --cc-form--item--background--selected--hover
+    );
   --cc-form--item--background--disabled: var(--cc-gray-20);
   --cc-form--item--background--selected--disabled: var(--cc-gray-40);
   --cc-form--item--border-color--disabled: var(--cc-gray-40);

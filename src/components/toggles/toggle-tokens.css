@@ -9,8 +9,8 @@
   --cc-toggle--font-size--sm: var(--cc-form--item--font-size--sm);
   --cc-toggle--font-size--lg: var(--cc-form--item--font-size--lg);
   --cc-toggle--font-size--xl: var(--cc-form--item--font-size--xl);
-  --cc-toggle--background: var(--cc-form--item--color--background);
-  --cc-toggle--background--hover: var(--cc-form--item--color--background--hover);
+  --cc-toggle--background: var(--cc-form--item--background);
+  --cc-toggle--background--hover: var(--cc-form--item--background--hover);
   --cc-toggle--background--checked: var(--cc-form--widget--color);
   --cc-toggle--background--checked--hover: var(--cc-form--widget--color--hover);
   --cc-toggle--border: var(--cc-border--width) var(--cc-border--style) transparent;

@@ -2,13 +2,12 @@
 
 .corn-toast {
   background: transparent;
-  border:none;
+  border: none;
   inset: auto var(--cc-size-2) var(--cc-size-2) auto;
   padding: 0;
   position: fixed;
   transition: var(--cc-toast--transition);
   width: max-content;
-
 
   ul {
     list-style: none;
@@ -30,7 +29,7 @@
     padding: var(--cc-toast--padding);
   }
 
-  .corn-toast--item{
+  .corn-toast--item {
     align-items: center;
     display: flex;
     gap: var(--cc-size--3);
@@ -71,5 +70,3 @@
     color: var(--cc-toast--error--color);
   }
 }
-
-

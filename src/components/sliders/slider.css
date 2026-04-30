@@ -14,7 +14,7 @@
     width: 100%;
   }
 
-  input[type="range"] {
+  input[type='range'] {
     align-items: center;
     appearance: none;
     background: transparent;
@@ -26,25 +26,24 @@
       outline: none;
 
       &::-webkit-slider-thumb {
-        border-color: var(--cc-white);    
+        border-color: var(--cc-white);
         box-shadow: var(--cc-slider--thumb--focus--box-shadow);
       }
 
       &::-moz-range-thumb {
-        border-color: var(--cc-white);    
+        border-color: var(--cc-white);
         box-shadow: var(--cc-slider--thumb--focus--box-shadow);
       }
     }
 
     &:hover {
       &::-webkit-slider-thumb {
-        background: var(--cc-slider--thumb--background--hover);  
+        background: var(--cc-slider--thumb--background--hover);
       }
 
       &::-moz-range-thumb {
-        background: var(--cc-slider--thumb--background--hover);  
+        background: var(--cc-slider--thumb--background--hover);
       }
-
     }
 
     &::-webkit-slider-runnable-track {
@@ -89,7 +88,6 @@
       transform: translateY(calc(calc(var(--cc-slider--thumb--size--md) / -3) - var(--cc-slider--border-width)));
       width: var(--cc-slider--thumb--size--md);
     }
-
   }
 
   &:has([disabled]) {
@@ -101,7 +99,7 @@
       cursor: not-allowed !important;
     }
 
-    input[type="range"] {
+    input[type='range'] {
       cursor: not-allowed !important;
 
       &::-moz-range-track {
@@ -149,7 +147,7 @@
     width: 1px;
   }
 
-   input[type="range"] {
+  input[type='range'] {
     height: calc(var(--cc-slider--thumb--size--xs) + var(--cc-size--4));
     margin-top: 0;
 
@@ -174,8 +172,8 @@
       box-shadow: inset 0 0 0 calc(var(--cc-slider--thumb--size--xs) / 4) var(--cc-slider--thumb--background--border);
       height: var(--cc-slider--thumb--size--xs);
       width: var(--cc-slider--thumb--size--xs);
-    }    
-   }
+    }
+  }
 }
 
 .corn-slider--sm {
@@ -184,14 +182,14 @@
   label {
     font-size: var(--cc-slider--font-size--sm);
   }
-  
-  input[type="range"] {
+
+  input[type='range'] {
     height: calc(var(--cc-slider--thumb--size--sm) + var(--cc-size--3));
-    
+
     &::-webkit-slider-runnable-track {
-       border-radius: var(--cc-border--radius--xs);
+      border-radius: var(--cc-border--radius--xs);
       height: calc(var(--cc-slider--thumb--size--sm) / 3);
-    }    
+    }
 
     &::-webkit-slider-thumb {
       box-shadow: inset 0 0 0 calc(var(--cc-slider--thumb--size--sm) / 4) var(--cc-slider--thumb--background--border);
@@ -199,17 +197,17 @@
       transform: translateY(calc(calc(var(--cc-slider--thumb--size--sm) / -3) - var(--cc-slider--border-width)));
       width: var(--cc-slider--thumb--size--sm);
     }
-    
+
     &::-moz-range-track {
-       border-radius: var(--cc-border--radius--xs);
+      border-radius: var(--cc-border--radius--xs);
       height: calc(var(--cc-slider--thumb--size--sm) / 3);
-    }    
+    }
 
     &::-moz-range-thumb {
       box-shadow: inset 0 0 0 calc(var(--cc-slider--thumb--size--sm) / 4) var(--cc-slider--thumb--background--border);
       height: var(--cc-slider--thumb--size--sm);
       width: var(--cc-slider--thumb--size--sm);
-    }    
+    }
   }
 }
 
@@ -220,7 +218,7 @@
     font-size: var(--cc-slider--font-size--lg);
   }
 
-  input[type="range"] {
+  input[type='range'] {
     height: calc(var(--cc-slider--thumb--size--lg) + var(--cc-size--1));
 
     &::-webkit-slider-runnable-track {
@@ -242,7 +240,7 @@
       box-shadow: inset 0 0 0 calc(var(--cc-slider--thumb--size--lg) / 4) var(--cc-slider--thumb--background--border);
       height: var(--cc-slider--thumb--size--lg);
       width: var(--cc-slider--thumb--size--lg);
-    }    
+    }
   }
 }
 
@@ -253,12 +251,12 @@
     font-size: var(--cc-slider--font-size--xl);
   }
 
-  input[type="range"] {
+  input[type='range'] {
     height: calc(var(--cc-slider--thumb--size--xl) + var(--cc-size-0));
 
     &::-webkit-slider-runnable-track {
       height: calc(var(--cc-slider--thumb--size--xl) / 3);
-    }    
+    }
 
     &::-webkit-slider-thumb {
       box-shadow: inset 0 0 0 calc(var(--cc-slider--thumb--size--xl) / 4) var(--cc-slider--thumb--background--border);

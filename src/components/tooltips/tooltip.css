@@ -1,4 +1,4 @@
-@import "./tooltip-tokens.css";
+@import './tooltip-tokens.css';
 
 .corn-tooltip--anchor {
   display: inline-flex;

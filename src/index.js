@@ -34,7 +34,6 @@ import './components/footers/footer.css';
 import './components/sliders/slider.css';
 
 // Import Base Styles
-import './common/dark.css';
 import './common/forms.css';
 import './common/page.css';
 import './common/grid.css';

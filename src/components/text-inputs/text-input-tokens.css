@@ -1,6 +1,6 @@
 :root {
-  --cc-text-input--background: var(--cc-form--item--color--background);
-  --cc-text-input--background--hover: var(--cc-form--item--color--background--hover);
+  --cc-text-input--background: var(--cc-form--item--background);
+  --cc-text-input--background--hover: var(--cc-form--item--background--hover);
   --cc-text-input--border: var(--cc-border--width) var(--cc-border--style) var(--cc-border--color);
   --cc-text-input--border--color--focus: var(--cc-form--item--border--color--focus);
   --cc-text-input--border--color--active: var(--cc-form--item--border--color--active);

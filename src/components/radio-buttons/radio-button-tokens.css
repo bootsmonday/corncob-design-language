@@ -1,8 +1,9 @@
 :root {
-  --cc-radio-button--input--background: var(--cc-form--item--color--background);
-  --cc-radio-button--input--background--hover: var(--cc-form--item--color--background--hover);
+  --cc-radio-button--input--background: var(--cc-form--item--background);
+  --cc-radio-button--input--background--hover: var(--cc-form--item--background--hover);
   --cc-radio-button--input--background--checked: var(--cc-form--widget--background--selected);
-  --cc-radio-button--input--background--checked--hover: var(
+  --cc-radio-button--input--background--checked--hover:
+ var(
     --cc-form--widget--background--selected--hover
   );
   --cc-radio-button--input--border: var(--cc-form--item--border);

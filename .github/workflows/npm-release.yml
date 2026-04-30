@@ -71,6 +71,7 @@ jobs:
         run: npm run build --if-present
 
       - name: Show current and next version
+        id: next_version
         env:
           RELEASE_TYPE: ${{ inputs.release_type }}
         run: |
@@ -93,6 +94,11 @@ jobs:
 
           echo "Current version: $CURRENT_VERSION"
           echo "Next version (${RELEASE_TYPE}): $NEXT_VERSION"
+          echo "version=$NEXT_VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Apply preview version (no commit, no tag)
+        run: |
+          npm version "${{ steps.next_version.outputs.version }}" --no-git-tag-version
 
       - name: Preview tarball contents
         run: npm pack --dry-run

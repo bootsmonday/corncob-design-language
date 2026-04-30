@@ -3,7 +3,7 @@
 a,
 .corn-link {
   border-bottom:
- var(--cc-link--width--border) var(--cc-link--style--border)
+    var(--cc-link--width--border) var(--cc-link--style--border)
     var(--cc-link--color--border);
   color: var(--cc-link--color--text);
   font-weight: var(--cc-link--font--weight);

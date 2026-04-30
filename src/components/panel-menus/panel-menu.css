@@ -24,7 +24,7 @@
 
 .corn-panel-menu--item {
   border-bottom:
- var(--cc-panel-menu--item--width--border) var(--cc-panel-menu--item--style--border)
+    var(--cc-panel-menu--item--width--border) var(--cc-panel-menu--item--style--border)
     var(--cc-panel-menu--item--color--border);
   color: var(--cc-panel-menu--item--color--text);
   font-weight: 500;

@@ -8,6 +8,33 @@ import CodeSample from '../layouts/partials/CodeSample.astro';
 
 ### Install
 
+Corncob is published to two registries:
+
+- **Official channel (stable releases):** npmjs
+- **Beta channel (preview builds):** GitHub Packages
+
+Choose one install path below.
+
+#### Official release from npmjs
+
+If you previously configured GitHub Packages for this scope, set the scope back to npmjs:
+
+<CodeSample id="registry-config-npmjs">
+```bash
+npm config set @bootsmonday:registry https://registry.npmjs.org
+```
+</CodeSample>
+
+Install the latest stable release from npmjs:
+
+<CodeSample id="npm-install-latest">
+```bash
+npm install @bootsmonday/corncob-design-language@latest
+```
+</CodeSample>
+
+#### Beta from GitHub Packages
+
 Configure npm to install the package from GitHub Packages:
 
 <CodeSample id="registry-config">
@@ -31,6 +58,8 @@ npm config set //npm.pkg.github.com/:_authToken YOUR_GITHUB_PAT
 npm install @bootsmonday/corncob-design-language@beta
 ```
 </CodeSample>
+
+
 
 ### Include Styles
 

@@ -6,14 +6,9 @@ import SideBar from './partials/SideBar.astro';
 import Footer from './partials/Footer.astro';
 import themeSwitcherUrl from '../js/theme-switcher.js?url';
 
-const {
-  title = 'Corncob Design Language',
-  description = 'Corncob is a framework-neutral design language built with tokens, CSS, and plain JavaScript behavior.',
-} = Astro.props;
+const { title = 'Corncob Design Language', description = 'Corncob is a framework-neutral design language built with tokens, CSS, and plain JavaScript behavior.' } = Astro.props;
 const { headings = [], dynamicHeadings = [] } = Astro.props;
-const allHeadings = [...headings, ...dynamicHeadings].filter(
-  (heading, index, all) => all.findIndex((candidate) => candidate.slug === heading.slug) === index
-);
+const allHeadings = [...headings, ...dynamicHeadings].filter((heading, index, all) => all.findIndex((candidate) => candidate.slug === heading.slug) === index);
 const base = import.meta.env.BASE_URL;
 ---
 
@@ -33,12 +28,7 @@ const base = import.meta.env.BASE_URL;
         saved = 'light';
       }
 
-      const theme =
-        saved === 'dark' || saved === 'light'
-          ? saved
-          : window.matchMedia('(prefers-color-scheme: dark)').matches
-            ? 'dark'
-            : 'light';
+      const theme = saved === 'dark' || saved === 'light' ? saved : window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 
       document.documentElement.style.setProperty('color-scheme', theme);
       document.documentElement.setAttribute('data-theme', theme);
@@ -64,7 +54,7 @@ const base = import.meta.env.BASE_URL;
           </div>
           <div class="corn-sidenav">
             {
-              allHeadings?.length && (
+              allHeadings?.length !== 0 && (
                 <>
                   <p>Contents:</p>
                   <ul class="corn-link-list">

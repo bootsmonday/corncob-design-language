@@ -22,7 +22,32 @@ Corncob is ideal when you want:
 
 ## Quick Start
 
-### 1. Configure GitHub Packages Registry
+### 1. Choose Release Channel
+
+Corncob is published to two registries:
+
+- **Official channel (stable releases):** npmjs
+- **Beta channel (preview builds):** GitHub Packages
+
+Use one of the following install paths.
+
+### 2A. Install Official Release from npmjs
+
+If you previously configured GitHub Packages for this scope, point the scope back to npmjs for stable releases:
+
+```bash
+npm config set @bootsmonday:registry https://registry.npmjs.org
+```
+
+Install the latest official release:
+
+```bash
+npm install @bootsmonday/corncob-design-language@latest
+```
+
+### 2B. Install Beta from GitHub Packages
+
+Configure npm to install the package scope from GitHub Packages:
 
 ```bash
 npm config set @bootsmonday:registry https://npm.pkg.github.com
@@ -36,11 +61,12 @@ If you have not authenticated to GitHub Packages yet, create a GitHub personal a
 npm config set //npm.pkg.github.com/:_authToken YOUR_GITHUB_PAT
 ```
 
-### 2. Installation
+Install the beta package:
 
 ```bash
 npm install @bootsmonday/corncob-design-language@beta
 ```
+
 
 ### 3. Include in Your Project
 

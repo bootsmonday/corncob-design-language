@@ -7,9 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Entries are generated from markdown fragments in `.changelog/` using
 the "Changelog Release" GitHub Actions workflow.
 
-## [Unreleased]
-
-## [0.0.2] - 2026-04-30
+## [0.0.3] - 2026-04-30
 
 ### Added
 

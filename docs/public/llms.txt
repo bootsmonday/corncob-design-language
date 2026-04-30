@@ -11,5 +11,5 @@ Corncob Design Language AI usage rules
 - For components with required internal structure, use the grid around the component instead of rewriting the inside.
 - Check components.json for canonical examples, variants, sizes, and JS requirements.
 - Check tokens.json for tokens and common patterns.
-- Read /guides/ai-integration/ for the full contract.
-- Full AI contract: /llms-full.txt
+- Read guides/ai-integration/ for the full contract.
+- Full AI contract: llms-full.txt

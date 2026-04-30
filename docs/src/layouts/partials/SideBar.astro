@@ -17,6 +17,7 @@ const isActive = (href: string) => {
 const isTokensSection = pathname.includes('/tokens') ? true : null;
 const isComponentsSection = pathname.includes('/components') ? true : null;
 const isTestingSection = pathname.includes('/testing') ? true : null;
+const isGuidesSection = pathname.includes('/guides') ? true : null;
 ---
 
 <div class="corn-panel-menu">
@@ -98,6 +99,21 @@ const isTestingSection = pathname.includes('/testing') ? true : null;
       </div>
     </details>
   </corn-expandable>
-  <a href={`${base}guides/`} class="corn-panel-menu--item" aria-current={isActive(`${base}guides/`) ? 'page' : false}>Guides</a>
+  <corn-expandable class="corn-expandable" open={isGuidesSection} data-test={pathname}>
+    <details slot="details">
+      <summary class="corn-panel-menu--item corn-expandable-button">
+        Guides
+        <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon" aria-hidden="true">
+          <use href={`${bootstrapIconsSprite}#chevron-right`}></use>
+        </svg>
+      </summary>
+      <div class="corn-expandable--content">
+        <div class="corn-panel-menu--submenu">
+          <a href={`${base}guides/`} class="corn-panel-menu--item" aria-current={isActive(`${base}guides/`) ? 'page' : false}>Overview</a>
+          <a href={`${base}guides/ai-integration`} class="corn-panel-menu--item" aria-current={isActive(`${base}guides/ai-integration`) ? 'page' : false}>AI Integration</a>
+        </div>
+      </div>
+    </details>
+  </corn-expandable>
   <a href={`${base}changelog/`} class="corn-panel-menu--item" aria-current={isActive(`${base}changelog/`) ? 'page' : false}>Changelog</a>
 </div>

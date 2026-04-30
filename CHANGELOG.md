@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Entries are generated from markdown fragments in `.changelog/` using
 the "Changelog Release" GitHub Actions workflow.
 
+## [Unreleased]
+
+## [0.0.4] - 2026-04-30
+
+### Changed
+
+- docs: Updated the Changelog page to import and render the generated `CHANGELOG.md` file. Updated Getting Started documentation to include instructions for installing the package from npmjs or GitHub Packages, and to clarify the process for configuring npm registries and authentication tokens.
+
+### Fixed
+
+- Headers: Fixed missing `aria-label` attribute in action icons in the Header component stickersheets.
+
 ## [0.0.3] - 2026-04-30
 
 ### Added

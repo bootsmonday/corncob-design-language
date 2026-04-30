@@ -3,9 +3,9 @@
   --cc-radio-button--input--background--hover: var(--cc-form--item--background--hover);
   --cc-radio-button--input--background--checked: var(--cc-form--widget--background--selected);
   --cc-radio-button--input--background--checked--hover:
- var(
-    --cc-form--widget--background--selected--hover
-  );
+    var(
+      --cc-form--widget--background--selected--hover
+    );
   --cc-radio-button--input--border: var(--cc-form--item--border);
   --cc-radio-button--input--border-radius: var(--cc-border--radius--round);
   --cc-radio-button--input--color--checked: var(--cc-form--widget--color);

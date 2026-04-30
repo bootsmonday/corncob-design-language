@@ -32,7 +32,7 @@ fieldset.corn-toggle-group {
   cursor: pointer;
   display: flex;
   position: relative;
-  
+
   &:has(input:checked) {
     label {
       background: var(--cc-toggle--background--checked);
@@ -44,7 +44,6 @@ fieldset.corn-toggle-group {
         border-color: var(--cc-toggle--border-color--hover);
       }
     }
-    
   }
 
   &:has(input:focus-visible) {
@@ -52,7 +51,6 @@ fieldset.corn-toggle-group {
       border-color: var(--cc-toggle--border-color--focus);
       box-shadow: var(--cc-toggle--focus-ring);
     }
-    
   }
 
   input {
@@ -109,7 +107,8 @@ fieldset.corn-toggle-group {
     width: var(--cc-toggle--font-size--xs);
   }
 
-  label, legend {
+  label,
+  legend {
     font-size: var(--cc-toggle--font-size--xs);
   }
 }
@@ -119,7 +118,8 @@ fieldset.corn-toggle-group {
     height: var(--cc-toggle--height--sm);
   }
 
-  label, legend {
+  label,
+  legend {
     .corn-icon {
       height: var(--cc-toggle--font-size--sm);
       width: var(--cc-toggle--font-size--sm);
@@ -133,8 +133,9 @@ fieldset.corn-toggle-group {
   legend {
     height: var(--cc-toggle--height--md);
   }
- 
-  label, legend {
+
+  label,
+  legend {
     .corn-icon {
       height: var(--cc-toggle--font-size--md);
       width: var(--cc-toggle--font-size--md);
@@ -149,7 +150,8 @@ fieldset.corn-toggle-group {
     height: var(--cc-toggle--height--lg);
   }
 
-  label, legend {
+  label,
+  legend {
     .corn-icon {
       height: var(--cc-toggle--font-size--lg);
       width: var(--cc-toggle--font-size--lg);
@@ -164,7 +166,8 @@ fieldset.corn-toggle-group {
     height: var(--cc-toggle--height--xl);
   }
 
-  label, legend {
+  label,
+  legend {
     .corn-icon {
       height: var(--cc-toggle--font-size--xl);
       width: var(--cc-toggle--font-size--xl);
@@ -173,4 +176,3 @@ fieldset.corn-toggle-group {
     font-size: var(--cc-toggle--font-size--xl);
   }
 }
-

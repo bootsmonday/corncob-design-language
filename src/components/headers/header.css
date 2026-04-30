@@ -22,7 +22,6 @@
   line-height: 1;
 }
 
-
 .corn-company--name {
   white-space: nowrap;
 }
@@ -48,7 +47,7 @@
     &:hover {
       background: var(--cc-header--navlink--background--hover);
       color: var(--cc-header--navlink--color--hover);
-    } 
+    }
 
     &:hover:focus-visible {
       border-color: transparent;

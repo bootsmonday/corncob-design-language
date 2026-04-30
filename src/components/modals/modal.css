@@ -1,7 +1,12 @@
 @import './modal-tokens.css';
 
 .corn-modal {
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     margin-top: 0;
   }
 
@@ -27,11 +32,11 @@
     outline: none;
   }
 
-  &:open, &:open::backdrop {
+  &:open,
+  &:open::backdrop {
     opacity: 1;
     pointer-events: auto;
   }
-
 }
 
 .corn-modal--header {
@@ -54,9 +59,5 @@
     &::backdrop {
       opacity: 0;
     }
-
   }
-
 }
-
-

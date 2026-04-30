@@ -23,15 +23,16 @@
 }
 
 .corn-panel-menu--item {
-  border-bottom: var(--cc-panel-menu--item--width--border) var(--cc-panel-menu--item--style--border)
+  border-bottom:
+ var(--cc-panel-menu--item--width--border) var(--cc-panel-menu--item--style--border)
     var(--cc-panel-menu--item--color--border);
-  color:  var(--cc-panel-menu--item--color--text);
+  color: var(--cc-panel-menu--item--color--text);
   font-weight: 500;
   padding: 0 calc(var(--cc-panel--padding) / 2);
   position: relative;
   transition:
-    border-bottom-color  var(--cc-panel-menu--item--transition--timing),
-    box-shadow  var(--cc-panel-menu--item--transition--timing);
+    border-bottom-color var(--cc-panel-menu--item--transition--timing),
+    box-shadow var(--cc-panel-menu--item--transition--timing);
 
   &:hover,
   &:active,
@@ -40,24 +41,24 @@
   }
 
   &:hover {
-    border-bottom-color:  var(--cc-panel-menu--item--color--border--hover);
-    box-shadow:  var(--cc-panel-menu--item--underline--box-shadow--hover);
-    color:  var(--cc-panel-menu--item--color--text--hover);
+    border-bottom-color: var(--cc-panel-menu--item--color--border--hover);
+    box-shadow: var(--cc-panel-menu--item--underline--box-shadow--hover);
+    color: var(--cc-panel-menu--item--color--text--hover);
   }
 
   &:active {
-    box-shadow:  var(--cc-panel-menu--item--underline--box-shadow--active);
-    color:  var(--cc-panel-menu--item--color--text--active);
+    box-shadow: var(--cc-panel-menu--item--underline--box-shadow--active);
+    color: var(--cc-panel-menu--item--color--text--active);
   }
 
   /* Hide the default focus outline. This takes the form of an underline. */
   &:focus-visible {
     border-bottom-color: var(--cc-panel-menu--item--color--border--focus);
-    box-shadow:  var(--cc-panel-menu--item--underline--box-shadow--focus);
+    box-shadow: var(--cc-panel-menu--item--underline--box-shadow--focus);
     outline: 0;
 
     &:hover {
-      border-bottom-color:  var(--cc-panel-menu--item--color--border--hover);
+      border-bottom-color: var(--cc-panel-menu--item--color--border--hover);
     }
 
     &:active {
@@ -66,17 +67,17 @@
   }
 
   summary& {
-     padding: 0 calc(var(--cc-panel--padding) / 2);
+    padding: 0 calc(var(--cc-panel--padding) / 2);
   }
 
-  &.corn-panel-menu--item--active, 
-  &[aria-current="page"] {
+  &.corn-panel-menu--item--active,
+  &[aria-current='page'] {
     color: var(--cc-panel-menu--item--color--text--active);
 
     &::before {
       background-color: var(--cc-blue-60);
       border-radius: var(--cc-panel--border--radius);
-      content: "";
+      content: '';
       height: 100%;
       left: 0;
       position: absolute;

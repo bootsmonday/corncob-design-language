@@ -16,7 +16,7 @@
   &.corn-badge--success {
     background: var(--cc-badge--success--background);
     border-color: var(--cc-badge--success--border--color);
-    
+
     .corn-badge--status {
       color: var(--cc-badge--success--color);
     }
@@ -29,8 +29,8 @@
   &.corn-badge--warning {
     background: var(--cc-badge--warning--background);
     border-color: var(--cc-badge--warning--border--color);
-    
-    .corn-badge--status{
+
+    .corn-badge--status {
       color: var(--cc-badge--warning--color);
     }
 
@@ -42,8 +42,8 @@
   &.corn-badge--error {
     background: var(--cc-badge--error--background);
     border-color: var(--cc-badge--error--border--color);
-    
-    .corn-badge--status{
+
+    .corn-badge--status {
       color: var(--cc-badge--error--color);
     }
 
@@ -55,8 +55,8 @@
   &.corn-badge--info {
     background: var(--cc-badge--info--background);
     border-color: var(--cc-badge--info--border--color);
-    
-    .corn-badge--status{
+
+    .corn-badge--status {
       color: var(--cc-badge--info--color);
     }
 

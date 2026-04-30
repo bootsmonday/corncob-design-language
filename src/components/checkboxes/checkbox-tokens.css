@@ -3,9 +3,9 @@
   --cc-checkbox--input--background--hover: var(--cc-form--item--background--hover);
   --cc-checkbox--input--background--checked: var(--cc-form--widget--background--selected);
   --cc-checkbox--input--background--checked--hover:
- var(
-    --cc-form--widget--background--selected--hover
-  );
+    var(
+      --cc-form--widget--background--selected--hover
+    );
   --cc-checkbox--input--border: var(--cc-form--item--border);
   --cc-checkbox--input--border-radius: var(--cc-border--radius);
   --cc-checkbox--input--color--checked: var(--cc-form--widget--color);

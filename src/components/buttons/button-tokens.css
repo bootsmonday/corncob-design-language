@@ -34,7 +34,7 @@
   --cc-button--border-color: var(--cc-border--color);
   --cc-button--border-radius: var(--cc-border--radius);
   --cc-button--border-radius--xs: var(--cc-border--radius--xs);
-  --cc-button--border-radius--round: var(  --cc-border--radius--round);
+  --cc-button--border-radius--round: var(--cc-border--radius--round);
   --cc-button--secondary--background: rgb(from var(--cc-gray-20) r g b / 40.2%);
   --cc-button--secondary--color: var(--cc-gray-90);
   --cc-button--secondary--background--hover: rgb(from var(--cc-gray-80) r g b / 15.8%);

@@ -52,6 +52,14 @@
     "vanilla-js",
     "enterprise"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bootsmonday/corncob-design-language"
+  },
+  "bugs": {
+    "url": "https://github.com/bootsmonday/corncob-design-language/issues"
+  },
+  "homepage": "https://github.com/bootsmonday/corncob-design-language",
   "author": "BootsMonday Corncob Team",
   "license": "BSL-1.0",
   "devDependencies": {

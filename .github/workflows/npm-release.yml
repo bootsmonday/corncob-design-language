@@ -220,7 +220,8 @@ jobs:
         id: bump
         run: |
           npm version "${{ inputs.release_type }}" -m "chore(release): %s"
-          echo "version=$(node -p \"require('./package.json').version\")" >> "$GITHUB_OUTPUT"
+          VERSION=$(node -p "require('./package.json').version")
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
 
       - name: Push commit and tags
         run: git push --follow-tags

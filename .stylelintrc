@@ -24,7 +24,7 @@
     "@stylistic/string-quotes": "single",
     "@stylistic/declaration-block-trailing-semicolon": "always",
     "@stylistic/declaration-block-semicolon-newline-after": "always-multi-line",
-    "@stylistic/max-line-length": 100,
+    "@stylistic/max-line-length": 255,
     "@stylistic/no-eol-whitespace": true,
     "selector-pseudo-element-no-unknown": [
       true,

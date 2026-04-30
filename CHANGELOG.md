@@ -8,6 +8,32 @@ Entries are generated from markdown fragments in `.changelog/` using
 the "Changelog Release" GitHub Actions workflow.
 
 ## [Unreleased]
+
+## [0.0.2] - 2026-04-30
+
+### Added
+
+- badges: Added `corn-badge` component with support for status variants (neutral, success, warning, error, info) and small size (`corn-badge--sm`).
+- links: Added support for `corn-link-list` styles and documentation examples.
+- modals: Added support for `corn-modal` styles and documentation examples.
+- toggles: Added `corn-toggles` component with support for sizes (`corn-toggle--xs`, `corn-toggle--sm`, `corn-toggle--md`, `corn-toggle--lg`) and support for icons.
+- sliders: Added `corn-sliders` component with support for sizes (`corn-slider--xs`, `corn-slider--sm`, `corn-slider--md`, `corn-slider--lg`, `corn-slider--xl`).
+- buttons: Added Button Group component to group related buttons together.
+- development: Added `@stylistic/stylelint-config` and `@stylistic/stylelint-plugin` to dev dependencies for linting.
+
+### Changed
+
+- colors: Updated the color tokens used across the design language.
+- forms: Changed form tokens from `--cc-form--item--color--background*` to `--cc-form--item--background*` for consistency with other tokens and to better reflect their purpose as background colors for form items. Updated references to these tokens in the codebase accordingly.
+- popovers: Updated popover event listeners to use `handleEvent` with `this` as the handler, allowing for better management of event listeners and ensuring proper cleanup when the popover is destroyed.
+- tooltips: Updated tooltip event listeners to use `handleEvent` with `this` as the handler, allowing for better management of event listeners and ensuring proper cleanup when the tooltip is destroyed. Adjust spacing on tooltip to give more breathing room when the element is focused.
+
+### Fixed
+
+- buttons: Fixed icon button hover styles.
+- icons: Fixed the page icon color bug where icons were colorizing the stroke instead of the fill.
+- all: Normalized sizing to use variables instead of hardcoded values, improving consistency and maintainability across the codebase. Normalized how disabled styles are applied to ensure a consistent appearance and behavior for disabled components throughout the design language.
+
 ## [0.0.1] - 2026-04-13
 
 ### Added

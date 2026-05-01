@@ -2,8 +2,22 @@
 layout: ../../layouts/DocsLayout.astro
 title: 'Guide | AI Integration | Corncob'
 ---
+import bootstrapIconsSprite from 'bootstrap-icons/bootstrap-icons.svg?url';
 
-## Corncob Design System - AI Integration Guide
+## Corncob Design System - AI Integration Guide 
+
+
+<div class="corn-message corn-message--info">
+  <div class="corn-message--status">
+    <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon" aria-hidden="true">
+      <use href={`${bootstrapIconsSprite}#info-lg`}></use>
+    </svg>
+  </div>
+  <div class="corn-message--content">
+    <h3 class="corn-message--title">Experimental</h3>
+    <p>Experimental documentation for AI systems consuming Corncob Design Language files. Subject to change as we iterate on the design system and its AI integration.</p>
+  </div>
+</div>
 
 This guide explains how AI systems should consume and use the Corncob Design Language files for code generation, validation, and design system enforcement.
 

@@ -9,7 +9,10 @@
     "dist",
     "DESIGN_SYSTEM_FOR_AI.md",
     "tokens.json",
-    "components.json"
+    "components.json",
+    "layouts.json",
+    "llms.txt",
+    "llms-full.txt"
   ],
   "workspaces": [
     "packages/react",
@@ -31,7 +34,8 @@
     "visual:approve": "backstop approve --config='backstop.config.js'",
     "visual:reference": "npm run is:dev && backstop reference --config='backstop.config.js'",
     "dev": "vite --host ",
-    "build": "vite build && npm run docs:sync-dist",
+    "build": "vite build && npm run docs:sync-dist && npm run sync-llms",
+    "sync-llms": "cp docs/public/llms.txt llms.txt && cp docs/public/llms-full.txt llms-full.txt",
     "preview": "vite preview --host 0.0.0.0 --port 4173",
     "docs:sync-dist": "mkdir -p docs/public/assets && rsync -a --delete --exclude='*.html' dist/ docs/public/assets/",
     "docs:dev": "npm run docs:sync-dist && cd docs && astro dev --host",

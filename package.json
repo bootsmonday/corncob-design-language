@@ -34,8 +34,7 @@
     "visual:approve": "backstop approve --config='backstop.config.js'",
     "visual:reference": "npm run is:dev && backstop reference --config='backstop.config.js'",
     "dev": "vite --host ",
-    "build": "vite build && npm run docs:sync-dist && npm run sync-llms",
-    "sync-llms": "cp docs/public/llms.txt llms.txt && cp docs/public/llms-full.txt llms-full.txt",
+    "build": "vite build && npm run docs:sync-dist",
     "preview": "vite preview --host 0.0.0.0 --port 4173",
     "docs:sync-dist": "mkdir -p docs/public/assets && rsync -a --delete --exclude='*.html' dist/ docs/public/assets/",
     "docs:dev": "npm run docs:sync-dist && cd docs && astro dev --host",
@@ -48,7 +47,8 @@
     "lint:css": "stylelint src/**/*.css",
     "format": "prettier --write \"src/**/*.{js,css,html}\"",
     "changelog:check": "bash scripts/check-changelog-fragment.sh",
-    "changelog:release": "bash scripts/release-changelog.sh"
+    "changelog:release": "bash scripts/release-changelog.sh",
+    "release:stage": "node scripts/stage-release-package.mjs"
   },
   "keywords": [
     "design-system",

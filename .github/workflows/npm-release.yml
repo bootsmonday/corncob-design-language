@@ -100,15 +100,18 @@ jobs:
         run: |
           npm version "${{ steps.next_version.outputs.version }}" --no-git-tag-version
 
+      - name: Stage release package
+        run: npm run release:stage
+
       - name: Preview tarball contents
-        run: npm pack --dry-run
+        run: npm pack --dry-run .release/npm/package
 
       - name: Preview npm publish
         env:
           NPM_CONFIG_ACCESS: ${{ inputs.access }}
           NPM_TAG: ${{ inputs.npm_tag }}
         run: |
-          npm publish --dry-run --tag "$NPM_TAG" --access "$NPM_CONFIG_ACCESS"
+          npm publish --dry-run .release/npm/package --tag "$NPM_TAG" --access "$NPM_CONFIG_ACCESS"
 
   changelog:
     name: Update changelog
@@ -229,6 +232,9 @@ jobs:
           VERSION=$(node -p "require('./package.json').version")
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
 
+      - name: Stage release package
+        run: npm run release:stage
+
       - name: Push commit and tags
         run: git push --follow-tags
 
@@ -238,7 +244,7 @@ jobs:
           NPM_TAG: ${{ inputs.npm_tag }}
           NPM_CONFIG_ACCESS: ${{ inputs.access }}
         run: |
-          npm publish --tag "$NPM_TAG" --access "$NPM_CONFIG_ACCESS" --provenance
+          npm publish .release/npm/package --tag "$NPM_TAG" --access "$NPM_CONFIG_ACCESS" --provenance
 
       - name: Create GitHub release
         uses: softprops/action-gh-release@v2

@@ -56,6 +56,10 @@
   }
 }
 
+.corn-container--fluid {
+  max-width: 100%;
+}
+
 /* Grid */
 
 .corn-row {

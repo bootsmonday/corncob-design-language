@@ -9,6 +9,15 @@ the "Changelog Release" GitHub Actions workflow.
 
 ## [Unreleased]
 
+## [0.0.6] - 2026-05-05
+
+### Added
+
+- forms: added `corn-form` class for better form layout and spacing, and updated stickersheet examples to use it.
+- grid: added `corn-container--fluid` class for full-width containers
+- sliders: Added missing name attribute to slider input elements.
+
+
 ## [0.0.5] - 2026-05-01
 
 ### Added

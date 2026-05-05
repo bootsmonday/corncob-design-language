@@ -4,6 +4,12 @@
   gap: var(--cc-size--3);
 }
 
+.corn-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--cc-size--3);
+}
+
 fieldset.corn-form--item:has(input[disabled]) {
   background-color: transparent !important;
 }

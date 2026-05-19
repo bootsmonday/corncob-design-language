@@ -1,12 +1,12 @@
 export class CornTooltip extends HTMLElement {
-  /**
-   * observedAttributes is a static getter that returns an array of attribute names to monitor for changes.
-   * When any of these attributes change, the attributeChangedCallback method is called.
-   */
   static get observedAttributes() {
     return ['position'];
   }
 
+  /**
+   * observedAttributes is a static getter that returns an array of attribute names to monitor for changes.
+   * When any of these attributes change, the attributeChangedCallback method is called.
+   */
   attributeChangedCallback(name, oldValue, newValue) {
     if (name === 'position') this._position = newValue;
     this.classList.add('corn-tooltip--' + this._position);
@@ -24,14 +24,14 @@ export class CornTooltip extends HTMLElement {
     this.classList.add(this.classPrefix + this._position);
     this._cacheElements();
     this._addEventListeners();
-    this._addAccessiblity();
+    this._addAccessibility();
   }
 
   /*
    * _addAccessibility is a helper method to set the appropriate ARIA attributes for accessibility.
    * It ensures that the tooltip is properly associated with its trigger element for screen readers.
    */
-  _addAccessiblity() {
+  _addAccessibility() {
     this.setAttribute('role', 'tooltip');
     if (!this.id) this.id = 'corn-tooltip--' + crypto.randomUUID().substring(0, 8);
     // Sets don't allow duplicates
@@ -127,6 +127,10 @@ export class CornTooltip extends HTMLElement {
     return this._getScrollParent(node.parentNode);
   }
 
+  /*
+   * _cacheElements is a method that caches important elements and options for the tooltip.
+   * It finds the scrollable parent and sets up observer options for the ResizeObserver.
+   */
   _cacheElements() {
     this.scrollEl = this._getScrollParent(this);
 
@@ -137,6 +141,10 @@ export class CornTooltip extends HTMLElement {
     };
   }
 
+  /*
+   * _resizeObserverCallback is a callback method for the ResizeObserver.
+   * It is called whenever the observed element's size changes, triggering a repositioning of the tooltip.
+   */
   _resizeObserverCallback(entries) {
     if (!entries || entries.length === 0) {
       return;
@@ -144,6 +152,10 @@ export class CornTooltip extends HTMLElement {
     this._positionContent();
   }
 
+  /*
+   * _positionContent is a method that calculates and updates the tooltip's position based on its scrollable parent.
+   * It ensures that the tooltip remains within the visible bounds of its scrollable container.
+   */
   _positionContent() {
     let scrollRect = this.scrollEl.getBoundingClientRect();
     let toolTipRect = this.getBoundingClientRect();
@@ -182,6 +194,11 @@ export class CornTooltip extends HTMLElement {
       this.overlapClass = null;
     }
   }
+
+  /*
+   * _open is a method that opens the tooltip and sets up the ResizeObserver to monitor changes in the scrollable parent.
+   * It ensures that the tooltip remains correctly positioned when the parent element's size changes.
+   */
   _open() {
     if (this.overlapClass) {
       this.classList.remove(this.overlapClass);
@@ -191,6 +208,10 @@ export class CornTooltip extends HTMLElement {
     this.resizeObserver.observe(this.scrollEl);
   }
 
+  /*
+   * _close is a method that closes the tooltip and disconnects the ResizeObserver.
+   * It ensures that resources are properly cleaned up when the tooltip is no longer needed.
+   */
   _close() {
     if (this.resizeObserver && this.scrollEl) {
       this.resizeObserver.unobserve(this.scrollEl);

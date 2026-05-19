@@ -113,14 +113,12 @@ describe('CornTooltip', () => {
   });
 
   test('finds a scrollable parent inside Shadow DOM', () => {
-    const { anchor, tooltip, trigger } = createTooltipFixture();
+    const { anchor, tooltip } = createTooltipFixture();
     const host = document.createElement('div');
     const shadowRoot = host.attachShadow({ mode: 'open' });
     const scrollContainer = document.createElement('div');
 
     scrollContainer.style.overflow = 'auto';
-    anchor.appendChild(trigger);
-    anchor.appendChild(tooltip);
     scrollContainer.appendChild(anchor);
     shadowRoot.appendChild(scrollContainer);
     document.body.appendChild(host);

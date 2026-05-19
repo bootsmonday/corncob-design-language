@@ -1,12 +1,12 @@
 export class CornTooltip extends HTMLElement {
-  static get observedAttributes() {
-    return ['position'];
-  }
-
   /**
    * observedAttributes is a static getter that returns an array of attribute names to monitor for changes.
    * When any of these attributes change, the attributeChangedCallback method is called.
    */
+  static get observedAttributes() {
+    return ['position'];
+  }
+
   attributeChangedCallback(name, oldValue, newValue) {
     if (name === 'position') this._position = newValue;
     this.classList.add('corn-tooltip--' + this._position);

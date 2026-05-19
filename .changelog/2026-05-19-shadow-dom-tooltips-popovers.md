@@ -3,5 +3,5 @@ type: Fixed
 scope: overlays
 ---
 
-- Fixed an issue where popovers caused an error when added to the Shadow DOM.
-- Fixed an issue where tooltips caused an error when added to the Shadow DOM.
+- Fixed a Shadow DOM error in `corn-popover` by correctly traversing from `ShadowRoot` to `host` while finding a scroll parent.
+- Fixed the same Shadow DOM scroll-parent detection error in `corn-tooltip`.

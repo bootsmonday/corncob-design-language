@@ -80,7 +80,7 @@ describe('CornTooltip', () => {
     expect(labelledBy).toContain('external-label');
     expect(labelledBy).toContain(tooltip.id);
 
-    tooltip._addAccessiblity();
+    tooltip._addAccessibility();
     const idOccurrences = anchor
       .getAttribute('aria-labelledby')
       .split(' ')

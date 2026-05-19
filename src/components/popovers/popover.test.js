@@ -103,4 +103,51 @@ describe('CornPopover', () => {
     expect(tabEvent.defaultPrevented).toBe(true);
     expect(document.activeElement).toBe(firstAction);
   });
+
+  test('finds a scrollable parent inside Shadow DOM', () => {
+    const host = document.createElement('div');
+    const shadowRoot = host.attachShadow({ mode: 'open' });
+    const scrollContainer = document.createElement('div');
+    const anchor = document.createElement('div');
+    const trigger = document.createElement('button');
+    const popover = new CornPopover();
+
+    anchor.className = 'corn-popover--anchor';
+    trigger.className = 'corn-pop';
+    scrollContainer.style.overflow = 'auto';
+    anchor.appendChild(trigger);
+    anchor.appendChild(popover);
+    scrollContainer.appendChild(anchor);
+    shadowRoot.appendChild(scrollContainer);
+    document.body.appendChild(host);
+
+    const scrollParent = popover._getScrollParent(popover);
+
+    expect(scrollParent).toBe(scrollContainer);
+    expect(scrollParent.nodeType).toBe(Node.ELEMENT_NODE);
+    expect(scrollParent).not.toBe(shadowRoot);
+  });
+
+  test('traverses out of ShadowRoot and falls back to body when no scroll parent exists', () => {
+    const host = document.createElement('div');
+    const shadowRoot = host.attachShadow({ mode: 'open' });
+    const wrapper = document.createElement('section');
+    const anchor = document.createElement('div');
+    const trigger = document.createElement('button');
+    const popover = new CornPopover();
+
+    anchor.className = 'corn-popover--anchor';
+    trigger.className = 'corn-pop';
+    anchor.appendChild(trigger);
+    anchor.appendChild(popover);
+    wrapper.appendChild(anchor);
+    shadowRoot.appendChild(wrapper);
+    document.body.appendChild(host);
+
+    const scrollParent = popover._getScrollParent(popover);
+
+    expect(scrollParent).toBe(document.body);
+    expect(scrollParent.nodeType).toBe(Node.ELEMENT_NODE);
+    expect(scrollParent).not.toBe(shadowRoot);
+  });
 });

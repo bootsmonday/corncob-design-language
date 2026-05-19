@@ -2,11 +2,20 @@ export class CornTooltip extends HTMLElement {
   static get observedAttributes() {
     return ['position'];
   }
+
+  /**
+   * observedAttributes is a static getter that returns an array of attribute names to monitor for changes.
+   * When any of these attributes change, the attributeChangedCallback method is called.
+   */
   attributeChangedCallback(name, oldValue, newValue) {
     if (name === 'position') this._position = newValue;
     this.classList.add('corn-tooltip--' + this._position);
   }
 
+  /*
+   * connectedCallback is called when the element is added to the DOM.
+   * This is where we set up our event listeners and any initial state.
+   */
   connectedCallback() {
     this.parent = this.closest('.corn-tooltip--anchor');
     if (!this.parent) return;
@@ -15,19 +24,26 @@ export class CornTooltip extends HTMLElement {
     this.classList.add(this.classPrefix + this._position);
     this._cacheElements();
     this._addEventListeners();
-    this._addAccessiblity();
+    this._addAccessibility();
   }
-  _addAccessiblity() {
+
+  /*
+   * _addAccessibility is a helper method to set the appropriate ARIA attributes for accessibility.
+   * It ensures that the tooltip is properly associated with its trigger element for screen readers.
+   */
+  _addAccessibility() {
     this.setAttribute('role', 'tooltip');
     if (!this.id) this.id = 'corn-tooltip--' + crypto.randomUUID().substring(0, 8);
     // Sets don't allow duplicates
-    const parentLabelledby = new Set(
-      (this.parent.getAttribute('aria-labelledby') || '').split(' ')
-    );
+    const parentLabelledby = new Set((this.parent.getAttribute('aria-labelledby') || '').split(' '));
     parentLabelledby.add(this.id);
     this.parent.setAttribute('aria-labelledby', [...parentLabelledby].join(' ').trim());
   }
 
+  /*
+   * handleEvent is a method that handles various events based on their type.
+   * It listens for mouseenter, focusin, mouseleave, and focusout events to control the opening and closing of the tooltip.
+   */
   handleEvent(evt) {
     switch (evt.type) {
       case 'mouseenter':
@@ -41,6 +57,10 @@ export class CornTooltip extends HTMLElement {
     }
   }
 
+  /*
+   * _addEventListeners and _removeEventListeners are helper methods to manage event listeners for the tooltip.
+   * They ensure that the appropriate events are listened to when the tooltip is connected and removed when it is disconnected.
+   */
   _addEventListeners() {
     this._showTooltip = () => this._open();
     this._hideTooltip = () => this._close();
@@ -52,6 +72,11 @@ export class CornTooltip extends HTMLElement {
     this.parent.addEventListener('focusin', this);
     this.parent.addEventListener('focusout', this);
   }
+
+  /*
+   * _removeEventListeners is a helper method to remove event listeners when the tooltip is disconnected from the DOM.
+   * It ensures that there are no memory leaks or unintended behavior when the tooltip is removed.
+   */
   _removeEventListeners() {
     this.parent.removeEventListener('mouseenter', this);
     this.parent.removeEventListener('mouseleave', this);
@@ -61,6 +86,10 @@ export class CornTooltip extends HTMLElement {
     this.parent.removeEventListener('focusout', this);
   }
 
+  /*
+   * _toggle is a method that toggles the tooltip's visibility based on the provided isActive parameter.
+   * It calls the appropriate methods to open or close the tooltip accordingly.
+   */
   _toggle(isActive) {
     if (isActive) {
       this._open();
@@ -69,22 +98,39 @@ export class CornTooltip extends HTMLElement {
     }
   }
 
+  /*
+   * _getScrollParent is a helper method that finds the nearest scrollable parent element.
+   * It traverses up the DOM tree to find an element that can scroll, which is necessary for positioning the tooltip correctly.
+   */
   _getScrollParent(node) {
-    if (node.nodeType === Node.ELEMENT_NODE) {
-      const nodeStyle = window.getComputedStyle(node);
-      if (
-        nodeStyle.overflow.match(/scroll/) ||
-        node.nodeName.toLowerCase() === 'body' ||
-        node.parentNode === null
-      ) {
-        return node;
-      } else {
-        return this._getScrollParent(node.parentNode);
-      }
-    } else {
+    if (!node) return document.body;
+
+    // If we hit a ShadowRoot (DocumentFragment), continue from its host.
+    if (node.nodeType === Node.DOCUMENT_FRAGMENT_NODE) {
+      return node.host ? this._getScrollParent(node.host) : document.body;
+    }
+
+    if (node.nodeType === Node.DOCUMENT_NODE) return document.body;
+
+    if (node.nodeType !== Node.ELEMENT_NODE) {
+      return this._getScrollParent(node.parentNode);
+    }
+
+    const nodeStyle = window.getComputedStyle(node);
+    const overflowValue = `${nodeStyle.overflow}${nodeStyle.overflowX}${nodeStyle.overflowY}`;
+    const isScrollable = /(auto|scroll|overlay)/.test(overflowValue);
+
+    if (isScrollable || node.nodeName.toLowerCase() === 'body' || node.parentNode === null) {
       return node;
     }
+
+    return this._getScrollParent(node.parentNode);
   }
+
+  /*
+   * _cacheElements is a method that caches important elements and options for the tooltip.
+   * It finds the scrollable parent and sets up observer options for the ResizeObserver.
+   */
   _cacheElements() {
     this.scrollEl = this._getScrollParent(this);
 
@@ -95,6 +141,10 @@ export class CornTooltip extends HTMLElement {
     };
   }
 
+  /*
+   * _resizeObserverCallback is a callback method for the ResizeObserver.
+   * It is called whenever the observed element's size changes, triggering a repositioning of the tooltip.
+   */
   _resizeObserverCallback(entries) {
     if (!entries || entries.length === 0) {
       return;
@@ -102,6 +152,10 @@ export class CornTooltip extends HTMLElement {
     this._positionContent();
   }
 
+  /*
+   * _positionContent is a method that calculates and updates the tooltip's position based on its scrollable parent.
+   * It ensures that the tooltip remains within the visible bounds of its scrollable container.
+   */
   _positionContent() {
     let scrollRect = this.scrollEl.getBoundingClientRect();
     let toolTipRect = this.getBoundingClientRect();
@@ -140,6 +194,11 @@ export class CornTooltip extends HTMLElement {
       this.overlapClass = null;
     }
   }
+
+  /*
+   * _open is a method that opens the tooltip and sets up the ResizeObserver to monitor changes in the scrollable parent.
+   * It ensures that the tooltip remains correctly positioned when the parent element's size changes.
+   */
   _open() {
     if (this.overlapClass) {
       this.classList.remove(this.overlapClass);
@@ -149,6 +208,10 @@ export class CornTooltip extends HTMLElement {
     this.resizeObserver.observe(this.scrollEl);
   }
 
+  /*
+   * _close is a method that closes the tooltip and disconnects the ResizeObserver.
+   * It ensures that resources are properly cleaned up when the tooltip is no longer needed.
+   */
   _close() {
     if (this.resizeObserver && this.scrollEl) {
       this.resizeObserver.unobserve(this.scrollEl);
@@ -167,9 +230,7 @@ export class CornTooltip extends HTMLElement {
       this.resizeObserver = null;
     }
     this._removeEventListeners();
-    const parentLabelledby = new Set(
-      (this.parent.getAttribute('aria-labelledby') || '').split(' ')
-    );
+    const parentLabelledby = new Set((this.parent.getAttribute('aria-labelledby') || '').split(' '));
     parentLabelledby.delete(this.id);
     if (parentLabelledby.size === 0) {
       this.parent.removeAttribute('aria-labelledby');

@@ -111,4 +111,43 @@ describe('CornTooltip', () => {
     expect(labelledBy).toBe('external-label');
     expect(labelledBy).not.toContain(tooltipId);
   });
+
+  test('finds a scrollable parent inside Shadow DOM', () => {
+    const { anchor, tooltip, trigger } = createTooltipFixture();
+    const host = document.createElement('div');
+    const shadowRoot = host.attachShadow({ mode: 'open' });
+    const scrollContainer = document.createElement('div');
+
+    scrollContainer.style.overflow = 'auto';
+    anchor.appendChild(trigger);
+    anchor.appendChild(tooltip);
+    scrollContainer.appendChild(anchor);
+    shadowRoot.appendChild(scrollContainer);
+    document.body.appendChild(host);
+
+    const scrollParent = tooltip._getScrollParent(tooltip);
+
+    expect(scrollParent).toBe(scrollContainer);
+    expect(scrollParent.nodeType).toBe(Node.ELEMENT_NODE);
+    expect(scrollParent).not.toBe(shadowRoot);
+  });
+
+  test('traverses out of ShadowRoot and falls back to body when no scroll parent exists', () => {
+    const { anchor, tooltip, trigger } = createTooltipFixture();
+    const host = document.createElement('div');
+    const shadowRoot = host.attachShadow({ mode: 'open' });
+    const wrapper = document.createElement('section');
+
+    anchor.appendChild(trigger);
+    anchor.appendChild(tooltip);
+    wrapper.appendChild(anchor);
+    shadowRoot.appendChild(wrapper);
+    document.body.appendChild(host);
+
+    const scrollParent = tooltip._getScrollParent(tooltip);
+
+    expect(scrollParent).toBe(document.body);
+    expect(scrollParent.nodeType).toBe(Node.ELEMENT_NODE);
+    expect(scrollParent).not.toBe(shadowRoot);
+  });
 });

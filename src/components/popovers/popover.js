@@ -29,12 +29,12 @@ export class CornPopover extends HTMLElement {
   }
 
   /**
-   * handleEvent is a method that handles events for the popover component. 
-   * It listens for click and keydown events. When a click event occurs, it calls the _toggle method to open or close the popover. 
+   * handleEvent is a method that handles events for the popover component.
+   * It listens for click and keydown events. When a click event occurs, it calls the _toggle method to open or close the popover.
    * When a keydown event occurs, it calls the _trapFocus method to manage keyboard navigation within the popover. This method allows the component to respond to user interactions and provides accessibility features for keyboard users.
    * By using handleEvent we no longer need to bind the context of the event handlers, as it will automatically use the instance of the class as the context when handling events. This simplifies the code and ensures that the correct context is used when responding to events.
-   * 
-   * @param {*} evt 
+   *
+   * @param {*} evt
    */
 
   handleEvent(evt) {
@@ -47,7 +47,6 @@ export class CornPopover extends HTMLElement {
         break;
     }
   }
-
 
   /**
    * connectedCallback is called when the element is added to the DOM.
@@ -117,7 +116,7 @@ export class CornPopover extends HTMLElement {
     } else {
       this._open();
     }
-  };
+  }
 
   /**
    * _trapFocus is a method that traps the focus within the popover when it is open.
@@ -148,7 +147,7 @@ export class CornPopover extends HTMLElement {
         firstElement.focus();
       }
     }
-  };
+  }
 
   /**
    * _cacheElements is a method that caches references to important elements and sets up initial state for the popover.
@@ -172,20 +171,28 @@ export class CornPopover extends HTMLElement {
    * @returns
    */
   _getScrollParent(node) {
-    if (node.nodeType === Node.ELEMENT_NODE) {
-      const nodeStyle = window.getComputedStyle(node);
-      if (
-        nodeStyle.overflow.match(/scroll/) ||
-        node.nodeName.toLowerCase() === 'body' ||
-        node.parentNode === null
-      ) {
-        return node;
-      } else {
-        return this._getScrollParent(node.parentNode);
-      }
-    } else {
+    if (!node) return document.body;
+
+    // If we hit a ShadowRoot (DocumentFragment), continue from its host.
+    if (node.nodeType === Node.DOCUMENT_FRAGMENT_NODE) {
+      return node.host ? this._getScrollParent(node.host) : document.body;
+    }
+
+    if (node.nodeType === Node.DOCUMENT_NODE) return document.body;
+
+    if (node.nodeType !== Node.ELEMENT_NODE) {
+      return this._getScrollParent(node.parentNode);
+    }
+
+    const nodeStyle = window.getComputedStyle(node);
+    const overflowValue = `${nodeStyle.overflow}${nodeStyle.overflowX}${nodeStyle.overflowY}`;
+    const isScrollable = /(auto|scroll|overlay)/.test(overflowValue);
+
+    if (isScrollable || node.nodeName.toLowerCase() === 'body' || node.parentNode === null) {
       return node;
     }
+
+    return this._getScrollParent(node.parentNode);
   }
 
   /**
@@ -252,11 +259,7 @@ export class CornPopover extends HTMLElement {
    * @returns {HTMLElement[]} An array of all focusable elements within the popover.
    */
   _getAllFocusableElements() {
-    return [
-      ...this.querySelectorAll(
-        'button, [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
-      ),
-    ];
+    return [...this.querySelectorAll('button, [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])')];
   }
 
   /**

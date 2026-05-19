@@ -9,6 +9,13 @@ the "Changelog Release" GitHub Actions workflow.
 
 ## [Unreleased]
 
+## [0.0.7] - 2026-05-19
+
+### Fixed
+
+- shadow-dom: - Fixed a Shadow DOM error in `corn-popover` by correctly traversing from `ShadowRoot` to `host` while finding a scroll parent. - Fixed the same Shadow DOM scroll-parent detection error in `corn-tooltip`.
+
+
 ## [0.0.6] - 2026-05-05
 
 ### Added

@@ -9,19 +9,21 @@ the "Changelog Release" GitHub Actions workflow.
 
 ## [Unreleased]
 
-## [0.0.8] - 2026-06-05
+## [0.0.9] - 2026-06-05
 
 ### Added
 
 - css tokens: Added `:host` selector to all CSS token files to ensure tokens are available in both global and shadow DOM contexts. This allows components using shadow DOM to access the design tokens without needing to redefine them.
 
+## [0.0.8] - 2026-05-26
+
+- not published
 
 ## [0.0.7] - 2026-05-19
 
 ### Fixed
 
 - shadow-dom: - Fixed a Shadow DOM error in `corn-popover` by correctly traversing from `ShadowRoot` to `host` while finding a scroll parent. - Fixed the same Shadow DOM scroll-parent detection error in `corn-tooltip`.
-
 
 ## [0.0.6] - 2026-05-05
 
@@ -30,7 +32,6 @@ the "Changelog Release" GitHub Actions workflow.
 - forms: added `corn-form` class for better form layout and spacing, and updated stickersheet examples to use it.
 - grid: added `corn-container--fluid` class for full-width containers
 - sliders: Added missing name attribute to slider input elements.
-
 
 ## [0.0.5] - 2026-05-01
 

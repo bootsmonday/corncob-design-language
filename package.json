@@ -1,6 +1,6 @@
 {
   "name": "@bootsmonday/corncob-design-language",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Corncob Design Language - A vanilla JavaScript design system",
   "main": "dist/corncob-design-language.js",
   "module": "dist/corncob-design-language.esm.js",

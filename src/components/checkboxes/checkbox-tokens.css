@@ -1,4 +1,5 @@
-:root {
+:root,
+:host {
   --cc-checkbox--input--background: var(--cc-form--item--background);
   --cc-checkbox--input--background--hover: var(--cc-form--item--background--hover);
   --cc-checkbox--input--background--checked: var(--cc-form--widget--background--selected);

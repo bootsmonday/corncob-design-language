@@ -1,4 +1,5 @@
-:root {
+:root,
+:host {
   --cc-transition--easing: ease-out;
   --cc-transition--time: 150ms;
   --cc-transition--time--fast: 83ms;

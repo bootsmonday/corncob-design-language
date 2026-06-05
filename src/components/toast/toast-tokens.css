@@ -1,4 +1,5 @@
-:root {
+:root,
+:host {
   --cc-toast--background: var(--cc-gray-90);
   --cc-toast--color: var(--cc-white);
   --cc-toast--font-size: var(--cc-size--1);

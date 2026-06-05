@@ -1,4 +1,5 @@
-:root {
+:root,
+:host {
   --cc-header--company--font--size: var(--cc-size-2);
   --cc-header--company--font--weight: 500;
   --cc-header--title--font--size: var(--cc-size-1);

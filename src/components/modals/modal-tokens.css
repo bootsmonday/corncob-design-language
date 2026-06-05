@@ -1,4 +1,5 @@
-:root {
+:root,
+:host {
   --cc-modal--backdrop--background: rgb(from var(--cc-gray-90) r g b / 80%);
   --cc-modal--color: var(--cc-white);
   --cc-modal--font-size: var(--cc-size--1);

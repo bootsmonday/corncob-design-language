@@ -1,4 +1,5 @@
-:root {
+:root,
+:host {
   --cc-link--transition--timing: 150ms;
   --cc-link--font--weight: var(--cc-body--font--weight--normal);
   --cc-link--font--weight--bold: var(--cc-body--font--weight--bold);

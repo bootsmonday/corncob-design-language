@@ -1,5 +1,6 @@
 /* Color Tokens */
-:root {
+:root,
+:host {
   color-scheme: light dark;
 
   /* cc-yellow CSS Variables */

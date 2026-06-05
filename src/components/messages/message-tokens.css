@@ -1,4 +1,5 @@
-:root {
+:root,
+:host {
   --cc-message--border--radius: var(--cc-border--radius);
   --cc-message--border--width: var(--cc-border--width);
   --cc-message--border--style: var(--cc-border--style);

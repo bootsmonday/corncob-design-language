@@ -1,4 +1,5 @@
-:root {
+:root,
+:host {
   --cc-radio-button--input--background: var(--cc-form--item--background);
   --cc-radio-button--input--background--hover: var(--cc-form--item--background--hover);
   --cc-radio-button--input--background--checked: var(--cc-form--widget--background--selected);

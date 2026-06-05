@@ -1,4 +1,5 @@
-:root {
+:root,
+:host {
   --cc-text-input--background: var(--cc-form--item--background);
   --cc-text-input--background--hover: var(--cc-form--item--background--hover);
   --cc-text-input--border: var(--cc-border--width) var(--cc-border--style) var(--cc-border--color);

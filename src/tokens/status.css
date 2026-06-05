@@ -1,4 +1,5 @@
-:root {
+:root,
+:host {
   --cc-status--success--background: var(--cc-green-10);
   --cc-status--success--box-shadow: inset 10px 0 0 -2px var(--cc-green-40);
   --cc-status--success--color: var(--cc-green-60);

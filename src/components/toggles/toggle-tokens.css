@@ -1,4 +1,5 @@
-:root {
+:root,
+:host {
   --cc-toggle--height--xs: var(--cc-form--item--size--xs);
   --cc-toggle--height--sm: var(--cc-form--item--size--sm);
   --cc-toggle--height--md: var(--cc-form--item--size--md);

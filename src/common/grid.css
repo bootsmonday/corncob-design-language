@@ -1,4 +1,5 @@
-:root {
+:root,
+:host {
   /* Breakpoints */
   --cc-breakpoint-xs: 0px;
   --cc-breakpoint-sm: 576px;

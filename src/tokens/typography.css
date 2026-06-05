@@ -1,5 +1,6 @@
 /* Typography Tokens */
-:root {
+:root,
+:host {
   /* Font Family */
   --cc-font-family: system-ui, -apple-system, 'Segoe UI', roboto, 'Helvetica Neue', arial, 'Noto Sans', 'Liberation Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   --cc-font-family-mono: 'SFMono-Regular', consolas, 'Liberation Mono', menlo, courier, monospace;

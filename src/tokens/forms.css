@@ -1,4 +1,5 @@
-:root {
+:root,
+:host {
   --cc-form--item--focus-ring: 0 0 0 3px var(--cc-blue-60);
   --cc-form--item--focus-ring--inverted: inset 0 0 0 2px var(--cc-blue-60), 0 0 0 1px var(--cc-blue-60);
   --cc-form--item--focus-ring--active: none;

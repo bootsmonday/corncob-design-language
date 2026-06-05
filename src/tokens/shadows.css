@@ -1,4 +1,5 @@
-:root {
+:root,
+:host {
   /* standard shadow */
   --cc-shadow--drop: 0 1px 8px 0px rgb(from var(--cc-black) r g b / 6%);
   --cc-shadow--drop--heavy: 0 1px 8px 0px rgb(from var(--cc-black) r g b / 12%);

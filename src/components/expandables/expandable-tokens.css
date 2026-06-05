@@ -1,4 +1,5 @@
-:root {
+:root,
+:host {
   --cc-expandable--border-radius: var(--cc-border--radius);
   --cc-expandable--border-width: var(--cc-border--width);
   --cc-expandable--border-style: var(--cc-border--style);

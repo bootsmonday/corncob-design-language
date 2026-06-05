@@ -1,5 +1,6 @@
 /* Spacing Tokens (12px base unit) */
-:root {
+:root,
+:host {
   --cc-spacing-unit: 0.75rem;
   --cc-spacing--2: calc(var(--cc-spacing-unit) * 0.25); /* 3px */
   --cc-spacing--1: calc(var(--cc-spacing-unit) * 0.5); /* 6px */

@@ -1,4 +1,5 @@
-:root {
+:root,
+:host {
   --cc-tooltip--background: var(--cc-black);
   --cc-tooltip--color: var(--cc-white);
   --cc-tooltip--font-size: var(--cc-size--1);

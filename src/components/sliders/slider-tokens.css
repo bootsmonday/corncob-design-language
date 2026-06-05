@@ -1,4 +1,5 @@
-:root {
+:root,
+:host {
   --cc-slider--height--xs: var(--cc-form--item--size--xs);
   --cc-slider--height--sm: var(--cc-form--item--size--sm);
   --cc-slider--height--md: var(--cc-form--item--size--md);

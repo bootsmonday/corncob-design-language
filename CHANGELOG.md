@@ -9,6 +9,13 @@ the "Changelog Release" GitHub Actions workflow.
 
 ## [Unreleased]
 
+## [0.0.8] - 2026-06-05
+
+### Added
+
+- css tokens: Added `:host` selector to all CSS token files to ensure tokens are available in both global and shadow DOM contexts. This allows components using shadow DOM to access the design tokens without needing to redefine them.
+
+
 ## [0.0.7] - 2026-05-19
 
 ### Fixed

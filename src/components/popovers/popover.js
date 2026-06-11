@@ -273,7 +273,7 @@ export class CornPopover extends HTMLElement {
    * This method ensures that the popover is properly displayed and that keyboard navigation is handled correctly for accessibility.
    */
   _open(evt) {
-    this.activeElement = evt.target ? evt.target : document.activeElement;
+    this.activeElement = evt?.currentTarget && typeof evt.currentTarget.focus === 'function' ? evt.currentTarget : document.activeElement;
 
     if (this.overlapClass) {
       this.classList.remove(this.overlapClass);

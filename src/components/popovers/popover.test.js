@@ -86,6 +86,27 @@ describe('CornPopover', () => {
     expect(document.activeElement).toBe(trigger);
   });
 
+  test('restores focus to the trigger button when a nested child element is clicked', () => {
+    const { trigger, popover } = createPopoverFixture();
+
+    // Add a nested child element simulating an SVG icon inside the trigger button
+    const icon = document.createElement('span');
+    trigger.appendChild(icon);
+
+    // Focus the trigger, then click the nested icon (evt.target is icon, evt.currentTarget is trigger)
+    trigger.focus();
+    icon.click();
+
+    expect(popover.isOpen).toBe(true);
+
+    const escapeEvent = new KeyboardEvent('keydown', { key: 'Escape', bubbles: true });
+    popover.dispatchEvent(escapeEvent);
+
+    expect(popover.isOpen).toBe(false);
+    // Focus should be restored to the trigger button, not the nested child icon
+    expect(document.activeElement).toBe(trigger);
+  });
+
   test('traps Tab focus from last to first focusable element', () => {
     const { trigger, popover, firstAction, secondAction } = createPopoverFixture();
 

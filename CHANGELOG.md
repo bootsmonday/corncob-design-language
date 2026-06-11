@@ -9,6 +9,13 @@ the "Changelog Release" GitHub Actions workflow.
 
 ## [Unreleased]
 
+## [0.0.10] - 2026-06-11
+
+### Fixed
+
+- popovers: Fixed popovers not opening when their trigger was clicked, and ensured focus returns to the trigger when the popover is closed.
+
+
 ## [0.0.9] - 2026-06-05
 
 ### Added

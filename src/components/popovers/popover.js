@@ -41,11 +41,10 @@ export class CornPopover extends HTMLElement {
     switch (evt.type) {
       case 'click':
         this._toggle(evt);
-        evt.stopImmediatePropagation();
+        evt.stopPropagation();
         break;
       case 'keydown':
         this._trapFocus(evt);
-        evt.stopImmediatePropagation();
         break;
     }
   }

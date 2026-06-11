@@ -40,7 +40,8 @@ export class CornPopover extends HTMLElement {
   handleEvent(evt) {
     switch (evt.type) {
       case 'click':
-        this._toggle();
+        this._toggle(evt);
+        evt.stopPropagation();
         break;
       case 'keydown':
         this._trapFocus(evt);
@@ -110,11 +111,11 @@ export class CornPopover extends HTMLElement {
   /**
    * _toggle is a method that toggles the open state of the popover. If the popover is currently open, it calls the _close method to close it. If the popover is currently closed, it calls the _open method to open it. This method is typically called in response to user interactions, such as clicking the trigger element, allowing users to easily open and close the popover as needed.
    */
-  _toggle() {
+  _toggle(evt) {
     if (this.isOpen) {
       this._close();
     } else {
-      this._open();
+      this._open(evt);
     }
   }
 
@@ -270,8 +271,8 @@ export class CornPopover extends HTMLElement {
    * Finally, it adds a click event listener to the document to listen for clicks outside the popover, allowing it to be closed when such clicks occur.
    * This method ensures that the popover is properly displayed and that keyboard navigation is handled correctly for accessibility.
    */
-  _open() {
-    this.activeElement = document.activeElement;
+  _open(evt) {
+    this.activeElement = evt?.currentTarget && typeof evt.currentTarget.focus === 'function' ? evt.currentTarget : document.activeElement;
 
     if (this.overlapClass) {
       this.classList.remove(this.overlapClass);

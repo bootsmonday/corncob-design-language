@@ -149,6 +149,22 @@ describe('CornPopover', () => {
     expect(scrollParent).not.toBe(shadowRoot);
   });
 
+  test('_clickListener does not throw when composedPath includes window and closes the popover', () => {
+    const { trigger, popover } = createPopoverFixture();
+
+    trigger.click();
+    expect(popover.isOpen).toBe(true);
+
+    // Simulate an outside click whose composedPath() includes non-Element nodes like window,
+    // which would cause Element.contains() to throw without the nodeType filter in _clickListener.
+    const fakeEvent = {
+      composedPath: () => [window],
+    };
+
+    expect(() => popover._clickListener(fakeEvent)).not.toThrow();
+    expect(popover.isOpen).toBe(false);
+  });
+
   test('traverses out of ShadowRoot and falls back to body when no scroll parent exists', () => {
     const host = document.createElement('div');
     const shadowRoot = host.attachShadow({ mode: 'open' });

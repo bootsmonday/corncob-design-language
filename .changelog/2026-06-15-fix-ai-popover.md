@@ -3,4 +3,5 @@ type: Fixed
 scope: popovers
 ---
 
-Fixed bug introduced by AI suggestion.
+- Fixed popovers throwing on outside clicks in some browsers.
+- Adjusted popover width to fit its content.

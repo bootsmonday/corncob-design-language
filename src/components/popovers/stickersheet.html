@@ -13,46 +13,19 @@
       <div>
 
       <form class="corn-form" id="hex-seed-form">
-        <div class="corn-row">
-          <div class="corn-col-4">
-            <div class="corn-form--item" id="hex-seed-item">
-              <div class="corn-text-input corn-text-input--xs">
-                <input id="hex-seed-input" name="input" placeholder="Hex value" value=""/>
-                <label for="hex-seed-input" class="corn-assistive-text">
-                  Enter a hex seed value
-                </label>
-              </div>
-              <div class="corn-status"></div>
-            </div>
+        <div class="corn-form--item" id="hex-seed-item">
+          <div class="corn-text-input corn-text-input--xs">
+            <input id="hex-seed-input" name="input" placeholder="Hex value" value=""/>
+            <label for="hex-seed-input" class="corn-assistive-text">
+              Enter a hex seed value
+            </label>
           </div>
-          <div class="corn-col-8">
-            <div class="corn-button-group">
-              <button class="corn-button corn-button--xs" type="button">Validate</button>
-            </div>
-          </div>
+          <div class="corn-status"></div>
+        </div>
+        <div class="corn-button-group">
+          <button class="corn-button corn-button--xs" type="button">Validate</button>
         </div>
       </form>
-
-      <div id="hex-preview" style="margin-top: var(--cc-size-0);">
-        <form class="corn-form" id="hex-preview-form">
-          <div class="corn-row">
-            <div class="corn-col-12">
-              <p id="base-hex-color" class="hex-preview hex-user">#</p>
-            </div>
-            <div class="corn-col-6">
-              <div id="closest-hsluv-preview" class="hex-preview">
-                <p>#</p>
-                <button type="submit" class="corn-button corn-button--xs" id="copy-hsluv-hex" value="hsluv">USE HSLUV</button>
-              </div>
-            </div>
-            <div class="corn-col-6">
-              <div id="closest-okhsl-preview" class="hex-preview">
-                <p>#</p>                    
-                <button type="button" class="corn-button corn-button--xs" id="copy-okhsl-hex" value="okhsl">USE OKHSL</button>
-            </div>
-          </div>
-        </form>
-      </div>
     </div>
     `;
     }

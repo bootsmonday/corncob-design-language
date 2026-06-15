@@ -9,6 +9,13 @@ the "Changelog Release" GitHub Actions workflow.
 
 ## [Unreleased]
 
+## [0.1.0] - 2026-06-15
+
+### Fixed
+
+- popovers: Fixed issue where popover would close when nested in the shadow DOM of another component.
+
+
 ## [0.0.10] - 2026-06-11
 
 ### Fixed

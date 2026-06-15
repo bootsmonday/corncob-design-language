@@ -94,8 +94,10 @@ export class CornPopover extends HTMLElement {
    * Overall, this method enhances the interactivity and usability of the popover component by allowing users to intuitively close it through common interactions.
    */
   _clickListener = (evt) => {
-    const realTarget = evt.composedPath ? evt.composedPath()[0] : evt.target;
-    if (!this.contains(realTarget) && !this.trigger.contains(realTarget)) {
+    const path = evt.composedPath ? evt.composedPath() : [evt.target];
+    const insidePopover = path.some((node) => this.contains(node));
+    const insideTrigger = path.some((node) => this.trigger.contains(node));
+    if (!insidePopover && !insideTrigger) {
       this._close();
     }
   };

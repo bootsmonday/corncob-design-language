@@ -9,6 +9,13 @@ the "Changelog Release" GitHub Actions workflow.
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-06-16
+
+### Fixed
+
+- popovers: - Fixed popovers throwing on outside clicks in some browsers. - Adjusted popover width to fit its content.
+
+
 ## [0.1.0] - 2026-06-15
 
 ### Fixed

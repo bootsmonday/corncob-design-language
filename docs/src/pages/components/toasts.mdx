@@ -60,12 +60,12 @@ They can be used to provide feedback on user actions, such as confirming that an
 
 When they are used to display Warnings or Errors, they should be used in conjunction with other UI elements that provide more detailed information about the error and how to resolve it.
 
-The default toast component can be used to display simple messages to the user. It can be triggered by calling the `showToast` method on the toast component instance, passing in the message to be displayed and an optional duration for how long the toast should be visible.
+The default toast component can be used to display simple messages to the user. It can be triggered by calling the `addToast` method on the toast component instance, passing in the message to be displayed and an optional duration for how long the toast should be visible.
 
 Simple Toast messages should last between 3-5 seconds, while more complex messages may require a longer duration 6-8 seconds. It's important to consider the content of the message and the user's ability to read and understand it within the given time frame when determining the appropriate duration for a toast message.
 
 
-<button class="corn-button" onclick="randomToast()">Show Toast</button>
+<button class="corn-button" onclick="randomToast()">Add Toast</button>
 
 <corn-toast class="corn-toast"></corn-toast>
 

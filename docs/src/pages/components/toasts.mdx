@@ -6,8 +6,10 @@ title: 'Component | Toast | Corncob'
 import CodeSample from '../../layouts/partials/CodeSample.astro';
 import { Code } from 'astro/components';
 import toastTokens from '../../../../src/components/toast/toast-tokens.css?raw';
-
 import bootstrapIconsSprite from 'bootstrap-icons/bootstrap-icons.svg?url';
+
+
+
 
 <script>{`
   // The imported URL from Vite (includes the hashed asset name in prod)
@@ -38,7 +40,7 @@ import bootstrapIconsSprite from 'bootstrap-icons/bootstrap-icons.svg?url';
     const types = ['success', 'warning', 'error', 'info'];
     const randomType = types[Math.floor(Math.random() * types.length)];
     
-    document.querySelector('.corn-toast').addToast({
+    document.querySelector('corn-toast').addToast({
       type: randomType,
       text: 'This is a ' + randomType + ' toast!',
       icon: icons[randomType],

@@ -7,6 +7,44 @@ import CodeSample from '../../layouts/partials/CodeSample.astro';
 import { Code } from 'astro/components';
 import toastTokens from '../../../../src/components/toast/toast-tokens.css?raw';
 
+import bootstrapIconsSprite from 'bootstrap-icons/bootstrap-icons.svg?url';
+
+<script>{`
+  // The imported URL from Vite (includes the hashed asset name in prod)
+  const spriteUrl = '${bootstrapIconsSprite}';
+
+  function createIcon(iconId) {
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+    svg.setAttribute('class', 'corn-icon');
+    svg.setAttribute('aria-hidden', 'true');
+    
+    const use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+    // Use the imported Vite URL + fragment identifier
+    use.setAttribute('href', '' + spriteUrl + '#' + iconId + '');
+    
+    svg.appendChild(use);
+    return svg;
+  }
+
+  const icons = {
+    success: createIcon('check-lg'),
+    warning: createIcon('exclamation-triangle'),
+    error: createIcon('x-lg'),
+    info: createIcon('info-lg'),
+  };
+
+  function randomToast() {
+    const types = ['success', 'warning', 'error', 'info'];
+    const randomType = types[Math.floor(Math.random() * types.length)];
+    
+    document.querySelector('.corn-toast').addToast({
+      type: randomType,
+      text: 'This is a ' + randomType + ' toast!',
+      icon: icons[randomType],
+    });
+  }
+`}</script>
 
 ## Toasts
 
@@ -102,3 +140,5 @@ Simple Toast messages should last between 3-5 seconds, while more complex messag
 <CodeSample id="toast-tokens-code">
   <Code code={toastTokens} lang="css" />
 </CodeSample>
+
+

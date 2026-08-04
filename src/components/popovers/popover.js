@@ -107,8 +107,7 @@ export class CornPopover extends HTMLElement {
   _clickListener = (evt) => {
     const path = (evt.composedPath ? evt.composedPath() : [evt.target]).filter((node) => node.nodeType === Node.ELEMENT_NODE);
     const insidePopover = path.some((node) => this.contains(node));
-    const insideTrigger = path.some((node) => this.trigger.contains(node));
-    console.log('insidePopover:', insidePopover, 'insideTrigger:', insideTrigger);
+    const insideTrigger = path.some((node) => this.trigger?.contains(node));
     if (!insidePopover && !insideTrigger) {
       this._close();
     }

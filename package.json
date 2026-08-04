@@ -48,7 +48,8 @@
     "format": "prettier --write \"src/**/*.{js,css,html}\"",
     "changelog:check": "bash scripts/check-changelog-fragment.sh",
     "changelog:release": "bash scripts/release-changelog.sh",
-    "release:stage": "node scripts/stage-release-package.mjs"
+    "release:stage": "node scripts/stage-release-package.mjs",
+    "tokens:export:figma": "node scripts/export-figma-tokens.mjs"
   },
   "keywords": [
     "design-system",

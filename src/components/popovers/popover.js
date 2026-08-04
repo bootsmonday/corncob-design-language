@@ -6,6 +6,7 @@ export class CornPopover extends HTMLElement {
   constructor() {
     super();
     this.isOpen = false;
+    this.positionClasses = ['top', 'top-left', 'top-right', 'bottom', 'bottom-left', 'bottom-right', 'right', 'right-top', 'right-bottom', 'left', 'left-top', 'left-bottom'];
   }
 
   /**
@@ -72,7 +73,7 @@ export class CornPopover extends HTMLElement {
   }
 
   _applyPositionClass() {
-    const positionClasses = ['top', 'top-left', 'top-right', 'bottom', 'bottom-left', 'bottom-right', 'right', 'right-top', 'right-bottom', 'left', 'left-top', 'left-bottom'];
+    const positionClasses = this.positionClasses;
 
     positionClasses.forEach((position) => {
       this.classList.remove(`${this.classPrefix || 'corn-popover--'}${position}`);
@@ -235,7 +236,7 @@ export class CornPopover extends HTMLElement {
     };
 
     const hasOverlap = Object.values(overlaps).some((value) => value === true);
-    const positionClasses = ['top', 'top-left', 'top-right', 'bottom', 'bottom-left', 'bottom-right', 'right', 'right-top', 'right-bottom', 'left', 'left-top', 'left-bottom'];
+    const positionClasses = this.positionClasses;
     const currentPosition = positionClasses.find((position) => this.classList.contains(`${this.classPrefix}${position}`)) || this._position || 'top';
 
     if (!hasOverlap) {

@@ -9,6 +9,13 @@ the "Changelog Release" GitHub Actions workflow.
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-08-04
+
+### Added
+
+- Popovers: Added support for additional popover positions: `top-left`, `top-right`, `right-top`, `right-bottom`, `bottom-left`, `bottom-right`, `left-top`, and `left-bottom`.
+
+
 ## [0.1.1] - 2026-06-16
 
 ### Fixed

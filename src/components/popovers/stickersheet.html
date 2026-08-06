@@ -105,22 +105,38 @@
   <div class="corn-popover--anchor">
     <button class="corn-button corn-pop" aria-controls="popover-bottom">Bottom</button>
     <corn-popover position="bottom" id="popover-bottom" class="corn-popover">
-      <ul>
-        <li><a href="#">Item 1</a></li>
-        <li><a href="#">Item 2</a></li>
-        <li><a href="#">Item 3</a></li>
-      </ul>
+      <fieldset class="corn-form--item corn-radio-button-group">
+        <legend>Group Label</legend>
+        <div class="corn-radio-button">
+          <input type="radio" id="example1" name="example" checked />
+          <label for="example1">Radio Button One</label>
+        </div>
+        <div class="corn-radio-button">
+          <input type="radio" id="example2" name="example" />
+          <label for="example2">Radio Button Two</label>
+        </div>
+      </fieldset>
     </corn-popover>
   </div>
   <h3>Bottom-Right Position</h3>
   <div class="corn-popover--anchor">
     <button class="corn-button corn-pop" aria-controls="popover-bottom-right">Bottom-Right</button>
     <corn-popover position="bottom-right" id="popover-bottom-right" class="corn-popover">
-      <ul>
-        <li><a href="#">Item 1</a></li>
-        <li><a href="#">Item 2</a></li>
-        <li><a href="#">Item 3</a></li>
-      </ul>
+      <fieldset class="corn-form--item corn-checkbox-group">
+        <legend>Group Label</legend>
+        <div class="corn-checkbox">
+          <input type="checkbox" id="example4" name="example" />
+          <label for="example4">Checkbox One</label>
+        </div>
+        <div class="corn-checkbox">
+          <input type="checkbox" id="example5" name="example" checked />
+          <label for="example5">Checkbox Two</label>
+        </div>
+        <div class="corn-checkbox">
+          <input type="checkbox" id="example6" name="example" />
+          <label for="example6">Checkbox Three</label>
+        </div>
+      </fieldset>
     </corn-popover>
   </div>
   <h3>Bottom-Left Position</h3>

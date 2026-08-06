@@ -1,4 +1,6 @@
-export class CornPopover extends HTMLElement {
+const template = document.createElement('template');
+
+export class CornSelect extends HTMLElement {
   /**
    * Constructor is called when the element is created.
    * Note:
@@ -6,9 +8,41 @@ export class CornPopover extends HTMLElement {
   constructor() {
     super();
     this.isOpen = false;
-    this.positionClasses = ['top', 'top-left', 'top-right', 'bottom', 'bottom-left', 'bottom-right', 'right', 'right-top', 'right-bottom', 'left', 'left-top', 'left-bottom'];
-  }
 
+    // const shadow = this.attachShadow({ mode: 'open' });
+    // shadow.appendChild(template.content.cloneNode(true));
+    this.id = this.id || `corn-select-${crypto.getRandomValues(new Uint32Array(1))[0].toString(36).substr(2, 9)}`;
+    this.controlID = crypto.getRandomValues(new Uint32Array(1))[0].toString(36).substr(2, 9);
+    // this.renderOptions();
+  }
+  renderOptions() {
+    const options = this.querySelectorAll('option');
+    const popover = this.querySelector('corn-popover');
+    options.forEach((option, index) => {
+      const wrapper = document.createElement('div');
+      wrapper.classList.add('corn-radio-button');
+      const label = document.createElement('label');
+      label.setAttribute('for', `corn-select-${this.controlID}-${index}`);
+      label.textContent = option.textContent;
+      wrapper.appendChild(label);
+      const input = document.createElement('input');
+      input.setAttribute('type', 'radio');
+      input.setAttribute('name', `corn-select-${this.controlID}`);
+      input.setAttribute('id', `corn-select-${this.controlID}-${index}`);
+      input.setAttribute('value', option.value);
+      wrapper.appendChild(input);
+      // wrapper.addEventListener('click', (e) => e.stopPropagation());
+      wrapper.addEventListener('click', (e) => {
+        console.log('click', e);
+        e.stopPropagation();
+        if (e.key === 'arrowUp' || e.key === 'arrowDown') {
+          e.stopPropagation();
+        }
+      });
+      option.replaceWith(wrapper);
+      popover.moveBefore(wrapper, null);
+    });
+  }
   /**
    * observedAttributes is a static getter that returns an array of attribute names to monitor for changes.
    * When any of these attributes change, the attributeChangedCallback method is called.
@@ -61,15 +95,20 @@ export class CornPopover extends HTMLElement {
    * The event listeners will handle user interactions such as clicking the trigger to open or close the popover.
    */
   connectedCallback() {
-    this.parent = this.closest('.corn-popover--anchor');
-    this.trigger = this.parent?.querySelector('.corn-pop');
-
-    if (!this.parent) return;
-    if (!this._position) this._position = 'top';
-    this.classPrefix = 'corn-popover--';
-    this._applyPositionClass();
-    this._cacheElements();
-    this._addEventListeners();
+    //<corn-popover id="popover-${crypto.getRandomValues(new Uint32Array(1))[0].toString(36).substr(2, 9)}" position="bottom" role="listbox"></corn-popover>
+    const popover = document.createElement('corn-popover');
+    popover.setAttribute('id', `popover-${crypto.getRandomValues(new Uint32Array(1))[0].toString(36).substr(2, 9)}`);
+    popover.setAttribute('position', 'bottom');
+    popover.setAttribute('role', 'listbox');
+    popover.classList.add('corn-popover');
+    this.setAttribute('aria-controls', popover.id);
+    this.parentNode.classList.add('corn-popover--anchor');
+    this.classList.add('corn-pop');
+    this.appendChild(popover);
+    this.renderOptions();
+    // this._applyPositionClass();
+    // this._cacheElements();
+    // this._addEventListeners();
   }
 
   _applyPositionClass() {
@@ -141,8 +180,6 @@ export class CornPopover extends HTMLElement {
    * @returns {void}
    */
   _trapFocus(evt) {
-    const focusableElements = this._getAllFocusableElements();
-    console.log('trapFocus', evt.key);
     if (evt.key === 'Escape') {
       this._close();
       evt.stopPropagation();
@@ -150,10 +187,9 @@ export class CornPopover extends HTMLElement {
       return;
     }
     if (evt.key !== 'Tab') return;
-    if (focusableElements.length === 0) return;
-    const firstElement = focusableElements[0];
-    const lastElement = focusableElements[focusableElements.length - 1];
-    console.log('firstElement', firstElement, 'lastElement', lastElement, 'activeElement', document.activeElement);
+    if (this.focusableElements.length === 0) return;
+    const firstElement = this.focusableElements[0];
+    const lastElement = this.focusableElements[this.focusableElements.length - 1];
     if (evt.shiftKey) {
       if (document.activeElement === firstElement) {
         evt.preventDefault();
@@ -332,9 +368,7 @@ export class CornPopover extends HTMLElement {
    * @returns {HTMLElement[]} An array of all focusable elements within the popover.
    */
   _getAllFocusableElements() {
-    let focusableElements = [...this.querySelectorAll('button, [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])')];
-    focusableElements = focusableElements.filter((el) => (el.getAttribute('type') === 'radio' && el.checked === false ? false : true));
-    return focusableElements;
+    return [...this.querySelectorAll('button, [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])')];
   }
 
   /**
@@ -383,4 +417,4 @@ export class CornPopover extends HTMLElement {
     this._removeEventListeners();
   }
 }
-customElements.define('corn-popover', CornPopover);
+customElements.define('corn-select', CornSelect);

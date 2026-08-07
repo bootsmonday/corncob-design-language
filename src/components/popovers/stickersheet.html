@@ -39,11 +39,17 @@
   <div class="corn-popover--anchor">
     <button class="corn-button corn-pop" aria-controls="popover-top">Default (Top)</button>
     <corn-popover position="top" id="popover-top" class="corn-popover">
-      <ul>
-        <li><a href="#">Item 1</a></li>
-        <li><a href="#">Item 2</a></li>
-        <li><a href="#">Item 3</a></li>
-      </ul>
+      <fieldset class="corn-form--item corn-radio-button-group">
+        <legend>Group Label</legend>
+        <div class="corn-radio-button">
+          <input type="radio" id="example1" name="example" checked />
+          <label for="example1">Radio Button One</label>
+        </div>
+        <div class="corn-radio-button">
+          <input type="radio" id="example2" name="example" />
+          <label for="example2">Radio Button Two</label>
+        </div>
+      </fieldset>
     </corn-popover>
   </div>
   <h3>Top-Right</h3>

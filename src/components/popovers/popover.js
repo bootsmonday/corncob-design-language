@@ -142,7 +142,7 @@ export class CornPopover extends HTMLElement {
    */
   _trapFocus(evt) {
     const focusableElements = this._getAllFocusableElements();
-    console.log('trapFocus', evt.key);
+
     if (evt.key === 'Escape') {
       this._close();
       evt.stopPropagation();
@@ -153,7 +153,6 @@ export class CornPopover extends HTMLElement {
     if (focusableElements.length === 0) return;
     const firstElement = focusableElements[0];
     const lastElement = focusableElements[focusableElements.length - 1];
-    console.log('firstElement', firstElement, 'lastElement', lastElement, 'activeElement', document.activeElement);
     if (evt.shiftKey) {
       if (document.activeElement === firstElement) {
         evt.preventDefault();
@@ -274,6 +273,31 @@ export class CornPopover extends HTMLElement {
       return secondary ? `${mirrorPrimary}-${secondary}` : mirrorPrimary;
     };
 
+    const getPreferredPositions = (position, overlapState) => {
+      const [primary] = position.split('-');
+      const positions = [position];
+
+      if (primary === 'top' || primary === 'bottom') {
+        if (overlapState.left) {
+          positions.push(`${primary}-left`);
+        }
+
+        if (overlapState.right) {
+          positions.push(`${primary}-right`);
+        }
+
+        if (overlapState.left && overlapState.right) {
+          positions.push(`${primary}-left`, `${primary}-right`);
+        }
+
+        if (overlapState.top || overlapState.bottom) {
+          positions.push(primary === 'top' ? 'bottom' : 'top');
+        }
+      }
+
+      return [...new Set(positions)];
+    };
+
     const positionDistance = (fromPosition, toPosition) => {
       const fromParts = fromPosition.split('-');
       const toParts = toPosition.split('-');
@@ -288,9 +312,7 @@ export class CornPopover extends HTMLElement {
       return distance;
     };
 
-    const mirroredPosition = getMirroredPosition(currentPosition);
-    const currentAxis = positionAxis(currentPosition);
-    const preferredPositions = [...new Set([currentPosition, mirroredPosition, ...positionClasses.filter((position) => positionAxis(position) === currentAxis), ...positionClasses.filter((position) => positionAxis(position) !== currentAxis)])];
+    const preferredPositions = getPreferredPositions(currentPosition, overlaps);
 
     setPositionClass(currentPosition);
     let bestPosition = currentPosition;

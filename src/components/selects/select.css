@@ -20,7 +20,7 @@
     border-color var(--cc-transition--time) var(--cc-transition--easing),
     background-color var(--cc-transition--time) var(--cc-transition--easing);
 
-  label {
+  > label {
     color: var(--cc-select--label--color);
     font-weight: var(--cc-select--label--font-weight);
     left: var(--cc-size-0);
@@ -35,17 +35,50 @@
 
   corn-select {
     corn-popover {
+      gap: 0;
+      padding: 0;
       width: 100%;
+    }
+
+    .corn-checkbox {
+      padding: 1rem 0.5rem;
+
+      input {
+        background: transparent;
+        border-color: transparent;
+
+        &::after {
+          border-color: var(--cc-blue-10);
+        }
+
+        &:focus {
+          box-shadow: none;
+        }
+
+        &:checked {
+          border-color: transparent;
+        }
+      }
+
+      &:has(input:focus) {
+        background-color: var(--cc-blue-60);
+        color: var(--cc-blue-10);
+      }
+
+      &:hover {
+        background-color: var(--cc-blue-60);
+        color: var(--cc-blue-10);
+      }
     }
 
     align-self: flex-end;
     background-color: #0f0;
     border: none;
+    border-radius: var(--cc-select--border-radius);
     color: var(--cc-select--color);
     display: flex;
     flex-grow: 1;
-    height: 20px;
-    margin-bottom: var(--cc-spacing--1);
+    height: 100%;
     outline: none;
     padding: var(--cc-select--padding);
 
@@ -78,7 +111,7 @@
       opacity: 1;
     }
 
-    label {
+    > label {
       font-size: var(--cc-size--1);
       top: var(--cc-spacing--2);
       transform: translateY(0);
@@ -111,7 +144,7 @@
       }
     }
 
-    label {
+    > label {
       color: var(--cc-select--color--disabled) !important;
       cursor: not-allowed !important;
     }
@@ -132,7 +165,7 @@
 
   corn-select {
     align-self: center;
-    margin-bottom: 0;
+    border-radius: var(--cc-border--radius--xs);
 
     &::placeholder {
       opacity: 1;
@@ -161,7 +194,7 @@
 
   &:has(corn-select:not(:placeholder-shown)),
   &:has(corn-select:focus) {
-    label {
+    > label {
       font-size: var(--cc-size-0);
     }
   }
@@ -173,7 +206,7 @@
 
   &:has(corn-select:not(:placeholder-shown)),
   &:has(corn-select:focus) {
-    label {
+    > label {
       font-size: var(--cc-size-1);
     }
   }
@@ -189,7 +222,7 @@
       background-color: rgb(from var(--cc-status--warning--background) r g b / 87.2%);
     }
 
-    label {
+    > label {
       color: var(--cc-status--warning--color);
     }
   }
@@ -212,7 +245,7 @@
       background-color: rgb(from var(--cc-status--error--background) r g b / 87.2%);
     }
 
-    label {
+    > label {
       color: var(--cc-status--error--color);
     }
   }
@@ -235,7 +268,7 @@
       background-color: rgb(from var(--cc-status--success--background) r g b / 87.2%);
     }
 
-    label {
+    > label {
       color: var(--cc-status--success--color);
     }
   }

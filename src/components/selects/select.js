@@ -1,44 +1,78 @@
 const template = document.createElement('template');
 
 export class CornSelect extends HTMLElement {
+  static formAssociated = true;
+  #internals;
+  #value = '';
   /**
    * Constructor is called when the element is created.
    * Note:
    */
   constructor() {
     super();
-    this.isOpen = false;
-
+    this.#internals = this.attachInternals();
+    this.setAttribute('role', 'combobox');
+    this.setAttribute('aria-haspopup', 'listbox');
+    this.setAttribute('aria-expanded', 'false');
+    this.setAttribute('tabindex', '0');
     // const shadow = this.attachShadow({ mode: 'open' });
     // shadow.appendChild(template.content.cloneNode(true));
     this.id = this.id || `corn-select-${crypto.getRandomValues(new Uint32Array(1))[0].toString(36).substr(2, 9)}`;
     this.controlID = crypto.getRandomValues(new Uint32Array(1))[0].toString(36).substr(2, 9);
     // this.renderOptions();
   }
+
+  /**
+   * connectedCallback is called when the element is added to the DOM.
+   * In this method, the component looks for its closest ancestor with the class 'corn-popover--anchor' and assigns it to this.parent.
+   * It also looks for a child element with the class 'corn-pop' within the parent and assigns it to this.trigger.
+   * If no parent is found, the method returns early, preventing further execution.
+   * If the position attribute was not set before, it defaults to 'top'.
+   * The method then constructs a class prefix for styling and adds a class to the element based on the position (e.g., 'corn-popover--top').
+   * Finally, it calls methods to cache elements and add event listeners for interactivity.
+   * This setup allows the popover to be associated with a trigger element and to be styled according to its position relative to the trigger.
+   * The event listeners will handle user interactions such as clicking the trigger to open or close the popover.
+   */
+  connectedCallback() {
+    //<corn-popover id="popover-${crypto.getRandomValues(new Uint32Array(1))[0].toString(36).substr(2, 9)}" position="bottom" role="listbox"></corn-popover>
+    const popover = document.createElement('corn-popover');
+    popover.setAttribute('id', `popover-${this.controlID}`);
+    popover.setAttribute('position', 'bottom');
+    popover.setAttribute('role', 'listbox');
+    popover.classList.add('corn-popover');
+    this.setAttribute('aria-controls', popover.id);
+    this.parentNode.classList.add('corn-popover--anchor');
+    this.classList.add('corn-pop');
+    this.appendChild(popover);
+    this._cacheElements();
+    this.renderOptions();
+    // this._applyPositionClass();
+
+    this._addEventListeners();
+  }
+  _getSizeModifier() {
+    const sizeModifiers = ['--xs', '--sm', '--md', '--lg', '--xl'];
+    const classList = Array.from(this.parentNode.classList);
+    const sizeModifier = sizeModifiers.find((modifier) => classList.some((className) => className.includes(modifier))) || '--md';
+    return sizeModifier || '--md';
+  }
   renderOptions() {
     const options = this.querySelectorAll('option');
-    const popover = this.querySelector('corn-popover');
+    const popover = this._popover;
+
     options.forEach((option, index) => {
       const wrapper = document.createElement('div');
-      wrapper.classList.add('corn-radio-button');
-      const label = document.createElement('label');
-      label.setAttribute('for', `corn-select-${this.controlID}-${index}`);
-      label.textContent = option.textContent;
-      wrapper.appendChild(label);
+      wrapper.classList.add('corn-checkbox', `corn-checkbox${this._getSizeModifier()}`);
       const input = document.createElement('input');
-      input.setAttribute('type', 'radio');
+      input.setAttribute('type', 'checkbox');
       input.setAttribute('name', `corn-select-${this.controlID}`);
       input.setAttribute('id', `corn-select-${this.controlID}-${index}`);
       input.setAttribute('value', option.value);
       wrapper.appendChild(input);
-      // wrapper.addEventListener('click', (e) => e.stopPropagation());
-      wrapper.addEventListener('click', (e) => {
-        console.log('click', e);
-        e.stopPropagation();
-        if (e.key === 'arrowUp' || e.key === 'arrowDown') {
-          e.stopPropagation();
-        }
-      });
+      const label = document.createElement('label');
+      label.setAttribute('for', `corn-select-${this.controlID}-${index}`);
+      label.textContent = option.textContent;
+      wrapper.appendChild(label);
       option.replaceWith(wrapper);
       popover.moveBefore(wrapper, null);
     });
@@ -57,6 +91,9 @@ export class CornSelect extends HTMLElement {
    * In this case, when the 'position' attribute changes, it updates the internal _position property and applies the corresponding position class.
    */
   attributeChangedCallback(name, oldValue, newValue) {
+    if (name === 'value') this.value = newValue;
+    if (name === 'disabled') this.#internals.ariaDisabled = newValue !== null;
+    //if (name === 'required') this.#updateValidity();
     if (name === 'position') {
       this._position = newValue || 'top';
       this._applyPositionClass();
@@ -75,40 +112,12 @@ export class CornSelect extends HTMLElement {
   handleEvent(evt) {
     switch (evt.type) {
       case 'click':
-        this._toggle(evt);
+        // this._toggle(evt);
         break;
       case 'keydown':
         this._trapFocus(evt);
         break;
     }
-  }
-
-  /**
-   * connectedCallback is called when the element is added to the DOM.
-   * In this method, the component looks for its closest ancestor with the class 'corn-popover--anchor' and assigns it to this.parent.
-   * It also looks for a child element with the class 'corn-pop' within the parent and assigns it to this.trigger.
-   * If no parent is found, the method returns early, preventing further execution.
-   * If the position attribute was not set before, it defaults to 'top'.
-   * The method then constructs a class prefix for styling and adds a class to the element based on the position (e.g., 'corn-popover--top').
-   * Finally, it calls methods to cache elements and add event listeners for interactivity.
-   * This setup allows the popover to be associated with a trigger element and to be styled according to its position relative to the trigger.
-   * The event listeners will handle user interactions such as clicking the trigger to open or close the popover.
-   */
-  connectedCallback() {
-    //<corn-popover id="popover-${crypto.getRandomValues(new Uint32Array(1))[0].toString(36).substr(2, 9)}" position="bottom" role="listbox"></corn-popover>
-    const popover = document.createElement('corn-popover');
-    popover.setAttribute('id', `popover-${crypto.getRandomValues(new Uint32Array(1))[0].toString(36).substr(2, 9)}`);
-    popover.setAttribute('position', 'bottom');
-    popover.setAttribute('role', 'listbox');
-    popover.classList.add('corn-popover');
-    this.setAttribute('aria-controls', popover.id);
-    this.parentNode.classList.add('corn-popover--anchor');
-    this.classList.add('corn-pop');
-    this.appendChild(popover);
-    this.renderOptions();
-    // this._applyPositionClass();
-    // this._cacheElements();
-    // this._addEventListeners();
   }
 
   _applyPositionClass() {
@@ -131,7 +140,7 @@ export class CornSelect extends HTMLElement {
    * The clickListener is added to the document when the popover is opened and removed when it's closed to manage event listeners efficiently.
    */
   _addEventListeners() {
-    this.trigger?.addEventListener('click', this);
+    // this.trigger?.addEventListener('click', this);
     this.addEventListener('keydown', this);
   }
 
@@ -172,6 +181,9 @@ export class CornSelect extends HTMLElement {
     }
   }
 
+  _getAllListOptions() {
+    return Array.from(this._popover.querySelectorAll('input[type="checkbox"]'));
+  }
   /**
    * _trapFocus is a method that traps the focus within the popover when it is open.
    * It listens for keydown events and handles the Tab and Shift+Tab keys to ensure that the focus cycles through the focusable elements within the popover.
@@ -180,29 +192,50 @@ export class CornSelect extends HTMLElement {
    * @returns {void}
    */
   _trapFocus(evt) {
-    if (evt.key === 'Escape') {
-      this._close();
-      evt.stopPropagation();
-      this.activeElement.focus();
-      return;
-    }
-    if (evt.key !== 'Tab') return;
-    if (this.focusableElements.length === 0) return;
-    const firstElement = this.focusableElements[0];
-    const lastElement = this.focusableElements[this.focusableElements.length - 1];
-    if (evt.shiftKey) {
-      if (document.activeElement === firstElement) {
+    console.log('trapFocus', evt, 'XXX');
+    if (evt.key === 'Tab') {
+      if (this._popover.isOpen) {
         evt.preventDefault();
-        lastElement.focus();
+        this._popover._close();
       }
-    } else {
-      if (document.activeElement === lastElement) {
+    }
+    if (evt.key === ' ' || evt.code === 'Space' || evt.key === 'Enter') {
+      evt.preventDefault();
+      if (!this._popover.isOpen) {
+        this._popover._open(evt);
         evt.preventDefault();
+      } else {
+        if (document.activeElement.type === 'checkbox') {
+          document.activeElement.checked = !document.activeElement.checked;
+        }
+      }
+    }
+
+    if (evt.key !== 'ArrowDown' && evt.key !== 'ArrowUp') return;
+    const selectOptions = this._getAllListOptions();
+    if (selectOptions.length === 0) return;
+    const firstElement = selectOptions[0];
+    const lastElement = selectOptions[selectOptions.length - 1];
+    if (evt.key === 'ArrowDown') {
+      evt.preventDefault();
+      if (document.activeElement === lastElement) {
         firstElement.focus();
+      } else {
+        const currentIndex = selectOptions.indexOf(document.activeElement);
+        const nextIndex = (currentIndex + 1) % selectOptions.length;
+        selectOptions[nextIndex].focus();
+      }
+    } else if (evt.key === 'ArrowUp') {
+      evt.preventDefault();
+      if (document.activeElement === firstElement) {
+        lastElement.focus();
+      } else {
+        const currentIndex = selectOptions.indexOf(document.activeElement);
+        const prevIndex = (currentIndex - 1 + selectOptions.length) % selectOptions.length;
+        selectOptions[prevIndex].focus();
       }
     }
   }
-
   /**
    * _cacheElements is a method that caches references to important elements and sets up initial state for the popover.
    * It determines the scroll parent of the popover using the _getScrollParent method, which is important for positioning the popover correctly within the viewport.
@@ -210,202 +243,34 @@ export class CornSelect extends HTMLElement {
    * This method is called during the connectedCallback to ensure that all necessary elements and state are set up when the component is added to the DOM.
    */
   _cacheElements() {
-    this.scrollEl = this._getScrollParent(this);
-    this.isOpen = false;
+    this._popover = this.querySelector('corn-popover');
   }
-
-  /**
-   * _getScrollParent is a method that recursively checks the ancestors of a given node to find the nearest scrollable parent element.
-   * It checks if the current node is an element and if its computed overflow style allows for scrolling.
-   * If it finds such an element, it returns it as the scroll parent.
-   * If it reaches the body element or the root of the document without finding a scrollable ancestor, it returns the body element as the default scroll parent.
-   * This method is crucial for determining how to position the popover correctly within the viewport, especially when dealing with nested scrollable containers.
-   *
-   * @param {*} node
-   * @returns
-   */
-  _getScrollParent(node) {
-    if (!node) return document.body;
-
-    // If we hit a ShadowRoot (DocumentFragment), continue from its host.
-    if (node.nodeType === Node.DOCUMENT_FRAGMENT_NODE) {
-      return node.host ? this._getScrollParent(node.host) : document.body;
-    }
-
-    if (node.nodeType === Node.DOCUMENT_NODE) return document.body;
-
-    if (node.nodeType !== Node.ELEMENT_NODE) {
-      return this._getScrollParent(node.parentNode);
-    }
-
-    const nodeStyle = window.getComputedStyle(node);
-    const overflowValue = `${nodeStyle.overflow}${nodeStyle.overflowX}${nodeStyle.overflowY}`;
-    const isScrollable = /(auto|scroll|overlay)/.test(overflowValue);
-
-    if (isScrollable || node.nodeName.toLowerCase() === 'body' || node.parentNode === null) {
-      return node;
-    }
-
-    return this._getScrollParent(node.parentNode);
+  get form() {
+    return this.#internals.form;
   }
-
-  /**
-   * _positionContent is a method that calculates the position of the popover and checks for any overlap with the boundaries of the scroll parent.
-   * It retrieves the bounding rectangles of both the scroll parent and the popover itself, and then determines if there is any overlap on each side (top, bottom, left, right). If an overlap is detected, it adjusts the classes on the popover to change its position accordingly (e.g., switching from top to bottom if there is an overlap at the top). This method ensures that the popover remains visible and properly positioned within the viewport, even when there are constraints due to scrolling or limited space.
-   * The method also accounts for the case when the scroll parent is the body element, adjusting the bottom value to ensure that the popover does not extend beyond the viewport height. By dynamically adjusting the position of the popover based on its visibility and available space, this method enhances the user experience by preventing content from being hidden or inaccessible due to overflow issues.
-   */
-  _positionContent() {
-    let scrollRect = this.scrollEl.getBoundingClientRect().toJSON();
-    // If the scroll parent is the body, we need to adjust the bottom value to account for the viewport height
-    if (this.scrollEl === document.body) {
-      if (scrollRect.bottom < window.innerHeight) {
-        scrollRect.bottom = window.innerHeight;
-      }
-    }
-
-    let popOverRect = this.getBoundingClientRect();
-
-    // Calculate overlap
-    const overlaps = {
-      left: popOverRect.left < scrollRect.left,
-      right: popOverRect.right > scrollRect.right,
-      top: popOverRect.top < scrollRect.top,
-      bottom: popOverRect.bottom > scrollRect.bottom,
-    };
-
-    const hasOverlap = Object.values(overlaps).some((value) => value === true);
-    const positionClasses = this.positionClasses;
-    const currentPosition = positionClasses.find((position) => this.classList.contains(`${this.classPrefix}${position}`)) || this._position || 'top';
-
-    if (!hasOverlap) {
-      this.overlapClass = null;
-      return;
-    }
-
-    const measureOverflow = () => {
-      const rect = this.getBoundingClientRect();
-      const overflowLeft = Math.max(scrollRect.left - rect.left, 0);
-      const overflowRight = Math.max(rect.right - scrollRect.right, 0);
-      const overflowTop = Math.max(scrollRect.top - rect.top, 0);
-      const overflowBottom = Math.max(rect.bottom - scrollRect.bottom, 0);
-
-      return overflowLeft + overflowRight + overflowTop + overflowBottom;
-    };
-
-    const setPositionClass = (position) => {
-      positionClasses.forEach((className) => {
-        this.classList.remove(`${this.classPrefix}${className}`);
-      });
-      this.classList.add(`${this.classPrefix}${position}`);
-    };
-
-    const positionAxis = (position) => {
-      const primary = position.split('-')[0];
-      return primary === 'left' || primary === 'right' ? 'horizontal' : 'vertical';
-    };
-
-    const getMirroredPosition = (position) => {
-      const [primary, secondary] = position.split('-');
-      const mirrorPrimary = { top: 'bottom', bottom: 'top', left: 'right', right: 'left' }[primary] || primary;
-      return secondary ? `${mirrorPrimary}-${secondary}` : mirrorPrimary;
-    };
-
-    const positionDistance = (fromPosition, toPosition) => {
-      const fromParts = fromPosition.split('-');
-      const toParts = toPosition.split('-');
-
-      let distance = Math.abs(fromParts.length - toParts.length);
-      const maxLength = Math.max(fromParts.length, toParts.length);
-
-      for (let i = 0; i < maxLength; i += 1) {
-        if (fromParts[i] !== toParts[i]) distance += 1;
-      }
-
-      return distance;
-    };
-
-    const mirroredPosition = getMirroredPosition(currentPosition);
-    const currentAxis = positionAxis(currentPosition);
-    const preferredPositions = [...new Set([currentPosition, mirroredPosition, ...positionClasses.filter((position) => positionAxis(position) === currentAxis), ...positionClasses.filter((position) => positionAxis(position) !== currentAxis)])];
-
-    setPositionClass(currentPosition);
-    let bestPosition = currentPosition;
-    let bestOverflow = measureOverflow();
-    let bestDistance = 0;
-
-    preferredPositions.forEach((candidatePosition) => {
-      setPositionClass(candidatePosition);
-      const candidateOverflow = measureOverflow();
-      const candidateDistance = positionDistance(currentPosition, candidatePosition);
-
-      const isBetterFit = candidateOverflow < bestOverflow;
-      const isTieButCloser = candidateOverflow === bestOverflow && candidateDistance < bestDistance;
-
-      if (isBetterFit || isTieButCloser) {
-        bestPosition = candidatePosition;
-        bestOverflow = candidateOverflow;
-        bestDistance = candidateDistance;
-      }
-    });
-
-    setPositionClass(bestPosition);
-
-    if (bestPosition === currentPosition) {
-      this.overlapClass = null;
-      return;
-    }
-
-    this.overlapClass = `${this.classPrefix}${bestPosition}`;
+  get name() {
+    return this.getAttribute('name');
   }
-
-  /**
-   *
-   * _getAllFocusableElements is a method that retrieves all focusable elements within the popover.
-   * It uses a query selector to find elements that are typically focusable, such as buttons, links, form controls, and any element with a tabindex that is not set to -1.
-   * This method is important for managing keyboard navigation within the popover, allowing the trapFocus method to cycle through these elements when the user presses the Tab key.
-   * By ensuring that only focusable elements are included in this list, the component can provide a better user experience and improve accessibility for users who rely on keyboard navigation.
-   *
-   * @returns {HTMLElement[]} An array of all focusable elements within the popover.
-   */
-  _getAllFocusableElements() {
-    return [...this.querySelectorAll('button, [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])')];
+  get type() {
+    return this.localName;
+  } // or a custom type
+  get validity() {
+    return this.#internals.validity;
   }
-
-  /**
-   * _open is a method that opens the popover.
-   * It first stores the currently active element to return focus to it when the popover is closed.
-   * It then checks for any overlap classes and adjusts the position of the popover accordingly.
-   * The method adds a class to indicate that the popover is open, sets the isOpen property to true, retrieves all focusable elements within the popover, and focuses the first one.
-   * Finally, it adds a click event listener to the document to listen for clicks outside the popover, allowing it to be closed when such clicks occur.
-   * This method ensures that the popover is properly displayed and that keyboard navigation is handled correctly for accessibility.
-   */
-  _open(evt) {
-    this.activeElement = evt?.currentTarget && typeof evt.currentTarget.focus === 'function' ? evt.currentTarget : document.activeElement;
-
-    if (this.overlapClass) {
-      this.classList.remove(this.overlapClass);
-      this.classList.add(this.classPrefix + this._position);
-    }
-
-    this.classList.add('corn-popover--open');
-    this.isOpen = true;
-    this.focusableElements = this._getAllFocusableElements();
-    this.focusableElements[0]?.focus({ focusVisible: true });
-    this._positionContent();
-    document.addEventListener('click', this._clickListener);
+  get validationMessage() {
+    return this.#internals.validationMessage;
   }
-
-  /**
-   * _close is a method that closes the popover.
-   * It sets the isOpen property to false, removes the class that indicates the popover is open, and removes the click event listener from the document to stop listening for clicks outside the popover.
-   * This method ensures that the popover is properly hidden and that event listeners are cleaned up to prevent memory leaks and unintended behavior when the popover is closed.
-   * By removing the click event listener, it also prevents the popover from being closed by clicks that occur after it has already been closed, which could lead to a confusing user experience.
-   * Overall, this method is essential for managing the state of the popover and ensuring that it behaves as expected when users interact with it.
-   */
-  _close() {
-    this.isOpen = false;
-    this.classList.remove('corn-popover--open');
-    document.removeEventListener('click', this._clickListener);
+  get willValidate() {
+    return this.#internals.willValidate;
+  }
+  // The actual value the form will submit
+  get value() {
+    return this.#value;
+  }
+  set value(v) {
+    this.#value = v ?? '';
+    this.#internals.setFormValue(this.#value); // ← this is what the form sees
+    this.#updateValidity();
   }
 
   /**
@@ -415,6 +280,16 @@ export class CornSelect extends HTMLElement {
    */
   disconnectedCallback() {
     this._removeEventListeners();
+  }
+  #updateValidity() {
+    const required = this.hasAttribute('required');
+    const empty = !this.#value;
+
+    if (required && empty) {
+      this.#internals.setValidity({ valueMissing: true }, 'Please fill out this field');
+    } else {
+      this.#internals.setValidity({}); // clear
+    }
   }
 }
 customElements.define('corn-select', CornSelect);

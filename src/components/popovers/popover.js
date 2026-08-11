@@ -5,6 +5,7 @@ export class CornPopover extends HTMLElement {
    */
   constructor() {
     super();
+    this.isShadow = this.getRootNode() instanceof ShadowRoot;
     this.isOpen = false;
     this.positionClasses = ['top', 'top-left', 'top-right', 'bottom', 'bottom-left', 'bottom-right', 'right', 'right-top', 'right-bottom', 'left', 'left-top', 'left-bottom'];
   }
@@ -61,8 +62,15 @@ export class CornPopover extends HTMLElement {
    * The event listeners will handle user interactions such as clicking the trigger to open or close the popover.
    */
   connectedCallback() {
+    // if (this.getRootNode() instanceof ShadowRoot) {
+    //   console.log('connectedCallback', this.getRootNode(), this.getRootNode().host);
+    // }
     this.parent = this.closest('.corn-popover--anchor');
     this.trigger = this.parent?.querySelector('.corn-pop');
+    if (!this.parent && this.getRootNode() instanceof ShadowRoot) {
+      this.parent = this.getRootNode().host.closest('.corn-popover--anchor');
+      this.trigger = this.getRootNode().querySelector('.corn-pop');
+    }
 
     if (!this.parent) return;
     if (!this._position) this._position = 'top';
@@ -105,6 +113,7 @@ export class CornPopover extends HTMLElement {
    * Overall, this method enhances the interactivity and usability of the popover component by allowing users to intuitively close it through common interactions.
    */
   _clickListener = (evt) => {
+    console.log('---------> clickListener', evt, evt.target, this, this.trigger);
     const path = (evt.composedPath ? evt.composedPath() : [evt.target]).filter((node) => node.nodeType === Node.ELEMENT_NODE);
     const insidePopover = path.some((node) => this.contains(node));
     const insideTrigger = path.some((node) => this.trigger?.contains(node));
@@ -126,6 +135,7 @@ export class CornPopover extends HTMLElement {
    * _toggle is a method that toggles the open state of the popover. If the popover is currently open, it calls the _close method to close it. If the popover is currently closed, it calls the _open method to open it. This method is typically called in response to user interactions, such as clicking the trigger element, allowing users to easily open and close the popover as needed.
    */
   _toggle(evt) {
+    console.log('popover toggle', this.isOpen);
     if (this.isOpen) {
       this._close();
     } else {
@@ -374,12 +384,12 @@ export class CornPopover extends HTMLElement {
       this.classList.remove(this.overlapClass);
       this.classList.add(this.classPrefix + this._position);
     }
-
     this.classList.add('corn-popover--open');
     this.isOpen = true;
     this.focusableElements = this._getAllFocusableElements();
     this.focusableElements[0]?.focus({ focusVisible: true });
     this._positionContent();
+    evt.stopPropagation();
     document.addEventListener('click', this._clickListener);
   }
 

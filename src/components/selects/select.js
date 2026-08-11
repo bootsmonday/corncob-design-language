@@ -1,5 +1,12 @@
+import CornPopoverStyles from '../popovers/popover.css?inline';
+import CornCheckboxStyles from '../checkboxes/checkbox.css?inline';
+
 const template = document.createElement('template');
 
+// this.shadowRoot.addEventListener('slotchange', (e) => {
+//   const assignedNodes = e.target.assignedNodes();
+//   console.log('Slotted light DOM nodes changed:', assignedNodes);
+// });
 export class CornSelect extends HTMLElement {
   static formAssociated = true;
   #internals;
@@ -10,6 +17,23 @@ export class CornSelect extends HTMLElement {
    */
   constructor() {
     super();
+    const shadow = this.attachShadow({ mode: 'open' });
+    this.uuid = crypto.getRandomValues(new Uint32Array(1))[0].toString(36).substr(2, 9);
+    this.id = this.id || `corn-select-${this.uuid}`;
+    this.classList.add('corn-popover--anchor');
+    template.innerHTML = `
+    <style>
+    ${CornPopoverStyles}
+    </style>
+    <div class="corn-pop" style="height: 100%;width: 100%;"></div>
+    <corn-popover id="popover-${this.uuid}" position="bottom" class="corn-popover corn-popover--bottom" role="listbox">
+      <slot></slot>
+      <div class="corn-select-list"></div>
+    </corn-popover>         
+    `;
+    shadow.appendChild(template.content.cloneNode(true));
+    this._slot = this.shadowRoot.querySelector('slot');
+    this._popover = this.shadowRoot.querySelector('corn-popover');
     this.#internals = this.attachInternals();
     this.setAttribute('role', 'combobox');
     this.setAttribute('aria-haspopup', 'listbox');
@@ -17,9 +41,14 @@ export class CornSelect extends HTMLElement {
     this.setAttribute('tabindex', '0');
     // const shadow = this.attachShadow({ mode: 'open' });
     // shadow.appendChild(template.content.cloneNode(true));
-    this.id = this.id || `corn-select-${crypto.getRandomValues(new Uint32Array(1))[0].toString(36).substr(2, 9)}`;
-    this.controlID = crypto.getRandomValues(new Uint32Array(1))[0].toString(36).substr(2, 9);
-    // this.renderOptions();
+    // this.id = this.id || `corn-select-${crypto.getRandomValues(new Uint32Array(1))[0].toString(36).substr(2, 9)}`;
+    // this.controlID = crypto.getRandomValues(new Uint32Array(1))[0].toString(36).substr(2, 9);
+    /*
+   <corn-popover id="popover-hhygm" position="bottom" class="corn-popover corn-popover--bottom" role="listbox">
+   <div class="corn-checkbox corn-checkbox--xs">
+   <input type="checkbox" name="corn-select-hhygm" id="corn-select-hhygm-0" value="option1"><label for="corn-select-hhygm-0">Option 1</label></div><div class="corn-checkbox corn-checkbox--xs"><input type="checkbox" name="corn-select-hhygm" id="corn-select-hhygm-1" value="option2"><label for="corn-select-hhygm-1">Option 2</label></div><div class="corn-checkbox corn-checkbox--xs"><input type="checkbox" name="corn-select-hhygm" id="corn-select-hhygm-2" value="option3"><label for="corn-select-hhygm-2">Option 3</label></div>
+   </corn-popover> 
+   */
   }
 
   /**
@@ -35,6 +64,21 @@ export class CornSelect extends HTMLElement {
    */
   connectedCallback() {
     //<corn-popover id="popover-${crypto.getRandomValues(new Uint32Array(1))[0].toString(36).substr(2, 9)}" position="bottom" role="listbox"></corn-popover>
+    // this._applyPositionClass();
+    //this.render();
+    // this._popover = this.shadowRoot.querySelector('corn-popover');
+    console.log('connectedCallback', this._popover);
+    // this.renderOptions();
+    this._addEventListeners();
+  }
+  _getSizeModifier() {
+    const sizeModifiers = ['--xs', '--sm', '--md', '--lg', '--xl'];
+    const classList = Array.from(this.parentNode.classList);
+    const sizeModifier = sizeModifiers.find((modifier) => classList.some((className) => className.includes(modifier))) || '--md';
+    return sizeModifier || '--md';
+  }
+
+  render() {
     const popover = document.createElement('corn-popover');
     popover.setAttribute('id', `popover-${this.controlID}`);
     popover.setAttribute('position', 'bottom');
@@ -46,20 +90,14 @@ export class CornSelect extends HTMLElement {
     this.appendChild(popover);
     this._cacheElements();
     this.renderOptions();
-    // this._applyPositionClass();
+    this._addSlotChangeListener();
+  }
 
-    this._addEventListeners();
-  }
-  _getSizeModifier() {
-    const sizeModifiers = ['--xs', '--sm', '--md', '--lg', '--xl'];
-    const classList = Array.from(this.parentNode.classList);
-    const sizeModifier = sizeModifiers.find((modifier) => classList.some((className) => className.includes(modifier))) || '--md';
-    return sizeModifier || '--md';
-  }
   renderOptions() {
-    const options = this.querySelectorAll('option');
-    const popover = this._popover;
-
+    const options = this._slot.assignedNodes().filter((node) => node.nodeType === Node.ELEMENT_NODE && node.tagName === 'OPTION');
+    const selectOptions = this._popover.querySelector('.corn-select-list');
+    selectOptions.innerHTML = '';
+    console.log('renderOptions', options, selectOptions);
     options.forEach((option, index) => {
       const wrapper = document.createElement('div');
       wrapper.classList.add('corn-checkbox', `corn-checkbox${this._getSizeModifier()}`);
@@ -73,8 +111,9 @@ export class CornSelect extends HTMLElement {
       label.setAttribute('for', `corn-select-${this.controlID}-${index}`);
       label.textContent = option.textContent;
       wrapper.appendChild(label);
-      option.replaceWith(wrapper);
-      popover.moveBefore(wrapper, null);
+      selectOptions.appendChild(wrapper);
+      //option.replaceWith(wrapper);
+      //popover.moveBefore(wrapper, null);
     });
   }
   /**
@@ -112,6 +151,8 @@ export class CornSelect extends HTMLElement {
   handleEvent(evt) {
     switch (evt.type) {
       case 'click':
+        console.log('click event', evt);
+        // this._popover._toggle(evt);
         // this._toggle(evt);
         break;
       case 'keydown':
@@ -142,6 +183,21 @@ export class CornSelect extends HTMLElement {
   _addEventListeners() {
     // this.trigger?.addEventListener('click', this);
     this.addEventListener('keydown', this);
+    this.addEventListener('click', this);
+
+    this._slot.addEventListener('slotchange', this._slotChangeListener);
+  }
+  _addSlotChangeListener() {
+    this._slot.addEventListener('slotchange', this._slotChangeListener);
+  }
+  _slotChangeListener = (e) => {
+    console.log('Slotted light DOM nodes changed:', e.target);
+    //this._slot.removeEventListener('slotchange', this._slotChangeListener);
+    this.renderOptions();
+  };
+
+  _removeSlotChangeListener() {
+    this._slot.removeEventListener('slotchange', this._slotChangeListener);
   }
 
   /**

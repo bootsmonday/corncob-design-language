@@ -2,6 +2,10 @@
 
 .corn-select,
 .corn-select--md {
+  option {
+    display: none;
+  }
+
   align-items: center;
   background-color: var(--cc-select--background);
   border: var(--cc-select--border);

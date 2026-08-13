@@ -16,7 +16,8 @@
   font-size: var(--cc-select--font-size--md);
   height: var(--cc-select--height--md);
   justify-content: flex-start;
-  line-height: 1;
+
+  /* line-height: 1; */
   outline: none;
   position: relative;
   transition:
@@ -38,6 +39,21 @@
   }
 
   corn-select {
+    align-self: flex-end;
+    background-color: #0f0;
+    border: none;
+    border-radius: var(--cc-select--border-radius);
+    color: var(--cc-select--color);
+    display: flex;
+    flex-grow: 1;
+    height: 100%;
+    outline: none;
+    padding: var(--cc-select--padding);
+
+    fieldset {
+      gap: 0;
+    }
+
     corn-popover {
       gap: 0;
       padding: 0;
@@ -45,7 +61,14 @@
     }
 
     .corn-checkbox {
-      padding: 1rem 0.5rem;
+      height: auto;
+      padding-left: 0.5rem;
+
+      label {
+        line-height: 1.5;
+
+        /* padding: 0.25rem; */
+      }
 
       input {
         background: transparent;
@@ -64,27 +87,32 @@
         }
       }
 
-      &:has(input:focus) {
-        background-color: var(--cc-blue-60);
-        color: var(--cc-blue-10);
+      &:has(input:checked) {
+        background-color: var(--cc-blue-20);
+        color: var(--cc-blue-80);
+
+        input {
+          &::after {
+            border-color: var(--cc-blue-80);
+          }
+        }
+
+        /* color: var(--cc-select--background); */
       }
 
+      &:has(input:focus) {
+        background-color: var(--cc-blue-30);
+        color: var(--cc-blue-80);
+
+        /* color: var(--cc-select--background); */
+      }
+
+      /*
       &:hover {
         background-color: var(--cc-blue-60);
         color: var(--cc-blue-10);
-      }
+      } */
     }
-
-    align-self: flex-end;
-    background-color: #0f0;
-    border: none;
-    border-radius: var(--cc-select--border-radius);
-    color: var(--cc-select--color);
-    display: flex;
-    flex-grow: 1;
-    height: 100%;
-    outline: none;
-    padding: var(--cc-select--padding);
 
     &::placeholder {
       opacity: 0;
@@ -92,7 +120,7 @@
     }
   }
 
-  &:hover {
+  /* &:hover {
     background-color: var(--cc-select--background--hover);
     cursor: pointer;
 
@@ -152,13 +180,21 @@
       color: var(--cc-select--color--disabled) !important;
       cursor: not-allowed !important;
     }
-  }
+  } */
 
   .corn-icon {
     color: currentcolor;
     fill: currentcolor;
     height: var(--cc-size-2);
     width: var(--cc-size-2);
+  }
+}
+
+.corn-select--shadow {
+  corn-popover {
+    gap: 0;
+    padding: 0;
+    width: 100%;
   }
 }
 

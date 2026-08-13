@@ -1,6 +1,3 @@
-import CornPopoverStyles from '../popovers/popover.css?inline';
-import CornCheckboxStyles from '../checkboxes/checkbox.css?inline';
-
 const template = document.createElement('template');
 
 // this.shadowRoot.addEventListener('slotchange', (e) => {
@@ -10,35 +7,40 @@ const template = document.createElement('template');
 export class CornSelect extends HTMLElement {
   static formAssociated = true;
   #internals;
-  #value = '';
+  #value = [];
+  #observer = null;
+  #isRendering = false;
+  #list = null; // the generated checkbox list container
+
   /**
    * Constructor is called when the element is created.
    * Note:
    */
   constructor() {
     super();
-    const shadow = this.attachShadow({ mode: 'open' });
+    // const shadow = this.attachShadow({ mode: 'open' });
     this.uuid = crypto.getRandomValues(new Uint32Array(1))[0].toString(36).substr(2, 9);
     this.id = this.id || `corn-select-${this.uuid}`;
-    this.classList.add('corn-popover--anchor');
-    template.innerHTML = `
-    <style>
-    ${CornPopoverStyles}
-    </style>
-    <div class="corn-pop" style="height: 100%;width: 100%;"></div>
-    <corn-popover id="popover-${this.uuid}" position="bottom" class="corn-popover corn-popover--bottom" role="listbox">
-      <slot></slot>
-      <div class="corn-select-list"></div>
-    </corn-popover>         
-    `;
-    shadow.appendChild(template.content.cloneNode(true));
-    this._slot = this.shadowRoot.querySelector('slot');
-    this._popover = this.shadowRoot.querySelector('corn-popover');
+    // this.classList.add('corn-popover--anchor');
+    // template.innerHTML = `
+
+    //   <div class="corn-pop" style="height: 100%;width: 100%;"></div>
+    //   <corn-popover id="popover-${this.uuid}" position="bottom" class="corn-popover corn-popover--bottom" role="listbox">
+    //     <slot></slot>
+    //     <div class="corn-select-list"></div>
+    //   </corn-popover>
+    // `;
+    // shadow.appendChild(template.content.cloneNode(true));
+    // this._slot = this.querySelector('slot');
+    // this._popover = this.querySelector('corn-popover');
     this.#internals = this.attachInternals();
     this.setAttribute('role', 'combobox');
     this.setAttribute('aria-haspopup', 'listbox');
     this.setAttribute('aria-expanded', 'false');
     this.setAttribute('tabindex', '0');
+
+    // Watch light-DOM <option> changes
+
     // const shadow = this.attachShadow({ mode: 'open' });
     // shadow.appendChild(template.content.cloneNode(true));
     // this.id = this.id || `corn-select-${crypto.getRandomValues(new Uint32Array(1))[0].toString(36).substr(2, 9)}`;
@@ -63,13 +65,27 @@ export class CornSelect extends HTMLElement {
    * The event listeners will handle user interactions such as clicking the trigger to open or close the popover.
    */
   connectedCallback() {
-    //<corn-popover id="popover-${crypto.getRandomValues(new Uint32Array(1))[0].toString(36).substr(2, 9)}" position="bottom" role="listbox"></corn-popover>
-    // this._applyPositionClass();
-    //this.render();
-    // this._popover = this.shadowRoot.querySelector('corn-popover');
-    console.log('connectedCallback', this._popover);
-    // this.renderOptions();
+    this.#render();
+    // this.#addEventListeners();
+    this.#observer = new MutationObserver((mutationlist) => {
+      console.log('MutationObserver triggered for <corn-select> light DOM changes', this.#isRendering, mutationlist);
+      if (this.#isRendering) return;
+      debugger;
+      this.#render();
+    });
+
+    this.connectObserver();
+
     this._addEventListeners();
+  }
+
+  connectObserver() {
+    this.#observer?.observe(this, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['value', 'disabled', 'selected', 'label'],
+    });
   }
   _getSizeModifier() {
     const sizeModifiers = ['--xs', '--sm', '--md', '--lg', '--xl'];
@@ -78,43 +94,84 @@ export class CornSelect extends HTMLElement {
     return sizeModifier || '--md';
   }
 
-  render() {
-    const popover = document.createElement('corn-popover');
-    popover.setAttribute('id', `popover-${this.controlID}`);
-    popover.setAttribute('position', 'bottom');
-    popover.setAttribute('role', 'listbox');
-    popover.classList.add('corn-popover');
-    this.setAttribute('aria-controls', popover.id);
+  #render() {
+    this.#isRendering = true;
+    this.#observer?.disconnect();
+    console.log('Rendering <corn-select> component...', this.#isRendering);
+    this._popover = document.createElement('corn-popover');
+    this._popover.setAttribute('id', `popover-${this.uuid}`);
+    this._popover.setAttribute('position', 'bottom');
+    this._popover.setAttribute('role', 'listbox');
+    this._popover.classList.add('corn-popover');
+    this.setAttribute('aria-controls', this._popover.id);
     this.parentNode.classList.add('corn-popover--anchor');
     this.classList.add('corn-pop');
-    this.appendChild(popover);
-    this._cacheElements();
-    this.renderOptions();
-    this._addSlotChangeListener();
-  }
+    const fieldSet = document.createElement('fieldset');
+    fieldSet.classList.add('corn-form--item', 'corn-checkbox-group');
 
-  renderOptions() {
-    const options = this._slot.assignedNodes().filter((node) => node.nodeType === Node.ELEMENT_NODE && node.tagName === 'OPTION');
-    const selectOptions = this._popover.querySelector('.corn-select-list');
-    selectOptions.innerHTML = '';
-    console.log('renderOptions', options, selectOptions);
+    //this._cacheElements();
+    // this.renderOptions();
+    const options = [...this.querySelectorAll(':scope > option')];
+
+    // const selectOptions = this._popover.querySelector('.corn-select-list');
+    // selectOptions.innerHTML = '';
     options.forEach((option, index) => {
+      option.hidden = true;
       const wrapper = document.createElement('div');
       wrapper.classList.add('corn-checkbox', `corn-checkbox${this._getSizeModifier()}`);
       const input = document.createElement('input');
       input.setAttribute('type', 'checkbox');
-      input.setAttribute('name', `corn-select-${this.controlID}`);
-      input.setAttribute('id', `corn-select-${this.controlID}-${index}`);
+      input.setAttribute('name', `corn-select-${this.uuid}`);
+      input.setAttribute('id', `corn-select-${this.uuid}-${index}`);
       input.setAttribute('value', option.value);
+      if (index === 0) input.setAttribute('checked', 'checked');
       wrapper.appendChild(input);
       const label = document.createElement('label');
-      label.setAttribute('for', `corn-select-${this.controlID}-${index}`);
+      label.setAttribute('for', `corn-select-${this.uuid}-${index}`);
       label.textContent = option.textContent;
       wrapper.appendChild(label);
-      selectOptions.appendChild(wrapper);
+      fieldSet.appendChild(wrapper);
+      //this.appendChild(wrapper);
+
       //option.replaceWith(wrapper);
       //popover.moveBefore(wrapper, null);
     });
+    this._popover.appendChild(fieldSet);
+    // if (this._popover.parentNode === this) this.removeChild(this._popover);
+    this.appendChild(this._popover);
+    this.#isRendering = false;
+    this.connectObserver();
+    console.log('rendered');
+    this.click();
+    // this._addSlotChangeListener();
+  }
+
+  renderOptions() {
+    console.log('Rendering options for <corn-select> component...');
+    const options = [...this.querySelectorAll(':scope > option')];
+
+    // const selectOptions = this._popover.querySelector('.corn-select-list');
+    // selectOptions.innerHTML = '';
+    options.forEach((option, index) => {
+      option.hidden = true;
+      const wrapper = document.createElement('div');
+      wrapper.classList.add('corn-checkbox', `corn-checkbox${this._getSizeModifier()}`);
+      const input = document.createElement('input');
+      input.setAttribute('type', 'checkbox');
+      input.setAttribute('name', `corn-select-${this.uuid}`);
+      input.setAttribute('id', `corn-select-${this.uuid}-${index}`);
+      input.setAttribute('value', option.value);
+      if (index === 0) input.setAttribute('checked', 'checked');
+      wrapper.appendChild(input);
+      const label = document.createElement('label');
+      label.setAttribute('for', `corn-select-${this.uuid}-${index}`);
+      label.textContent = option.textContent;
+      wrapper.appendChild(label);
+      this._popover.appendChild(wrapper);
+      //option.replaceWith(wrapper);
+      //popover.moveBefore(wrapper, null);
+    });
+    console.log('XXXXXXXXOptions rendered for <corn-select> component.', this.#isRendering);
   }
   /**
    * observedAttributes is a static getter that returns an array of attribute names to monitor for changes.
@@ -185,19 +242,7 @@ export class CornSelect extends HTMLElement {
     this.addEventListener('keydown', this);
     this.addEventListener('click', this);
 
-    this._slot.addEventListener('slotchange', this._slotChangeListener);
-  }
-  _addSlotChangeListener() {
-    this._slot.addEventListener('slotchange', this._slotChangeListener);
-  }
-  _slotChangeListener = (e) => {
-    console.log('Slotted light DOM nodes changed:', e.target);
-    //this._slot.removeEventListener('slotchange', this._slotChangeListener);
-    this.renderOptions();
-  };
-
-  _removeSlotChangeListener() {
-    this._slot.removeEventListener('slotchange', this._slotChangeListener);
+    //this._slot.addEventListener('slotchange', this._slotChangeListener);
   }
 
   /**

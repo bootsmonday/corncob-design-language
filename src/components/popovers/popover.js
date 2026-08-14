@@ -374,6 +374,8 @@ export class CornPopover extends HTMLElement {
    * It first stores the currently active element to return focus to it when the popover is closed.
    * It then checks for any overlap classes and adjusts the position of the popover accordingly.
    * The method adds a class to indicate that the popover is open, sets the isOpen property to true, retrieves all focusable elements within the popover, and focuses the first one.
+   * If the first focusable element is a checkbox, it checks for other checkboxes with the same name and focuses the first one that is checked.
+   * It then calls the _positionContent method to ensure that the popover is positioned correctly within the viewport.
    * Finally, it adds a click event listener to the document to listen for clicks outside the popover, allowing it to be closed when such clicks occur.
    * This method ensures that the popover is properly displayed and that keyboard navigation is handled correctly for accessibility.
    */
@@ -387,7 +389,15 @@ export class CornPopover extends HTMLElement {
     this.classList.add('corn-popover--open');
     this.isOpen = true;
     this.focusableElements = this._getAllFocusableElements();
-    this.focusableElements[0]?.focus({ focusVisible: true });
+    let firstFocusable = this.focusableElements[0];
+    if (firstFocusable && firstFocusable.type === 'checkbox') {
+      const checkboxName = firstFocusable.name;
+      const firstChecked = this.focusableElements.find((el) => el.type === 'checkbox' && el.name === checkboxName && el.checked);
+      if (firstChecked) {
+        firstFocusable = firstChecked;
+      }
+    }
+    firstFocusable?.focus({ focusVisible: true });
     this._positionContent();
     evt.stopPropagation();
     document.addEventListener('click', this._clickListener);

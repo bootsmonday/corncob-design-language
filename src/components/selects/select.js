@@ -38,19 +38,6 @@ export class CornSelect extends HTMLElement {
     this.setAttribute('aria-haspopup', 'listbox');
     this.setAttribute('aria-expanded', 'false');
     this.setAttribute('tabindex', '0');
-
-    // Watch light-DOM <option> changes
-
-    // const shadow = this.attachShadow({ mode: 'open' });
-    // shadow.appendChild(template.content.cloneNode(true));
-    // this.id = this.id || `corn-select-${crypto.getRandomValues(new Uint32Array(1))[0].toString(36).substr(2, 9)}`;
-    // this.controlID = crypto.getRandomValues(new Uint32Array(1))[0].toString(36).substr(2, 9);
-    /*
-   <corn-popover id="popover-hhygm" position="bottom" class="corn-popover corn-popover--bottom" role="listbox">
-   <div class="corn-checkbox corn-checkbox--xs">
-   <input type="checkbox" name="corn-select-hhygm" id="corn-select-hhygm-0" value="option1"><label for="corn-select-hhygm-0">Option 1</label></div><div class="corn-checkbox corn-checkbox--xs"><input type="checkbox" name="corn-select-hhygm" id="corn-select-hhygm-1" value="option2"><label for="corn-select-hhygm-1">Option 2</label></div><div class="corn-checkbox corn-checkbox--xs"><input type="checkbox" name="corn-select-hhygm" id="corn-select-hhygm-2" value="option3"><label for="corn-select-hhygm-2">Option 3</label></div>
-   </corn-popover> 
-   */
   }
 
   /**
@@ -70,7 +57,6 @@ export class CornSelect extends HTMLElement {
     this.#observer = new MutationObserver((mutationlist) => {
       console.log('MutationObserver triggered for <corn-select> light DOM changes', this.#isRendering, mutationlist);
       if (this.#isRendering) return;
-      debugger;
       this.#render();
     });
 
@@ -82,9 +68,9 @@ export class CornSelect extends HTMLElement {
   connectObserver() {
     this.#observer?.observe(this, {
       childList: true,
-      subtree: true,
+      subtree: false,
       attributes: true,
-      attributeFilter: ['value', 'disabled', 'selected', 'label'],
+      attributeFilter: ['value', 'disabled', 'selected', 'label', 'multiple'],
     });
   }
   _getSizeModifier() {
@@ -93,11 +79,37 @@ export class CornSelect extends HTMLElement {
     const sizeModifier = sizeModifiers.find((modifier) => classList.some((className) => className.includes(modifier))) || '--md';
     return sizeModifier || '--md';
   }
+  _updateCheckboxes(evt) {
+    const checkboxes = this._getAllListOptions();
+    const isMultiple = this.hasAttribute('multiple');
 
+    if (!isMultiple) {
+      checkboxes.forEach((checkbox) => {
+        if (checkbox !== evt.target) {
+          checkbox.checked = false;
+        }
+      });
+    }
+
+    const selectedValues = checkboxes.filter((checkbox) => checkbox.checked).map((checkbox) => checkbox.value);
+    this.value = selectedValues.join(', ');
+  }
+  _updateDisplayValue() {
+    //debugger;
+
+    const selectedOptions = [...this.querySelectorAll('input[type="checkbox"]:checked')];
+    console.log('Selected options:', selectedOptions);
+    const displayText = selectedOptions.map((option) => option.value).join(', ');
+    this._displayValue.textContent = displayText || this.getAttribute('placeholder') || 'Select an option...';
+  }
   #render() {
+    console.log('Rendering <corn-select> component...', this.getAttribute('multiple'));
+    this._displayValue = document.createElement('div');
+    this._displayValue.classList.add('corn-select--value', 'corn-pop');
+    this.appendChild(this._displayValue);
+
     this.#isRendering = true;
     this.#observer?.disconnect();
-    console.log('Rendering <corn-select> component...', this.#isRendering);
     this._popover = document.createElement('corn-popover');
     this._popover.setAttribute('id', `popover-${this.uuid}`);
     this._popover.setAttribute('position', 'bottom');
@@ -105,7 +117,7 @@ export class CornSelect extends HTMLElement {
     this._popover.classList.add('corn-popover');
     this.setAttribute('aria-controls', this._popover.id);
     this.parentNode.classList.add('corn-popover--anchor');
-    this.classList.add('corn-pop');
+    // this.classList.add('corn-pop');
     const fieldSet = document.createElement('fieldset');
     fieldSet.classList.add('corn-form--item', 'corn-checkbox-group');
 
@@ -140,9 +152,10 @@ export class CornSelect extends HTMLElement {
     // if (this._popover.parentNode === this) this.removeChild(this._popover);
     this.appendChild(this._popover);
     this.#isRendering = false;
+    this._updateDisplayValue();
     this.connectObserver();
     console.log('rendered');
-    this.click();
+    //this.click();
     // this._addSlotChangeListener();
   }
 
@@ -160,7 +173,7 @@ export class CornSelect extends HTMLElement {
       input.setAttribute('type', 'checkbox');
       input.setAttribute('name', `corn-select-${this.uuid}`);
       input.setAttribute('id', `corn-select-${this.uuid}-${index}`);
-      input.setAttribute('value', option.value);
+      input.setAttribute('value', option.value ? option.value : option.textContent);
       if (index === 0) input.setAttribute('checked', 'checked');
       wrapper.appendChild(input);
       const label = document.createElement('label');
@@ -171,7 +184,6 @@ export class CornSelect extends HTMLElement {
       //option.replaceWith(wrapper);
       //popover.moveBefore(wrapper, null);
     });
-    console.log('XXXXXXXXOptions rendered for <corn-select> component.', this.#isRendering);
   }
   /**
    * observedAttributes is a static getter that returns an array of attribute names to monitor for changes.
@@ -190,10 +202,6 @@ export class CornSelect extends HTMLElement {
     if (name === 'value') this.value = newValue;
     if (name === 'disabled') this.#internals.ariaDisabled = newValue !== null;
     //if (name === 'required') this.#updateValidity();
-    if (name === 'position') {
-      this._position = newValue || 'top';
-      this._applyPositionClass();
-    }
   }
 
   /**
@@ -208,7 +216,18 @@ export class CornSelect extends HTMLElement {
   handleEvent(evt) {
     switch (evt.type) {
       case 'click':
-        console.log('click event', evt);
+        if (evt.target.tagName === 'INPUT' && evt.target.type === 'checkbox') {
+          // console.log('XXXXXXX ------> click event', this.getAttribute('multiple') !== null);
+          this._updateCheckboxes(evt);
+          if (this.getAttribute('multiple') === null) {
+            this._popover._close();
+          }
+          this._updateDisplayValue();
+          //evt.stopPropagation();
+        } else {
+          console.log('------> click event', evt, this._popover.isOpen);
+        }
+
         // this._popover._toggle(evt);
         // this._toggle(evt);
         break;
@@ -216,17 +235,6 @@ export class CornSelect extends HTMLElement {
         this._trapFocus(evt);
         break;
     }
-  }
-
-  _applyPositionClass() {
-    const positionClasses = this.positionClasses;
-
-    positionClasses.forEach((position) => {
-      this.classList.remove(`${this.classPrefix || 'corn-popover--'}${position}`);
-    });
-
-    const position = this._position || 'top';
-    this.classList.add(`${this.classPrefix || 'corn-popover--'}${position}`);
   }
 
   /**
@@ -246,40 +254,11 @@ export class CornSelect extends HTMLElement {
   }
 
   /**
-   * _clickListener is a function that listens for click events on the document. It checks if the click occurred outside of the popover and its trigger element. If the click is detected outside of these elements, it calls the _close method to close the popover. This allows users to click anywhere outside the popover to dismiss it, enhancing usability and providing a common interaction pattern for popovers and modals.
-   * The _clickListener is added to the document when the popover is opened and removed when it's closed to ensure that it only listens for clicks when necessary, preventing unnecessary event handling and potential performance issues.
-   * This approach also helps to avoid conflicts with other click events on the page, as the listener is only active when the popover is open.
-   * By checking if the click target is not within the popover or its trigger, it ensures that interactions with the popover itself or its trigger do not inadvertently close it.
-   * This functionality is crucial for providing a seamless user experience, allowing users to easily dismiss the popover without having to interact with specific close buttons or controls.
-   * Overall, this method enhances the interactivity and usability of the popover component by allowing users to intuitively close it through common interactions.
-   */
-  _clickListener = (evt) => {
-    const path = (evt.composedPath ? evt.composedPath() : [evt.target]).filter((node) => node.nodeType === Node.ELEMENT_NODE);
-    const insidePopover = path.some((node) => this.contains(node));
-    const insideTrigger = path.some((node) => this.trigger?.contains(node));
-    if (!insidePopover && !insideTrigger) {
-      this._close();
-    }
-  };
-
-  /**
    * _removeEventListeners is a method that removes the event listeners that were added in the _addEventListeners method. It removes the click event listener from the trigger element and the keydown event listener from the popover itself. It also removes the clickListener from the document to prevent it from listening for clicks when the popover is closed. This cleanup is important to avoid memory leaks and unintended behavior when the component is removed from the DOM or when it is no longer needed.
    */
   _removeEventListeners() {
     this.trigger?.removeEventListener('click', this);
     this.removeEventListener('keydown', this);
-    document.removeEventListener('click', this._clickListener);
-  }
-
-  /**
-   * _toggle is a method that toggles the open state of the popover. If the popover is currently open, it calls the _close method to close it. If the popover is currently closed, it calls the _open method to open it. This method is typically called in response to user interactions, such as clicking the trigger element, allowing users to easily open and close the popover as needed.
-   */
-  _toggle(evt) {
-    if (this.isOpen) {
-      this._close();
-    } else {
-      this._open(evt);
-    }
   }
 
   _getAllListOptions() {

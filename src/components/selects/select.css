@@ -2,10 +2,6 @@
 
 .corn-select,
 .corn-select--md {
-  option {
-    display: none;
-  }
-
   align-items: center;
   background-color: var(--cc-select--background);
   border: var(--cc-select--border);
@@ -25,10 +21,32 @@
     border-color var(--cc-transition--time) var(--cc-transition--easing),
     background-color var(--cc-transition--time) var(--cc-transition--easing);
 
+  option {
+    display: none;
+  }
+
+  .corn-select--value {
+    align-items: center;
+    background-color: #0ff;
+    color: var(--cc-select--color);
+    display: flex;
+    flex-grow: 1;
+    gap: var(--cc-spacing--2);
+    height: 100%;
+    padding: var(--cc-select--padding);
+    width: 100%;
+  }
+
+  &:has(.corn-select--value:empty) {
+    > label { opacity: 1; }
+  }
+
   > label {
     color: var(--cc-select--label--color);
+    display: none;
     font-weight: var(--cc-select--label--font-weight);
     left: var(--cc-size-0);
+    opacity: 0;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -48,7 +66,6 @@
     flex-grow: 1;
     height: 100%;
     outline: none;
-    padding: var(--cc-select--padding);
 
     fieldset {
       gap: 0;

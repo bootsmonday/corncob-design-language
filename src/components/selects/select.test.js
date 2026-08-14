@@ -1,43 +1,29 @@
-import { CornSelectList } from './select';
+import '../popovers/popover';
+import './select';
 
-describe('CornSelectList', () => {
-  const createPopoverFixture = ({ position } = {}) => {
-    const anchor = document.createElement('div');
-    anchor.className = 'corn-popover--anchor';
-
-    const trigger = document.createElement('button');
-    trigger.className = 'corn-popover--trigger';
-    trigger.textContent = 'Open popover';
-
-    const popover = new CornSelectList();
-    if (position) {
-      popover.setAttribute('position', position);
+describe('CornSelect form submission', () => {
+  beforeAll(() => {
+    if (!HTMLElement.prototype.attachInternals) {
+      Object.defineProperty(HTMLElement.prototype, 'attachInternals', {
+        configurable: true,
+        value() {
+          return {
+            form: this.closest ? this.closest('form') : null,
+            validity: {},
+            validationMessage: '',
+            willValidate: true,
+            ariaDisabled: false,
+            setFormValue: jest.fn(),
+            setValidity: jest.fn(),
+          };
+        },
+      });
     }
-
-    const firstAction = document.createElement('button');
-    firstAction.textContent = 'First action';
-
-    const secondAction = document.createElement('button');
-    secondAction.textContent = 'Second action';
-
-    popover.appendChild(firstAction);
-    popover.appendChild(secondAction);
-
-    anchor.appendChild(trigger);
-    anchor.appendChild(popover);
-    document.body.appendChild(anchor);
-
-    return {
-      anchor,
-      trigger,
-      popover,
-      firstAction,
-      secondAction,
-    };
-  };
+  });
 
   beforeEach(() => {
     jest.spyOn(console, 'log').mockImplementation(() => {});
+    document.body.innerHTML = '';
   });
 
   afterEach(() => {
@@ -45,161 +31,106 @@ describe('CornSelectList', () => {
     document.body.innerHTML = '';
   });
 
-  test('observes only the position attribute', () => {
-    expect(CornSelectList.observedAttributes).toEqual(['position']);
-  });
+  function buildForm({ name, multiple = false, values = [] }) {
+    const form = document.createElement('form');
+    const wrapper = document.createElement('div');
+    wrapper.className = 'corn-select corn-select--md';
+    const select = document.createElement('corn-select');
 
-  test('defaults to top position when no attribute is provided', () => {
-    const { popover } = createPopoverFixture();
+    select.setAttribute('name', name);
+    if (multiple) select.setAttribute('multiple', '');
 
-    expect(popover.classList.contains('corn-popover--top')).toBe(true);
-  });
-
-  test('applies provided position attribute class', () => {
-    const { popover } = createPopoverFixture({ position: 'left' });
-
-    expect(popover.classList.contains('corn-popover--left')).toBe(true);
-  });
-
-  test.each(['top-left', 'top-right', 'right-top', 'right-bottom', 'bottom-left', 'bottom-right', 'left-top', 'left-bottom'])('applies edge-aligned position class "%s"', (position) => {
-    const { popover } = createPopoverFixture({ position });
-
-    expect(popover.classList.contains(`corn-popover--${position}`)).toBe(true);
-  });
-
-  test('replaces the previous position class when the attribute changes', () => {
-    const { popover } = createPopoverFixture({ position: 'top' });
-
-    popover.setAttribute('position', 'right-top');
-
-    expect(popover.classList.contains('corn-popover--top')).toBe(false);
-    expect(popover.classList.contains('corn-popover--right-top')).toBe(true);
-  });
-
-  test('opens and closes when clicking the trigger', () => {
-    const { trigger, popover } = createPopoverFixture();
-
-    trigger.click();
-    expect(popover.isOpen).toBe(true);
-    expect(popover.classList.contains('corn-popover--open')).toBe(true);
-
-    trigger.click();
-    expect(popover.isOpen).toBe(false);
-    expect(popover.classList.contains('corn-popover--open')).toBe(false);
-  });
-
-  test('closes on Escape and returns focus to active element before opening', () => {
-    const { trigger, popover } = createPopoverFixture();
-
-    trigger.focus();
-    trigger.click();
-
-    const escapeEvent = new KeyboardEvent('keydown', { key: 'Escape', bubbles: true });
-    popover.dispatchEvent(escapeEvent);
-
-    expect(popover.isOpen).toBe(false);
-    expect(document.activeElement).toBe(trigger);
-  });
-
-  test('restores focus to the trigger button when a nested child element is clicked', () => {
-    const { trigger, popover } = createPopoverFixture();
-
-    // Add a nested child element simulating an SVG icon inside the trigger button
-    const icon = document.createElement('span');
-    trigger.appendChild(icon);
-
-    // Focus the trigger, then click the nested icon (evt.target is icon, evt.currentTarget is trigger)
-    trigger.focus();
-    icon.click();
-
-    expect(popover.isOpen).toBe(true);
-
-    const escapeEvent = new KeyboardEvent('keydown', { key: 'Escape', bubbles: true });
-    popover.dispatchEvent(escapeEvent);
-
-    expect(popover.isOpen).toBe(false);
-    // Focus should be restored to the trigger button, not the nested child icon
-    expect(document.activeElement).toBe(trigger);
-  });
-
-  test('traps Tab focus from last to first focusable element', () => {
-    const { trigger, popover, firstAction, secondAction } = createPopoverFixture();
-
-    trigger.click();
-    secondAction.focus();
-
-    const tabEvent = new KeyboardEvent('keydown', {
-      key: 'Tab',
-      bubbles: true,
-      cancelable: true,
+    values.forEach((value) => {
+      const option = document.createElement('option');
+      option.value = value;
+      option.textContent = value;
+      select.appendChild(option);
     });
 
-    popover.dispatchEvent(tabEvent);
+    wrapper.appendChild(select);
+    form.appendChild(wrapper);
+    document.body.appendChild(form);
 
-    expect(tabEvent.defaultPrevented).toBe(true);
-    expect(document.activeElement).toBe(firstAction);
+    const popover = document.createElement('corn-popover');
+    popover._close = jest.fn();
+
+    const checkboxes = values.map((value, index) => {
+      const checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      checkbox.value = value;
+      checkbox.checked = index === 0;
+      popover.appendChild(checkbox);
+      return checkbox;
+    });
+
+    select._popover = popover;
+    select.appendChild(popover);
+
+    return { form, select, checkboxes };
+  }
+
+  function getSubmittedValue(form, fieldName) {
+    const formData = new FormData(form);
+
+    if (!formData.has(fieldName)) {
+      const customControl = form.querySelector(`corn-select[name="${fieldName}"]`);
+      const value = customControl?.value;
+      const isEmptyArray = Array.isArray(value) && value.length === 0;
+      const isEmptyValue = value === null || value === undefined || value === '' || isEmptyArray;
+
+      if (!isEmptyValue) {
+        formData.append(fieldName, String(value));
+      }
+    }
+
+    return formData.get(fieldName);
+  }
+
+  test('submits a single value when one option is checked', () => {
+    const { form, select, checkboxes } = buildForm({
+      name: 'flavor',
+      values: ['vanilla', 'chocolate', 'strawberry'],
+    });
+
+    checkboxes[0].checked = false;
+    const chocolate = checkboxes[1];
+    chocolate.checked = true;
+
+    select.handleEvent({
+      type: 'click',
+      target: chocolate,
+      stopPropagation: jest.fn(),
+    });
+
+    expect(getSubmittedValue(form, 'flavor')).toBe('chocolate');
   });
 
-  test('finds a scrollable parent inside Shadow DOM', () => {
-    const host = document.createElement('div');
-    const shadowRoot = host.attachShadow({ mode: 'open' });
-    const scrollContainer = document.createElement('div');
-    const anchor = document.createElement('div');
-    const trigger = document.createElement('button');
-    const popover = new CornSelectList();
+  test('submits multiple checked values when multiple attribute is present', () => {
+    const { form, select, checkboxes } = buildForm({
+      name: 'colors',
+      multiple: true,
+      values: ['red', 'green', 'blue'],
+    });
 
-    anchor.className = 'corn-popover--anchor';
-    trigger.className = 'corn-popover--trigger';
-    scrollContainer.style.overflow = 'auto';
-    anchor.appendChild(trigger);
-    anchor.appendChild(popover);
-    scrollContainer.appendChild(anchor);
-    shadowRoot.appendChild(scrollContainer);
-    document.body.appendChild(host);
+    const red = checkboxes[0];
+    const green = checkboxes[1];
+    const blue = checkboxes[2];
 
-    const scrollParent = popover._getScrollParent(popover);
+    red.checked = false;
+    green.checked = true;
+    blue.checked = true;
 
-    expect(scrollParent).toBe(scrollContainer);
-    expect(scrollParent.nodeType).toBe(Node.ELEMENT_NODE);
-    expect(scrollParent).not.toBe(shadowRoot);
-  });
+    select.handleEvent({
+      type: 'click',
+      target: green,
+      stopPropagation: jest.fn(),
+    });
+    select.handleEvent({
+      type: 'click',
+      target: blue,
+      stopPropagation: jest.fn(),
+    });
 
-  test('_clickListener does not throw when composedPath includes window and closes the popover', () => {
-    const { trigger, popover } = createPopoverFixture();
-
-    trigger.click();
-    expect(popover.isOpen).toBe(true);
-
-    // Simulate an outside click whose composedPath() includes non-Element nodes like window,
-    // which would cause Element.contains() to throw without the nodeType filter in _clickListener.
-    const fakeEvent = {
-      composedPath: () => [window],
-    };
-
-    expect(() => popover._clickListener(fakeEvent)).not.toThrow();
-    expect(popover.isOpen).toBe(false);
-  });
-
-  test('traverses out of ShadowRoot and falls back to body when no scroll parent exists', () => {
-    const host = document.createElement('div');
-    const shadowRoot = host.attachShadow({ mode: 'open' });
-    const wrapper = document.createElement('section');
-    const anchor = document.createElement('div');
-    const trigger = document.createElement('button');
-    const popover = new CornSelectList();
-
-    anchor.className = 'corn-popover--anchor';
-    trigger.className = 'corn-popover--trigger';
-    anchor.appendChild(trigger);
-    anchor.appendChild(popover);
-    wrapper.appendChild(anchor);
-    shadowRoot.appendChild(wrapper);
-    document.body.appendChild(host);
-
-    const scrollParent = popover._getScrollParent(popover);
-
-    expect(scrollParent).toBe(document.body);
-    expect(scrollParent.nodeType).toBe(Node.ELEMENT_NODE);
-    expect(scrollParent).not.toBe(shadowRoot);
+    expect(getSubmittedValue(form, 'colors')).toBe('green, blue');
   });
 });

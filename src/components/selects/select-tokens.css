@@ -30,7 +30,9 @@
   --cc-select--height--md: var(--cc-form--item--size--md);
   --cc-select--height--lg: var(--cc-form--item--size--lg);
   --cc-select--height--xl: var(--cc-form--item--size--xl);
-  --cc-select--padding: 0 var(--cc-size-0);
+  --cc-select--padding: 0 var(--cc-size-0) var(--cc-spacing--1);
+  --cc-select--padding--xs: 0 var(--cc-size-0);
+  --cc-select--padding--sm: 0 var(--cc-size-0);
   --cc-select--label--color: var(--cc-blue-60);
   --cc-select--label--font-weight: 500;
   --cc-select--focus-ring: var(--cc-form--item--focus-ring);

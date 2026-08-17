@@ -1,38 +1,40 @@
-const template = document.createElement('template');
+/**
+ * CornSelect is a custom HTML element that represents a select dropdown component with support for multiple selections.
+ * It extends the HTMLElement class and implements the FormAssociated interface, allowing it to be used in forms and participate in form submission.
+ * The component uses a popover to display the list of options, and it supports keyboard navigation and accessibility features.
+ * It also observes changes to its light DOM children (option elements) and updates its internal state accordingly.
+ * The component can be configured with attributes such as 'multiple', 'required', and 'disabled' to control its behavior.
+ * The CornSelect component is designed to be used in web applications where a custom select dropdown is needed, providing a more flexible and customizable alternative to the native HTML select element.
+ * It is part of the Corncob Design Language, which provides a set of reusable UI components for building web applications.
+ *
+ * @class CornSelect
+ * @extends HTMLElement
+ * @implements FormAssociated
+ * @example
+ * <corn-select name="my-select" multiple required>
+ *   <option value="option1">Option 1</option>
+ *   <option value="option2">Option 2</option>
+ *   <option value="option3">Option 3</option>
+ * </corn-select>
+ */
 
-// this.shadowRoot.addEventListener('slotchange', (e) => {
-//   const assignedNodes = e.target.assignedNodes();
-//   console.log('Slotted light DOM nodes changed:', assignedNodes);
-// });
 export class CornSelect extends HTMLElement {
   static formAssociated = true;
   #internals;
   #value = [];
   #observer = null;
   #isRendering = false;
-  #list = null; // the generated checkbox list container
+  #list = null;
 
   /**
-   * Constructor is called when the element is created.
-   * Note:
+   * constructor initializes the CornSelect component, setting up its internal state and attributes. It generates a unique identifier for the component instance, attaches the FormAssociated internals, and sets ARIA attributes for accessibility. The constructor also sets the tabindex to make the component focusable.
    */
   constructor() {
     super();
-    // const shadow = this.attachShadow({ mode: 'open' });
+    // this value
     this.uuid = crypto.getRandomValues(new Uint32Array(1))[0].toString(36).substr(2, 9);
     this.id = this.id || `corn-select-${this.uuid}`;
-    // this.classList.add('corn-popover--anchor');
-    // template.innerHTML = `
 
-    //   <div class="corn-pop" style="height: 100%;width: 100%;"></div>
-    //   <corn-popover id="popover-${this.uuid}" position="bottom" class="corn-popover corn-popover--bottom" role="listbox">
-    //     <slot></slot>
-    //     <div class="corn-select-list"></div>
-    //   </corn-popover>
-    // `;
-    // shadow.appendChild(template.content.cloneNode(true));
-    // this._slot = this.querySelector('slot');
-    // this._popover = this.querySelector('corn-popover');
     this.#internals = this.attachInternals();
     this.setAttribute('role', 'combobox');
     this.setAttribute('aria-haspopup', 'listbox');
@@ -41,30 +43,24 @@ export class CornSelect extends HTMLElement {
   }
 
   /**
-   * connectedCallback is called when the element is added to the DOM.
-   * In this method, the component looks for its closest ancestor with the class 'corn-popover--anchor' and assigns it to this.parent.
-   * It also looks for a child element with the class 'corn-pop' within the parent and assigns it to this.trigger.
-   * If no parent is found, the method returns early, preventing further execution.
-   * If the position attribute was not set before, it defaults to 'top'.
-   * The method then constructs a class prefix for styling and adds a class to the element based on the position (e.g., 'corn-popover--top').
-   * Finally, it calls methods to cache elements and add event listeners for interactivity.
-   * This setup allows the popover to be associated with a trigger element and to be styled according to its position relative to the trigger.
-   * The event listeners will handle user interactions such as clicking the trigger to open or close the popover.
+   * connectedCallback is a lifecycle method that is called when the element is added to the DOM. In this method, we call the render method to set up the initial structure of the component, and we create a MutationObserver to watch for changes in the light DOM children (option elements). When changes are detected, we re-render the component to reflect the updated options. We also set up event listeners for user interactions with the component.
    */
   connectedCallback() {
-    this.#render();
-    // this.#addEventListeners();
+    this.render();
     this.#observer = new MutationObserver((mutationlist) => {
       console.log('MutationObserver triggered for <corn-select> light DOM changes', this.#isRendering, mutationlist);
       if (this.#isRendering) return;
-      this.#render();
+      this.render();
     });
 
     this.connectObserver();
-
     this._addEventListeners();
   }
 
+  /**
+   * connectObserver is a method that sets up the MutationObserver to observe changes in the light DOM children of the CornSelect component. It configures the observer to watch for changes in child elements, attributes, and specific attribute filters (value, disabled, selected, label, multiple). When changes are detected, the observer will trigger a callback to re-render the component and update its internal state accordingly. This ensures that the component remains in sync with its light DOM children and reflects any changes made to the option elements.
+   * The connectObserver method is called during the connectedCallback to ensure that the observer is set up when the component is added to the DOM.
+   */
   connectObserver() {
     this.#observer?.observe(this, {
       childList: true,
@@ -73,12 +69,21 @@ export class CornSelect extends HTMLElement {
       attributeFilter: ['value', 'disabled', 'selected', 'label', 'multiple'],
     });
   }
+  /**
+   * _getSizeModifier is a method that determines the size modifier for the CornSelect component based on the class names of its parent element. It checks for specific size modifiers (--xs, --sm, --md, --lg, --xl) in the parent's class list and returns the first matching modifier. If no size modifier is found, it defaults to '--md'. This method allows the component to adapt its appearance based on the size specified by its parent element's classes.
+   *
+   */
   _getSizeModifier() {
     const sizeModifiers = ['--xs', '--sm', '--md', '--lg', '--xl'];
     const classList = Array.from(this.parentNode.classList);
     const sizeModifier = sizeModifiers.find((modifier) => classList.some((className) => className.includes(modifier))) || '--md';
     return sizeModifier || '--md';
   }
+
+  /**
+   * _updateCheckboxes is a method that updates the state of the checkboxes in the CornSelect component when a user interacts with them. It retrieves all checkbox options and checks if the component has the 'multiple' attribute. If it does not, it ensures that only one checkbox can be selected at a time by unchecking all other checkboxes when one is checked. It then collects the values of all checked checkboxes and updates the component's value property with a comma-separated string of the selected values. This method is called whenever a checkbox is clicked, ensuring that the component's state remains consistent with user interactions.
+   * @param {Event} evt - The event object representing the user interaction with a checkbox.
+   */
   _updateCheckboxes(evt) {
     const checkboxes = this._getAllListOptions();
     const isMultiple = this.hasAttribute('multiple');
@@ -94,15 +99,22 @@ export class CornSelect extends HTMLElement {
     const selectedValues = checkboxes.filter((checkbox) => checkbox.checked).map((checkbox) => checkbox.value);
     this.value = selectedValues.join(', ');
   }
-  _updateDisplayValue() {
-    //debugger;
 
+  /**
+   * _updateDisplayValue is a method that updates the display value of the CornSelect component based on the currently selected checkboxes. It retrieves all checked checkboxes, collects their values, and joins them into a comma-separated string. This string is then set as the text content of the display value element. If no checkboxes are selected, it displays a placeholder text or a default message. This method ensures that the user sees an accurate representation of their selections in the component's UI.
+   * It is called whenever the selection changes, ensuring that the display value remains in sync with the user's choices.
+   */
+  _updateDisplayValue() {
     const selectedOptions = [...this.querySelectorAll('input[type="checkbox"]:checked')];
     console.log('Selected options:', selectedOptions);
     const displayText = selectedOptions.map((option) => option.value).join(', ');
     this._displayValue.textContent = displayText || this.getAttribute('placeholder') || 'Select an option...';
   }
-  #render() {
+
+  /**
+   * render is a method that sets up the initial structure and content of the CornSelect component. It creates a display value element to show the selected options, initializes a popover for the list of options, and generates checkbox inputs for each option in the light DOM. The method also sets up event listeners and connects the MutationObserver to watch for changes in the light DOM. This method is called when the component is first added to the DOM and whenever changes are detected in the light DOM children (option elements). It ensures that the component's UI reflects its current state and provides an interactive experience for users.
+   */
+  render() {
     console.log('Rendering <corn-select> component...', this.getAttribute('multiple'));
     this._displayValue = document.createElement('div');
     this._displayValue.classList.add('corn-select--value', 'corn-pop');
@@ -117,16 +129,9 @@ export class CornSelect extends HTMLElement {
     this._popover.classList.add('corn-popover');
     this.setAttribute('aria-controls', this._popover.id);
     this.parentNode.classList.add('corn-popover--anchor');
-    // this.classList.add('corn-pop');
     const fieldSet = document.createElement('fieldset');
     fieldSet.classList.add('corn-form--item', 'corn-checkbox-group');
-
-    //this._cacheElements();
-    // this.renderOptions();
     const options = [...this.querySelectorAll(':scope > option')];
-
-    // const selectOptions = this._popover.querySelector('.corn-select-list');
-    // selectOptions.innerHTML = '';
     options.forEach((option, index) => {
       option.hidden = true;
       const wrapper = document.createElement('div');
@@ -143,48 +148,14 @@ export class CornSelect extends HTMLElement {
       label.textContent = option.textContent;
       wrapper.appendChild(label);
       fieldSet.appendChild(wrapper);
-      //this.appendChild(wrapper);
-
-      //option.replaceWith(wrapper);
-      //popover.moveBefore(wrapper, null);
     });
     this._popover.appendChild(fieldSet);
-    // if (this._popover.parentNode === this) this.removeChild(this._popover);
     this.appendChild(this._popover);
     this.#isRendering = false;
     this._updateDisplayValue();
     this.connectObserver();
-    console.log('rendered');
-    //this.click();
-    // this._addSlotChangeListener();
   }
 
-  renderOptions() {
-    console.log('Rendering options for <corn-select> component...');
-    const options = [...this.querySelectorAll(':scope > option')];
-
-    // const selectOptions = this._popover.querySelector('.corn-select-list');
-    // selectOptions.innerHTML = '';
-    options.forEach((option, index) => {
-      option.hidden = true;
-      const wrapper = document.createElement('div');
-      wrapper.classList.add('corn-checkbox', `corn-checkbox${this._getSizeModifier()}`);
-      const input = document.createElement('input');
-      input.setAttribute('type', 'checkbox');
-      input.setAttribute('name', `corn-select-${this.uuid}`);
-      input.setAttribute('id', `corn-select-${this.uuid}-${index}`);
-      input.setAttribute('value', option.value ? option.value : option.textContent);
-      if (index === 0) input.setAttribute('checked', 'checked');
-      wrapper.appendChild(input);
-      const label = document.createElement('label');
-      label.setAttribute('for', `corn-select-${this.uuid}-${index}`);
-      label.textContent = option.textContent;
-      wrapper.appendChild(label);
-      this._popover.appendChild(wrapper);
-      //option.replaceWith(wrapper);
-      //popover.moveBefore(wrapper, null);
-    });
-  }
   /**
    * observedAttributes is a static getter that returns an array of attribute names to monitor for changes.
    * When any of these attributes change, the attributeChangedCallback method is called.
@@ -217,19 +188,12 @@ export class CornSelect extends HTMLElement {
     switch (evt.type) {
       case 'click':
         if (evt.target.tagName === 'INPUT' && evt.target.type === 'checkbox') {
-          // console.log('XXXXXXX ------> click event', this.getAttribute('multiple') !== null);
           this._updateCheckboxes(evt);
           if (this.getAttribute('multiple') === null) {
             this._popover._close();
           }
           this._updateDisplayValue();
-          //evt.stopPropagation();
-        } else {
-          console.log('------> click event', evt, this._popover.isOpen);
         }
-
-        // this._popover._toggle(evt);
-        // this._toggle(evt);
         break;
       case 'keydown':
         this._trapFocus(evt);
@@ -246,24 +210,26 @@ export class CornSelect extends HTMLElement {
    * The clickListener is added to the document when the popover is opened and removed when it's closed to manage event listeners efficiently.
    */
   _addEventListeners() {
-    // this.trigger?.addEventListener('click', this);
     this.addEventListener('keydown', this);
     this.addEventListener('click', this);
-
-    //this._slot.addEventListener('slotchange', this._slotChangeListener);
   }
 
   /**
    * _removeEventListeners is a method that removes the event listeners that were added in the _addEventListeners method. It removes the click event listener from the trigger element and the keydown event listener from the popover itself. It also removes the clickListener from the document to prevent it from listening for clicks when the popover is closed. This cleanup is important to avoid memory leaks and unintended behavior when the component is removed from the DOM or when it is no longer needed.
    */
   _removeEventListeners() {
-    this.trigger?.removeEventListener('click', this);
     this.removeEventListener('keydown', this);
+    this.removeEventListener('click', this);
   }
 
+  /*
+   * _getAllListOptions is a method that retrieves all checkbox input elements within the popover. It uses the querySelectorAll method to select all input elements of type "checkbox" and converts the NodeList to an array using Array.from. This allows for easy manipulation and iteration over the list of checkbox options. The method is used to manage the state of the checkboxes and update the component's value based on user interactions.
+   * @returns {Array} An array of checkbox input elements within the popover.
+   */
   _getAllListOptions() {
     return Array.from(this._popover.querySelectorAll('input[type="checkbox"]'));
   }
+
   /**
    * _trapFocus is a method that traps the focus within the popover when it is open.
    * It listens for keydown events and handles the Tab and Shift+Tab keys to ensure that the focus cycles through the focusable elements within the popover.
@@ -272,7 +238,6 @@ export class CornSelect extends HTMLElement {
    * @returns {void}
    */
   _trapFocus(evt) {
-    console.log('trapFocus', evt, 'XXX');
     if (evt.key === 'Tab') {
       if (this._popover.isOpen) {
         evt.preventDefault();
@@ -316,37 +281,59 @@ export class CornSelect extends HTMLElement {
       }
     }
   }
+
   /**
-   * _cacheElements is a method that caches references to important elements and sets up initial state for the popover.
-   * It determines the scroll parent of the popover using the _getScrollParent method, which is important for positioning the popover correctly within the viewport.
-   * It also initializes the isOpen property to false and sets up options for an IntersectionObserver, which can be used to monitor the visibility of the popover and adjust its position if it goes out of view.
-   * This method is called during the connectedCallback to ensure that all necessary elements and state are set up when the component is added to the DOM.
+   * The following getter methods provide access to the form-associated properties of the CornSelect component. These properties allow the component to participate in form submission and validation, making it behave like a native form control.
    */
-  _cacheElements() {
-    this._popover = this.querySelector('corn-popover');
-  }
   get form() {
     return this.#internals.form;
   }
+
+  /**
+   * The name getter returns the value of the 'name' attribute of the CornSelect component. This is important for form submission, as it determines the key under which the component's value will be submitted in the form data. If the 'name' attribute is not set, this getter will return null.
+   */
   get name() {
     return this.getAttribute('name');
   }
+
+  /**
+   * The type getter returns the local name of the CornSelect component, which is 'corn-select'. This is used to identify the type of the form control when it is submitted as part of a form. It can also be overridden to provide a custom type if needed.
+   */
   get type() {
     return this.localName;
-  } // or a custom type
+  }
+
+  /**
+   * The following getter methods provide access to the validity state of the CornSelect component, allowing it to participate in form validation. These properties are part of the FormAssociated interface and enable the component to report its validity status, validation messages, and whether it will be validated as part of a form submission.
+   */
   get validity() {
     return this.#internals.validity;
   }
+
+  /**
+   * The validationMessage getter returns the validation message associated with the CornSelect component. This message is generated based on the component's validity state and can be used to provide feedback to the user when the component is invalid. If the component is valid, this getter will return an empty string.
+   */
   get validationMessage() {
     return this.#internals.validationMessage;
   }
+
+  /**
+   * The willValidate getter returns a boolean indicating whether the CornSelect component will be validated when the form is submitted. This is determined by the component's attributes and validity state. If the component has the 'required' attribute or other validation constraints, this getter will return true, indicating that it will be validated as part of the form submission process.
+   */
   get willValidate() {
     return this.#internals.willValidate;
   }
-  // The actual value the form will submit
+
+  /**
+   * The value getter and setter allow access to the current value of the CornSelect component. The getter returns the internal value, while the setter updates the internal value and sets the form value using the FormAssociated internals. It also calls the #updateValidity method to ensure that the component's validity state is updated based on the new value. This allows the component to participate in form submission and validation, ensuring that its value is correctly represented in the form data.
+   */
   get value() {
     return this.#value;
   }
+
+  /**
+   * The value setter updates the internal value of the CornSelect component and sets the form value using the FormAssociated internals. It also calls the #updateValidity method to ensure that the component's validity state is updated based on the new value. This allows the component to participate in form submission and validation, ensuring that its value is correctly represented in the form data.
+   */
   set value(v) {
     this.#value = v ?? '';
     this.#internals.setFormValue(this.#value); // ← this is what the form sees
@@ -361,6 +348,11 @@ export class CornSelect extends HTMLElement {
   disconnectedCallback() {
     this._removeEventListeners();
   }
+
+  /**
+   * #updateValidity is a private method that updates the validity state of the CornSelect component based on its current value and attributes. It checks if the component has the 'required' attribute and whether its value is empty. If the component is required and has no value, it sets a custom validity state indicating that the value is missing and provides a validation message. If the component is valid, it clears any existing validity state. This method ensures that the component's validity state accurately reflects its current state and allows it to participate in form validation.
+   * The #updateValidity method is called whenever the value of the component changes, ensuring that the validity state is always up to date and consistent with the component's attributes and user interactions.
+   */
   #updateValidity() {
     const required = this.hasAttribute('required');
     const empty = !this.#value;
@@ -372,4 +364,5 @@ export class CornSelect extends HTMLElement {
     }
   }
 }
+
 customElements.define('corn-select', CornSelect);

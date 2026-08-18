@@ -108,7 +108,7 @@ export class CornSelect extends HTMLElement {
     const selectedOptions = [...this.querySelectorAll('input[type="checkbox"]:checked')];
     console.log('Selected options:', selectedOptions);
     const displayText = selectedOptions.map((option) => option.value).join(', ');
-    this._displayValue.textContent = displayText || this.getAttribute('placeholder');
+    this._displayValue.innerHTML = `<div class="select-content">${displayText || this.getAttribute('placeholder')}</div>`;
   }
 
   /**
@@ -117,7 +117,7 @@ export class CornSelect extends HTMLElement {
   render() {
     console.log('Rendering <corn-select> component...', this.getAttribute('multiple'));
     this._displayValue = document.createElement('div');
-    this._displayValue.classList.add('corn-select--value', 'corn-pop');
+    this._displayValue.classList.add('corn-select--value');
     this.appendChild(this._displayValue);
 
     this.#isRendering = true;
@@ -129,6 +129,7 @@ export class CornSelect extends HTMLElement {
     this._popover.classList.add('corn-popover');
     this.setAttribute('aria-controls', this._popover.id);
     this.parentNode.classList.add('corn-popover--anchor');
+    this.classList.add('corn-pop');
     const fieldSet = document.createElement('fieldset');
     fieldSet.classList.add('corn-form--item', 'corn-checkbox-group');
     const options = [...this.querySelectorAll(':scope > option')];
@@ -186,6 +187,27 @@ export class CornSelect extends HTMLElement {
 
   handleEvent(evt) {
     switch (evt.type) {
+      case 'change':
+        console.log('Change event detected in <corn-select> component:', evt.target);
+        // Only react to checkboxes that live inside our popover
+        if (evt.target.type === 'checkbox' && this._popover?.contains(evt.target)) {
+          this._updateCheckboxes(evt); // this already does → this.value = ...
+          this._updateDisplayValue();
+
+          // Fire a change event on the host (mimics native <select>)
+          this.dispatchEvent(
+            new Event('change', {
+              bubbles: true,
+              composed: true,
+            })
+          );
+
+          // Close if single-select
+          if (!this.hasAttribute('multiple')) {
+            this._popover._close?.();
+          }
+        }
+        break;
       case 'click':
         if (evt.target.tagName === 'INPUT' && evt.target.type === 'checkbox') {
           this._updateCheckboxes(evt);
@@ -197,6 +219,8 @@ export class CornSelect extends HTMLElement {
         break;
       case 'keydown':
         this._trapFocus(evt);
+        break;
+      default:
         break;
     }
   }
@@ -210,6 +234,7 @@ export class CornSelect extends HTMLElement {
    * The clickListener is added to the document when the popover is opened and removed when it's closed to manage event listeners efficiently.
    */
   _addEventListeners() {
+    this.addEventListener('change', this);
     this.addEventListener('keydown', this);
     this.addEventListener('click', this);
   }
@@ -218,6 +243,7 @@ export class CornSelect extends HTMLElement {
    * _removeEventListeners is a method that removes the event listeners that were added in the _addEventListeners method. It removes the click event listener from the trigger element and the keydown event listener from the popover itself. It also removes the clickListener from the document to prevent it from listening for clicks when the popover is closed. This cleanup is important to avoid memory leaks and unintended behavior when the component is removed from the DOM or when it is no longer needed.
    */
   _removeEventListeners() {
+    this.removeEventListener('change', this);
     this.removeEventListener('keydown', this);
     this.removeEventListener('click', this);
   }
@@ -245,15 +271,18 @@ export class CornSelect extends HTMLElement {
       }
     }
     if (evt.key === ' ' || evt.code === 'Space' || evt.key === 'Enter') {
-      evt.preventDefault();
+      console.log('Space or Enter pressed on <corn-select> component', evt.target);
+      // evt.preventDefault();
+      // evt.target;
       if (!this._popover.isOpen) {
         this._popover._open(evt);
         evt.preventDefault();
-      } else {
-        if (document.activeElement.type === 'checkbox') {
-          document.activeElement.checked = !document.activeElement.checked;
-        }
       }
+      // else {
+      //   if (document.activeElement.type === 'checkbox') {
+      //     document.activeElement.checked = !document.activeElement.checked;
+      //   }
+      // }
     }
 
     if (evt.key !== 'ArrowDown' && evt.key !== 'ArrowUp') return;
@@ -335,6 +364,7 @@ export class CornSelect extends HTMLElement {
    * The value setter updates the internal value of the CornSelect component and sets the form value using the FormAssociated internals. It also calls the #updateValidity method to ensure that the component's validity state is updated based on the new value. This allows the component to participate in form submission and validation, ensuring that its value is correctly represented in the form data.
    */
   set value(v) {
+    console.log('Setting value for <corn-select> component:', v);
     this.#value = v ?? '';
     this.#internals.setFormValue(this.#value); // ← this is what the form sees
     this.#updateValidity();

@@ -106,9 +106,8 @@ export class CornSelect extends HTMLElement {
    */
   _updateDisplayValue() {
     const selectedOptions = [...this.querySelectorAll('input[type="checkbox"]:checked')];
-    console.log('Selected options:', selectedOptions);
     const displayText = selectedOptions.map((option) => option.value).join(', ');
-    this._displayValue.innerHTML = `<div class="select-content">${displayText || this.getAttribute('placeholder')}</div>`;
+    this._displayValue.innerHTML = `<div class="select-content">${displayText || this.getAttribute('placeholder') || ''}</div>`;
   }
 
   /**

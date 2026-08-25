@@ -133,7 +133,6 @@ export class CornPopover extends HTMLElement {
    * _toggle is a method that toggles the open state of the popover. If the popover is currently open, it calls the _close method to close it. If the popover is currently closed, it calls the _open method to open it. This method is typically called in response to user interactions, such as clicking the trigger element, allowing users to easily open and close the popover as needed.
    */
   _toggle(evt) {
-    console.log('popover toggle', this.isOpen);
     if (this.isOpen) {
       this._close();
     } else {

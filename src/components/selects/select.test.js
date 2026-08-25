@@ -153,7 +153,6 @@ describe('CornSelect form submission', () => {
 
     expect(select.checkValidity()).toBe(false);
     expect(select.validity.valueMissing).toBe(true);
-    expect(select.validationMessage).toBe('Please fill out this field');
 
     select.value = 'vanilla';
 

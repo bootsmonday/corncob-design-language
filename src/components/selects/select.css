@@ -30,20 +30,20 @@
     white-space: nowrap;
   }
 
+  &:hover {
+    background-color: var(--cc-select--background--hover);
+    color: var(--cc-select--color--hover);
+  }
+
   .corn-select--value {
     align-items: flex-end;
     border-radius: var(--cc-select--border-radius);
-    color: var(--cc-select--color);
+    color: inherit;
     display: flex;
     flex: 1 1 auto;
     gap: var(--cc-spacing--2);
     padding: var(--cc-select--padding);
     width: 0;
-
-    &:hover {
-      background-color: var(--cc-blue-20);
-      color: var(--cc-blue-80);
-    }
   }
 
   &:has(.corn-select--value:empty) {
@@ -101,12 +101,13 @@
 
     .corn-checkbox {
       &:hover {
-        background-color: var(--cc-blue-20);
-        color: var(--cc-blue-80);
+        background-color: var(--cc-select--background--hover);
+        color: var(--cc-select--color--hover);
 
-        &:has(input:checked) {
-          background-color: var(--cc-blue-40);
-          color: var(--cc-blue-90);
+        &:has(input:checked),
+        &:has(input:focus) {
+          background-color: var(--cc-select--background--selected--hover);
+          color: var(--cc-select--color--selected--hover);
         }
       }
 
@@ -141,19 +142,19 @@
       }
 
       &:has(input:checked) {
-        background-color: var(--cc-blue-20);
-        color: var(--cc-blue-80);
+        background-color: var(--cc-select--background--selected);
+        color: var(--cc-select--color--selected);
 
         input {
           &::after {
-            border-color: var(--cc-blue-80);
+            border-color: var(--cc-select--color--selected);
           }
         }
       }
 
       &:has(input:focus) {
-        background-color: var(--cc-blue-30);
-        color: var(--cc-blue-80);
+        background-color: var(--cc-select--background--selected--focus);
+        color: var(--cc-select--color--selected);
       }
     }
   }
@@ -163,6 +164,24 @@
     fill: currentcolor;
     height: var(--cc-size-2);
     width: var(--cc-size-2);
+  }
+
+  &:has(corn-select[disabled]) {
+    background-color: var(--cc-text-input--background--disabled);
+    border-color: var(--cc-text-input--border-color--disabled);
+    box-shadow: none !important;
+    color: var(--cc-text-input--color--disabled);
+    cursor: not-allowed !important;
+    opacity: 0.5;
+
+    &:hover {
+      background-color: var(--cc-text-input--background--disabled--hover) !important;
+    }
+
+    > label {
+      color: var(--cc-text-input--color--disabled) !important;
+      cursor: not-allowed !important;
+    }
   }
 }
 
@@ -213,19 +232,19 @@
   &:has(corn-select[placeholder]),
   &:has(input[type='checkbox']:checked) {
     > label {
-      font-size: var(--cc-size-0);
+      font-size: var(--cc-select--font-size--selected--lg);
     }
   }
 }
 
 .corn-select--xl {
-  font-size: var(--cc-size-3);
-  height: var(--cc-size-7);
+  font-size: var(--cc-select--font-size--xl);
+  height: var(--cc-select--height--xl);
 
   &:has(corn-select[placeholder]),
   &:has(input[type='checkbox']:checked) {
     > label {
-      font-size: var(--cc-size-1);
+      font-size: var(--cc-select--font-size--selected--xl);
     }
   }
 }

@@ -31,14 +31,9 @@ export class CornSelect extends HTMLElement {
    */
   constructor() {
     super();
-    // this value
     this.uuid = crypto.getRandomValues(new Uint32Array(1))[0].toString(36).substr(2, 9);
     this.id = this.id || `corn-select-${this.uuid}`;
-
     this.#internals = this.attachInternals();
-    this.setAttribute('role', 'combobox');
-    this.setAttribute('aria-haspopup', 'listbox');
-    this.setAttribute('aria-expanded', 'false');
     this.setAttribute('tabindex', '0');
   }
 
@@ -48,7 +43,6 @@ export class CornSelect extends HTMLElement {
   connectedCallback() {
     this.render();
     this.#observer = new MutationObserver((mutationlist) => {
-      console.log('MutationObserver triggered for <corn-select> light DOM changes', this.#isRendering, mutationlist);
       if (this.#isRendering) return;
       this.render();
     });
@@ -66,7 +60,7 @@ export class CornSelect extends HTMLElement {
       childList: true,
       subtree: false,
       attributes: true,
-      attributeFilter: ['value', 'disabled', 'selected', 'label', 'multiple'],
+      attributeFilter: [],
     });
   }
   /**
@@ -105,8 +99,8 @@ export class CornSelect extends HTMLElement {
    * It is called whenever the selection changes, ensuring that the display value remains in sync with the user's choices.
    */
   _updateDisplayValue() {
-    const selectedOptions = [...this.querySelectorAll('input[type="checkbox"]:checked')];
-    const displayText = selectedOptions.map((option) => option.value).join(', ');
+    const selectedOptions = [...this.querySelectorAll('input[type="checkbox"]:checked + label')];
+    const displayText = selectedOptions.map((option) => option.textContent || option.value).join(', ');
     this._displayValue.innerHTML = `<div class="select-content">${displayText || this.getAttribute('placeholder') || ''}</div>`;
   }
 
@@ -114,9 +108,8 @@ export class CornSelect extends HTMLElement {
    * render is a method that sets up the initial structure and content of the CornSelect component. It creates a display value element to show the selected options, initializes a popover for the list of options, and generates checkbox inputs for each option in the light DOM. The method also sets up event listeners and connects the MutationObserver to watch for changes in the light DOM. This method is called when the component is first added to the DOM and whenever changes are detected in the light DOM children (option elements). It ensures that the component's UI reflects its current state and provides an interactive experience for users.
    */
   render() {
-    console.log('Rendering <corn-select> component...', this.getAttribute('multiple'));
     this._displayValue = document.createElement('div');
-    this._displayValue.classList.add('corn-select--value');
+    this._displayValue.classList.add('corn-select--value', 'corn-pop');
     this.appendChild(this._displayValue);
 
     this.#isRendering = true;
@@ -126,13 +119,17 @@ export class CornSelect extends HTMLElement {
     this._popover.setAttribute('position', 'bottom');
     this._popover.setAttribute('role', 'listbox');
     this._popover.classList.add('corn-popover');
-    this.setAttribute('aria-controls', this._popover.id);
+    this._displayValue.setAttribute('aria-controls', this._popover.id);
     this.parentNode.classList.add('corn-popover--anchor');
-    this.classList.add('corn-pop');
+    //this.classList.add('corn-pop');
     const fieldSet = document.createElement('fieldset');
     fieldSet.classList.add('corn-form--item', 'corn-checkbox-group');
     const options = [...this.querySelectorAll(':scope > option')];
     options.forEach((option, index) => {
+      if (option.hasAttribute('hidden') && option.hasAttribute('selected') && option.hasAttribute('disabled')) {
+        this.setAttribute('placeholder', option.textContent);
+        return;
+      }
       option.hidden = true;
       const wrapper = document.createElement('div');
       wrapper.classList.add('corn-checkbox', `corn-checkbox${this._getSizeModifier()}`);
@@ -140,8 +137,10 @@ export class CornSelect extends HTMLElement {
       input.setAttribute('type', 'checkbox');
       input.setAttribute('name', `corn-select-${this.uuid}`);
       input.setAttribute('id', `corn-select-${this.uuid}-${index}`);
-      input.setAttribute('value', option.value);
-      if (index === 0) input.setAttribute('checked', 'checked');
+      input.setAttribute('value', option.value || option.textContent);
+      // if (index === 0) input.setAttribute('checked', 'checked');
+      if (option.hasAttribute('selected')) input.setAttribute('checked', 'checked');
+      if (option.hasAttribute('disabled')) input.setAttribute('disabled', 'disabled');
       wrapper.appendChild(input);
       const label = document.createElement('label');
       label.setAttribute('for', `corn-select-${this.uuid}-${index}`);
@@ -161,7 +160,7 @@ export class CornSelect extends HTMLElement {
    * When any of these attributes change, the attributeChangedCallback method is called.
    */
   static get observedAttributes() {
-    return ['position'];
+    return ['position', 'required'];
   }
 
   /**
@@ -172,7 +171,7 @@ export class CornSelect extends HTMLElement {
   attributeChangedCallback(name, oldValue, newValue) {
     if (name === 'value') this.value = newValue;
     if (name === 'disabled') this.#internals.ariaDisabled = newValue !== null;
-    //if (name === 'required') this.#updateValidity();
+    if (name === 'required') this.#updateValidity();
   }
 
   /**
@@ -187,7 +186,6 @@ export class CornSelect extends HTMLElement {
   handleEvent(evt) {
     switch (evt.type) {
       case 'change':
-        console.log('Change event detected in <corn-select> component:', evt.target);
         // Only react to checkboxes that live inside our popover
         if (evt.target.type === 'checkbox' && this._popover?.contains(evt.target)) {
           this._updateCheckboxes(evt); // this already does → this.value = ...
@@ -270,18 +268,10 @@ export class CornSelect extends HTMLElement {
       }
     }
     if (evt.key === ' ' || evt.code === 'Space' || evt.key === 'Enter') {
-      console.log('Space or Enter pressed on <corn-select> component', evt.target);
-      // evt.preventDefault();
-      // evt.target;
       if (!this._popover.isOpen) {
         this._popover._open(evt);
         evt.preventDefault();
       }
-      // else {
-      //   if (document.activeElement.type === 'checkbox') {
-      //     document.activeElement.checked = !document.activeElement.checked;
-      //   }
-      // }
     }
 
     if (evt.key !== 'ArrowDown' && evt.key !== 'ArrowUp') return;
@@ -353,6 +343,21 @@ export class CornSelect extends HTMLElement {
   }
 
   /**
+   * checkValidity mirrors the native form control API so consumers can validate
+   * the custom select the same way they would a standard <select> element.
+   */
+  checkValidity() {
+    return this.#internals.checkValidity();
+  }
+
+  /**
+   * reportValidity mirrors the native form control API.
+   */
+  reportValidity() {
+    return this.#internals.reportValidity();
+  }
+
+  /**
    * The value getter and setter allow access to the current value of the CornSelect component. The getter returns the internal value, while the setter updates the internal value and sets the form value using the FormAssociated internals. It also calls the #updateValidity method to ensure that the component's validity state is updated based on the new value. This allows the component to participate in form submission and validation, ensuring that its value is correctly represented in the form data.
    */
   get value() {
@@ -363,7 +368,6 @@ export class CornSelect extends HTMLElement {
    * The value setter updates the internal value of the CornSelect component and sets the form value using the FormAssociated internals. It also calls the #updateValidity method to ensure that the component's validity state is updated based on the new value. This allows the component to participate in form submission and validation, ensuring that its value is correctly represented in the form data.
    */
   set value(v) {
-    console.log('Setting value for <corn-select> component:', v);
     this.#value = v ?? '';
     this.#internals.setFormValue(this.#value); // ← this is what the form sees
     this.#updateValidity();
@@ -384,10 +388,10 @@ export class CornSelect extends HTMLElement {
    */
   #updateValidity() {
     const required = this.hasAttribute('required');
-    const empty = !this.#value;
+    const empty = Array.isArray(this.#value) ? this.#value.length === 0 : !this.#value;
 
     if (required && empty) {
-      this.#internals.setValidity({ valueMissing: true }, 'Please fill out this field');
+      this.#internals.setValidity({ valueMissing: true }, 'required field');
     } else {
       this.#internals.setValidity({}); // clear
     }

@@ -73,8 +73,6 @@ export class CornPopover extends HTMLElement {
     if (!this.parent) return;
     if (!this._position) this._position = 'top';
     this.trigger?.setAttribute('aria-controls', this.id);
-    this.trigger?.setAttribute('aria-expanded', 'false');
-
     this.classPrefix = 'corn-popover--';
     this._applyPositionClass();
     this._cacheElements();
@@ -401,7 +399,6 @@ export class CornPopover extends HTMLElement {
     firstFocusable?.focus({ focusVisible: true });
     this._positionContent();
     evt.stopPropagation();
-    this.trigger?.setAttribute('aria-expanded', 'true');
     document.addEventListener('click', this._clickListener);
   }
 
@@ -416,7 +413,6 @@ export class CornPopover extends HTMLElement {
     this.isOpen = false;
     this.classList.remove('corn-popover--open');
     document.removeEventListener('click', this._clickListener);
-    this.trigger?.setAttribute('aria-expanded', 'false');
     this.activeElement.focus();
   }
 

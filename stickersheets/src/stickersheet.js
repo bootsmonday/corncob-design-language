@@ -1,14 +1,14 @@
 if (document.getElementById('enable')) {
   document.getElementById('enable').addEventListener('click', () => {
     document.querySelectorAll('.corn-form--item').forEach((input) => {
-      input.querySelectorAll('input').forEach((item) => item.toggleAttribute('disabled', false));
+      input.querySelectorAll('input, corn-select').forEach((item) => item.toggleAttribute('disabled', false));
     });
   });
 }
 if (document.getElementById('disable')) {
   document.getElementById('disable').addEventListener('click', () => {
     document.querySelectorAll('.corn-form--item').forEach((input) => {
-      input.querySelectorAll('input').forEach((item) => item.toggleAttribute('disabled', true));
+      input.querySelectorAll('input, corn-select').forEach((item) => item.toggleAttribute('disabled', true));
     });
   });
 }
@@ -56,32 +56,26 @@ function getStatusIcon(state) {
   }
 }
 
-document
-  .querySelectorAll('#error-state, #warning-state, #success-state, #default-state')
-  .forEach((statusButton) =>
-    statusButton.addEventListener('click', (evt) => {
-      console.log('hello');
-      const status = evt.target.id.replace('-state', '');
-      document.querySelectorAll('.corn-form--item').forEach((input) => {
-        let message = '';
-        input.classList.remove(
-          'corn-status--error',
-          'corn-status--warning',
-          'corn-status--success'
-        );
-        if (status !== 'default') input.classList.add('corn-status--' + status);
-        if (status == 'default' && document.getElementById('enable')) {
-          document.getElementById('enable').click();
-        }
-        document.getElementById('current-state').innerHTML = status;
-        input.querySelector('.corn-status') &&
-          input.removeChild(input.querySelector('.corn-status'));
-        if (input.hasAttribute('dir')) {
-          message = 'הודעת סטטוס';
-        } else {
-          message = getStatusIcon(status) + status + ' message';
-        }
-        input.insertAdjacentHTML('beforeend', '<div class="corn-status">' + message + '</div>');
-      });
-    })
-  );
+document.querySelectorAll('#error-state, #warning-state, #success-state, #default-state').forEach((statusButton) =>
+  statusButton.addEventListener('click', (evt) => {
+    const status = evt.target.id.replace('-state', '');
+    document.querySelectorAll('.corn-form--item:not(.corn-form--item .corn-form--item)').forEach((input) => {
+      console.log('statusButton clicked', input);
+      let message = '';
+      input.classList.remove('corn-status--error', 'corn-status--warning', 'corn-status--success');
+      if (status !== 'default') input.classList.add('corn-status--' + status);
+      if (status == 'default' && document.getElementById('enable')) {
+        document.getElementById('enable').click();
+      }
+      document.getElementById('current-state').innerHTML = status;
+      input.querySelector('.corn-status') && input.removeChild(input.querySelector('.corn-status'));
+
+      if (input.hasAttribute('dir')) {
+        message = 'הודעת סטטוס';
+      } else {
+        message = getStatusIcon(status) + status + ' message';
+      }
+      input.insertAdjacentHTML('beforeend', '<div class="corn-status">' + message + '</div>');
+    });
+  })
+);

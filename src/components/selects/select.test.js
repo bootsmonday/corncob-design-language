@@ -14,7 +14,16 @@ describe('CornSelect form submission', () => {
             willValidate: true,
             ariaDisabled: false,
             setFormValue: jest.fn(),
-            setValidity: jest.fn(),
+            setValidity: jest.fn(function (flags = {}, message = '') {
+              this.validity = flags;
+              this.validationMessage = message;
+            }),
+            checkValidity: jest.fn(function () {
+              return !this.validity?.valueMissing;
+            }),
+            reportValidity: jest.fn(function () {
+              return this.checkValidity();
+            }),
           };
         },
       });
@@ -132,5 +141,24 @@ describe('CornSelect form submission', () => {
     });
 
     expect(getSubmittedValue(form, 'colors')).toBe('green, blue');
+  });
+
+  test('is invalid when required and empty, then becomes valid after a value is selected', () => {
+    const { select } = buildForm({
+      name: 'required-flavor',
+      values: ['vanilla', 'chocolate'],
+    });
+
+    select.setAttribute('required', '');
+
+    expect(select.checkValidity()).toBe(false);
+    expect(select.validity.valueMissing).toBe(true);
+    expect(select.validationMessage).toBe('Please fill out this field');
+
+    select.value = 'vanilla';
+
+    expect(select.checkValidity()).toBe(true);
+    expect(select.validity.valueMissing).toBeUndefined();
+    expect(select.validationMessage).toBe('');
   });
 });

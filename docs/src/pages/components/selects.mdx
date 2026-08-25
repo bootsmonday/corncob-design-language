@@ -46,6 +46,80 @@ The corn-select supports single and multiple selection modes, placeholder text. 
   ```
 </CodeSample>
 
+## Attributes
+
+### Placeholder (optional)
+The `placeholder` attribute is used to provide a hint or instruction to the user about what to select from the dropdown. It is displayed when no option is selected and disappears once an option is chosen. (see above example)
+
+You may also use a hidden option as the first option in the select input to serve as a placeholder. This option should have the `hidden`, `selected`, and `disabled` attributes set, and its text content will be used as the placeholder text.
+
+`<option value="" disabled selected hidden>Placeholder option...</option>`
+
+If the `placeholder` attribute is not provided, the label will be displayed as the default text in the select input. The placeholder text should be concise and informative, guiding the user on what to do next.
+
+#### Select Input without Placeholder
+<div class="corn-form--item">
+  <div class="corn-select">
+    <corn-select id="select--md-no-placeholder" name="select">
+      <option value="option1">Option 1</option>
+      <option value="option2">Option 2</option>
+      <option value="option3">Option 3</option>
+    </corn-select>
+    <label for="select--md-no-placeholder">Select Label</label>
+  </div>
+  <div class="corn-status">Helper Text</div>
+</div>
+  
+<CodeSample id="basic-select-code">
+  ```html
+    <div class="corn-form--item">
+      <div class="corn-select">
+        <corn-select id="select--md-no-placeholder" name="select">
+          <option value="option1">Option 1</option>
+          <option value="option2">Option 2</option>
+          <option value="option3">Option 3</option>
+        </corn-select>
+        <label for="select--md-no-placeholder">Select Label</label>
+      </div>
+      <div class="corn-status">Helper Text</div>
+    </div>
+  ```
+</CodeSample>
+
+### Multiple Selection (optional)
+The `multiple` attribute allows users to select multiple options from the dropdown list. When this attribute is present, the select input will display checkboxes next to each option, enabling users to select more than one option at a time. The selected options will be displayed in the input field, separated by commas.
+
+#### Multiple Selection Example
+
+<div class="corn-form--item">
+  <div class="corn-select">
+    <corn-select id="select--md" name="select" placeholder="Select multiple options..." multiple>
+      <option value="option1">Option 1</option>
+      <option value="option2">Option 2</option>
+      <option value="option3">Option 3</option>
+    </corn-select>
+    <label for="select--md">Select Label</label>
+  </div>
+  <div class="corn-status">Helper Text</div>
+</div>
+  
+<CodeSample id="basic-select-code">
+  ```html
+    <div class="corn-form--item">
+      <div class="corn-select">
+        <corn-select id="select--md" name="select" placeholder="Select multiple options..." multiple>
+          <option value="option1">Option 1</option>
+          <option value="option2">Option 2</option>
+          <option value="option3">Option 3</option>
+        </corn-select>
+        <label for="select--md">Select Label</label>
+      </div>
+      <div class="corn-status">Helper Text</div>
+    </div>
+  ```
+</CodeSample>
+
+
 ## Size Modifiers
 
 The default size for the select input is `md`, but it can be modified to `xs`, `sm`, `lg`, or `xl` using the corresponding class on the `corn-select` element.

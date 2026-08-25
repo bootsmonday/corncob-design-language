@@ -112,7 +112,6 @@ export class CornPopover extends HTMLElement {
    * Overall, this method enhances the interactivity and usability of the popover component by allowing users to intuitively close it through common interactions.
    */
   _clickListener = (evt) => {
-    console.log('---------> clickListener', evt, evt.target, this, this.trigger);
     const path = (evt.composedPath ? evt.composedPath() : [evt.target]).filter((node) => node.nodeType === Node.ELEMENT_NODE);
     const insidePopover = path.some((node) => this.contains(node));
     const insideTrigger = path.some((node) => this.trigger?.contains(node));
@@ -284,24 +283,17 @@ export class CornPopover extends HTMLElement {
 
     const getPreferredPositions = (position, overlapState) => {
       const [primary] = position.split('-');
-      const positions = [position];
+      const positions = [position, getMirroredPosition(position)];
 
       if (primary === 'top' || primary === 'bottom') {
-        if (overlapState.left) {
-          positions.push(`${primary}-left`);
-        }
+        if (overlapState.left) positions.push(`${primary}-left`);
+        if (overlapState.right) positions.push(`${primary}-right`);
+        if (overlapState.top || overlapState.bottom) positions.push(primary === 'top' ? 'bottom' : 'top');
+      }
 
-        if (overlapState.right) {
-          positions.push(`${primary}-right`);
-        }
-
-        if (overlapState.left && overlapState.right) {
-          positions.push(`${primary}-left`, `${primary}-right`);
-        }
-
-        if (overlapState.top || overlapState.bottom) {
-          positions.push(primary === 'top' ? 'bottom' : 'top');
-        }
+      if (primary === 'left' || primary === 'right') {
+        if (overlapState.top) positions.push(`${primary}-top`);
+        if (overlapState.bottom) positions.push(`${primary}-bottom`);
       }
 
       return [...new Set(positions)];
@@ -398,7 +390,7 @@ export class CornPopover extends HTMLElement {
     }
     firstFocusable?.focus({ focusVisible: true });
     this._positionContent();
-    evt.stopPropagation();
+    evt?.stopPropagation?.();
     document.addEventListener('click', this._clickListener);
   }
 

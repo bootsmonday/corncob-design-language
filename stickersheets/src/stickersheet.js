@@ -60,7 +60,6 @@ document.querySelectorAll('#error-state, #warning-state, #success-state, #defaul
   statusButton.addEventListener('click', (evt) => {
     const status = evt.target.id.replace('-state', '');
     document.querySelectorAll('.corn-form--item:not(.corn-form--item .corn-form--item)').forEach((input) => {
-      console.log('statusButton clicked', input);
       let message = '';
       input.classList.remove('corn-status--error', 'corn-status--warning', 'corn-status--success');
       if (status !== 'default') input.classList.add('corn-status--' + status);

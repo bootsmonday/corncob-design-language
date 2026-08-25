@@ -32,6 +32,7 @@ import './components/button-bars/button-bar.css';
 import './components/headers/header.css';
 import './components/footers/footer.css';
 import './components/sliders/slider.css';
+import './components/selects/select.css';
 
 // Import Base Styles
 import './common/forms.css';
@@ -44,14 +45,7 @@ import './components/buttons/copy-button.js';
 import './components/toast/toast.js';
 import './components/tooltips/tooltip.js';
 import './components/expandables/expandable.js';
+import './components/selects/select.js';
 
 // Re-export all components for package consumers
-export {
-  CornSlider,
-  CornToast,
-  CornCopyButton,
-  CornTooltip,
-  CornExpandable,
-  CornPopover,
-  CornButtonBar,
-} from './components/index.js';
+export { CornSlider, CornToast, CornCopyButton, CornTooltip, CornExpandable, CornPopover, CornButtonBar, CornSelect } from './components/index.js';

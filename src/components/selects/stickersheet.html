@@ -1,0 +1,93 @@
+<script>
+  function changeOptions() {
+    const select = document.getElementById('select--xs');
+    select.innerHTML = `
+      <option value="" disabled selected hidden>Select an option...</option>
+      <option value="newOption1">New Option 1</option>
+      <option value="newOption2">New Option 2</option>
+      <option value="newOption3">New Option 3</option>
+    `;
+  }
+</script>
+
+<div class="select-demo">
+  <button onclick="changeOptions()" class="corn-button">Change Options</button>
+  <h2>Selects</h2>
+  <h3>Extra Small (xs)</h3>
+
+  <div class="corn-form--row">
+    <div class="corn-form--item">
+      <div class="corn-select corn-select--xs">
+        <corn-select id="select--xs" name="select" placeholder="Select an option...">
+          <option value="" disabled selected hidden>option placeholder...</option>
+          <option>Option XXXXX</option>
+          <option value="option2">Option 2</option>
+          <option value="option3">Option 3</option>
+        </corn-select>
+        <label for="select--xs" class="corn-assistive-text">Select Label</label>
+      </div>
+      <div class="corn-status">Helper Text</div>
+    </div>
+  </div>
+
+  <hr />
+  <h3>Small (sm)</h3>
+  <div class="corn-form--row">
+    <div class="corn-form--item">
+      <div class="corn-select corn-select--sm">
+        <corn-select id="select--sm" name="select" placeholder="Select an option..." multiple>
+          <option value="option1">Option 1</option>
+          <option value="option2">Option 2</option>
+          <option value="option3">Option 3</option>
+        </corn-select>
+        <label for="select--sm" class="corn-assistive-text">Select Label</label>
+      </div>
+      <div class="corn-status">Helper Text</div>
+    </div>
+  </div>
+  <hr />
+  <h3>Default Medium (md)</h3>
+  <div class="corn-form--row">
+    <div class="corn-form--item">
+      <div class="corn-select">
+        <corn-select id="select--md" name="select" placeholder="Select an option...">
+          <option value="option1">Option 1</option>
+          <option value="option2">Option 2</option>
+          <option value="option3">Option 3</option>
+        </corn-select>
+        <label for="select--md">Select Label</label>
+      </div>
+      <div class="corn-status">Helper Text</div>
+    </div>
+  </div>
+  <hr />
+  <h3>Large (lg)</h3>
+  <div class="corn-form--row">
+    <div class="corn-form--item">
+      <div class="corn-select corn-select--lg">
+        <corn-select id="select--lg" name="select">
+          <option value="option1">Option 1</option>
+          <option value="option2">Option 2</option>
+          <option value="option3">Option 3</option>
+        </corn-select>
+        <label for="select--lg">Select Label</label>
+      </div>
+      <div class="corn-status">Helper Text</div>
+    </div>
+  </div>
+  <hr />
+  <h3>Extra Large (xl)</h3>
+  <div class="corn-form--row">
+    <div class="corn-form--item">
+      <div class="corn-select corn-select--xl">
+        <corn-select id="select--xl" name="select" placeholder="Select an option...">
+          <option value="option1">Option 1</option>
+          <option value="option2">Option 2</option>
+          <option value="option3">Option 3</option>
+        </corn-select>
+        <label for="select--xl">Select Label</label>
+      </div>
+      <div class="corn-status">Helper Text</div>
+    </div>
+  </div>
+</div>

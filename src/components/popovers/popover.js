@@ -5,6 +5,7 @@ export class CornPopover extends HTMLElement {
    */
   constructor() {
     super();
+    this.isShadow = this.getRootNode() instanceof ShadowRoot;
     this.isOpen = false;
     this.positionClasses = ['top', 'top-left', 'top-right', 'bottom', 'bottom-left', 'bottom-right', 'right', 'right-top', 'right-bottom', 'left', 'left-top', 'left-bottom'];
   }
@@ -64,8 +65,14 @@ export class CornPopover extends HTMLElement {
     this.parent = this.closest('.corn-popover--anchor');
     this.trigger = this.parent?.querySelector('.corn-pop');
 
+    if (!this.parent && this.getRootNode() instanceof ShadowRoot) {
+      this.parent = this.getRootNode().host.closest('.corn-popover--anchor');
+      this.trigger = this.getRootNode().querySelector('.corn-pop');
+    }
+
     if (!this.parent) return;
     if (!this._position) this._position = 'top';
+    this.trigger?.setAttribute('aria-controls', this.id);
     this.classPrefix = 'corn-popover--';
     this._applyPositionClass();
     this._cacheElements();
@@ -126,6 +133,7 @@ export class CornPopover extends HTMLElement {
    * _toggle is a method that toggles the open state of the popover. If the popover is currently open, it calls the _close method to close it. If the popover is currently closed, it calls the _open method to open it. This method is typically called in response to user interactions, such as clicking the trigger element, allowing users to easily open and close the popover as needed.
    */
   _toggle(evt) {
+    console.log('popover toggle', this.isOpen);
     if (this.isOpen) {
       this._close();
     } else {
@@ -141,16 +149,18 @@ export class CornPopover extends HTMLElement {
    * @returns {void}
    */
   _trapFocus(evt) {
+    const focusableElements = this._getAllFocusableElements();
+
     if (evt.key === 'Escape') {
       this._close();
       evt.stopPropagation();
-      this.activeElement.focus();
+
       return;
     }
     if (evt.key !== 'Tab') return;
-    if (this.focusableElements.length === 0) return;
-    const firstElement = this.focusableElements[0];
-    const lastElement = this.focusableElements[this.focusableElements.length - 1];
+    if (focusableElements.length === 0) return;
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
     if (evt.shiftKey) {
       if (document.activeElement === firstElement) {
         evt.preventDefault();
@@ -271,6 +281,24 @@ export class CornPopover extends HTMLElement {
       return secondary ? `${mirrorPrimary}-${secondary}` : mirrorPrimary;
     };
 
+    const getPreferredPositions = (position, overlapState) => {
+      const [primary] = position.split('-');
+      const positions = [position, getMirroredPosition(position)];
+
+      if (primary === 'top' || primary === 'bottom') {
+        if (overlapState.left) positions.push(`${primary}-left`);
+        if (overlapState.right) positions.push(`${primary}-right`);
+        if (overlapState.top || overlapState.bottom) positions.push(primary === 'top' ? 'bottom' : 'top');
+      }
+
+      if (primary === 'left' || primary === 'right') {
+        if (overlapState.top) positions.push(`${primary}-top`);
+        if (overlapState.bottom) positions.push(`${primary}-bottom`);
+      }
+
+      return [...new Set(positions)];
+    };
+
     const positionDistance = (fromPosition, toPosition) => {
       const fromParts = fromPosition.split('-');
       const toParts = toPosition.split('-');
@@ -285,9 +313,7 @@ export class CornPopover extends HTMLElement {
       return distance;
     };
 
-    const mirroredPosition = getMirroredPosition(currentPosition);
-    const currentAxis = positionAxis(currentPosition);
-    const preferredPositions = [...new Set([currentPosition, mirroredPosition, ...positionClasses.filter((position) => positionAxis(position) === currentAxis), ...positionClasses.filter((position) => positionAxis(position) !== currentAxis)])];
+    const preferredPositions = getPreferredPositions(currentPosition, overlaps);
 
     setPositionClass(currentPosition);
     let bestPosition = currentPosition;
@@ -329,7 +355,9 @@ export class CornPopover extends HTMLElement {
    * @returns {HTMLElement[]} An array of all focusable elements within the popover.
    */
   _getAllFocusableElements() {
-    return [...this.querySelectorAll('button, [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])')];
+    let focusableElements = [...this.querySelectorAll('button, [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])')];
+    focusableElements = focusableElements.filter((el) => (el.getAttribute('type') === 'radio' && el.checked === false ? false : true));
+    return focusableElements;
   }
 
   /**
@@ -337,6 +365,8 @@ export class CornPopover extends HTMLElement {
    * It first stores the currently active element to return focus to it when the popover is closed.
    * It then checks for any overlap classes and adjusts the position of the popover accordingly.
    * The method adds a class to indicate that the popover is open, sets the isOpen property to true, retrieves all focusable elements within the popover, and focuses the first one.
+   * If the first focusable element is a checkbox, it checks for other checkboxes with the same name and focuses the first one that is checked.
+   * It then calls the _positionContent method to ensure that the popover is positioned correctly within the viewport.
    * Finally, it adds a click event listener to the document to listen for clicks outside the popover, allowing it to be closed when such clicks occur.
    * This method ensures that the popover is properly displayed and that keyboard navigation is handled correctly for accessibility.
    */
@@ -347,12 +377,20 @@ export class CornPopover extends HTMLElement {
       this.classList.remove(this.overlapClass);
       this.classList.add(this.classPrefix + this._position);
     }
-
     this.classList.add('corn-popover--open');
     this.isOpen = true;
     this.focusableElements = this._getAllFocusableElements();
-    this.focusableElements[0]?.focus({ focusVisible: true });
+    let firstFocusable = this.focusableElements[0];
+    if (firstFocusable && firstFocusable.type === 'checkbox') {
+      const checkboxName = firstFocusable.name;
+      const firstChecked = this.focusableElements.find((el) => el.type === 'checkbox' && el.name === checkboxName && el.checked);
+      if (firstChecked) {
+        firstFocusable = firstChecked;
+      }
+    }
+    firstFocusable?.focus({ focusVisible: true });
     this._positionContent();
+    evt?.stopPropagation?.();
     document.addEventListener('click', this._clickListener);
   }
 
@@ -367,6 +405,7 @@ export class CornPopover extends HTMLElement {
     this.isOpen = false;
     this.classList.remove('corn-popover--open');
     document.removeEventListener('click', this._clickListener);
+    this.activeElement?.focus();
   }
 
   /**

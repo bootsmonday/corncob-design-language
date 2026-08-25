@@ -405,7 +405,7 @@ export class CornPopover extends HTMLElement {
     this.isOpen = false;
     this.classList.remove('corn-popover--open');
     document.removeEventListener('click', this._clickListener);
-    this.activeElement.focus();
+    this.activeElement?.focus();
   }
 
   /**

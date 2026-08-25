@@ -9,6 +9,13 @@ the "Changelog Release" GitHub Actions workflow.
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-08-25
+
+### Added
+
+- Selects: Added support for `corn-select` styles and documentation examples.
+
+
 ## [0.2.0] - 2026-08-04
 
 ### Added

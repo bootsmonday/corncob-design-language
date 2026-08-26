@@ -352,65 +352,65 @@ For these components:
 #### Color References
 
 <div class="corn-docs-code">
-```json
-// VALID - using semantic names
+```css
+/* VALID - using semantic names */
 background: var(--cc-gray-100);
 color: var(--cc-blue-60);
 
-// VALID - using scale values
+/* VALID - using scale values */
 border-color: var(--cc-red-80);
 
-// INVALID - hex codes should use token variables instead
-background: #23211f; //  Use var(--cc-gray-100) instead
+/* INVALID - hex codes should use token variables instead */
+background: #23211f; /*  Use var(--cc-gray-100) instead */
 ```
 </div>
 
 #### Sizing References
 
 <div class="corn-docs-code">
-```json
-// VALID - using modular scale
+```css
+/* VALID - using modular scale */
 padding: var(--cc-spacing-0);
 margin: var(--cc-spacing-2);
 width: var(--cc-size-3);
 
-// VALID - explicit size values
+/* VALID - explicit size values */
 font-size: 1rem;
 height: 20px;
 
-// AVOID - hardcoded values that don't match scale
-padding: 15px; //  Use var(--cc-spacing-1) or var(--cc-spacing-2)
+/* AVOID - hardcoded values that don't match scale */
+padding: 15px; /*  Use var(--cc-spacing-1) or var(--cc-spacing-2) */
 ```
 </div>
 
 #### Typography
 
 <div class="corn-docs-code">
-```json
-// VALID - using token scale
+```css
+/* VALID - using token scale */
 font-size: var(--cc-font-size--lg);
-font-weight: 600; // or var(--cc-font-weight--semibold)
+font-weight: 600; /* or var(--cc-font-weight--semibold) */
 
-// VALID - semantic size names
+/* VALID - semantic size names */
 font-size: var(--cc-size-1);
 
-// INVALID - random sizes
-font-size: 18px; //  Use token system instead
+/* INVALID - random sizes */
+font-size: 18px; /*  Use token system instead */
 ```
 </div>
 
 #### Component Class Validation
 
 <div class="corn-docs-code">
-```json
-// VALID - button with size and variant
+```html
+<!-- VALID - button with size and variant -->
 <button class="corn-button corn-button--md corn-button--secondary" type="button">Secondary</button>
 
-// INVALID - missing base class
-<button class="corn-button corn-button--md" type="button"> //  Must include corn-button
+<!-- INVALID - missing base class -->
+<button class="corn-button--md" type="button"> <!-- Must include corn-button --> </button>
 
-// INVALID - undefined modifier
-<button class="corn-button corn-button--extra-large" type="button"> // Only xs|sm|md|lg|xl
+<!-- INVALID - undefined modifier -->
+<button class="corn-button corn-button--extra-large" type="button"> <!-- Only xs|sm|md|lg|xl --> </button>
 ```
 </div>
 

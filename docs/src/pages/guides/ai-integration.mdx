@@ -104,7 +104,7 @@ If the canonical version is wrong, enhancement should stop until the base struct
     "variants": ["primary", "secondary", "danger"],
     "sizes": ["xs", "sm", "md", "lg", "xl"],
     "jsRequired": false,
-    "example": "<button class=\"corn-button corn-button--md\">Primary Button</button>"
+    "example": "<button class=\"corn-button corn-button--md\" type=\"button\">Primary Button</button>"
   }
 }
 ```
@@ -159,7 +159,7 @@ If the canonical version is wrong, enhancement should stop until the base struct
    - Default variant: `primary` (implicit)
    - Size: `lg`
 
-2. Generate: `<button class="corn-button corn-button--lg">Action</button>`
+2. Generate: `<button class="corn-button corn-button--lg" type="button">Action</button>`
 
 3. For error styling, look up `colors.semantic.error` in `tokens.json`:
    - Use red color scale or error variant if available
@@ -300,7 +300,7 @@ If the canonical version is wrong, enhancement should stop until the base struct
 <div class="corn-docs-code">
 ```html
 <div class="corn-popover--anchor">
-  <button class="corn-button corn-pop" aria-controls="my-popover">Open Menu</button>
+  <button class="corn-button corn-pop" aria-controls="my-popover" type="button">Open Menu</button>
   <corn-popover position="bottom" id="my-popover" class="corn-popover">
     <ul>
       <li><a href="#" class="corn-link">Item 1</a></li>
@@ -352,65 +352,65 @@ For these components:
 #### Color References
 
 <div class="corn-docs-code">
-```json
-// VALID - using semantic names
+```css
+/* VALID - using semantic names */
 background: var(--cc-gray-100);
 color: var(--cc-blue-60);
 
-// VALID - using scale values
+/* VALID - using scale values */
 border-color: var(--cc-red-80);
 
-// INVALID - hex codes should use token variables instead
-background: #23211f; //  Use var(--cc-gray-100) instead
+/* INVALID - hex codes should use token variables instead */
+background: #23211f; /*  Use var(--cc-gray-100) instead */
 ```
 </div>
 
 #### Sizing References
 
 <div class="corn-docs-code">
-```json
-// VALID - using modular scale
+```css
+/* VALID - using modular scale */
 padding: var(--cc-spacing-0);
 margin: var(--cc-spacing-2);
 width: var(--cc-size-3);
 
-// VALID - explicit size values
+/* VALID - explicit size values */
 font-size: 1rem;
 height: 20px;
 
-// AVOID - hardcoded values that don't match scale
-padding: 15px; //  Use var(--cc-spacing-1) or var(--cc-spacing-2)
+/* AVOID - hardcoded values that don't match scale */
+padding: 15px; /*  Use var(--cc-spacing-1) or var(--cc-spacing-2) */
 ```
 </div>
 
 #### Typography
 
 <div class="corn-docs-code">
-```json
-// VALID - using token scale
+```css
+/* VALID - using token scale */
 font-size: var(--cc-font-size--lg);
-font-weight: 600; // or var(--cc-font-weight--semibold)
+font-weight: 600; /* or var(--cc-font-weight--semibold) */
 
-// VALID - semantic size names
+/* VALID - semantic size names */
 font-size: var(--cc-size-1);
 
-// INVALID - random sizes
-font-size: 18px; //  Use token system instead
+/* INVALID - random sizes */
+font-size: 18px; /*  Use token system instead */
 ```
 </div>
 
 #### Component Class Validation
 
 <div class="corn-docs-code">
-```json
-// VALID - button with size and variant
-<button class="corn-button corn-button--md corn-button--secondary">
+```html
+<!-- VALID - button with size and variant -->
+<button class="corn-button corn-button--md corn-button--secondary" type="button">Secondary</button>
 
-// INVALID - missing base class
-<button class="corn-button--md"> //  Must include corn-button
+<!-- INVALID - missing base class -->
+<button class="corn-button--md" type="button"> <!-- Must include corn-button --> </button>
 
-// INVALID - undefined modifier
-<button class="corn-button corn-button--extra-large"> // Only xs|sm|md|lg|xl
+<!-- INVALID - undefined modifier -->
+<button class="corn-button corn-button--extra-large" type="button"> <!-- Only xs|sm|md|lg|xl --> </button>
 ```
 </div>
 

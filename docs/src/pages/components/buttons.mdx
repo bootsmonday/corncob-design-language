@@ -13,13 +13,15 @@ import buttonTokens from '../../../../src/components/buttons/button-tokens.css?r
 
 Buttons are built from shared token values and semantic variants. They contain styles for the following states hover, active, focus, and disabled. The default button is the primary variant, and secondary and danger variants are also available. Size modifiers are also available for extra-small through extra-large buttons.
 
+Buttons should have a `type` attribute of `button`, `submit`, or `reset` to prevent unexpected behavior when used in forms. The default type is `submit` if not specified, which can cause unexpected form submissions.
+
 ### Default Button
 
 <div class="corn-form--row">
-  <button class="corn-button corn-button--md">MD Button</button>
-  <button class="corn-button corn-button--md corn-button--secondary">MD Secondary</button>
-  <button class="corn-button corn-button--md corn-button--danger">MD Danger</button>
-  <button class="corn-button corn-button--md corn-button" disabled>
+  <button class="corn-button corn-button--md" type="button">MD Button</button>
+  <button class="corn-button corn-button--md corn-button--secondary" type="button">MD Secondary</button>
+  <button class="corn-button corn-button--md corn-button--danger" type="button">MD Danger</button>
+  <button class="corn-button corn-button--md corn-button" type="button" disabled>
     MD Disabled
   </button>
 </div>
@@ -39,10 +41,10 @@ Size modifiers:
 ### Extra Small
 
 <div class="corn-form--row">
-  <button class="corn-button corn-button--xs">XS Button</button>
-  <button class="corn-button corn-button--xs corn-button--secondary">XS Secondary</button>
-  <button class="corn-button corn-button--xs corn-button--danger">XS Danger</button>
-  <button class="corn-button corn-button--xs corn-button" disabled>
+  <button class="corn-button corn-button--xs" type="button">XS Button</button>
+  <button class="corn-button corn-button--xs corn-button--secondary" type="button">XS Secondary</button>
+  <button class="corn-button corn-button--xs corn-button--danger" type="button">XS Danger</button>
+  <button class="corn-button corn-button--xs corn-button" type="button" disabled>
     XS Disabled
   </button>
 </div>
@@ -55,10 +57,10 @@ Size modifiers:
 ### Small
 
 <div class="corn-form--row">
-  <button class="corn-button corn-button--sm">SM Button</button>
-  <button class="corn-button corn-button--sm corn-button--secondary">SM Secondary</button>
-  <button class="corn-button corn-button--sm corn-button--danger">SM Danger</button>
-  <button class="corn-button corn-button--sm corn-button" disabled>
+  <button class="corn-button corn-button--sm" type="button">SM Button</button>
+  <button class="corn-button corn-button--sm corn-button--secondary" type="button">SM Secondary</button>
+  <button class="corn-button corn-button--sm corn-button--danger" type="button">SM Danger</button>
+  <button class="corn-button corn-button--sm corn-button" type="button" disabled>
     SM Disabled
   </button>
 </div>
@@ -74,10 +76,10 @@ This modifier is not necessary for medium buttons, but it can be used for
 consistency in code when the button size is being dynamically set.
 
 <div class="corn-form--row">
-  <button class="corn-button corn-button--md">MD Button</button>
-  <button class="corn-button corn-button--md corn-button--secondary">MD Secondary</button>
-  <button class="corn-button corn-button--md corn-button--danger">MD Danger</button>
-  <button class="corn-button corn-button--md corn-button" disabled>
+  <button class="corn-button corn-button--md" type="button">MD Button</button>
+  <button class="corn-button corn-button--md corn-button--secondary" type="button">MD Secondary</button>
+  <button class="corn-button corn-button--md corn-button--danger" type="button">MD Danger</button>
+  <button class="corn-button corn-button--md corn-button" type="button" disabled>
     MD Disabled
   </button>
 </div>
@@ -89,10 +91,10 @@ consistency in code when the button size is being dynamically set.
 ### Large
 
 <div class="corn-form--row">
-  <button class="corn-button corn-button--lg">LG Button</button>
-  <button class="corn-button corn-button--lg corn-button--secondary">LG Secondary</button>
-  <button class="corn-button corn-button--lg corn-button--danger">LG Danger</button>
-  <button class="corn-button corn-button--lg corn-button" disabled>
+  <button class="corn-button corn-button--lg" type="button">LG Button</button>
+  <button class="corn-button corn-button--lg corn-button--secondary" type="button">LG Secondary</button>
+  <button class="corn-button corn-button--lg corn-button--danger" type="button">LG Danger</button>
+  <button class="corn-button corn-button--lg corn-button" type="button" disabled>
     LG Disabled
   </button>
 </div>
@@ -104,16 +106,16 @@ consistency in code when the button size is being dynamically set.
 ### Extra Large
 
 <div class="corn-form--row">
-  <button class="corn-button corn-button--xl">XL Button</button>
-  <button class="corn-button corn-button--xl corn-button--secondary">XL Secondary</button>
-  <button class="corn-button corn-button--xl corn-button--danger">XL Danger</button>
-  <button class="corn-button corn-button--xl corn-button" disabled>
+  <button class="corn-button corn-button--xl" type="button">XL Button</button>
+  <button class="corn-button corn-button--xl corn-button--secondary" type="button">XL Secondary</button>
+  <button class="corn-button corn-button--xl corn-button--danger" type="button">XL Danger</button>
+  <button class="corn-button corn-button--xl corn-button" type="button" disabled>
     XL Disabled
   </button>
 </div>
 <CodeSample id="extra-large-button-code">
   ```html
-  <button class="corn-button corn-button--xl">XL Button</button>
+  <button class="corn-button corn-button--xl" type="button">XL Button</button>
   ```
 </CodeSample>
 
@@ -125,7 +127,7 @@ Add `corn-button--icon` to the button class list to apply the icon button styles
 ### Icon Only (xs)
 
 <div class="corn-form--row">
-  <button class="corn-button corn-button--icon corn-button--xs" aria-label="Close">
+  <button class="corn-button corn-button--icon corn-button--xs" aria-label="Close" type="button">
     <svg class="corn-icon" aria-hidden="true">
       <use href={`${bootstrapIconsSprite}#x`}></use>
     </svg>
@@ -133,7 +135,7 @@ Add `corn-button--icon` to the button class list to apply the icon button styles
   <button
     class="corn-button corn-button--icon corn-button--secondary corn-button--xs"
     aria-label="Close"
-  >
+    type="button">
     <svg class="corn-icon" aria-hidden="true">
       <use href={`${bootstrapIconsSprite}#x`}></use>
     </svg>
@@ -141,12 +143,12 @@ Add `corn-button--icon` to the button class list to apply the icon button styles
   <button
     class="corn-button corn-button--icon corn-button--danger corn-button--xs"
     aria-label="Close"
-  >
+    type="button">
     <svg class="corn-icon" aria-hidden="true">
       <use href={`${bootstrapIconsSprite}#x`}></use>
     </svg>
   </button>
-  <button class="corn-button corn-button--icon corn-button--xs" aria-label="Close" disabled>
+  <button class="corn-button corn-button--icon corn-button--xs" aria-label="Close" type="button" disabled>
     <svg class="corn-icon" aria-hidden="true">
       <use href={`${bootstrapIconsSprite}#x`}></use>
     </svg>
@@ -155,7 +157,7 @@ Add `corn-button--icon` to the button class list to apply the icon button styles
 
 <CodeSample id="extra-small-icon-button-code">
   ```html
-  <button class="corn-button corn-button--icon corn-button--xs" aria-label="Close">
+  <button class="corn-button corn-button--icon corn-button--xs" aria-label="Close" type="button">
     <svg class="corn-icon" aria-hidden="true">
       <use href={`${bootstrapIconsSprite}#x`}></use>
     </svg>
@@ -166,7 +168,7 @@ Add `corn-button--icon` to the button class list to apply the icon button styles
 ### Icon Only (sm)
 
 <div class="corn-form--row">
-  <button class="corn-button corn-button--icon corn-button--sm" aria-label="Close">
+  <button class="corn-button corn-button--icon corn-button--sm" aria-label="Close" type="button">
     <svg class="corn-icon" aria-hidden="true">
       <use href={`${bootstrapIconsSprite}#x`}></use>
     </svg>
@@ -174,7 +176,7 @@ Add `corn-button--icon` to the button class list to apply the icon button styles
   <button
     class="corn-button corn-button--icon corn-button--secondary corn-button--sm"
     aria-label="Close"
-  >
+    type="button">
     <svg class="corn-icon" aria-hidden="true">
       <use href={`${bootstrapIconsSprite}#x`}></use>
     </svg>
@@ -182,12 +184,12 @@ Add `corn-button--icon` to the button class list to apply the icon button styles
   <button
     class="corn-button corn-button--icon corn-button--danger corn-button--sm"
     aria-label="Close"
-  >
+    type="button">
     <svg class="corn-icon" aria-hidden="true">
       <use href={`${bootstrapIconsSprite}#x`}></use>
     </svg>
   </button>
-  <button class="corn-button corn-button--icon corn-button--sm" aria-label="Close" disabled>
+  <button class="corn-button corn-button--icon corn-button--sm" aria-label="Close" type="button" disabled>
     <svg class="corn-icon" aria-hidden="true">
       <use href={`${bootstrapIconsSprite}#x`}></use>
     </svg>
@@ -196,7 +198,7 @@ Add `corn-button--icon` to the button class list to apply the icon button styles
 
 <CodeSample id="small-icon-button-code">
   ```html
-  <button class="corn-button corn-button--icon corn-button--sm" aria-label="Close">
+  <button class="corn-button corn-button--icon corn-button--sm" aria-label="Close" type="button">
     <svg class="corn-icon" aria-hidden="true">
       <use href={`${bootstrapIconsSprite}#x`}></use>
     </svg>
@@ -207,22 +209,22 @@ Add `corn-button--icon` to the button class list to apply the icon button styles
 ### Icon Only (md)
 
 <div class="corn-form--row">
-  <button class="corn-button corn-button--icon" aria-label="Close">
+  <button class="corn-button corn-button--icon" aria-label="Close" type="button">
     <svg class="corn-icon" aria-hidden="true">
       <use href={`${bootstrapIconsSprite}#x`}></use>
     </svg>
   </button>
-  <button class="corn-button corn-button--icon corn-button--secondary" aria-label="Close">
+  <button class="corn-button corn-button--icon corn-button--secondary" aria-label="Close" type="button">
     <svg class="corn-icon" aria-hidden="true">
       <use href={`${bootstrapIconsSprite}#x`}></use>
     </svg>
   </button>
-  <button class="corn-button corn-button--icon corn-button--danger" aria-label="Close">
+  <button class="corn-button corn-button--icon corn-button--danger" aria-label="Close" type="button">
     <svg class="corn-icon" aria-hidden="true">
       <use href={`${bootstrapIconsSprite}#x`}></use>
     </svg>
   </button>
-  <button class="corn-button corn-button--icon" aria-label="Close" disabled>
+  <button class="corn-button corn-button--icon" aria-label="Close" type="button" disabled>
     <svg class="corn-icon" aria-hidden="true">
       <use href={`${bootstrapIconsSprite}#x`}></use>
     </svg>
@@ -230,7 +232,7 @@ Add `corn-button--icon` to the button class list to apply the icon button styles
 </div>
 <CodeSample id="medium-icon-button-code">
   ```html
-  <button class="corn-button corn-button--icon" aria-label="Close">
+  <button class="corn-button corn-button--icon" aria-label="Close" type="button">
     <svg class="corn-icon" aria-hidden="true">
       <use href={`${bootstrapIconsSprite}#x`}></use>
     </svg>
@@ -241,7 +243,7 @@ Add `corn-button--icon` to the button class list to apply the icon button styles
 ### Icon Only (lg)
 
 <div class="corn-form--row">
-  <button class="corn-button corn-button--icon corn-button--lg" aria-label="Close">
+  <button class="corn-button corn-button--icon corn-button--lg" aria-label="Close" type="button">
     <svg class="corn-icon" aria-hidden="true">
       <use href={`${bootstrapIconsSprite}#x`}></use>
     </svg>
@@ -249,7 +251,7 @@ Add `corn-button--icon` to the button class list to apply the icon button styles
   <button
     class="corn-button corn-button--icon corn-button--secondary corn-button--lg"
     aria-label="Close"
-  >
+    type="button">
     <svg class="corn-icon" aria-hidden="true">
       <use href={`${bootstrapIconsSprite}#x`}></use>
     </svg>
@@ -257,12 +259,12 @@ Add `corn-button--icon` to the button class list to apply the icon button styles
   <button
     class="corn-button corn-button--icon corn-button--danger corn-button--lg"
     aria-label="Close"
-  >
+    type="button">
     <svg class="corn-icon" aria-hidden="true">
       <use href={`${bootstrapIconsSprite}#x`}></use>
     </svg>
   </button>
-  <button class="corn-button corn-button--icon corn-button--lg" aria-label="Close" disabled>
+  <button class="corn-button corn-button--icon corn-button--lg" aria-label="Close" type="button" disabled>
     <svg class="corn-icon" aria-hidden="true">
       <use href={`${bootstrapIconsSprite}#x`}></use>
     </svg>
@@ -271,7 +273,7 @@ Add `corn-button--icon` to the button class list to apply the icon button styles
 
 <CodeSample id="large-icon-button-code">
   ```html
-  <button class="corn-button corn-button--icon corn-button--lg" aria-label="Close">
+  <button class="corn-button corn-button--icon corn-button--lg" aria-label="Close" type="button">
     <svg class="corn-icon" aria-hidden="true">
       <use href={`${bootstrapIconsSprite}#x`}></use>
     </svg>
@@ -282,7 +284,7 @@ Add `corn-button--icon` to the button class list to apply the icon button styles
 ### Icon Only (xl)
 
 <div class="corn-form--row">
-  <button class="corn-button corn-button--icon corn-button--xl" aria-label="Close">
+  <button class="corn-button corn-button--icon corn-button--xl" aria-label="Close" type="button">
     <svg class="corn-icon" aria-hidden="true">
       <use href={`${bootstrapIconsSprite}#x`}></use>
     </svg>
@@ -290,7 +292,7 @@ Add `corn-button--icon` to the button class list to apply the icon button styles
   <button
     class="corn-button corn-button--icon corn-button--secondary corn-button--xl"
     aria-label="Close"
-  >
+    type="button">
     <svg class="corn-icon" aria-hidden="true">
       <use href={`${bootstrapIconsSprite}#x`}></use>
     </svg>
@@ -298,12 +300,12 @@ Add `corn-button--icon` to the button class list to apply the icon button styles
   <button
     class="corn-button corn-button--icon corn-button--danger corn-button--xl"
     aria-label="Close"
-  >
+    type="button">
     <svg class="corn-icon" aria-hidden="true">
       <use href={`${bootstrapIconsSprite}#x`}></use>
     </svg>
   </button>
-  <button class="corn-button corn-button--icon corn-button--xl" aria-label="Close" disabled>
+  <button class="corn-button corn-button--icon corn-button--xl" aria-label="Close" type="button" disabled>
     <svg class="corn-icon" aria-hidden="true">
       <use href={`${bootstrapIconsSprite}#x`}></use>
     </svg>
@@ -312,7 +314,7 @@ Add `corn-button--icon` to the button class list to apply the icon button styles
 
 <CodeSample id="extra-large-icon-button-code">
   ```html
-  <button class="corn-button corn-button--icon corn-button--xl" aria-label="Close">
+  <button class="corn-button corn-button--icon corn-button--xl" aria-label="Close" type="button">
     <svg class="corn-icon" aria-hidden="true">
       <use href={`${bootstrapIconsSprite}#x`}></use>
     </svg>
@@ -325,9 +327,9 @@ Add `corn-button--icon` to the button class list to apply the icon button styles
 Button groups are used to group related actions together. They can be created by wrapping buttons in a container element with the `corn-button--group` class.
 
 <div class="corn-form--row corn-button--group">
-  <button class="corn-button corn-button--md">MD Button</button>
-  <button class="corn-button corn-button--md corn-button--secondary">MD Secondary</button>
-  <button class="corn-button corn-button--md corn-button--danger">MD Danger</button>
+  <button class="corn-button corn-button--md" type="button">MD Button</button>
+  <button class="corn-button corn-button--md corn-button--secondary" type="button">MD Secondary</button>
+  <button class="corn-button corn-button--md corn-button--danger" type="button">MD Danger</button>
 </div> 
 
 

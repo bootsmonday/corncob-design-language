@@ -50,7 +50,7 @@ Use the Corncob grid around the header for page layout when needed. Do not intro
         {/*prettier-ignore*/}
         <a href="#" class="corn-button corn-button--sm">Link 4</a>
         <div class="corn-popover--anchor corn-button-bar--more">
-          <button class="corn-button corn-button--sm corn-pop" aria-controls="button-bar-popover">
+          <button class="corn-button corn-button--sm corn-pop" aria-controls="button-bar-popover" type="button">
             More
           </button>
           <corn-popover
@@ -65,12 +65,13 @@ Use the Corncob grid around the header for page layout when needed. Do not intro
       <button
         class="corn-button corn-button--icon corn-button--xs"
         aria-label="Question Answering"
+        type="button"
       >
         <svg class="corn-icon">
           <use href={`${bootstrapIconsSprite}#question`} />
         </svg>
       </button>
-      <button class="corn-button corn-button--icon corn-button--xs" aria-label="User">
+      <button class="corn-button corn-button--icon corn-button--xs" aria-label="User" type="button">
         <svg class="corn-icon">
           <use href={`${bootstrapIconsSprite}#person`} />
         </svg>
@@ -104,7 +105,7 @@ Use the Corncob grid around the header for page layout when needed. Do not intro
           Link 4
         </a>
         <div class="corn-popover--anchor corn-button-bar--more">
-          <button class="corn-button corn-button--sm corn-pop" aria-controls="button-bar-popover">
+          <button class="corn-button corn-button--sm corn-pop" aria-controls="button-bar-popover" type="button">
             More
           </button>
           <corn-popover
@@ -119,12 +120,14 @@ Use the Corncob grid around the header for page layout when needed. Do not intro
       <button
         class="corn-button corn-button--icon corn-button--secondary corn-button--xs"
         aria-label="Question Answering"
+        type="button"
       >
         <svg class="corn-icon"><use href= href="[another icon]" /></svg>
       </button>
       <button
         class="corn-button corn-button--icon corn-button--secondary corn-button--xs"
         aria-label="User"
+        type="button"
       >
         <svg class="corn-icon"><use href="[Your Icon]" /></svg>
       </button>

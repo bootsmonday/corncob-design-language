@@ -21,35 +21,17 @@ const base = import.meta.env.BASE_URL;
       <a href={`${base}testing/`} class="corn-button corn-button--sm">Testing</a>
       <a href={`${base}about/`} class="corn-button corn-button--sm">About</a>
       <div class="corn-popover--anchor corn-button-bar--more">
-        <button class="corn-button corn-button--sm corn-pop" aria-controls="button-bar-popover">
-          More
-        </button>
-        <corn-popover
-          position="bottom"
-          id="button-bar-popover"
-          class="corn-popover corn-popover--bottom"></corn-popover>
+        <button class="corn-button corn-button--sm corn-pop" aria-controls="button-bar-popover" type="button"> More </button>
+        <corn-popover position="bottom" id="button-bar-popover" class="corn-popover corn-popover--bottom"></corn-popover>
       </div>
     </corn-button-bar>
   </nav>
   <div class="corn-header--actions">
-    <button
-      type="button"
-      onclick="setTheme()"
-      class="corn-button corn-button--icon corn-button--xs"
-      aria-label="Toggle dark / light mode"
-    >
-      <svg class="corn-icon docs-icon-dark" aria-hidden="true"
-        ><use href={`${bootstrapIconsSprite}#moon`}></use></svg
-      >
-      <svg class="corn-icon docs-icon-light" aria-hidden="true"
-        ><use href={`${bootstrapIconsSprite}#sun`}></use></svg
-      >
+    <button type="button" onclick="setTheme()" class="corn-button corn-button--icon corn-button--xs" aria-label="Toggle dark / light mode">
+      <svg class="corn-icon docs-icon-dark" aria-hidden="true"><use href={`${bootstrapIconsSprite}#moon`}></use></svg>
+      <svg class="corn-icon docs-icon-light" aria-hidden="true"><use href={`${bootstrapIconsSprite}#sun`}></use></svg>
     </button>
-    <a
-      href="https://github.com/bootsmonday/corncob-design-language"
-      class="corn-button corn-button--icon corn-button--xs"
-      aria-label="Corncob Design Language GitHub Repository"
-    >
+    <a href="https://github.com/bootsmonday/corncob-design-language" class="corn-button corn-button--icon corn-button--xs" aria-label="Corncob Design Language GitHub Repository">
       <svg class="corn-icon"><use href={`${bootstrapIconsSprite}#github`}></use></svg>
     </a>
   </div>

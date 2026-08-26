@@ -104,7 +104,7 @@ If the canonical version is wrong, enhancement should stop until the base struct
     "variants": ["primary", "secondary", "danger"],
     "sizes": ["xs", "sm", "md", "lg", "xl"],
     "jsRequired": false,
-    "example": "<button class=\"corn-button corn-button--md\">Primary Button</button>"
+    "example": "<button class=\"corn-button corn-button--md\" type=\"button\">Primary Button</button>"
   }
 }
 ```
@@ -159,7 +159,7 @@ If the canonical version is wrong, enhancement should stop until the base struct
    - Default variant: `primary` (implicit)
    - Size: `lg`
 
-2. Generate: `<button class="corn-button corn-button--lg">Action</button>`
+2. Generate: `<button class="corn-button corn-button--lg" type="button">Action</button>`
 
 3. For error styling, look up `colors.semantic.error` in `tokens.json`:
    - Use red color scale or error variant if available
@@ -300,7 +300,7 @@ If the canonical version is wrong, enhancement should stop until the base struct
 <div class="corn-docs-code">
 ```html
 <div class="corn-popover--anchor">
-  <button class="corn-button corn-pop" aria-controls="my-popover">Open Menu</button>
+  <button class="corn-button corn-pop" aria-controls="my-popover" type="button">Open Menu</button>
   <corn-popover position="bottom" id="my-popover" class="corn-popover">
     <ul>
       <li><a href="#" class="corn-link">Item 1</a></li>
@@ -404,13 +404,13 @@ font-size: 18px; //  Use token system instead
 <div class="corn-docs-code">
 ```json
 // VALID - button with size and variant
-<button class="corn-button corn-button--md corn-button--secondary">
+<button class="corn-button corn-button--md corn-button--secondary" type="button">Secondary</button>
 
 // INVALID - missing base class
-<button class="corn-button--md"> //  Must include corn-button
+<button class="corn-button corn-button--md" type="button"> //  Must include corn-button
 
 // INVALID - undefined modifier
-<button class="corn-button corn-button--extra-large"> // Only xs|sm|md|lg|xl
+<button class="corn-button corn-button--extra-large" type="button"> // Only xs|sm|md|lg|xl
 ```
 </div>
 

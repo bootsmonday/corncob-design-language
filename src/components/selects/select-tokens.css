@@ -1,0 +1,32 @@
+:root,
+:host {
+  --cc-select--background: var(--cc-form--item--background);
+  --cc-select--background--hover: var(--cc-blue-20);
+  --cc-select--background--selected: var(--cc-blue-20);
+  --cc-select--background--selected--focus: var(--cc-blue-30);
+  --cc-select--background--selected--hover: var(--cc-blue-40);
+  --cc-select--border: var(--cc-border--width) var(--cc-border--style) var(--cc-border--color);
+  --cc-select--border-radius: var(--cc-border--radius);
+  --cc-select--border-radius--xs: var(--cc-border--radius--xs);
+  --cc-select--color: var(--cc-form--item--color--text);
+  --cc-select--color--hover: var(--cc-blue-80);
+  --cc-select--color--selected: var(--cc-blue-80);
+  --cc-select--color--selected--hover: var(--cc-blue-90);
+  --cc-select--font-size--xs: var(--cc-form--item--font-size--xs);
+  --cc-select--font-size--sm: var(--cc-form--item--font-size--sm);
+  --cc-select--font-size--md: var(--cc-form--item--font-size--md);
+  --cc-select--font-size--lg: var(--cc-form--item--font-size--lg);
+  --cc-select--font-size--xl: var(--cc-form--item--font-size--xl);
+  --cc-select--font-size--selected--lg: var(--cc-size-0);
+  --cc-select--font-size--selected--xl: var(--cc-size-1);
+  --cc-select--height--xs: var(--cc-form--item--size--xs);
+  --cc-select--height--sm: var(--cc-form--item--size--sm);
+  --cc-select--height--md: var(--cc-form--item--size--md);
+  --cc-select--height--lg: var(--cc-form--item--size--lg);
+  --cc-select--height--xl: var(--cc-form--item--size--xl);
+  --cc-select--padding: 0 var(--cc-size-0) var(--cc-spacing--1);
+  --cc-select--padding--xs: 0 var(--cc-size-0);
+  --cc-select--padding--sm: 0 var(--cc-size-0);
+  --cc-select--label--color: var(--cc-blue-60);
+  --cc-select--label--font-weight: 500;
+}

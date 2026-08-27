@@ -15,7 +15,7 @@ fieldset.corn-form--item:has(input[disabled]) {
 }
 
 .corn-form--item {
-  display: inline-flex;
+  display: flex;
   flex-direction: column;
   flex-grow: 1;
 

@@ -61,6 +61,21 @@ describe('CornPopover', () => {
     expect(popover.classList.contains('corn-popover--left')).toBe(true);
   });
 
+  test.each(['top-left', 'top-right', 'right-top', 'right-bottom', 'bottom-left', 'bottom-right', 'left-top', 'left-bottom'])('applies edge-aligned position class "%s"', (position) => {
+    const { popover } = createPopoverFixture({ position });
+
+    expect(popover.classList.contains(`corn-popover--${position}`)).toBe(true);
+  });
+
+  test('replaces the previous position class when the attribute changes', () => {
+    const { popover } = createPopoverFixture({ position: 'top' });
+
+    popover.setAttribute('position', 'right-top');
+
+    expect(popover.classList.contains('corn-popover--top')).toBe(false);
+    expect(popover.classList.contains('corn-popover--right-top')).toBe(true);
+  });
+
   test('opens and closes when clicking the trigger', () => {
     const { trigger, popover } = createPopoverFixture();
 

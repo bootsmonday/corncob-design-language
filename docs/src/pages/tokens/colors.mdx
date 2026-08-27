@@ -3,7 +3,7 @@ title: Tokens | Colors | Corncob
 ---
 
 import DocsLayout from '../../layouts/DocsLayout.astro'; 
-      import CodeSample from '../../layouts/partials/CodeSample.astro';
+           import CodeSample from '../../layouts/partials/CodeSample.astro';
 import { Code } from 'astro/components';
 import colorTokens from '../../../../src/tokens/colors.css?raw';
 
@@ -557,6 +557,12 @@ In any design system or application, it's important to have a solid foundation o
     </div>    
   </div>
 </div>
+
+## Notes
+
+These tokens were generated using <a href="https://bootsmonday.github.io/color-palette-tool/">the BootsMonday Color Palette Tool</a>. 
+For a deeper dive into the color palette, the rationale behind it, and additional information visit <a href="https://bootsmonday.github.io/color-palette-tool/about">BootsMonday Accessible Color Systems</a>.
+
 
 <CodeSample id="color-tokens-code">
   <Code code={colorTokens} lang="css" />

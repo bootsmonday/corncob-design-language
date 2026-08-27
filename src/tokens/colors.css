@@ -33,7 +33,7 @@
   /* Yellow */
   --cc-yellow-10: light-dark(#f9fbc8, #1f1f00);
   --cc-yellow-20: light-dark(#e8ea86, #313100);
-  --cc-yellow-30: light-dark(#d6d500, #440);
+  --cc-yellow-30: light-dark(#d6d500, #444400);
   --cc-yellow-40: light-dark(#b9b800, #5b5b00);
   --cc-yellow-50: light-dark(#959500, #767600);
   --cc-yellow-60: light-dark(#767600, #959500);
@@ -105,7 +105,7 @@
   /* Gray */
   --cc-gray-10: light-dark(#f6f6f6, #1e1e1e);
   --cc-gray-20: light-dark(#e2e2e2, #2e2e2e);
-  --cc-gray-30: light-dark(#ccc, #414141);
+  --cc-gray-30: light-dark(#cccccc, #414141);
   --cc-gray-40: light-dark(#b1b1b1, #575757);
   --cc-gray-50: light-dark(#8e8e8e, #717171);
   --cc-gray-60: light-dark(#717171, #8e8e8e);

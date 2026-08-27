@@ -1,85 +1,118 @@
-/* Color Tokens */
+/* Color Tokens for Palette: Great Palette */
+
+/* Design System: corncob */
+
 :root,
 :host {
   color-scheme: light dark;
 
-  /* cc-yellow CSS Variables */
+  /* Red */
+  --cc-red-10: light-dark(#fef3f5, #3a0716);
+  --cc-red-20: light-dark(#fcd8dd, #560e24);
+  --cc-red-30: light-dark(#fab7c2, #751733);
+  --cc-red-40: light-dark(#f68ca0, #982245);
+  --cc-red-50: light-dark(#e75178, #c1325c);
+  --cc-red-60: light-dark(#c1325c, #e75178);
+  --cc-red-70: light-dark(#982245, #f68ca0);
+  --cc-red-80: light-dark(#751733, #fab7c2);
+  --cc-red-90: light-dark(#560e24, #fcd8dd);
+  --cc-red-100: light-dark(#3a0716, #fef3f5);
 
-  --cc-yellow-10: light-dark(#fdf6e3, #272109);
-  --cc-yellow-20: light-dark(#f1e2b6, #383010);
-  --cc-yellow-30: light-dark(#e7cb5a, #4c4218);
-  --cc-yellow-40: light-dark(#c8af4d, #645622);
-  --cc-yellow-50: light-dark(#a28d3c, #81702e);
-  --cc-yellow-60: light-dark(#81702e, #a28d3c);
-  --cc-yellow-70: light-dark(#645622, #c8af4d);
-  --cc-yellow-80: light-dark(#4c4218, #e7cb5a);
-  --cc-yellow-90: light-dark(#383010, #f1e2b6);
-  --cc-yellow-100: light-dark(#272109, #fdf6e3);
+  /* Orange */
+  --cc-orange-10: light-dark(#fef5ed, #2d1803);
+  --cc-orange-20: light-dark(#fcdcc0, #442606);
+  --cc-orange-30: light-dark(#f9bf8b, #5d360c);
+  --cc-orange-40: light-dark(#ec9c4e, #7b4914);
+  --cc-orange-50: light-dark(#c57a2a, #9e601d);
+  --cc-orange-60: light-dark(#9e601d, #c57a2a);
+  --cc-orange-70: light-dark(#7b4914, #ec9c4e);
+  --cc-orange-80: light-dark(#5d360c, #f9bf8b);
+  --cc-orange-90: light-dark(#442606, #fcdcc0);
+  --cc-orange-100: light-dark(#2d1803, #fef5ed);
 
-  /* cc-orange CSS Variables */
+  /* Yellow */
+  --cc-yellow-10: light-dark(#f9fbc8, #1f1f00);
+  --cc-yellow-20: light-dark(#e8ea86, #313100);
+  --cc-yellow-30: light-dark(#d6d500, #440);
+  --cc-yellow-40: light-dark(#b9b800, #5b5b00);
+  --cc-yellow-50: light-dark(#959500, #767600);
+  --cc-yellow-60: light-dark(#767600, #959500);
+  --cc-yellow-70: light-dark(#5b5b00, #b9b800);
+  --cc-yellow-80: light-dark(#440, #d6d500);
+  --cc-yellow-90: light-dark(#313100, #e8ea86);
+  --cc-yellow-100: light-dark(#1f1f00, #f9fbc8);
 
-  --cc-orange-10: light-dark(#fdf5f1, #311d0b);
-  --cc-orange-20: light-dark(#f9ddce, #452a13);
-  --cc-orange-30: light-dark(#f5c1a1, #5d3a1c);
-  --cc-orange-40: light-dark(#f09e56, #794d27);
-  --cc-orange-50: light-dark(#c27f44, #9b6534);
-  --cc-orange-60: light-dark(#9b6534, #c27f44);
-  --cc-orange-70: light-dark(#794d27, #f09e56);
-  --cc-orange-80: light-dark(#5d3a1c, #f5c1a1);
-  --cc-orange-90: light-dark(#452a13, #f9ddce);
-  --cc-orange-100: light-dark(#311d0b, #fdf5f1);
+  /* Green */
+  --cc-green-10: light-dark(#eefbe8, #132308);
+  --cc-green-20: light-dark(#c5f2b0, #1f3511);
+  --cc-green-30: light-dark(#a2e181, #2d4a1a);
+  --cc-green-40: light-dark(#81c754, #3d6325);
+  --cc-green-50: light-dark(#67a142, #508033);
+  --cc-green-60: light-dark(#508033, #67a142);
+  --cc-green-70: light-dark(#3d6325, #81c754);
+  --cc-green-80: light-dark(#2d4a1a, #a2e181);
+  --cc-green-90: light-dark(#1f3511, #c5f2b0);
+  --cc-green-100: light-dark(#132308, #eefbe8);
 
-  /* cc-green CSS Variables */
+  /* Teal */
+  --cc-teal-10: light-dark(#e3fdf7, #05231e);
+  --cc-teal-20: light-dark(#96f8e5, #0b362f);
+  --cc-teal-30: light-dark(#59e7cf, #134b42);
+  --cc-teal-40: light-dark(#42c9b4, #1c6458);
+  --cc-teal-50: light-dark(#33a391, #268173);
+  --cc-teal-60: light-dark(#268173, #33a391);
+  --cc-teal-70: light-dark(#1c6458, #42c9b4);
+  --cc-teal-80: light-dark(#134b42, #59e7cf);
+  --cc-teal-90: light-dark(#0b362f, #96f8e5);
+  --cc-teal-100: light-dark(#05231e, #e3fdf7);
 
-  --cc-green-10: light-dark(#f1f9ed, #16260b);
-  --cc-green-20: light-dark(#c9edb7, #213613);
-  --cc-green-30: light-dark(#98df66, #2f491d);
-  --cc-green-40: light-dark(#83c158, #3f6028);
-  --cc-green-50: light-dark(#699c45, #537c36);
-  --cc-green-60: light-dark(#537c36, #699c45);
-  --cc-green-70: light-dark(#3f6028, #83c158);
-  --cc-green-80: light-dark(#2f491d, #98df66);
-  --cc-green-90: light-dark(#213613, #c9edb7);
-  --cc-green-100: light-dark(#16260b, #f1f9ed);
+  /* Blue */
+  --cc-blue-10: light-dark(#eef8fe, #04212e);
+  --cc-blue-20: light-dark(#c5e9fc, #083345);
+  --cc-blue-30: light-dark(#94d6f9, #0f475f);
+  --cc-blue-40: light-dark(#59beed, #175e7d);
+  --cc-blue-50: light-dark(#319ac8, #217aa0);
+  --cc-blue-60: light-dark(#217aa0, #319ac8);
+  --cc-blue-70: light-dark(#175e7d, #59beed);
+  --cc-blue-80: light-dark(#0f475f, #94d6f9);
+  --cc-blue-90: light-dark(#083345, #c5e9fc);
+  --cc-blue-100: light-dark(#04212e, #eef8fe);
 
-  /* cc-blue CSS Variables */
+  /* Purple */
+  --cc-purple-10: light-dark(#f7f5fe, #220d47);
+  --cc-purple-20: light-dark(#e3defc, #341867);
+  --cc-purple-30: light-dark(#cec4fa, #49248b);
+  --cc-purple-40: light-dark(#b4a2f7, #6034b2);
+  --cc-purple-50: light-dark(#9574ef, #7a4dd9);
+  --cc-purple-60: light-dark(#7a4dd9, #9574ef);
+  --cc-purple-70: light-dark(#6034b2, #b4a2f7);
+  --cc-purple-80: light-dark(#49248b, #cec4fa);
+  --cc-purple-90: light-dark(#341867, #e3defc);
+  --cc-purple-100: light-dark(#220d47, #f7f5fe);
 
-  --cc-blue-10: light-dark(#f3f7fd, #102335);
-  --cc-blue-20: light-dark(#d7e3f7, #1a324a);
-  --cc-blue-30: light-dark(#b5cef1, #254463);
-  --cc-blue-40: light-dark(#86b4e9, #335a80);
-  --cc-blue-50: light-dark(#5692ce, #4374a4);
-  --cc-blue-60: light-dark(#4374a4, #5692ce);
-  --cc-blue-70: light-dark(#335a80, #86b4e9);
-  --cc-blue-80: light-dark(#254463, #b5cef1);
-  --cc-blue-90: light-dark(#1a324a, #d7e3f7);
-  --cc-blue-100: light-dark(#102335, #f3f7fd);
+  /* Magenta */
+  --cc-magenta-10: light-dark(#fdf3fa, #36052d);
+  --cc-magenta-20: light-dark(#f8d8ee, #500a44);
+  --cc-magenta-30: light-dark(#f2b7e2, #6d125d);
+  --cc-magenta-40: light-dark(#eb8ad3, #8e1c7a);
+  --cc-magenta-50: light-dark(#d84fbc, #b42d9c);
+  --cc-magenta-60: light-dark(#b42d9c, #d84fbc);
+  --cc-magenta-70: light-dark(#8e1c7a, #eb8ad3);
+  --cc-magenta-80: light-dark(#6d125d, #f2b7e2);
+  --cc-magenta-90: light-dark(#500a44, #f8d8ee);
+  --cc-magenta-100: light-dark(#36052d, #fdf3fa);
 
-  /* cc-red CSS Variables */
-
-  --cc-red-10: light-dark(#fbf5f5, #3f1316);
-  --cc-red-20: light-dark(#f3ddde, #571d21);
-  --cc-red-30: light-dark(#ebc2c4, #74292f);
-  --cc-red-40: light-dark(#e39fa3, #95373f);
-  --cc-red-50: light-dark(#da6d74, #bf4952);
-  --cc-red-60: light-dark(#bf4952, #da6d74);
-  --cc-red-70: light-dark(#95373f, #e39fa3);
-  --cc-red-80: light-dark(#74292f, #ebc2c4);
-  --cc-red-90: light-dark(#571d21, #f3ddde);
-  --cc-red-100: light-dark(#3f1316, #fbf5f5);
-
-  /* cc-gray CSS Variables */
-
-  --cc-gray-10: light-dark(#f8f6f4, #24211e);
-  --cc-gray-20: light-dark(#e8e1db, #34302b);
-  --cc-gray-30: light-dark(#d7cabc, #47413b);
-  --cc-gray-40: light-dark(#bbafa1, #5d564f);
-  --cc-gray-50: light-dark(#978d81, #786f66);
-  --cc-gray-60: light-dark(#786f66, #978d81);
-  --cc-gray-70: light-dark(#5d564f, #bbafa1);
-  --cc-gray-80: light-dark(#47413b, #d7cabc);
-  --cc-gray-90: light-dark(#34302b, #e8e1db);
-  --cc-gray-100: light-dark(#24211e, #f8f6f4);
+  /* Gray */
+  --cc-gray-10: light-dark(#f6f6f6, #1e1e1e);
+  --cc-gray-20: light-dark(#e2e2e2, #2e2e2e);
+  --cc-gray-30: light-dark(#ccc, #414141);
+  --cc-gray-40: light-dark(#b1b1b1, #575757);
+  --cc-gray-50: light-dark(#8e8e8e, #717171);
+  --cc-gray-60: light-dark(#717171, #8e8e8e);
+  --cc-gray-70: light-dark(#575757, #b1b1b1);
+  --cc-gray-80: light-dark(#414141, #ccc);
+  --cc-gray-90: light-dark(#2e2e2e, #e2e2e2);
+  --cc-gray-100: light-dark(#1e1e1e, #f6f6f6);
 
   /* Base Colors */
   --cc-white: light-dark(#fcfbf9, #0c0a07);
@@ -89,3 +122,9 @@
   --cc-body--background: var(--cc-gray-10);
   --cc-body--color: var(--cc-gray-100);
 }
+
+/* End of Color Tokens */
+
+/* Generated by https://bootsmonday.github.io/color-palette-tool */
+
+/* Thanks BootsMonday! */

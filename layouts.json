@@ -1,6 +1,6 @@
 {
   "name": "Corncob Layout Rules",
-  "version": "0.0.1",
+  "version": "0.3.1",
   "defaultLayoutSystem": "corn-grid",
   "rule": "Use the Corncob grid for page and section layout unless a component's canonical example documents a different internal layout.",
   "grid": {

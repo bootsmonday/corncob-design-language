@@ -1,6 +1,6 @@
 module.exports = {
   testEnvironment: '@happy-dom/jest-environment',
-  roots: ['<rootDir>/src'],
+  roots: ['<rootDir>/src', '<rootDir>/testing'],
   testMatch: ['**/__tests__/**/*.js', '**/?(*.)+(spec|test).js'],
   moduleNameMapper: {
     '\\.(css|less|scss|sass)$': 'identity-obj-proxy',

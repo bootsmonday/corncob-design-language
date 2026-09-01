@@ -1,15 +1,20 @@
 Corncob Design Language AI usage rules
 
 - Use only Corncob classes and vanilla HTML and JavaScript.
+- Generate markup only for components.json entries with implemented: true. Planned entries have no example on purpose.
 - Default layout system: corn-container, corn-row, and corn-col-*.
 - Use the grid for page and section layout unless a component page documents a different internal layout.
 - Start from canonical component code before adding enhancements.
 - Preserve documented class names, child order, and required wrappers.
-- For toggles, use fieldset.corn-toggle-group with legend, one shared radio name, and matching input id/label for.
+- Always set button type to button, submit, or reset.
+- For toggles, use fieldset.corn-toggle-group with legend, one shared radio name, and a label whose `for` attribute matches the corresponding input `id`.
 - For icon toggles, keep icons inside labels and provide aria-label on .corn-icon.
 - For sliders, wrap in corn-slider with a label, and include min, max, and value on the input.
+- For selects, use corn-select custom element with option children inside corn-form--item, not a native select.
+- Use corn-panel for grouped content. Do not invent corn-card or corn-alert.
 - For components with required internal structure, use the grid around the component instead of rewriting the inside.
 - Check components.json for canonical examples, variants, sizes, and JS requirements.
 - Check tokens.json for tokens and common patterns.
+- In-repo contributors and coding agents: follow AGENTS.md.
 - Read guides/ai-integration/ for the full contract.
 - Full AI contract: llms-full.txt

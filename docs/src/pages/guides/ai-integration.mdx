@@ -20,6 +20,8 @@ import bootstrapIconsSprite from 'bootstrap-icons/bootstrap-icons.svg?url';
 
 This guide explains how AI systems should consume and use the Corncob Design Language files for code generation, validation, and design system enforcement.
 
+Coding agents working in the Corncob repository should follow `AGENTS.md`. This page is the downstream generation contract.
+
 ### Non-Negotiable Contract
 
 Use these rules as the default behavior for AI code generation:
@@ -28,6 +30,8 @@ Use these rules as the default behavior for AI code generation:
 2. Start from the canonical component code before enhancing or customizing it.
 3. Preserve documented class names, child order, and required relationships before adding wrappers, styling hooks, or behavior.
 4. Use the grid around components that have their own internal structure. Do not rewrite the inside of the component just to satisfy a page layout.
+5. Generate markup only for `components.json` entries with `"implemented": true`. Planned components have no example on purpose.
+6. Always set `type="button"`, `type="submit"`, or `type="reset"` on `<button>` elements.
 
 ### Default Layout Rule
 
@@ -90,6 +94,7 @@ If the canonical version is wrong, enhancement should stop until the base struct
 
 - When generating UI code, reference the `baseClass` and `example` fields
 - Treat `example` as canonical component code unless a `fullExamples` entry is a closer match to the task
+- Skip any component with `"implemented": false`. Use `corn-panel` instead of a card and `corn-message` instead of an alert
 - Check `jsRequired` to determine if interactivity setup is needed
 - Use `variants` and `sizes` arrays to validate generated classes
 - Follow component accessibility requirements in `accessibility` field
@@ -461,10 +466,11 @@ font-size: 18px; /*  Use token system instead */
 
 Whenever these files are updated:
 
-1. **Version field** in `metadata` will increment
+1. **Version field** in `metadata` / `components.json` stays aligned with the package version
 2. **changelog** section should document breaking changes
 3. **deprecated** components will be marked explicitly
 4. AI systems should check version before generating code to ensure compatibility
+5. Keep `"implemented"` flags and canonical examples in sync with `src/components`. Run `npm test` (includes the AI catalog sync check)
 
 ---
 
@@ -499,7 +505,7 @@ Here's how an AI system should generate a contact form:
   </fieldset>
 
   <!-- Button from components.json -->
-  <button class="corn-button corn-button--md corn-button--primary">Submit</button>
+  <button class="corn-button corn-button--md" type="submit">Submit</button>
 </form>
 ```
 </div>

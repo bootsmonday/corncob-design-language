@@ -87,8 +87,8 @@ import '@bootsmonday/corncob-design-language';
 ### 4. Use Markup
 
 ```html
-<button class="corn-button">Save</button>
-<button class="corn-button corn-button--secondary">Cancel</button>
+<button class="corn-button" type="button">Save</button>
+<button class="corn-button corn-button--secondary" type="button">Cancel</button>
 ```
 
 ## About Corncob
@@ -136,22 +136,23 @@ Copy this when asking an AI to build pages with Corncob:
 > Use only corn-\* class names and vanilla HTML/JS.
 > Never use Tailwind, Bootstrap, or any other CSS framework.
 > Prioritize accessibility (WCAG 2.1 AA), semantic HTML, and clean code.
-> Use the official component variants and sizes exactly as documented.
+> Use only components.json entries with implemented: true, and copy their canonical examples before enhancing.
+> Always set button type to button, submit, or reset.
 > Use the Corncob grid for page and section layout unless a component page documents a different internal layout.
 > Start from the canonical component code before adding enhancements or custom wrappers.
 > For toggles, use fieldset.corn-toggle-group with legend, shared radio name, and matching input id/label for.
 > For icon toggles, keep icons inside labels and provide aria-label on .corn-icon.
-> For modals, always include proper focus management and ARIA attributes."
+> For grouped content, use corn-panel rather than inventing a card component."
 
 ### Example AI Prompts
 
 - "Build a clean marketing landing page using only Corncob components"
-- "Create a responsive dashboard layout with sidebar, header, data table, and cards"
+- "Create a responsive dashboard layout with sidebar, header, panels, and a form"
 - "Make an accessible login form with email, password, remember me toggle, and error states"
 
 ### For AI Tools
 
-Download or reference [`components.json`](components.json) — this machine-readable manifest helps AI coding assistants better understand the core components and their common variants (it is not an exhaustive list of every component).
+Download or reference [`components.json`](components.json) — the inventory of shipped and planned components. Generate markup only for entries with `"implemented": true`.
 
 If you host the documentation site, publish `llms.txt` and `llms-full.txt` so AI agents and crawlers can discover the grid default, canonical component rules, and implementation priorities without scraping every page.
 
@@ -163,6 +164,8 @@ When generating layouts with Corncob:
 - use `corn-toggle-group` + `corn-toggles` + `corn-toggle` structure for toggle groups, with shared radio names and matching `id`/`for`
 
 See [`DESIGN_SYSTEM_FOR_AI.md`](DESIGN_SYSTEM_FOR_AI.md) for the full AI integration contract.
+
+Coding agents working in this repository should follow [`AGENTS.md`](AGENTS.md). GitHub Copilot also reads [`.github/copilot-instructions.md`](.github/copilot-instructions.md). Cursor also reads [`.cursor/rules/corncob.mdc`](.cursor/rules/corncob.mdc).
 
 ## Development & Contribution
 

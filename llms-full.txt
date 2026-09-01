@@ -3,10 +3,12 @@ Corncob Design Language AI integration contract
 Primary rules
 
 1. Use only Corncob classes and vanilla HTML and JavaScript.
-2. Use the Corncob grid for page and section layout unless a component page documents a different internal layout.
-3. Start from the canonical component code before adding enhancements.
-4. Preserve documented class names, child order, and required relationships.
-5. Use the grid around structured components instead of rewriting their internal DOM.
+2. Generate markup only for components.json entries with implemented: true. Planned components have no canonical example.
+3. Use the Corncob grid for page and section layout unless a component page documents a different internal layout.
+4. Start from the canonical component code before adding enhancements.
+5. Preserve documented class names, child order, and required relationships.
+6. Use the grid around structured components instead of rewriting their internal DOM.
+7. Always set button type to button, submit, or reset.
 
 Default layout
 
@@ -29,10 +31,11 @@ Use responsive spans with:
 Canonical before enhancement workflow
 
 1. Find the canonical component example in components.json or the component docs page.
-2. Emit the documented markup exactly.
-3. Replace placeholder text, links, icons, and content.
-4. Place the component within the Corncob grid if page layout is needed.
-5. Add optional enhancements only after the canonical component code is correct.
+2. Skip any catalog entry with implemented: false.
+3. Emit the documented markup exactly.
+4. Replace placeholder text, links, icons, and content.
+5. Place the component within the Corncob grid if page layout is needed.
+6. Add optional enhancements only after the canonical component code is correct.
 
 Avoid
 
@@ -40,6 +43,13 @@ Avoid
 - building a second custom grid system for normal layouts
 - replacing canonical Corncob structure with framework-specific abstractions
 - changing direct child order for documented components such as headers
+- generating corn-card, corn-tabs, corn-table, corn-alert, or corn-avatar markup
+- omitting the type attribute on buttons
+
+Button-specific rules
+
+- Always include type="button", type="submit", or type="reset".
+- The native default is submit and can submit forms unexpectedly.
 
 Toggle-specific rules
 
@@ -58,6 +68,25 @@ Slider-specific rules
 - Use only documented size modifiers: corn-slider--xs, corn-slider--sm, corn-slider--md, corn-slider--lg, corn-slider--xl.
 - Apply disabled directly on the input element.
 
+Select-specific rules
+
+- Wrap in corn-form--item and div.corn-select.
+- Use the corn-select custom element, not a native select.corn-select.
+- Populate options as native option children in light DOM.
+- Pair with a label whose for matches the corn-select id.
+
+Badge-specific rules
+
+- Keep corn-badge--status and corn-badge--content as required children.
+- Variants are neutral (default), success, warning, error, and info.
+- Size modifier is corn-badge--sm. Do not use corn-badge--primary or corn-badge--danger.
+
+Toast-specific rules
+
+- Place one corn-toast on the page.
+- Call addToast({ type, text, icon, duration }) on that element.
+- Use toasts for non-critical feedback only.
+
 Structured component example: header
 
 - Required direct children of corn-header:
@@ -68,6 +97,11 @@ Structured component example: header
 - Use the grid around the header for placement.
 - Do not add custom wrapper containers inside corn-header unless explicitly documented.
 
+Substitutions for planned components
+
+- Card: use corn-panel
+- Alert: use corn-message
+
 Authoritative sources
 
 - /guides/ai-integration/
@@ -75,3 +109,4 @@ Authoritative sources
 - /components/headers/ and other component pages
 - components.json
 - tokens.json
+- AGENTS.md for in-repo contributor work

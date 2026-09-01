@@ -2,6 +2,8 @@
 
 This document explains how AI systems should consume and use the Corncob Design Language files for code generation, validation, and design system enforcement.
 
+Coding agents working **in this repository** should follow `AGENTS.md`. This file is the downstream generation contract.
+
 ## Non-Negotiable Contract
 
 Use these rules as the default behavior for AI code generation:
@@ -10,6 +12,8 @@ Use these rules as the default behavior for AI code generation:
 2. Start from the canonical component code before enhancing or customizing it.
 3. Preserve documented class names, child order, and required relationships before adding wrappers, styling hooks, or behavior.
 4. Use the grid around components that have their own internal structure. Do not rewrite the inside of the component just to satisfy a page layout.
+5. Generate markup only for `components.json` entries with `"implemented": true`. Planned components have no example on purpose.
+6. Always set `type="button"`, `type="submit"`, or `type="reset"` on `<button>` elements.
 
 ## Default Layout Rule
 
@@ -70,6 +74,8 @@ If the canonical version is wrong, enhancement should stop until the base struct
 
 - When generating UI code, reference the `baseClass` and `example` fields
 - Treat `example` as canonical component code unless a `fullExamples` entry is a closer match to the task
+- Skip any component with `"implemented": false`. Use `corn-panel` instead of a card and `corn-message` instead of an alert
+- Use `sourceDir` to find the implementation when working in this repository
 - Check `jsRequired` to determine if interactivity setup is needed
 - Use `variants` and `sizes` arrays to validate generated classes
 - Follow component accessibility requirements in `accessibility` field
@@ -84,7 +90,7 @@ If the canonical version is wrong, enhancement should stop until the base struct
     "variants": ["primary", "secondary", "danger"],
     "sizes": ["xs", "sm", "md", "lg", "xl"],
     "jsRequired": false,
-    "example": "<button class=\"corn-button corn-button--md\">Primary Button</button>"
+    "example": "<button class=\"corn-button corn-button--md\" type=\"button\">Primary Button</button>"
   }
 }
 ```
@@ -138,7 +144,7 @@ If the canonical version is wrong, enhancement should stop until the base struct
    - Default variant: `primary` (implicit)
    - Size: `lg`
 
-2. Generate: `<button class="corn-button corn-button--lg">Action</button>`
+2. Generate: `<button class="corn-button corn-button--lg" type="button">Action</button>`
 
 3. For error styling, look up `colors.semantic.error` in `tokens.json`:
    - Use red color scale or error variant if available
@@ -302,7 +308,7 @@ Use `corn-checkbox--task` on the `.corn-checkbox` wrapper to render a checklist-
 
 ```html
 <div class="corn-popover--anchor">
-  <button class="corn-button corn-pop" aria-controls="my-popover">Open Menu</button>
+  <button class="corn-button corn-pop" aria-controls="my-popover" type="button">Open Menu</button>
   <corn-popover position="bottom" id="my-popover" class="corn-popover">
     <ul>
       <li><a href="#" class="corn-link">Item 1</a></li>
@@ -396,15 +402,15 @@ font-size: 18px; // ❌ Use token system instead
 
 ### Component Class Validation
 
-```json
-// VALID - button with size and variant
-<button class="corn-button corn-button--md corn-button--secondary">
+```html
+<!-- VALID - button with size and variant -->
+<button class="corn-button corn-button--md corn-button--secondary" type="button">Secondary</button>
 
-// INVALID - missing base class
-<button class="corn-button--md"> // ❌ Must include corn-button
+<!-- INVALID - missing base class -->
+<button class="corn-button--md" type="button"><!-- Must include corn-button --></button>
 
-// INVALID - undefined modifier
-<button class="corn-button corn-button--extra-large"> // ❌ Only xs|sm|md|lg|xl
+<!-- INVALID - undefined modifier -->
+<button class="corn-button corn-button--extra-large" type="button"><!-- Only xs|sm|md|lg|xl --></button>
 ```
 
 ---
@@ -454,10 +460,11 @@ font-size: 18px; // ❌ Use token system instead
 
 Whenever these files are updated:
 
-1. **Version field** in `metadata` will increment
+1. **Version field** in `metadata` / `components.json` stays aligned with the package version
 2. **changelog** section should document breaking changes
 3. **deprecated** components will be marked explicitly
 4. AI systems should check version before generating code to ensure compatibility
+5. Keep `"implemented"` flags and canonical examples in sync with `src/components`. Run `npm test` (includes `testing/ai-catalog.test.js`)
 
 ---
 
@@ -491,7 +498,7 @@ Here's how an AI system should generate a contact form:
   </fieldset>
 
   <!-- Button from components.json -->
-  <button class="corn-button corn-button--md corn-button--primary">Submit</button>
+  <button class="corn-button corn-button--md" type="submit">Submit</button>
 </form>
 ```
 

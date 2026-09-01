@@ -140,7 +140,7 @@ Copy this when asking an AI to build pages with Corncob:
 > Always set button type to button, submit, or reset.
 > Use the Corncob grid for page and section layout unless a component page documents a different internal layout.
 > Start from the canonical component code before adding enhancements or custom wrappers.
-> For toggles, use fieldset.corn-toggle-group with legend, shared radio name, and matching input id/label for.
+> For toggles, use fieldset.corn-toggle-group with legend, shared radio name, and a label whose `for` attribute matches the corresponding input `id`.
 > For icon toggles, keep icons inside labels and provide aria-label on .corn-icon.
 > For grouped content, use corn-panel rather than inventing a card component."
 

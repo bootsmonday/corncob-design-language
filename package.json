@@ -49,7 +49,8 @@
     "changelog:check": "bash scripts/check-changelog-fragment.sh",
     "changelog:release": "bash scripts/release-changelog.sh",
     "release:stage": "node scripts/stage-release-package.mjs",
-    "tokens:export:figma": "node scripts/export-figma-tokens.mjs"
+    "tokens:export:figma": "node scripts/export-figma-tokens.mjs",
+    "tokens:figma": "node scripts/figma-tokens.mjs"
   },
   "keywords": [
     "design-system",

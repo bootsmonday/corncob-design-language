@@ -1,6 +1,8 @@
 ---
 import DocsLayout from '../../layouts/DocsLayout.astro';
 import ButtonExample from '../../components/react/ButtonExample.jsx';
+import TextInputExample from '../../components/react/TextInputExample.jsx';
+import CheckboxExample from '../../components/react/CheckboxExample.jsx';
 ---
 
 <DocsLayout title="React | Corncob" description="React adapter guidance for Corncob EDL">
@@ -10,20 +12,40 @@ import ButtonExample from '../../components/react/ButtonExample.jsx';
     the core CSS package.
   </p>
 
-  <ButtonExample />
+  <h2>Buttons</h2>
+  <ButtonExample client:load />
+
+  <h2>Text Inputs</h2>
+  <TextInputExample client:load />
+
+  <h2>Checkboxes</h2>
+  <CheckboxExample client:load />
 
   <h2>Wrapper Pattern</h2>
   <pre
-    class="docs-code"><code>{`import "@bootsmonday/corncob-design-language/corncob-design-language.css";
-import { CcButton } from "@bootsmonday/corncob-design-language-react";
+    class="docs-code"><code>{`import "@bootsmonday/corncob-design-language/style.css";
+import {
+  CcButton,
+  CcTextInput,
+  CcCheckbox,
+  CcCheckboxGroup,
+} from "@bootsmonday/corncob-design-language-react";
 
-export function ToolbarActions() {
+export function AccountForm() {
   return (
-    <div>
-      <CcButton size="sm">Save</CcButton>
-      <CcButton variant="secondary" size="sm">Cancel</CcButton>
-      <CcButton variant="danger" size="sm">Delete</CcButton>
-    </div>
+    <form>
+      <CcTextInput
+        label="What is your name?"
+        placeholder="Enter Full Name..."
+        status="Helper Text"
+      />
+      <CcCheckboxGroup legend="Options" name="example">
+        <CcCheckbox>Checkbox One</CcCheckbox>
+        <CcCheckbox defaultChecked>Checkbox Two</CcCheckbox>
+      </CcCheckboxGroup>
+      <CcButton type="submit">Save</CcButton>
+      <CcButton variant="secondary">Cancel</CcButton>
+    </form>
   );
 }`}</code></pre>
 </DocsLayout>

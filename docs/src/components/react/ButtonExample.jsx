@@ -1,15 +1,11 @@
+import { CcButton } from '@bootsmonday/corncob-design-language-react';
+
 export default function ButtonExample() {
   return (
-    <div className="docs-demo-row">
-      <button className="corn-button" type="button">
-        React Primary
-      </button>
-      <button className="corn-button corn-button--secondary" type="button">
-        React Secondary
-      </button>
-      <button className="corn-button corn-button--danger" type="button">
-        React Danger
-      </button>
+    <div className="corn-form--row">
+      <CcButton>React Primary</CcButton>
+      <CcButton variant="secondary">React Secondary</CcButton>
+      <CcButton variant="danger">React Danger</CcButton>
     </div>
   );
 }

@@ -72,7 +72,22 @@ describe('CcButton', () => {
   test('allows type="submit" on a button', () => {
     render(<CcButton type="submit">Submit</CcButton>);
 
-    expect(screen.getByRole('button', { name: 'Submit' })).toHaveAttribute('type', 'submit');
+    const button = screen.getByRole('button', { name: 'Submit' });
+    expect(button).toHaveAttribute('type', 'submit');
+    expect(button).not.toBeDisabled();
+    expect(button).not.toHaveAttribute('aria-busy');
+  });
+
+  test('keeps a submit button enabled outside a pending form', () => {
+    render(
+      <form>
+        <CcButton type="submit">Save</CcButton>
+      </form>
+    );
+
+    const button = screen.getByRole('button', { name: 'Save' });
+    expect(button).not.toBeDisabled();
+    expect(button).not.toHaveAttribute('aria-busy');
   });
 
   test('forwards a ref to the host element', () => {
@@ -80,5 +95,12 @@ describe('CcButton', () => {
     render(<CcButton ref={ref}>Save</CcButton>);
 
     expect(ref.current).toBe(screen.getByRole('button', { name: 'Save' }));
+  });
+
+  test('supports a callback ref', () => {
+    const ref = jest.fn();
+    render(<CcButton ref={ref}>Save</CcButton>);
+
+    expect(ref).toHaveBeenCalledWith(screen.getByRole('button', { name: 'Save' }));
   });
 });

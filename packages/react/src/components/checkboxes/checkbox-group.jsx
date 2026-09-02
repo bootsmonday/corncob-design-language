@@ -1,13 +1,18 @@
-import { createContext, forwardRef } from 'react';
+import { createContext } from 'react';
 import { CcFormItem } from '../../common/form-item.jsx';
 import { joinClassNames } from '../../utils/class-names.js';
 
 export const CheckboxGroupContext = createContext({ name: undefined });
 
-export const CcCheckboxGroup = forwardRef(function CcCheckboxGroup(
-  { legend, name, inline = false, className = '', children, ...props },
-  ref
-) {
+export function CcCheckboxGroup({
+  ref,
+  legend,
+  name,
+  inline = false,
+  className = '',
+  children,
+  ...props
+}) {
   return (
     <CcFormItem
       {...props}
@@ -20,7 +25,7 @@ export const CcCheckboxGroup = forwardRef(function CcCheckboxGroup(
       )}
     >
       {legend != null ? <legend>{legend}</legend> : null}
-      <CheckboxGroupContext.Provider value={{ name }}>{children}</CheckboxGroupContext.Provider>
+      <CheckboxGroupContext value={{ name }}>{children}</CheckboxGroupContext>
     </CcFormItem>
   );
-});
+}

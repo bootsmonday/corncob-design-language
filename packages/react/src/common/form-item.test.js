@@ -35,4 +35,11 @@ describe('CcFormItem', () => {
 
     expect(ref.current).toBe(screen.getByText('Field'));
   });
+
+  test('supports a callback ref', () => {
+    const ref = jest.fn();
+    render(<CcFormItem ref={ref}>Field</CcFormItem>);
+
+    expect(ref).toHaveBeenCalledWith(screen.getByText('Field'));
+  });
 });

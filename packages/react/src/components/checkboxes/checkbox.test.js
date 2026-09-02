@@ -103,4 +103,17 @@ describe('CcCheckbox', () => {
 
     expect(ref.current).toBe(screen.getByRole('checkbox', { name: 'One' }));
   });
+
+  test('supports a callback ref and keeps indeterminate in sync', () => {
+    const ref = jest.fn();
+    render(
+      <CcCheckbox ref={ref} indeterminate>
+        Indeterminate checkbox
+      </CcCheckbox>
+    );
+
+    const input = screen.getByRole('checkbox', { name: 'Indeterminate checkbox' });
+    expect(ref).toHaveBeenCalledWith(input);
+    expect(input.indeterminate).toBe(true);
+  });
 });

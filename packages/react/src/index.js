@@ -1,3 +1,5 @@
+'use client';
+
 export { joinClassNames } from './utils/class-names.js';
 export { CcFormItem } from './common/form-item.jsx';
 export { CcButton, buildButtonClasses } from './components/buttons/button.jsx';

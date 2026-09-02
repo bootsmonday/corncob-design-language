@@ -1,4 +1,4 @@
-import { forwardRef, useId } from 'react';
+import { useId } from 'react';
 import { CcFormItem } from '../../common/form-item.jsx';
 import { joinClassNames } from '../../utils/class-names.js';
 
@@ -12,23 +12,21 @@ export function buildTextInputClasses({ size = 'md', className = '' } = {}) {
   );
 }
 
-export const CcTextInput = forwardRef(function CcTextInput(
-  {
-    size = 'md',
-    label,
-    id,
-    status,
-    statusVariant,
-    placeholder,
-    disabled,
-    className = '',
-    itemClassName = '',
-    labelClassName,
-    'aria-invalid': ariaInvalid,
-    ...inputProps
-  },
-  ref
-) {
+export function CcTextInput({
+  ref,
+  size = 'md',
+  label,
+  id,
+  status,
+  statusVariant,
+  placeholder,
+  disabled,
+  className = '',
+  itemClassName = '',
+  labelClassName,
+  'aria-invalid': ariaInvalid,
+  ...inputProps
+}) {
   const generatedId = useId();
   const inputId = id ?? generatedId;
   const resolvedLabelClassName = joinClassNames(
@@ -58,4 +56,4 @@ export const CcTextInput = forwardRef(function CcTextInput(
       {status != null ? <div className="corn-status">{status}</div> : null}
     </CcFormItem>
   );
-});
+}

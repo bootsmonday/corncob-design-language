@@ -110,4 +110,11 @@ describe('CcTextInput', () => {
 
     expect(ref.current).toBe(screen.getByLabelText('Name'));
   });
+
+  test('supports a callback ref on the native input', () => {
+    const ref = jest.fn();
+    render(<CcTextInput ref={ref} label="Name" placeholder="Enter Full Name..." />);
+
+    expect(ref).toHaveBeenCalledWith(screen.getByLabelText('Name'));
+  });
 });

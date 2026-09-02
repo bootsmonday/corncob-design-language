@@ -1,4 +1,5 @@
-import { forwardRef, useContext, useEffect, useId, useRef } from 'react';
+import { useContext, useId } from 'react';
+import { assignRef } from '../../utils/assign-ref.js';
 import { joinClassNames } from '../../utils/class-names.js';
 import { CheckboxGroupContext } from './checkbox-group.jsx';
 
@@ -11,45 +12,32 @@ export function buildCheckboxClasses({ size = 'md', task = false, className = ''
   );
 }
 
-export const CcCheckbox = forwardRef(function CcCheckbox(
-  {
-    size = 'md',
-    task = false,
-    indeterminate = false,
-    id,
-    name,
-    label,
-    className = '',
-    children,
-    ...inputProps
-  },
-  ref
-) {
+export function CcCheckbox({
+  ref,
+  size = 'md',
+  task = false,
+  indeterminate = false,
+  id,
+  name,
+  label,
+  className = '',
+  children,
+  ...inputProps
+}) {
   const generatedId = useId();
   const inputId = id ?? generatedId;
   const group = useContext(CheckboxGroupContext);
-  const innerRef = useRef(null);
-
-  const setRefs = (node) => {
-    innerRef.current = node;
-    if (typeof ref === 'function') {
-      ref(node);
-    } else if (ref) {
-      ref.current = node;
-    }
-  };
-
-  useEffect(() => {
-    if (innerRef.current) {
-      innerRef.current.indeterminate = Boolean(indeterminate);
-    }
-  }, [indeterminate]);
 
   return (
     <div className={buildCheckboxClasses({ size, task, className })}>
       <input
         {...inputProps}
-        ref={setRefs}
+        ref={(node) => {
+          if (node) {
+            node.indeterminate = Boolean(indeterminate);
+          }
+          return assignRef(ref, node);
+        }}
         type="checkbox"
         id={inputId}
         name={name ?? group?.name}
@@ -57,4 +45,4 @@ export const CcCheckbox = forwardRef(function CcCheckbox(
       <label htmlFor={inputId}>{label ?? children}</label>
     </div>
   );
-});
+}

@@ -9,8 +9,6 @@ root.render(
     <section id="radio-buttons">
       <h3>Radio Buttons</h3>
       <CornRadioButtonGroup legend="Group Label" name="example">
-        <CornRadioButton indeterminate>Indeterminate radio button</CornRadioButton>
-        <hr />
         <CornRadioButton size="xs">Radio One xs</CornRadioButton>
         <CornRadioButton size="sm">Radio Two sm</CornRadioButton>
         <CornRadioButton size="md">Radio Default md </CornRadioButton>

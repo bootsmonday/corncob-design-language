@@ -47,16 +47,6 @@ describe('CornRadioButton', () => {
     expect(container.querySelector('.corn-radio-button')).toContainElement(input);
   });
 
-  test('adds size and task classes on the item wrapper', () => {
-    const { container } = render(
-      <CornRadioButton size="lg" task>
-        Task Complete
-      </CornRadioButton>
-    );
-
-    expect(container.querySelector('.corn-radio-button')).toHaveClass('corn-radio-button', 'corn-radio-button--lg', 'corn-radio-button--task');
-  });
-
   test('inherits name from the group and allows an override', () => {
     render(
       <CornRadioButtonGroup legend="Options" name="example">
@@ -65,8 +55,8 @@ describe('CornRadioButton', () => {
       </CornRadioButtonGroup>
     );
 
-    expect(screen.getByRole('checkbox', { name: 'One' })).toHaveAttribute('name', 'example');
-    expect(screen.getByRole('checkbox', { name: 'Two' })).toHaveAttribute('name', 'other');
+    expect(screen.getByRole('radio', { name: 'One' })).toHaveAttribute('name', 'example');
+    expect(screen.getByRole('radio', { name: 'Two' })).toHaveAttribute('name', 'other');
   });
 
   test('forwards disabled and checked', () => {

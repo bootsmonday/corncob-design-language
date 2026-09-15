@@ -1,8 +1,9 @@
 'use client';
 
+// React component exports
 export { joinClassNames } from './utils/class-names.js';
-export { CcFormItem } from './common/form-item.jsx';
-export { CcButton, buildButtonClasses } from './components/buttons/button.jsx';
-export { CcTextInput, buildTextInputClasses } from './components/text-inputs/text-input.jsx';
-export { CcCheckbox, buildCheckboxClasses } from './components/checkboxes/checkbox.jsx';
-export { CcCheckboxGroup } from './components/checkboxes/checkbox-group.jsx';
+export { CornFormItem } from './common/form-item.jsx';
+export { CornButton } from './components/buttons/button.jsx';
+export { CornTextInput } from './components/text-inputs/text-input.jsx';
+export { CornCheckbox } from './components/checkboxes/checkbox.jsx';
+export { CornCheckboxGroup } from './components/checkboxes/checkbox-group.jsx';

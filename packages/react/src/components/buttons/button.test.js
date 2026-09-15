@@ -1,27 +1,27 @@
 import { createRef } from 'react';
 import { render, screen } from '@testing-library/react';
-import { CcButton, buildButtonClasses } from './button.jsx';
+import { CornButton } from './button.jsx';
 
-describe('buildButtonClasses', () => {
-  test('omits default primary and md modifiers', () => {
-    expect(buildButtonClasses()).toBe('corn-button');
-  });
+// describe('buildButtonClasses', () => {
+//   test('omits default primary and md modifiers', () => {
+//     expect(buildButtonClasses()).toBe('corn-button');
+//   });
 
-  test('adds variant, size, icon, and extra class names', () => {
-    expect(
-      buildButtonClasses({
-        variant: 'danger',
-        size: 'sm',
-        icon: true,
-        className: 'extra',
-      })
-    ).toBe('corn-button corn-button--danger corn-button--sm corn-button--icon extra');
-  });
-});
+//   test('adds variant, size, icon, and extra class names', () => {
+//     expect(
+//       buildButtonClasses({
+//         variant: 'danger',
+//         size: 'sm',
+//         icon: true,
+//         className: 'extra',
+//       })
+//     ).toBe('corn-button corn-button--danger corn-button--sm corn-button--icon extra');
+//   });
+// });
 
-describe('CcButton', () => {
+describe('CornButton', () => {
   test('renders a button with corn-button and type="button" by default', () => {
-    render(<CcButton>Save</CcButton>);
+    render(<CornButton>Save</CornButton>);
 
     const button = screen.getByRole('button', { name: 'Save' });
     expect(button).toHaveClass('corn-button');
@@ -31,24 +31,19 @@ describe('CcButton', () => {
 
   test('maps variant, size, and icon props to classes', () => {
     render(
-      <CcButton variant="secondary" size="lg" icon aria-label="Close">
+      <CornButton variant="secondary" size="lg" icon aria-label="Close">
         x
-      </CcButton>
+      </CornButton>
     );
 
-    expect(screen.getByRole('button', { name: 'Close' })).toHaveClass(
-      'corn-button',
-      'corn-button--secondary',
-      'corn-button--lg',
-      'corn-button--icon'
-    );
+    expect(screen.getByRole('button', { name: 'Close' })).toHaveClass('corn-button', 'corn-button--secondary', 'corn-button--lg', 'corn-button--icon');
   });
 
   test('forwards disabled and extra className', () => {
     render(
-      <CcButton disabled className="toolbar-action">
+      <CornButton disabled className="toolbar-action">
         Delete
-      </CcButton>
+      </CornButton>
     );
 
     const button = screen.getByRole('button', { name: 'Delete' });
@@ -58,9 +53,9 @@ describe('CcButton', () => {
 
   test('renders an anchor without a type attribute when as="a"', () => {
     render(
-      <CcButton as="a" href="#section">
+      <CornButton as="a" href="#section">
         Link styled as button
-      </CcButton>
+      </CornButton>
     );
 
     const link = screen.getByRole('link', { name: 'Link styled as button' });
@@ -70,7 +65,7 @@ describe('CcButton', () => {
   });
 
   test('allows type="submit" on a button', () => {
-    render(<CcButton type="submit">Submit</CcButton>);
+    render(<CornButton type="submit">Submit</CornButton>);
 
     const button = screen.getByRole('button', { name: 'Submit' });
     expect(button).toHaveAttribute('type', 'submit');
@@ -81,7 +76,7 @@ describe('CcButton', () => {
   test('keeps a submit button enabled outside a pending form', () => {
     render(
       <form>
-        <CcButton type="submit">Save</CcButton>
+        <CornButton type="submit">Save</CornButton>
       </form>
     );
 
@@ -92,14 +87,14 @@ describe('CcButton', () => {
 
   test('forwards a ref to the host element', () => {
     const ref = createRef();
-    render(<CcButton ref={ref}>Save</CcButton>);
+    render(<CornButton ref={ref}>Save</CornButton>);
 
     expect(ref.current).toBe(screen.getByRole('button', { name: 'Save' }));
   });
 
   test('supports a callback ref', () => {
     const ref = jest.fn();
-    render(<CcButton ref={ref}>Save</CcButton>);
+    render(<CornButton ref={ref}>Save</CornButton>);
 
     expect(ref).toHaveBeenCalledWith(screen.getByRole('button', { name: 'Save' }));
   });

@@ -1,35 +1,16 @@
-import { useContext, useId } from 'react';
+import { useId } from 'react';
 import { assignRef } from '../../utils/assign-ref.js';
 import { joinClassNames } from '../../utils/class-names.js';
-import { CheckboxGroupContext } from './checkbox-group.jsx';
 
-export function buildCheckboxClasses({ size = 'md', task = false, className = '' } = {}) {
-  return joinClassNames(
-    'corn-checkbox',
-    size && size !== 'md' && `corn-checkbox--${size}`,
-    task && 'corn-checkbox--task',
-    className
-  );
-}
-
-export function CcCheckbox({
-  ref,
-  size = 'md',
-  task = false,
-  indeterminate = false,
-  id,
-  name,
-  label,
-  className = '',
-  children,
-  ...inputProps
-}) {
+export function CornCheckbox({ ref, size = 'md', task = false, indeterminate = false, id, name, label, className = '', checked, defaultChecked = false, onChange, value, children, ...inputProps }) {
   const generatedId = useId();
   const inputId = id ?? generatedId;
-  const group = useContext(CheckboxGroupContext);
+  const classNames = joinClassNames('corn-checkbox', size && `corn-checkbox--${size}`, task && 'corn-checkbox--task', className);
+
+  const isControlled = checked !== undefined;
 
   return (
-    <div className={buildCheckboxClasses({ size, task, className })}>
+    <div className={classNames}>
       <input
         {...inputProps}
         ref={(node) => {
@@ -40,7 +21,15 @@ export function CcCheckbox({
         }}
         type="checkbox"
         id={inputId}
-        name={name ?? group?.name}
+        name={name}
+        value={value}
+        checked={isControlled ? Boolean(checked) : undefined}
+        defaultChecked={!isControlled ? Boolean(defaultChecked) : undefined}
+        onChange={(event) => {
+          if (isControlled && onChange) {
+            onChange(event);
+          }
+        }}
       />
       <label htmlFor={inputId}>{label ?? children}</label>
     </div>

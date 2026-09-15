@@ -1,31 +1,18 @@
-import { createContext } from 'react';
-import { CcFormItem } from '../../common/form-item.jsx';
+import { Children, cloneElement, isValidElement } from 'react';
+import { CornFormItem } from '../../common/form-item.jsx';
 import { joinClassNames } from '../../utils/class-names.js';
 
-export const CheckboxGroupContext = createContext({ name: undefined });
+export function CornCheckboxGroup({ ref, legend, name, inline = false, className = '', children, ...props }) {
+  const childrenWithGroupName = Children.map(children, (child) => {
+    if (!isValidElement(child)) return child;
+    if (child.props.name != null) return child;
+    return cloneElement(child, { name });
+  });
 
-export function CcCheckboxGroup({
-  ref,
-  legend,
-  name,
-  inline = false,
-  className = '',
-  children,
-  ...props
-}) {
   return (
-    <CcFormItem
-      {...props}
-      ref={ref}
-      as="fieldset"
-      className={joinClassNames(
-        'corn-checkbox-group',
-        inline && 'corn-checkbox-group--inline',
-        className
-      )}
-    >
+    <CornFormItem {...props} ref={ref} as="fieldset" className={joinClassNames('corn-checkbox-group', inline && 'corn-checkbox-group--inline', className)}>
       {legend != null ? <legend>{legend}</legend> : null}
-      <CheckboxGroupContext value={{ name }}>{children}</CheckboxGroupContext>
-    </CcFormItem>
+      {childrenWithGroupName}
+    </CornFormItem>
   );
 }

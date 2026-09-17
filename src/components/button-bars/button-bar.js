@@ -26,7 +26,6 @@ export class CornButtonBar extends HTMLElement {
   constructor() {
     super();
     this.initialized = false;
-    this.style.visibility = 'hidden';
     this._internals = this.attachInternals();
     this.attachShadow({ mode: 'open' });
     this.shadowRoot.appendChild(template.content.cloneNode(true));
@@ -40,6 +39,7 @@ export class CornButtonBar extends HTMLElement {
   connectedCallback() {
     this._cacheElements();
     this._addEventListeners();
+    this.style.visibility = 'hidden';
   }
 
   /**
@@ -73,9 +73,7 @@ export class CornButtonBar extends HTMLElement {
   _addEventListeners() {
     // Using ResizeObserver to detect changes in the size of the button bar and adjust the overflowing items accordingly
     // Use window.requestAnimationFrame to ensure that the DOM updates are processed before calculating the overflowing items, which can help prevent layout thrashing and improve performance.
-    this.resizeObserver = new ResizeObserver(() =>
-      window.requestAnimationFrame(() => this._moveOverflowingItems())
-    );
+    this.resizeObserver = new ResizeObserver(() => window.requestAnimationFrame(() => this._moveOverflowingItems()));
     this.resizeObserver.observe(this);
   }
 
@@ -99,9 +97,7 @@ export class CornButtonBar extends HTMLElement {
     const moreElement = document.createElement('div');
     moreElement.classList.add('corn-popover--anchor', 'corn-button-bar--more');
 
-    const assignedMoreButton = this.shadowRoot
-      .querySelector('slot[name="more-button"]')
-      ?.assignedElements()[0];
+    const assignedMoreButton = this.shadowRoot.querySelector('slot[name="more-button"]')?.assignedElements()[0];
     const hasMoreButton = !!assignedMoreButton;
 
     const moreButton = assignedMoreButton ?? document.createElement('button');
@@ -140,8 +136,7 @@ export class CornButtonBar extends HTMLElement {
    * Caching these elements allows the component to efficiently access and manipulate them later when handling events or updating the UI, without needing to repeatedly query the DOM.
    */
   _cacheElements() {
-    this.moreElement =
-      this.querySelector('.corn-button-bar--more') ?? this._createOverflowContainer();
+    this.moreElement = this.querySelector('.corn-button-bar--more') ?? this._createOverflowContainer();
 
     this.moreItems = this.moreElement.querySelector('.corn-popover');
     this.moreButton = this.moreElement.querySelector('.corn-pop');

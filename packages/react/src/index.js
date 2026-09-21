@@ -18,3 +18,4 @@ export { CornCheckboxGroup } from './components/checkboxes/checkbox-group.jsx';
 export { CornRadioButton } from './components/radio-buttons/radio-button.jsx';
 export { CornRadioButtonGroup } from './components/radio-buttons/radio-button-group.jsx';
 export { CornPopover, CORN_POPOVER_POSITIONS } from './components/popovers/popover.jsx';
+export { CornPanelMenu, CornPanelMenuItem, CornPanelMenuSubmenu, CornPanelMenuExpandable } from './components/panel-menus/panel-menu.jsx';

@@ -1,4 +1,5 @@
 import { joinClassNames } from '../../utils/class-names.js';
+import '../../../../../src/components/popovers/popover.js';
 
 export const CORN_POPOVER_POSITIONS = ['top', 'top-right', 'top-left', 'right', 'right-top', 'right-bottom', 'bottom', 'bottom-right', 'bottom-left', 'left', 'left-top', 'left-bottom'];
 

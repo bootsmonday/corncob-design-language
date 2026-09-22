@@ -4,7 +4,7 @@ import { CornCheckbox, CornCheckboxGroup } from '../../index.js';
 
 const root = ReactDOM.createRoot(document.getElementById('test-stickersheet'));
 root.render(
-  <div class="checkbox-demo">
+  <div className="checkbox-demo">
     <h2>Checkboxes</h2>
     <section id="checkboxes">
       <h3>Checkboxes</h3>

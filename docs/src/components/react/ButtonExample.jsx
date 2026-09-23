@@ -1,12 +1,12 @@
-import { CcButton } from '@bootsmonday/corncob-design-language-react';
+import { CornButton } from '@bootsmonday/corncob-design-language-react';
 
 export default function ButtonExample() {
   return (
     <div className="corn-form">
       <div className="corn-form--row">
-        <CcButton>React Primary</CcButton>
-        <CcButton variant="secondary">React Secondary</CcButton>
-        <CcButton variant="danger">React Danger</CcButton>
+        <CornButton>React Primary</CornButton>
+        <CornButton variant="secondary">React Secondary</CornButton>
+        <CornButton variant="danger">React Danger</CornButton>
       </div>
       <form
         action={async () => {
@@ -15,7 +15,7 @@ export default function ButtonExample() {
           });
         }}
       >
-        <CcButton type="submit">Save</CcButton>
+        <CornButton type="submit">Save</CornButton>
       </form>
     </div>
   );

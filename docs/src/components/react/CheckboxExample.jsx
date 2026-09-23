@@ -1,30 +1,30 @@
-import { CcCheckbox, CcCheckboxGroup } from '@bootsmonday/corncob-design-language-react';
+import { CornCheckbox, CornCheckboxGroup } from '@bootsmonday/corncob-design-language-react';
 
 export default function CheckboxExample() {
   return (
     <div className="corn-form">
-      <CcCheckboxGroup legend="Options" name="react-example">
-        <CcCheckbox>Checkbox One</CcCheckbox>
-        <CcCheckbox defaultChecked>Checkbox Two</CcCheckbox>
-        <CcCheckbox disabled>Disabled</CcCheckbox>
-      </CcCheckboxGroup>
+      <CornCheckboxGroup legend="Options" name="react-example">
+        <CornCheckbox>Checkbox One</CornCheckbox>
+        <CornCheckbox defaultChecked>Checkbox Two</CornCheckbox>
+        <CornCheckbox disabled>Disabled</CornCheckbox>
+      </CornCheckboxGroup>
 
-      <CcCheckboxGroup legend="Inline options" name="react-example-inline" inline>
-        <CcCheckbox>Inline One</CcCheckbox>
-        <CcCheckbox>Inline Two</CcCheckbox>
-        <CcCheckbox>Inline Three</CcCheckbox>
-      </CcCheckboxGroup>
+      <CornCheckboxGroup legend="Inline options" name="react-example-inline" inline>
+        <CornCheckbox>Inline One</CornCheckbox>
+        <CornCheckbox>Inline Two</CornCheckbox>
+        <CornCheckbox>Inline Three</CornCheckbox>
+      </CornCheckboxGroup>
 
-      <CcCheckboxGroup legend="My Tasks" name="react-tasks">
-        <CcCheckbox task defaultChecked>
+      <CornCheckboxGroup legend="My Tasks" name="react-tasks">
+        <CornCheckbox task defaultChecked>
           Task Complete
-        </CcCheckbox>
-        <CcCheckbox task>Task Incomplete</CcCheckbox>
-      </CcCheckboxGroup>
+        </CornCheckbox>
+        <CornCheckbox task>Task Incomplete</CornCheckbox>
+      </CornCheckboxGroup>
 
-      <CcCheckboxGroup legend="Partial selection" name="react-partial">
-        <CcCheckbox indeterminate>Indeterminate checkbox</CcCheckbox>
-      </CcCheckboxGroup>
+      <CornCheckboxGroup legend="Partial selection" name="react-partial">
+        <CornCheckbox indeterminate>Indeterminate checkbox</CornCheckbox>
+      </CornCheckboxGroup>
     </div>
   );
 }

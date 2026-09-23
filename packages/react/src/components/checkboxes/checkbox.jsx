@@ -26,9 +26,7 @@ export function CornCheckbox({ ref, size = 'md', task = false, indeterminate = f
         checked={isControlled ? Boolean(checked) : undefined}
         defaultChecked={!isControlled ? Boolean(defaultChecked) : undefined}
         onChange={(event) => {
-          if (isControlled && onChange) {
-            onChange(event);
-          }
+          onChange?.(event);
         }}
       />
       <label htmlFor={inputId}>{label ?? children}</label>

@@ -1,4 +1,5 @@
 import { joinClassNames } from '../../utils/class-names.js';
+import '../../../../../src/components/toast/toast.js';
 
 export function CornToast({ ref, className = '', children, ...props }) {
   return (

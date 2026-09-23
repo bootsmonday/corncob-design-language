@@ -1,4 +1,5 @@
 import { joinClassNames } from '../../utils/class-names.js';
+import '../../../../../src/components/expandables/expandable.js';
 
 export function CornPanelMenu({ ref, as: Component = 'div', className = '', children, ...props }) {
   return (

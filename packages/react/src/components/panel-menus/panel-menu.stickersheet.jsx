@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom/client';
 import { CornPanelMenu, CornPanelMenuExpandable, CornPanelMenuItem, CornPanelMenuSubmenu } from '../../index.js';
 
 const root = ReactDOM.createRoot(document.getElementById('test-stickersheet'));
-console.log('Rendering Corn Panel Menu Stickersheet');
 root.render(
   <div className="panel-menu-demo">
     <h2>Corn Panel Menu</h2>

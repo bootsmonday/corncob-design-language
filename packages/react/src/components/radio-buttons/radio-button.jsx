@@ -1,7 +1,11 @@
 import { useId } from 'react';
 import { joinClassNames } from '../../utils/class-names.js';
 
-export function CornRadioButton({ ref, size = 'md', id, name, label, className = '', checked, defaultChecked = false, onChange, value, children, ...inputProps }) {
+import { useId } from 'react';
+import { assignRef } from '../../utils/assign-ref.js';
+import { joinClassNames } from '../../utils/class-names.js';
+
+export function CornRadioButton({ ref, indeterminate = false, size = 'md', id, name, label, className = '', checked, defaultChecked = false, onChange, value, children, ...inputProps }) {
   const generatedId = useId();
   const inputId = id ?? generatedId;
   const classNames = joinClassNames('corn-radio-button', size && `corn-radio-button--${size}`, className);
@@ -12,7 +16,12 @@ export function CornRadioButton({ ref, size = 'md', id, name, label, className =
     <div className={classNames}>
       <input
         {...inputProps}
-        ref={ref}
+        ref={(node) => {
+          if (node) {
+            node.indeterminate = Boolean(indeterminate);
+          }
+          return assignRef(ref, node);
+        }}
         type="radio"
         id={inputId}
         name={name}
@@ -20,9 +29,7 @@ export function CornRadioButton({ ref, size = 'md', id, name, label, className =
         checked={isControlled ? Boolean(checked) : undefined}
         defaultChecked={!isControlled ? Boolean(defaultChecked) : undefined}
         onChange={(event) => {
-          if (isControlled && onChange) {
-            onChange(event);
-          }
+          onChange?.(event);
         }}
       />
       <label htmlFor={inputId}>{label ?? children}</label>

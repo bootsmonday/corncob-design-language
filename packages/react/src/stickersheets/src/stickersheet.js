@@ -29,7 +29,7 @@ if (document.getElementById('rtl')) {
 if (document.getElementById('ltr')) {
   document.getElementById('ltr').addEventListener('click', () => {
     document.querySelectorAll('.corn-form--item').forEach((input) => {
-      input.removeAttribute('dir', true);
+      input.removeAttribute('dir');
       input.querySelector('label').innerHTML = 'What is your name?';
       input.querySelector('input').setAttribute('placeholder', 'Enter Full Name...');
       if (input.querySelector('.corn-form--item--message')) {

@@ -1,4 +1,5 @@
 import { joinClassNames } from '../../utils/class-names.js';
+import '../../../../../src/components/expandables/expandable.js';
 
 function ExpandableChevronIcon() {
   return (

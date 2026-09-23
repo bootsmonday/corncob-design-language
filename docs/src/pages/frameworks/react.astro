@@ -8,9 +8,9 @@ import CheckboxExample from '../../components/react/CheckboxExample.jsx';
 <DocsLayout title="React | Corncob" description="React adapter guidance for Corncob EDL">
   <h1>React Version</h1>
   <p>
-    React wrappers should stay thin. Map React props to Corncob class names and keep style logic in
-    the core CSS package. The package targets React 19: <code>ref</code> is a regular prop, and the
-    entry module is a client component (<code>'use client'</code>) for App Router / RSC consumers.
+    React wrappers should stay thin. Map React props to Corncob class names and keep style logic in the core CSS package. The package targets React 19: <code>ref</code> is a regular prop, and the entry module is a client component (<code
+      >'use client'</code
+    >) for App Router / RSC consumers.
   </p>
 
   <h2>Buttons</h2>
@@ -26,26 +26,26 @@ import CheckboxExample from '../../components/react/CheckboxExample.jsx';
   <pre
     class="docs-code"><code>{`import "@bootsmonday/corncob-design-language/style.css";
 import {
-  CcButton,
-  CcTextInput,
-  CcCheckbox,
-  CcCheckboxGroup,
+  CornButton,
+  CornTextInput,
+  CornCheckbox,
+  CornCheckboxGroup,
 } from "@bootsmonday/corncob-design-language-react";
 
 export function AccountForm() {
   return (
     <form>
-      <CcTextInput
+      <CornTextInput
         label="What is your name?"
         placeholder="Enter Full Name..."
         status="Helper Text"
       />
-      <CcCheckboxGroup legend="Options" name="example">
-        <CcCheckbox>Checkbox One</CcCheckbox>
-        <CcCheckbox defaultChecked>Checkbox Two</CcCheckbox>
-      </CcCheckboxGroup>
-      <CcButton type="submit">Save</CcButton>
-      <CcButton variant="secondary">Cancel</CcButton>
+      <CornCheckboxGroup legend="Options" name="example">
+        <CornCheckbox>Checkbox One</CornCheckbox>
+        <CornCheckbox defaultChecked>Checkbox Two</CornCheckbox>
+      </CornCheckboxGroup>
+      <CornButton type="submit">Save</CornButton>
+      <CornButton variant="secondary">Cancel</CornButton>
     </form>
   );
 }`}</code></pre>

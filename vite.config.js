@@ -3,6 +3,7 @@ import { resolve } from 'path';
 import viteString from 'vite-plugin-string';
 import path from 'node:path';
 import fs from 'node:fs';
+import react from '@vitejs/plugin-react';
 
 function renderTemplate(template, locals) {
   return template.replace(/{{\s*([^{}\s]+)\s*}}/g, (_, key) => {
@@ -21,13 +22,7 @@ function parseLocals(localsStr) {
   }
 }
 
-function processIncludes(
-  html,
-  parentDir,
-  parentLocals = {},
-  visited = new Set(),
-  dependencies = new Set()
-) {
+function processIncludes(html, parentDir, parentLocals = {}, visited = new Set(), dependencies = new Set()) {
   // Flexible regex: supports self-closing tag, quotes, extra whitespace
 
   const includeRegex = /<include\s+src="([^"]+)"(?:\s+locals=(['"])([\s\S]*?)\2)?\s*(?:\/)?>/gi;
@@ -64,13 +59,7 @@ function processIncludes(
 
     const mergedLocals = { ...parentLocals, ...parseLocals(localsStr) };
     content = renderTemplate(content, mergedLocals);
-    content = processIncludes(
-      content,
-      path.dirname(filePath),
-      mergedLocals,
-      new Set(visited),
-      dependencies
-    );
+    content = processIncludes(content, path.dirname(filePath), mergedLocals, new Set(visited), dependencies);
 
     result = result.replace(full, content);
   }
@@ -98,13 +87,7 @@ function htmlIncludePlugin() {
     enforce: 'pre',
     transformIndexHtml(html, { filename }) {
       const dependencies = new Set();
-      const transformedHtml = processIncludes(
-        html,
-        path.dirname(filename),
-        {},
-        new Set(),
-        dependencies
-      );
+      const transformedHtml = processIncludes(html, path.dirname(filename), {}, new Set(), dependencies);
 
       includeDependenciesByHtmlFile.set(filename, dependencies);
 
@@ -119,11 +102,9 @@ function htmlIncludePlugin() {
         return;
       }
 
-      const isIncludedHtmlDependency = Array.from(includeDependenciesByHtmlFile.values()).some(
-        (dependencies) => {
-          return dependencies.has(file);
-        }
-      );
+      const isIncludedHtmlDependency = Array.from(includeDependenciesByHtmlFile.values()).some((dependencies) => {
+        return dependencies.has(file);
+      });
 
       if (!isIncludedHtmlDependency) {
         return;
@@ -153,7 +134,7 @@ function htmlIncludePlugin() {
 
   */
 export default defineConfig({
-  plugins: [htmlIncludePlugin()],
+  plugins: [htmlIncludePlugin(), react()],
 
   build: {
     lib: {

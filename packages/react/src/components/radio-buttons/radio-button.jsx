@@ -1,7 +1,4 @@
 import { useId } from 'react';
-import { joinClassNames } from '../../utils/class-names.js';
-
-import { useId } from 'react';
 import { assignRef } from '../../utils/assign-ref.js';
 import { joinClassNames } from '../../utils/class-names.js';
 

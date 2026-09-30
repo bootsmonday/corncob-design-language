@@ -225,7 +225,7 @@ jobs:
         id: bump
         working-directory: packages/react
         run: |
-          npm version "${{ inputs.release_type }}" -m "chore(release-react): %s"
+          npm version "${{ inputs.release_type }}" --tag-version-prefix="react-v" -m "chore(release-react): %s"
           VERSION=$(node -p "require('./package.json').version")
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
 

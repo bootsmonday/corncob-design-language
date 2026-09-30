@@ -33,7 +33,7 @@ export class CornSelect extends HTMLElement {
     super();
     this.uuid = crypto.getRandomValues(new Uint32Array(1))[0].toString(36).substr(2, 9);
     this.id = this.id || `corn-select-${this.uuid}`;
-    this.#internals = this.attachInternals();
+    this.#internals = typeof this.attachInternals === 'function' ? this.attachInternals() : null;
     this.setAttribute('tabindex', '0');
   }
 
@@ -170,7 +170,7 @@ export class CornSelect extends HTMLElement {
    */
   attributeChangedCallback(name, oldValue, newValue) {
     if (name === 'value') this.value = newValue;
-    if (name === 'disabled') this.#internals.ariaDisabled = newValue !== null;
+    if (name === 'disabled' && this.#internals) this.#internals.ariaDisabled = newValue !== null;
     if (name === 'required') this.#updateValidity();
   }
 
@@ -304,7 +304,7 @@ export class CornSelect extends HTMLElement {
    * The following getter methods provide access to the form-associated properties of the CornSelect component. These properties allow the component to participate in form submission and validation, making it behave like a native form control.
    */
   get form() {
-    return this.#internals.form;
+    return this.#internals?.form ?? null;
   }
 
   /**
@@ -325,21 +325,21 @@ export class CornSelect extends HTMLElement {
    * The following getter methods provide access to the validity state of the CornSelect component, allowing it to participate in form validation. These properties are part of the FormAssociated interface and enable the component to report its validity status, validation messages, and whether it will be validated as part of a form submission.
    */
   get validity() {
-    return this.#internals.validity;
+    return this.#internals?.validity ?? {};
   }
 
   /**
    * The validationMessage getter returns the validation message associated with the CornSelect component. This message is generated based on the component's validity state and can be used to provide feedback to the user when the component is invalid. If the component is valid, this getter will return an empty string.
    */
   get validationMessage() {
-    return this.#internals.validationMessage;
+    return this.#internals?.validationMessage ?? '';
   }
 
   /**
    * The willValidate getter returns a boolean indicating whether the CornSelect component will be validated when the form is submitted. This is determined by the component's attributes and validity state. If the component has the 'required' attribute or other validation constraints, this getter will return true, indicating that it will be validated as part of the form submission process.
    */
   get willValidate() {
-    return this.#internals.willValidate;
+    return this.#internals?.willValidate ?? true;
   }
 
   /**
@@ -347,14 +347,14 @@ export class CornSelect extends HTMLElement {
    * the custom select the same way they would a standard <select> element.
    */
   checkValidity() {
-    return this.#internals.checkValidity();
+    return this.#internals ? this.#internals.checkValidity() : true;
   }
 
   /**
    * reportValidity mirrors the native form control API.
    */
   reportValidity() {
-    return this.#internals.reportValidity();
+    return this.#internals ? this.#internals.reportValidity() : true;
   }
 
   /**
@@ -369,7 +369,9 @@ export class CornSelect extends HTMLElement {
    */
   set value(v) {
     this.#value = v ?? '';
-    this.#internals.setFormValue(this.#value); // ← this is what the form sees
+    if (this.#internals) {
+      this.#internals.setFormValue(this.#value);
+    }
     this.#updateValidity();
   }
 
@@ -387,6 +389,8 @@ export class CornSelect extends HTMLElement {
    * The #updateValidity method is called whenever the value of the component changes, ensuring that the validity state is always up to date and consistent with the component's attributes and user interactions.
    */
   #updateValidity() {
+    if (!this.#internals) return;
+
     const required = this.hasAttribute('required');
     const empty = Array.isArray(this.#value) ? this.#value.length === 0 : !this.#value;
 

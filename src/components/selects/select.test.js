@@ -30,6 +30,22 @@ describe('CornSelect form submission', () => {
     }
   });
 
+  test('does not crash when attachInternals is unavailable', () => {
+    const original = HTMLElement.prototype.attachInternals;
+    delete HTMLElement.prototype.attachInternals;
+
+    expect(() => {
+      document.createElement('corn-select');
+    }).not.toThrow();
+
+    if (original) {
+      Object.defineProperty(HTMLElement.prototype, 'attachInternals', {
+        configurable: true,
+        value: original,
+      });
+    }
+  });
+
   beforeEach(() => {
     jest.spyOn(console, 'log').mockImplementation(() => {});
     document.body.innerHTML = '';

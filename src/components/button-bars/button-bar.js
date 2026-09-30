@@ -26,7 +26,7 @@ export class CornButtonBar extends HTMLElement {
   constructor() {
     super();
     this.initialized = false;
-    this._internals = this.attachInternals();
+    this._internals = typeof this.attachInternals === 'function' ? this.attachInternals() : null;
     this.attachShadow({ mode: 'open' });
     this.shadowRoot.appendChild(template.content.cloneNode(true));
   }

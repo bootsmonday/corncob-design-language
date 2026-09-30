@@ -1,7 +1,4 @@
-import { useId } from 'react';
-import { joinClassNames } from '../../utils/class-names.js';
-
-import { useId } from 'react';
+import { useId, useState } from 'react';
 import { assignRef } from '../../utils/assign-ref.js';
 import { joinClassNames } from '../../utils/class-names.js';
 
@@ -11,6 +8,19 @@ export function CornRadioButton({ ref, indeterminate = false, size = 'md', id, n
   const classNames = joinClassNames('corn-radio-button', size && `corn-radio-button--${size}`, className);
 
   const isControlled = checked !== undefined;
+  const [uncontrolledChecked, setUncontrolledChecked] = useState(Boolean(defaultChecked));
+
+  const handleClick = (event) => {
+    if (isControlled) {
+      onChange?.(event);
+      return;
+    }
+
+    const nextChecked = !event.currentTarget.checked;
+    event.currentTarget.checked = nextChecked;
+    setUncontrolledChecked(nextChecked);
+    onChange?.(event);
+  };
 
   return (
     <div className={classNames}>
@@ -26,11 +36,8 @@ export function CornRadioButton({ ref, indeterminate = false, size = 'md', id, n
         id={inputId}
         name={name}
         value={value}
-        checked={isControlled ? Boolean(checked) : undefined}
-        defaultChecked={!isControlled ? Boolean(defaultChecked) : undefined}
-        onChange={(event) => {
-          onChange?.(event);
-        }}
+        checked={isControlled ? Boolean(checked) : uncontrolledChecked}
+        onClick={handleClick}
       />
       <label htmlFor={inputId}>{label ?? children}</label>
     </div>

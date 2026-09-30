@@ -73,30 +73,41 @@ describe('CornRadioButton', () => {
     expect(screen.getByRole('radio', { name: 'Checked' })).toBeChecked();
   });
 
-  test('prefers uncontrolled state by default and supports controlled state when checked is passed', () => {
+  test('prefers uncontrolled state by default and allows selecting an unchecked radio in the same group', () => {
+    render(
+      <>
+        <CornRadioButton name="options" defaultChecked>
+          Default on
+        </CornRadioButton>
+        <CornRadioButton name="options">Default off</CornRadioButton>
+      </>
+    );
+
+    const defaultOn = screen.getByRole('radio', { name: 'Default on' });
+    const defaultOff = screen.getByRole('radio', { name: 'Default off' });
+
+    expect(defaultOn).toBeChecked();
+    expect(defaultOff).not.toBeChecked();
+
+    fireEvent.click(defaultOff);
+    expect(defaultOff).toBeChecked();
+    expect(defaultOn).not.toBeChecked();
+  });
+
+  test('supports controlled state when checked is passed', () => {
     const onChange = jest.fn();
-
-    const { rerender } = render(<CornRadioButton defaultChecked>Default on</CornRadioButton>);
-
-    const uncontrolled = screen.getByRole('radio', { name: 'Default on' });
-    expect(uncontrolled).toBeChecked();
-
-    fireEvent.click(uncontrolled);
-    expect(uncontrolled).not.toBeChecked();
-    expect(onChange).not.toHaveBeenCalled();
-
-    rerender(
-      <CornRadioButton checked onChange={onChange}>
+    render(
+      <CornRadioButton checked={false} onChange={onChange}>
         Controlled
       </CornRadioButton>
     );
 
     const controlled = screen.getByRole('radio', { name: 'Controlled' });
-    expect(controlled).toBeChecked();
+    expect(controlled).not.toBeChecked();
 
     fireEvent.click(controlled);
     expect(onChange).toHaveBeenCalledTimes(1);
-    expect(controlled).toBeChecked();
+    expect(controlled).not.toBeChecked();
   });
 
   test('sets the indeterminate DOM property', () => {

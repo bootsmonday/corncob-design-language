@@ -9,16 +9,19 @@
  * Set up template for the CornButtonBar component, which includes a default slot for the main buttons and a named slot for a custom "more" button that triggers the overflow menu.
  * The template is cloned and attached to the shadow DOM of each instance of the CornButtonBar, allowing for encapsulation of styles and structure while still providing flexibility for users to customize the content of the button bar.
  */
-const template = document.createElement('template');
-template.innerHTML = `
+const CornHTMLElement = globalThis.HTMLElement ?? class {};
+const template = typeof document === 'undefined' ? null : document.createElement('template');
+if (template) {
+  template.innerHTML = `
     <style>
       slot { display: contents; }
     </style>
     <slot></slot>
     <slot name="more-button"></slot>
 `;
+}
 
-export class CornButtonBar extends HTMLElement {
+export class CornButtonBar extends CornHTMLElement {
   /**
    * The constructor method is called when a new instance of the CornButtonBar component is created.
    * In this method, we call the super() method to ensure that the HTMLElement constructor is properly initialized.
@@ -28,7 +31,9 @@ export class CornButtonBar extends HTMLElement {
     this.initialized = false;
     this._internals = typeof this.attachInternals === 'function' ? this.attachInternals() : null;
     this.attachShadow({ mode: 'open' });
-    this.shadowRoot.appendChild(template.content.cloneNode(true));
+    if (template) {
+      this.shadowRoot.appendChild(template.content.cloneNode(true));
+    }
   }
 
   /**
@@ -206,4 +211,6 @@ export class CornButtonBar extends HTMLElement {
   }
 }
 
-customElements.define('corn-button-bar', CornButtonBar);
+if (typeof customElements !== 'undefined' && !customElements.get('corn-button-bar')) {
+  customElements.define('corn-button-bar', CornButtonBar);
+}

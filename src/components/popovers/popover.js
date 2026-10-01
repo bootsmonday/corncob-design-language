@@ -1,4 +1,6 @@
-export class CornPopover extends HTMLElement {
+const CornHTMLElement = globalThis.HTMLElement ?? class {};
+
+export class CornPopover extends CornHTMLElement {
   /**
    * Constructor is called when the element is created.
    * Note:
@@ -416,4 +418,6 @@ export class CornPopover extends HTMLElement {
     this._removeEventListeners();
   }
 }
-customElements.define('corn-popover', CornPopover);
+if (typeof customElements !== 'undefined' && !customElements.get('corn-popover')) {
+  customElements.define('corn-popover', CornPopover);
+}

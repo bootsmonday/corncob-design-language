@@ -1,4 +1,6 @@
-export class CornTooltip extends HTMLElement {
+const CornHTMLElement = globalThis.HTMLElement ?? class {};
+
+export class CornTooltip extends CornHTMLElement {
   static get observedAttributes() {
     return ['position'];
   }
@@ -239,4 +241,6 @@ export class CornTooltip extends HTMLElement {
     }
   }
 }
-customElements.define('corn-tooltip', CornTooltip);
+if (typeof customElements !== 'undefined' && !customElements.get('corn-tooltip')) {
+  customElements.define('corn-tooltip', CornTooltip);
+}

@@ -1,16 +1,28 @@
 ---
 layout: ../../layouts/DocsLayout.astro
-title: 'Component | Badges | Corncob'
+title: 'Component | Badges'
 ---
+
 
 import CodeSample from '../../layouts/partials/CodeSample.astro';
 import { Code } from 'astro/components';
+import { CornBadge } from '@bootsmonday/corncob-design-language-react';
 import badgeTokens from '../../../../src/components/badges/badge-tokens.css?raw';
 import bootstrapIconsSprite from 'bootstrap-icons/bootstrap-icons.svg?url';
 
-## Badges
+## Overview
 
-Badges are used to display status or contextual information to the user, such as neutral, success, warning, error, or info states.
+Badges are small UI elements that provide contextual information or status indicators to the user. They are typically used to highlight key information, such as notifications, status updates, or categorical labels.
+
+### When to Use
+
+Badges should be used when you need to provide users with quick, at-a-glance information about the status or context of an element. They are particularly useful for highlighting notifications, indicating the state of an item, or categorizing content without taking up significant space in the UI. Use badges sparingly to avoid overwhelming the user with too much information.
+
+### When not to Use
+
+Badges should not be used when the information can be conveyed through other UI elements more effectively, or when overuse would clutter the interface and overwhelm the user. Avoid using badges for non-critical information or for decorative purposes that do not provide meaningful context.
+
+## Badge Types
 
 ### Neutral
 Neutral badges are used to indicate a neutral state or status to the user, without implying success, warning, error, or informational context.
@@ -131,7 +143,7 @@ Error badges are used to indicate to the user that an action has failed, an erro
   ```
 </CodeSample>
 
-### Small Badges
+## Small Badges
 
 Small badges are used to display compact status indicators that do not require additional context or information. They are typically used for simple notifications or alerts.
 
@@ -250,3 +262,27 @@ Small badges are used to display compact status indicators that do not require a
 <CodeSample id="badge-tokens-code">
   <Code code={badgeTokens} lang="css" />
 </CodeSample>
+
+## React Variation
+
+Use the React wrapper to render a badge with a matching status style in a React app.
+
+<CornBadge status="✓" variant="success" size="sm" client:only="react">success</CornBadge>
+<CornBadge status="!" variant="warning" size="sm" client:only="react">warning</CornBadge>
+<CornBadge status="×" variant="error" size="sm" client:only="react">error</CornBadge>
+
+<CodeSample id="page-react-badge-code-sm">
+```jsx
+function App() {
+  return (
+    <>
+      <CornBadge status="✓" variant="success" size="sm">success</CornBadge>
+      <CornBadge status="!" variant="warning" size="sm">warning</CornBadge>
+      <CornBadge status="×" variant="error" size="sm">error</CornBadge>
+    </>
+  );
+}
+```
+</CodeSample>
+
+

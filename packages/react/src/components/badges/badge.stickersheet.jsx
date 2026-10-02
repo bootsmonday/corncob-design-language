@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom/client';
 import { CornBadge } from '../../index.js';
 
 const BADGE_ITEMS = [
-  { variant: 'neutral', label: 'neutral', icon: 'dash-lg' },
-  { variant: 'success', label: 'success', icon: 'check-lg' },
-  { variant: 'warning', label: 'warning', icon: 'exclamation-lg' },
-  { variant: 'error', label: 'error', icon: 'x' },
-  { variant: 'info', label: 'info', icon: 'info-lg' },
+  { variant: 'neutral', label: 'Neutral', icon: 'dash-lg' },
+  { variant: 'success', label: 'Success', icon: 'check-lg' },
+  { variant: 'warning', label: 'Warning', icon: 'exclamation-lg' },
+  { variant: 'error', label: 'Error', icon: 'x' },
+  { variant: 'info', label: 'Info', icon: 'info-lg' },
 ];
 
 function BadgeStatusIcon({ icon }) {
@@ -20,7 +20,8 @@ function BadgeStatusIcon({ icon }) {
 
 function BadgeRow({ size = 'md' }) {
   return BADGE_ITEMS.map(({ variant, label, icon }) => (
-    <CornBadge key={`${size}-${variant}`} variant={variant} size={size} status={<BadgeStatusIcon icon={icon} />}>
+    <CornBadge key={`${size}-${variant}`} variant={variant} size={size}>
+      <BadgeStatusIcon icon={icon} />
       {label}
     </CornBadge>
   ));

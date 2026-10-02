@@ -14,10 +14,8 @@ export function CornCheckbox({ ref, size = 'md', task = false, indeterminate = f
       <input
         {...inputProps}
         ref={(node) => {
-          if (node) {
-            node.indeterminate = Boolean(indeterminate);
-          }
-          return assignRef(ref, node);
+          if (node) node.indeterminate = Boolean(indeterminate);
+          assignRef(ref, node);
         }}
         type="checkbox"
         id={inputId}

@@ -1,19 +1,30 @@
 ---
 layout: ../../layouts/DocsLayout.astro
-title: 'Component | Checkbox | Corncob'
+title: 'Component | Checkbox '
 ---
 
 import CodeSample from '../../layouts/partials/CodeSample.astro';
 import { Code } from 'astro/components';
 import checkboxTokens from '../../../../src/components/checkboxes/checkbox-tokens.css?raw';
+import { CornCheckbox, CornCheckboxGroup } from '@bootsmonday/corncob-design-language-react';
 
 
 
-## Checkboxes
+## Overview
 
 Checkboxes are used to allow users to select one or more options from a set. They can be used in forms, settings, and anywhere else where multiple selections are needed.
 Corncob checkboxes are standard HTML checkboxes styled to fit the Corncob design system.
 They can be used in various states such as checked, unchecked, and disabled.
+
+### When to Use Checkboxes
+
+Checkboxes should be used when users need to select one or more options from a set. They are ideal for scenarios where multiple selections are allowed, such as preferences, settings, or multi-select forms. The options should also be relatively simple and short in length to ensure clarity and ease of use. Group related checkboxes together under a clear and concise label to provide context and improve usability.
+
+### When Not to Use Checkboxes
+
+Checkboxes should not be used when only a single selection is allowed, as radio buttons or toggle switches are more appropriate in such cases. Avoid using checkboxes for actions that do not represent a selection state.
+
+## Checkbox Variations
 
 ### Default Checkboxes
 
@@ -183,6 +194,108 @@ A checklist is a group of checkboxes that are visually connected to indicate tha
 
 <CodeSample id="checkbox-tokens-code">
   <Code code={checkboxTokens} lang="css" />
+</CodeSample>
+
+## React Variation
+
+### React Checkbox Group Example
+
+<CornCheckboxGroup legend="Group Label" name="example">
+  <CornCheckbox indeterminate name="react-example-indeterminate" client:only="react">Indeterminate checkbox</CornCheckbox>
+  <hr />
+  <CornCheckbox name="react-example-checkbox">Checkbox One</CornCheckbox>
+  <CornCheckbox name="react-example-checkbox">Checkbox Two</CornCheckbox>
+  <CornCheckbox name="react-example-checkbox">Checkbox Three</CornCheckbox>
+  <CornCheckbox name="react-example-checkbox">Checkbox Four</CornCheckbox>
+  <CornCheckbox name="react-example-checkbox" defaultChecked>
+    Checkbox Five
+  </CornCheckbox>
+  <CornCheckbox name="react-example-checkbox">Checkbox Six</CornCheckbox>
+</CornCheckboxGroup>
+
+<CodeSample id="react-checkbox-examples-code">
+  ```jsx
+import { CornCheckbox, CornCheckboxGrup } from '@bootsmonday/corncob-design-language-react';
+
+export default function Example() {
+    return (
+      <CornCheckboxGroup legend="Group Label" name="example">
+        <CornCheckbox indeterminate name="react-example-indeterminate" >Indeterminate checkbox</CornCheckbox>
+        <hr />
+        <CornCheckbox name="react-example-checkbox">Checkbox One</CornCheckbox>
+        <CornCheckbox name="react-example-checkbox">Checkbox Two</CornCheckbox>
+        <CornCheckbox name="react-example-checkbox">Checkbox Three</CornCheckbox>
+        <CornCheckbox name="react-example-checkbox">Checkbox Four</CornCheckbox>
+        <CornCheckbox name="react-example-checkbox" defaultChecked>
+          Checkbox Five
+        </CornCheckbox>
+        <CornCheckbox name="react-example-checkbox">Checkbox Six</CornCheckbox>
+      </CornCheckboxGroup>
+    );
+}
+``` 
+</CodeSample>
+
+
+### React Inline Checkbox Example
+
+<CornCheckboxGroup legend="Group Label" name="example-inline" inline>
+  <CornCheckbox>Checkbox One...</CornCheckbox>
+  <CornCheckbox>Checkbox Two...</CornCheckbox>
+  <CornCheckbox>Checkbox Three...</CornCheckbox>
+  <CornCheckbox>Checkbox Four...</CornCheckbox>
+  <CornCheckbox defaultChecked>Checkbox Five...</CornCheckbox>
+  <CornCheckbox>Checkbox Six...</CornCheckbox>
+  <CornCheckbox>Checkbox Seven...</CornCheckbox>
+</CornCheckboxGroup>
+
+<CodeSample id="react-checkbox-examples-code">
+  ```jsx
+import { CornCheckbox, CornCheckboxGroup } from '@bootsmonday/corncob-design-language-react';
+
+export default function Example() {
+    return (
+      <CornCheckboxGroup legend="Group Label" name="example-inline" inline>
+        <CornCheckbox name="react-example-checkbox">Checkbox One</CornCheckbox>
+        <CornCheckbox name="react-example-checkbox">Checkbox Two</CornCheckbox>
+        <CornCheckbox name="react-example-checkbox">Checkbox Three</CornCheckbox>
+        <CornCheckbox name="react-example-checkbox">Checkbox Four</CornCheckbox>
+        <CornCheckbox name="react-example-checkbox" defaultChecked>
+          Checkbox Five
+        </CornCheckbox>
+        <CornCheckbox name="react-example-checkbox">Checkbox Six</CornCheckbox>
+      </CornCheckboxGroup>
+    );
+}
+``` 
+</CodeSample>
+
+### React Task Checkbox Example
+
+<CornCheckboxGroup legend="Group Label" name="example-task">
+  <CornCheckbox task defaultChecked>
+    Task Complete
+  </CornCheckbox>
+  <CornCheckbox task>Task Complete</CornCheckbox>
+  <CornCheckbox task>Task Complete</CornCheckbox>
+</CornCheckboxGroup>
+
+<CodeSample id="react-checkbox-examples-code">
+  ```jsx
+import { CornCheckbox, CornCheckboxGroup } from '@bootsmonday/corncob-design-language-react';
+
+export default function Example() {
+    return (
+      <CornCheckboxGroup legend="Group Label" name="example-task">
+        <CornCheckbox task defaultChecked>
+          Task Complete
+        </CornCheckbox>
+        <CornCheckbox task>Task Complete</CornCheckbox>
+        <CornCheckbox task>Task Complete</CornCheckbox>
+      </CornCheckboxGroup>
+    );
+}
+``` 
 </CodeSample>
 
 <script>{`

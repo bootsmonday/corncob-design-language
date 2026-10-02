@@ -13,9 +13,34 @@ fieldset.corn-checkbox-group {
 
   legend {
     flex-basis: 100%;
+    font-size: var(--cc-checkbox--input--font-size--md);
     font-weight: 500;
     line-height: 1;
     padding-bottom: var(--cc-size-0);
+  }
+
+  &:has(.corn-checkbox--sm) {
+    legend {
+      font-size: var(--cc-checkbox--input--font-size--sm);
+    }
+  }
+
+  &:has(.corn-checkbox--xs) {
+    legend {
+      font-size: var(--cc-checkbox--input--font-size--xs);
+    }
+  }
+
+  &:has(.corn-checkbox--lg) {
+    legend {
+      font-size: var(--cc-checkbox--input--font-size--lg);
+    }
+  }
+
+  &:has(.corn-checkbox--xl) {
+    legend {
+      font-size: var(--cc-checkbox--input--font-size--xl);
+    }
   }
 }
 

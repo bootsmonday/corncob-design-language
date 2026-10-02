@@ -27,4 +27,3 @@ function setTheme(theme) {
 if (typeof window !== 'undefined') {
   window.setTheme = setTheme;
 }
-console.log('Theme switcher loaded');

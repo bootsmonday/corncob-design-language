@@ -2,11 +2,13 @@
 layout: ../../layouts/DocsLayout.astro
 title: 'Component | Expandable '
 ---
-import bootstrapIconsSprite from 'bootstrap-icons/bootstrap-icons.svg?url';
+import checkboxTokens from '../../../../src/components/checkboxes/checkbox-tokens.css?raw';
+import expandableTokens from '../../../../src/components/expandables/expandable-tokens.css?raw';
 import CodeSample from '../../layouts/partials/CodeSample.astro';
 import { Code } from 'astro/components';
-import expandableTokens from '../../../../src/components/expandables/expandable-tokens.css?raw';
+
 import SpriteIcon from '../../layouts/partials/SpriteIcon.jsx';
+import { CornExpandable, CornExpandableSummary, CornExpandableContent, CornAccordion } from '@bootsmonday/corncob-design-language-react';
 
 ## Overview
 
@@ -107,7 +109,7 @@ Add `open` attribute to `<corn-expandable>`.
 ## Accordion (Single Open)
 
 Wrap multiple in `<div class="corn-accordion">`. 
-Add `name="corn-single"` to each `<details>` for mutual exclusivity, same as native details behavior.
+Add the same `name` attribute to each `<details>` element. The `name` attribute should be unique for each accordion group for mutual exclusivity, same as native details behavior.
 
   <div class="corn-accordion">
     <corn-expandable class="corn-expandable">
@@ -209,4 +211,94 @@ Supports recursion. Add `corn-tree-view` class for styling.
 ## Expandable Tokens
 <CodeSample id="expandable-tokens-code">
   <Code code={expandableTokens} lang="css" />
+</CodeSample>
+
+## React Variants
+
+### Default Expandable
+
+<CornExpandable>
+  <CornExpandableSummary>Summary <SpriteIcon name="chevron-right" className="corn-icon" /></CornExpandableSummary>
+  <CornExpandableContent>
+    <div>
+      <h3>heading</h3>
+      <div>content</div>
+    </div>
+  </CornExpandableContent>
+</CornExpandable>
+
+<CodeSample id="react-default-expandable-code">
+```jsx
+<CornExpandable>
+  <CornExpandableSummary>Summary <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon" aria-hidden="true"><use href="#chevron-right"></use></svg></CornExpandableSummary>
+  <CornExpandableContent>
+    <div>
+      <h3>heading</h3>
+      <div>content</div>
+    </div>
+  </CornExpandableContent>
+</CornExpandable>
+```
+</CodeSample>
+
+### Accordion Variant
+
+<CornAccordion>
+  <CornExpandable name="corn-single-react">
+    <CornExpandableSummary>Summary <SpriteIcon name="chevron-right" className="corn-icon" /></CornExpandableSummary>
+    <CornExpandableContent>details</CornExpandableContent>
+  </CornExpandable>
+  <CornExpandable name="corn-single-react">
+    <CornExpandableSummary>Summary 2 <SpriteIcon name="chevron-right" className="corn-icon" /></CornExpandableSummary>
+    <CornExpandableContent>details 2</CornExpandableContent>
+  </CornExpandable>
+  <CornExpandable name="corn-single">
+    <CornExpandableSummary>Summary 3 <SpriteIcon name="chevron-right" className="corn-icon" /></CornExpandableSummary>
+    <CornExpandableContent>details</CornExpandableContent>
+  </CornExpandable>
+</CornAccordion>
+
+<CodeSample id="react-accordion-variant-code">
+```jsx
+  <CornAccordion>
+    <CornExpandable name="corn-single-react">
+      <CornExpandableSummary>Summary <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon" aria-hidden="true"><use href="#chevron-right"></use></svg></CornExpandableSummary>
+      <CornExpandableContent>details</CornExpandableContent>
+    </CornExpandable>
+    <CornExpandable name="corn-single-react">
+      <CornExpandableSummary>Summary 2 <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon" aria-hidden="true"><use href="#chevron-right"></use></svg></CornExpandableSummary>
+      <CornExpandableContent>details 2</CornExpandableContent>
+    </CornExpandable>
+    <CornExpandable name="corn-single-react">
+      <CornExpandableSummary>Summary 3 <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon" aria-hidden="true"><use href="#chevron-right"></use></svg></CornExpandableSummary>
+      <CornExpandableContent>details</CornExpandableContent>
+    </CornExpandable>
+  </CornAccordion>
+```
+</CodeSample>
+
+### Nested Tree-View Expandables
+
+<CornExpandable className="corn-tree-view">
+  <CornExpandableSummary><SpriteIcon name="chevron-right" className="corn-icon" /> Summary</CornExpandableSummary>
+  <CornExpandableContent>
+    <CornExpandable className="corn-tree-view">
+      <CornExpandableSummary><SpriteIcon name="chevron-right" className="corn-icon" /> Summary 2</CornExpandableSummary>
+      <CornExpandableContent>More details</CornExpandableContent>
+    </CornExpandable>
+  </CornExpandableContent>
+</CornExpandable>
+
+<CodeSample id="react-nested-tree-view-expandables-code">
+```jsx
+<CornExpandable className="corn-tree-view">
+  <CornExpandableSummary><svg xmlns="http://www.w3.org/2000/svg" class="corn-icon" aria-hidden="true"><use href="#chevron-right"></use></svg> Summary</CornExpandableSummary>
+  <CornExpandableContent>
+    <CornExpandable className="corn-tree-view">
+      <CornExpandableSummary><svg xmlns="http://www.w3.org/2000/svg" class="corn-icon" aria-hidden="true"><use href="#chevron-right"></use></svg> Summary 2</CornExpandableSummary>
+      <CornExpandableContent>More details</CornExpandableContent>
+    </CornExpandable>
+  </CornExpandableContent>
+</CornExpandable>
+```
 </CodeSample>

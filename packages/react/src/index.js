@@ -8,7 +8,7 @@ export { CornButtonBar } from './components/button-bars/button-bar.jsx';
 export { CornBadge } from './components/badges/badge.jsx';
 export { CornMessage } from './components/messages/message.jsx';
 export { CornModal, CornModalHeader, CornModalContent } from './components/modals/modal.jsx';
-export { CornExpandable, CornAccordion } from './components/expandables/expandable.jsx';
+export { CornAccordion, CornExpandable, CornExpandableSummary, CornExpandableContent } from './components/expandables/expandable.jsx';
 export { CornPanel } from './components/panels/panel.jsx';
 export { CornFooter, CornFooterIntro, CornFooterContent, CornFooterSection, CornFooterSocial, CornFooterCopyright } from './components/footers/footer.jsx';
 export { CornTextInput } from './components/text-inputs/text-input.jsx';

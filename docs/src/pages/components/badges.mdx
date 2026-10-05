@@ -8,7 +8,6 @@ import CodeSample from '../../layouts/partials/CodeSample.astro';
 import { Code } from 'astro/components';
 import { CornBadge } from '@bootsmonday/corncob-design-language-react';
 import badgeTokens from '../../../../src/components/badges/badge-tokens.css?raw';
-import bootstrapIconsSprite from 'bootstrap-icons/bootstrap-icons.svg?url';
 import SpriteIcon from '../../layouts/partials/SpriteIcon.jsx';
 
 ## Overview
@@ -33,7 +32,7 @@ Neutral badges are used to indicate a neutral state or status to the user, witho
 <CodeSample id="page-neutral-badge-code">
   ```html
   <div class="corn-badge">
-  <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon" aria-hidden="true"><use href="[neutral icon]"></use></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon" aria-hidden="true"><use href="#dash"></use></svg>
     Neutral
   </div>
   ```

@@ -7,12 +7,23 @@ import CodeSample from '../../layouts/partials/CodeSample.astro';
 import { Code } from 'astro/components';
 import messageTokens from '../../../../src/components/messages/message-tokens.css?raw';
 import bootstrapIconsSprite from 'bootstrap-icons/bootstrap-icons.svg?url';
+import { CornMessage, CornMessageContent, CornMessageStatus, CornMessageTitle } from '@bootsmonday/corncob-design-language-react';
+import SpriteIcon from '../../layouts/partials/SpriteIcon.jsx';
+import React from 'react';
 
 ## Messages
 
 Messages are used to display important information to the user, such as informational, success, error, or warning messages.
 
-In the examples below, you should make sure the headings within the message are appropriately nested within the page's heading structure.
+In the examples below, you should make sure the heading (`<h*>`) tags within the message are appropriately nested within the page's heading structure.
+
+### When to Use
+
+Messages should be used when you need to communicate important information to the user that is relevant to the entire page or section. They are ideal for providing feedback on actions that affect the overall page, such as form submissions, system notifications, or critical alerts.
+
+### When Not to Use
+
+Messages should not be used for trivial information or messages that are only relevant to a small part of the page. Avoid using messages for minor notifications that do not require the user's immediate attention, as this can lead to message fatigue and reduce the effectiveness of important alerts.
 
 ### Page Level Messages
 
@@ -22,9 +33,7 @@ Page level messages are used to display important information about the page. Th
 
 <div class="corn-message corn-message--info">
   <div class="corn-message--status">
-    <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon" aria-hidden="true">
-      <use href={`${bootstrapIconsSprite}#info-lg`}></use>
-    </svg>
+    <SpriteIcon icon="info-lg" aria-hidden="true" />
   </div>
   <div class="corn-message--content">
     <h5 class="corn-message--title">Info Message</h5>
@@ -50,9 +59,7 @@ Page level messages are used to display important information about the page. Th
 
 <div class="corn-message corn-message--success">
   <div class="corn-message--status">
-    <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon" aria-hidden="true">
-      <use href={`${bootstrapIconsSprite}#check-lg`}></use>
-    </svg>
+    <SpriteIcon icon="check-lg" ariahidden="true" />
   </div>
   <div class="corn-message--content">
     <h5 class="corn-message--title">Success Message</h5>
@@ -78,9 +85,7 @@ Page level messages are used to display important information about the page. Th
 
 <div class="corn-message corn-message--warning">
   <div class="corn-message--status">
-    <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon" aria-hidden="true">
-      <use href={`${bootstrapIconsSprite}#exclamation-triangle`}></use>
-    </svg>
+    <SpriteIcon icon="exclamation-triangle" aria-hidden="true" />
   </div>
   <div class="corn-message--content">
     <h5 class="corn-message--title">Warning Message</h5>
@@ -105,9 +110,7 @@ Page level messages are used to display important information about the page. Th
 #### Error Message
 <div class="corn-message corn-message--error">
   <div class="corn-message--status">
-    <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon" aria-hidden="true">
-      <use href={`${bootstrapIconsSprite}#x-lg`}></use>
-    </svg>
+    <SpriteIcon icon="x-lg" aria-hidden="true" />
   </div>
   <div class="corn-message--content">
     <h5 class="corn-message--title">Error Message</h5>
@@ -136,9 +139,7 @@ Header-only messages are used to display short messages that do not require addi
 #### Informational Message
 <div class="corn-message corn-message--info">
   <div class="corn-message--status">
-    <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon" aria-hidden="true">
-      <use href={`${bootstrapIconsSprite}#info-lg`}></use>
-    </svg>
+    <SpriteIcon icon="info-lg" aria-hidden="true" />
   </div>
   <div class="corn-message--content">
     <p class="corn-message--title">This is an info message.</p>
@@ -162,9 +163,7 @@ Header-only messages are used to display short messages that do not require addi
 
 <div class="corn-message corn-message--success">
   <div class="corn-message--status">
-    <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon" aria-hidden="true">
-      <use href={`${bootstrapIconsSprite}#check-lg`}></use>
-    </svg>
+    <SpriteIcon icon="check-lg" aria-hidden="true" />
   </div>
   <div class="corn-message--content">
     <p class="corn-message--title">This is a success message.</p>
@@ -188,9 +187,7 @@ Header-only messages are used to display short messages that do not require addi
 
 <div class="corn-message corn-message--warning">
   <div class="corn-message--status">
-    <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon" aria-hidden="true">
-      <use href={`${bootstrapIconsSprite}#exclamation-triangle`}></use>
-    </svg>
+    <SpriteIcon icon="exclamation-triangle" aria-hidden="true" />
   </div>
   <div class="corn-message--content">
     <p class="corn-message--title">This is a warning message.</p>
@@ -214,9 +211,7 @@ Header-only messages are used to display short messages that do not require addi
 
 <div class="corn-message corn-message--error">
   <div class="corn-message--status">
-    <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon" aria-hidden="true">
-      <use href={`${bootstrapIconsSprite}#x-lg`}></use>
-    </svg>
+    <SpriteIcon icon="x-lg" aria-hidden="true" />
   </div>
   <div class="corn-message--content">
     <p class="corn-message--title">This is an error message.</p>
@@ -236,13 +231,39 @@ Header-only messages are used to display short messages that do not require addi
   ```
 </CodeSample>
 
-
-
-
-
-
-
 ## Message Tokens
 <CodeSample id="message-tokens-code">
   <Code code={messageTokens} lang="css" />
 </CodeSample>
+
+
+## React Variants
+
+- **Success:** Green message indicating a successful action.
+- **Warning:** Yellow message indicating a warning situation.
+- **Error:** Red message indicating an error.
+- **Info:** Blue message indicating informational content.
+
+### Page Level
+<CornMessage variant="success">
+  <CornMessageStatus>
+    <SpriteIcon icon="check-lg" aria-hidden="true" />
+  </CornMessageStatus>
+  <CornMessageContent>
+    <CornMessageTitle>Success Message</CornMessageTitle>
+    <p>This is a success message.</p>
+  </CornMessageContent>
+</CornMessage>
+
+
+### Header Only
+
+### Page Level
+<CornMessage variant="success">
+  <CornMessageStatus>
+    <SpriteIcon icon="check-lg" aria-hidden="true" />
+  </CornMessageStatus>
+  <CornMessageContent>
+    <CornMessageTitle>Success Message</CornMessageTitle>
+  </CornMessageContent>
+</CornMessage>

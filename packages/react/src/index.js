@@ -6,7 +6,7 @@ export { CornFormItem } from './common/form-item.jsx';
 export { CornButton } from './components/buttons/button.jsx';
 export { CornButtonBar } from './components/button-bars/button-bar.jsx';
 export { CornBadge } from './components/badges/badge.jsx';
-export { CornMessage } from './components/messages/message.jsx';
+export { CornMessage, CornMessageStatus, CornMessageContent, CornMessageTitle } from './components/messages/message.jsx';
 export { CornModal, CornModalHeader, CornModalContent } from './components/modals/modal.jsx';
 export { CornAccordion, CornExpandable, CornExpandableSummary, CornExpandableContent } from './components/expandables/expandable.jsx';
 export { CornPanel } from './components/panels/panel.jsx';

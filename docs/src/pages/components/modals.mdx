@@ -7,6 +7,8 @@ import CodeSample from '../../layouts/partials/CodeSample.astro';
 import { Code } from 'astro/components';
 import modalTokens from '../../../../src/components/modals/modal-tokens.css?raw';
 import bootstrapIconsSprite from 'bootstrap-icons/bootstrap-icons.svg?url';
+import SpriteIcon from '../../layouts/partials/SpriteIcon.jsx';
+import ReactModalExample from '../../layouts/partials/ReactModalExample.jsx';
 
 ## Modals
 
@@ -19,6 +21,15 @@ This takes care of the accessibility requirements for modals by leveraging the n
 See MDN [dialog element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog) for more information on the native `<dialog>` element and its features.
 
 This modal shows an optional header with a close button that the user can use to dismiss the modal. 
+
+### When to Use
+
+Modals should be used sparingly and only when necessary to capture user attention or require interaction before continuing. Modals can be disruptive to the user experience if overused, so consider alternative UI patterns before implementing a modal such as new pages, inline messages, or tooltips.
+
+### When Not to Use
+
+Avoid using modals for non-critical information or actions that do not require immediate user attention. Overusing modals can frustrate users and disrupt the flow of the application. Consider alternative UI patterns such as inline messages, tooltips, or dedicated pages for less urgent content.
+
 
 <button class="corn-button" commandfor="corn-modal-example" command="show-modal" type="button">
   Show Modal
@@ -34,9 +45,7 @@ This modal shows an optional header with a close button that the user can use to
       type="button"
       aria-label="Close"
     >
-      <svg xmlns="http://www.w3.org/2000/svg" class="corn-icon">
-        <use href={`${bootstrapIconsSprite}#x`}></use>
-      </svg>
+      <SpriteIcon icon="x-lg" aria-hidden="true" />
     </button>
   </div>
   <div class="corn-modal--content">
@@ -70,4 +79,36 @@ This modal shows an optional header with a close button that the user can use to
 
 <CodeSample id="modal-tokens-code">
   <Code code={modalTokens} lang="css" />
+</CodeSample>
+
+## React Variant
+<ReactModalExample client:only="react" />
+
+<CodeSample id="react-modal-example-code">
+```jsx
+export default function ReactModalExample() {
+  const modalRef = useRef(null);
+
+  return (
+    <>
+      <CornButton type="button" onClick={() => modalRef.current?.showModal()}>
+        Show Modal
+      </CornButton>
+
+      <CornModal ref={modalRef} closedby="any">
+        <CornModalHeader>
+          <h4>Modal Header</h4>
+          <CornButton className="corn-button--icon" size="xs" type="button" aria-label="Close" onClick={() => modalRef.current?.close()}>
+            <SpriteIcon icon="x-lg" aria-hidden="true" />
+          </CornButton>
+        </CornModalHeader>
+
+        <CornModalContent>
+          <p>This is a modal content area.</p>
+        </CornModalContent>
+      </CornModal>
+    </>
+  );
+}
+```
 </CodeSample>

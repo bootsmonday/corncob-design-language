@@ -1,5 +1,6 @@
 import { createRef } from 'react';
 import { render, screen } from '@testing-library/react';
+import { CornExpandableContent, CornExpandableSummary } from '../expandables/expandable.jsx';
 import { CornPanelMenu, CornPanelMenuExpandable, CornPanelMenuItem, CornPanelMenuSubmenu } from './panel-menu.jsx';
 
 describe('CornPanelMenu', () => {
@@ -20,10 +21,13 @@ describe('CornPanelMenu', () => {
 
   test('renders expandable section using corn-expandable web component', () => {
     const { container } = render(
-      <CornPanelMenuExpandable summary="Menu Category">
-        <CornPanelMenuSubmenu>
-          <CornPanelMenuItem href="#">Sub Menu Item 1</CornPanelMenuItem>
-        </CornPanelMenuSubmenu>
+      <CornPanelMenuExpandable>
+        <CornExpandableSummary className="corn-panel-menu--item corn-expandable-button">Menu Category</CornExpandableSummary>
+        <CornExpandableContent>
+          <CornPanelMenuSubmenu>
+            <CornPanelMenuItem href="#">Sub Menu Item 1</CornPanelMenuItem>
+          </CornPanelMenuSubmenu>
+        </CornExpandableContent>
       </CornPanelMenuExpandable>
     );
 
@@ -36,19 +40,42 @@ describe('CornPanelMenu', () => {
 
   test('renders custom icon when provided', () => {
     const { container } = render(
-      <CornPanelMenuExpandable
-        summary="Menu Category"
-        icon={
+      <CornPanelMenuExpandable>
+        <CornExpandableSummary className="corn-panel-menu--item corn-expandable-button">
+          Menu Category
           <svg xmlns="http://www.w3.org/2000/svg" className="corn-icon" aria-hidden="true">
             <use href="/node_modules/bootstrap-icons/bootstrap-icons.svg#chevron-right"></use>
           </svg>
-        }
-      >
-        content
+        </CornExpandableSummary>
+        <CornExpandableContent>content</CornExpandableContent>
       </CornPanelMenuExpandable>
     );
 
     expect(container.querySelector('summary .corn-icon')).toBeTruthy();
+  });
+
+  test('supports router-like components and className callbacks', () => {
+    function RouterLink({ to, className, children, ...props }) {
+      return (
+        <a href={to} className={className} {...props}>
+          {children}
+        </a>
+      );
+    }
+
+    render(
+      <CornPanelMenuItem
+        as={RouterLink}
+        to="/settings"
+        active
+        className={({ isActive }) => (isActive ? 'router-active' : 'router-idle')}
+      >
+        Settings
+      </CornPanelMenuItem>
+    );
+
+    expect(screen.getByRole('link', { name: 'Settings' })).toHaveClass('corn-panel-menu--item', 'corn-panel-menu--item--active', 'router-active');
+    expect(screen.getByRole('link', { name: 'Settings' })).toHaveAttribute('aria-current', 'page');
   });
 
   test('forwards refs to host elements', () => {
@@ -62,8 +89,9 @@ describe('CornPanelMenu', () => {
         <CornPanelMenuItem ref={itemRef} href="#">
           Link
         </CornPanelMenuItem>
-        <CornPanelMenuExpandable ref={expandableRef} summary="Summary">
-          content
+        <CornPanelMenuExpandable ref={expandableRef}>
+          <CornExpandableSummary className="corn-panel-menu--item corn-expandable-button">Summary</CornExpandableSummary>
+          <CornExpandableContent>content</CornExpandableContent>
         </CornPanelMenuExpandable>
       </>
     );

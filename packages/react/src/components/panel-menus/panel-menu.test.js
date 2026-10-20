@@ -1,7 +1,7 @@
 import { createRef } from 'react';
 import { render, screen } from '@testing-library/react';
-import { CornExpandableContent, CornExpandableSummary } from '../expandables/expandable.jsx';
-import { CornPanelMenu, CornPanelMenuExpandable, CornPanelMenuItem, CornPanelMenuSubmenu } from './panel-menu.jsx';
+import { CornExpandable, CornExpandableContent, CornExpandableSummary } from '../expandables/expandable.jsx';
+import { CornPanelMenu, CornPanelMenuItem, CornPanelMenuSubmenu } from './panel-menu.jsx';
 
 describe('CornPanelMenu', () => {
   test('renders menu container and items', () => {
@@ -21,14 +21,14 @@ describe('CornPanelMenu', () => {
 
   test('renders expandable section using corn-expandable web component', () => {
     const { container } = render(
-      <CornPanelMenuExpandable>
+      <CornExpandable className="corn-expandable">
         <CornExpandableSummary className="corn-panel-menu--item corn-expandable-button">Menu Category</CornExpandableSummary>
         <CornExpandableContent>
           <CornPanelMenuSubmenu>
             <CornPanelMenuItem href="#">Sub Menu Item 1</CornPanelMenuItem>
           </CornPanelMenuSubmenu>
         </CornExpandableContent>
-      </CornPanelMenuExpandable>
+      </CornExpandable>
     );
 
     expect(container.querySelector('corn-expandable')).toBeTruthy();
@@ -40,7 +40,7 @@ describe('CornPanelMenu', () => {
 
   test('renders custom icon when provided', () => {
     const { container } = render(
-      <CornPanelMenuExpandable>
+      <CornExpandable className="corn-expandable">
         <CornExpandableSummary className="corn-panel-menu--item corn-expandable-button">
           Menu Category
           <svg xmlns="http://www.w3.org/2000/svg" className="corn-icon" aria-hidden="true">
@@ -48,7 +48,7 @@ describe('CornPanelMenu', () => {
           </svg>
         </CornExpandableSummary>
         <CornExpandableContent>content</CornExpandableContent>
-      </CornPanelMenuExpandable>
+      </CornExpandable>
     );
 
     expect(container.querySelector('summary .corn-icon')).toBeTruthy();
@@ -89,10 +89,10 @@ describe('CornPanelMenu', () => {
         <CornPanelMenuItem ref={itemRef} href="#">
           Link
         </CornPanelMenuItem>
-        <CornPanelMenuExpandable ref={expandableRef}>
+        <CornExpandable ref={expandableRef} className="corn-expandable">
           <CornExpandableSummary className="corn-panel-menu--item corn-expandable-button">Summary</CornExpandableSummary>
           <CornExpandableContent>content</CornExpandableContent>
-        </CornPanelMenuExpandable>
+        </CornExpandable>
       </>
     );
 

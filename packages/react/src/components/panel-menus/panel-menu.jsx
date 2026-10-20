@@ -1,6 +1,4 @@
 import { joinClassNames } from '../../utils/class-names.js';
-import { CornExpandable, CornExpandableContent, CornExpandableSummary } from '../expandables/expandable.jsx';
-import '../../../../../src/components/expandables/expandable.js';
 
 export function CornPanelMenu({ ref, as: Component = 'div', className = '', children, ...props }) {
   return (
@@ -28,13 +26,5 @@ export function CornPanelMenuSubmenu({ ref, className = '', children, ...props }
     <div {...props} ref={ref} className={joinClassNames('corn-panel-menu--submenu', className)}>
       {children}
     </div>
-  );
-}
-
-export function CornPanelMenuExpandable({ ref, className = '', children, ...props }) {
-  return (
-    <CornExpandable {...props} ref={ref} className={className}>
-      {children}
-    </CornExpandable>
   );
 }

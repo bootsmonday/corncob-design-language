@@ -1,1 +1,1 @@
-export { CornPanelMenu, CornPanelMenuItem, CornPanelMenuSubmenu, CornPanelMenuExpandable } from './panel-menu.jsx';
+export { CornPanelMenu, CornPanelMenuItem, CornPanelMenuSubmenu } from './panel-menu.jsx';

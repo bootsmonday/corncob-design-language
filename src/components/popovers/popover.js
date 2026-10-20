@@ -74,7 +74,6 @@ export class CornPopover extends CornHTMLElement {
 
     if (!this.parent) return;
     if (!this._position) this._position = 'top';
-    this.trigger?.setAttribute('aria-controls', this.id);
     this.classPrefix = 'corn-popover--';
     this._applyPositionClass();
     this._cacheElements();

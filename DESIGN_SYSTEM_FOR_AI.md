@@ -422,7 +422,7 @@ Some components define a required internal DOM shape. Headers are the clearest e
 For these components:
 
 - keep the documented direct children in the same order
-- preserve required wrappers such as `corn-company` or `corn-popover--anchor`
+- preserve required wrappers such as `corn-company` and required hosts such as `corn-button-bar`
 - use the Corncob grid outside the component for page placement
 - do not introduce custom wrappers inside the component unless the docs explicitly show them
 

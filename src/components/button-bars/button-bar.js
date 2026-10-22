@@ -111,7 +111,7 @@ export class CornButtonBar extends CornHTMLElement {
     if (hasMoreButton) {
       moreButton.classList.add('corn-pop');
     } else {
-      moreButton.classList.add('corn-button', 'corn-button--xs', 'corn-pop');
+      moreButton.classList.add('corn-button', 'corn-button--sm', 'corn-pop');
     }
     const moreButtonId = 'button-bar-' + crypto.randomUUID().substring(0, 8);
     moreButton.setAttribute('aria-controls', moreButtonId);

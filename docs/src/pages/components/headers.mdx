@@ -5,10 +5,9 @@ title: 'Component | Header'
 
 import Logo from '../../../../dist/corncob-design-language.svg';
 import CodeSample from '../../layouts/partials/CodeSample.astro';
-import bootstrapIconsSprite from 'bootstrap-icons/bootstrap-icons.svg?url';
 import { Code } from 'astro/components';
 import headerTokens from '../../../../src/components/headers/header-tokens.css?raw';
-import { CornHeader, CornHeaderCompany, CornHeaderCompanyLogo, CornHeaderCompanyName, CornHeaderTitle, CornHeaderNav, CornHeaderActions, CornButtonBar, CornButton, CornPopover } from '@bootsmonday/corncob-design-language-react';
+import { CornHeader, CornHeaderCompany, CornHeaderCompanyLogo, CornHeaderCompanyName, CornHeaderTitle, CornHeaderNav, CornHeaderActions, CornButtonBar, CornButton } from '@bootsmonday/corncob-design-language-react';
 import SpriteIcon from '../../layouts/partials/SpriteIcon.jsx';
 
 ## Overview
@@ -36,7 +35,7 @@ Navigation Headers do not need to be used on splash pages, modal dialogs, or oth
     </div>
     <div class="corn-header--title">Title</div>
     <nav class="corn-header--nav">
-      <corn-button-bar class="corn-button-bar">
+      <corn-button-bar class="corn-button-bar" overflow-label="More">
         {/*prettier-ignore*/}
         <a href="#" class="corn-button corn-button--sm">Link 1</a>
         {/*prettier-ignore*/}
@@ -45,16 +44,6 @@ Navigation Headers do not need to be used on splash pages, modal dialogs, or oth
         <a href="#" class="corn-button corn-button--sm">Link 3</a>
         {/*prettier-ignore*/}
         <a href="#" class="corn-button corn-button--sm">Link 4</a>
-        <div class="corn-popover--anchor corn-button-bar--more">
-          <button class="corn-button corn-button--sm corn-pop" aria-controls="button-bar-popover" type="button">
-            More
-          </button>
-          <corn-popover
-            position="bottom"
-            id="button-bar-popover"
-            class="corn-popover"
-          ></corn-popover>
-        </div>
       </corn-button-bar>
     </nav>
     <div class="corn-header--actions">
@@ -83,7 +72,7 @@ Navigation Headers do not need to be used on splash pages, modal dialogs, or oth
     </div>
     <div class="corn-header--title">Title</div>
     <nav class="corn-header--nav">
-      <corn-button-bar class="corn-button-bar">
+      <corn-button-bar class="corn-button-bar" overflow-label="More">
         <a href="#" class="corn-button corn-button--sm">
           Link 1
         </a>
@@ -96,16 +85,6 @@ Navigation Headers do not need to be used on splash pages, modal dialogs, or oth
         <a href="#" class="corn-button corn-button--sm">
           Link 4
         </a>
-        <div class="corn-popover--anchor corn-button-bar--more">
-          <button class="corn-button corn-button--sm corn-pop" aria-controls="button-bar-popover" type="button">
-            More
-          </button>
-          <corn-popover
-            position="bottom"
-            id="button-bar-popover"
-            class="corn-popover"
-          ></corn-popover>
-        </div>
       </corn-button-bar>
     </nav>
     <div class="corn-header--actions">
@@ -132,7 +111,7 @@ Do:
 
 - start from the canonical header markup above
 - replace placeholder content and icons after the structure is in place
-- use `corn-button-bar` and `corn-popover--anchor corn-button-bar--more` as documented when the header includes overflow navigation
+- use `corn-button-bar` with `overflow-label` for overflow navigation
 
 Do not:
 
@@ -158,7 +137,7 @@ Do not:
   <CornHeaderTitle>Title Page</CornHeaderTitle>
 
   <CornHeaderNav>
-    <CornButtonBar>
+    <CornButtonBar overflowLabel="More">
       <CornButton key="Link 1" as="a" href="#" size="sm">
         Link 1
       </CornButton>
@@ -168,8 +147,6 @@ Do not:
       <CornButton key="Link 3" as="a" href="#" size="sm">
         Link 3
       </CornButton>
-
-      <CornPopover id="button-bar-popover" position="bottom" triggerText="More" triggerClassName="corn-button--sm" anchorClassName="corn-button-bar--more"></CornPopover>
     </CornButtonBar>
   </CornHeaderNav>
 
@@ -201,7 +178,7 @@ Do not:
   <CornHeaderTitle>Title Page</CornHeaderTitle>
 
   <CornHeaderNav>
-    <CornButtonBar>
+    <CornButtonBar overflowLabel="More">
       <CornButton key="Link 1" as="a" href="#" size="sm">
         Link 1
       </CornButton>
@@ -211,8 +188,6 @@ Do not:
       <CornButton key="Link 3" as="a" href="#" size="sm">
         Link 3
       </CornButton>
-
-      <CornPopover id="button-bar-popover" position="bottom" triggerText="More" triggerClassName="corn-button--sm" anchorClassName="corn-button-bar--more"></CornPopover>
     </CornButtonBar>
   </CornHeaderNav>
 
@@ -235,5 +210,3 @@ Do not:
 
 ## Inherited Components
 - [Buttons](./buttons)
-- [Popovers](./popovers)
-

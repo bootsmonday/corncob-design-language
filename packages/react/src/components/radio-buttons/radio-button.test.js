@@ -4,7 +4,7 @@ import { CornRadioButton } from './radio-button.jsx';
 import { CornRadioButtonGroup } from './radio-button-group.jsx';
 
 describe('CornRadioButtonGroup', () => {
-  test('renders a fieldset group with legend and checkbox items', () => {
+  test('renders a fieldset group with legend and radio items', () => {
     const { container } = render(
       <CornRadioButtonGroup legend="Options" name="example">
         <CornRadioButton>Radio One</CornRadioButton>
@@ -108,12 +108,6 @@ describe('CornRadioButton', () => {
     fireEvent.click(controlled);
     expect(onChange).toHaveBeenCalledTimes(1);
     expect(controlled).not.toBeChecked();
-  });
-
-  test('sets the indeterminate DOM property', () => {
-    render(<CornRadioButton indeterminate>Indeterminate checkbox</CornRadioButton>);
-
-    expect(screen.getByRole('radio', { name: 'Indeterminate checkbox' }).indeterminate).toBe(true);
   });
 
   test('forwards a ref to the native input', () => {

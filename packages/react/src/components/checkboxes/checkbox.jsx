@@ -1,22 +1,30 @@
-import { useId } from 'react';
+import { useCallback, useEffect, useId, useRef } from 'react';
 import { assignRef } from '../../utils/assign-ref.js';
-import { joinClassNames } from '../../utils/class-names.js';
+import { joinClassNames, modifierClass } from '../../utils/class-names.js';
 
 export function CornCheckbox({ ref, size = 'md', task = false, indeterminate = false, id, name, label, className = '', checked, defaultChecked = false, onChange, value, children, ...inputProps }) {
   const generatedId = useId();
   const inputId = id ?? generatedId;
-  const classNames = joinClassNames('corn-checkbox', size && `corn-checkbox--${size}`, task && 'corn-checkbox--task', className);
-
+  const inputRef = useRef(null);
+  const classNames = joinClassNames('corn-checkbox', modifierClass('corn-checkbox--', size), task && 'corn-checkbox--task', className);
   const isControlled = checked !== undefined;
+  const setInputRef = useCallback(
+    (node) => {
+      inputRef.current = node;
+      return assignRef(ref, node);
+    },
+    [ref]
+  );
+
+  useEffect(() => {
+    if (inputRef.current) inputRef.current.indeterminate = Boolean(indeterminate);
+  }, [indeterminate]);
 
   return (
     <div className={classNames}>
       <input
         {...inputProps}
-        ref={(node) => {
-          if (node) node.indeterminate = Boolean(indeterminate);
-          assignRef(ref, node);
-        }}
+        ref={setInputRef}
         type="checkbox"
         id={inputId}
         name={name}

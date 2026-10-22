@@ -354,6 +354,11 @@ export class CornSelect extends CornHTMLElement {
     return this.getAttribute('name');
   }
 
+  set name(value) {
+    if (value == null || value === false) this.removeAttribute('name');
+    else this.setAttribute('name', String(value));
+  }
+
   /**
    * The type getter returns the local name of the CornSelect component, which is 'corn-select'. This is used to identify the type of the form control when it is submitted as part of a form. It can also be overridden to provide a custom type if needed.
    */

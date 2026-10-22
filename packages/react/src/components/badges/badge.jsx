@@ -1,9 +1,7 @@
-import { joinClassNames } from '../../utils/class-names.js';
+import { joinClassNames, modifierClass } from '../../utils/class-names.js';
 
 export function CornBadge({ ref, variant = 'neutral', size = 'md', className = '', children, ...props }) {
-  const variantClass = variant && variant !== 'neutral' ? `corn-badge--${variant}` : '';
-  const sizeClass = size && size !== 'md' ? `corn-badge--${size}` : '';
-  const classNames = joinClassNames('corn-badge', variantClass, sizeClass, className);
+  const classNames = joinClassNames('corn-badge', modifierClass('corn-badge--', variant, ['neutral']), modifierClass('corn-badge--', size, ['md']), className);
 
   return (
     <div {...props} ref={ref} className={classNames}>

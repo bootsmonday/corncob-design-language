@@ -25,9 +25,24 @@ describe('CornSelect', () => {
     expect(label).toHaveAttribute('for', 'flavor-select');
   });
 
+  test('puts value, status, and ref on the select', () => {
+    const ref = { current: null };
+    const { container } = render(
+      <CornSelect ref={ref} id="value-select" label="Flavor" value="vanilla" status="Pick one" statusVariant="error" itemClassName="custom-item">
+        <CornSelectOption value="vanilla">Vanilla</CornSelectOption>
+      </CornSelect>
+    );
+
+    const select = document.getElementById('value-select');
+    expect(select.value).toBe('vanilla');
+    expect(ref.current).toBe(select);
+    expect(container.querySelector('.corn-form--item')).toHaveClass('corn-status--error', 'custom-item');
+    expect(container.querySelector('.corn-status')).toHaveTextContent('Pick one');
+  });
+
   test('renders to static markup without browser APIs during server-side rendering', () => {
     const html = renderToString(
-      <CornSelect id="server-select" label="Server" size="lg">
+      <CornSelect id="server-select" label="Server" name="server-flavor" placeholder="Choose one" multiple size="lg">
         <CornSelectOption value="one">One</CornSelectOption>
         <CornSelectOption value="two">Two</CornSelectOption>
       </CornSelect>
@@ -35,6 +50,9 @@ describe('CornSelect', () => {
 
     expect(html).toContain('corn-select');
     expect(html).toContain('id="server-select"');
+    expect(html).toContain('name="server-flavor"');
+    expect(html).toContain('placeholder="Choose one"');
+    expect(html).toContain('multiple=""');
     expect(html).toContain('Server');
     expect(html).toContain('One');
     expect(html).toContain('corn-select--lg');

@@ -9,13 +9,8 @@ export function CornPanelMenu({ ref, as: Component = 'div', className = '', chil
 }
 
 export function CornPanelMenuItem({ ref, as: Component = 'a', active = false, className = '', children, ...props }) {
-  const resolvedClassName =
-    typeof className === 'function'
-      ? joinClassNames('corn-panel-menu--item', className({ isActive: active }), active && 'corn-panel-menu--item--active')
-      : joinClassNames('corn-panel-menu--item', active && 'corn-panel-menu--item--active', className);
-
   return (
-    <Component {...props} ref={ref} className={resolvedClassName} aria-current={active ? 'page' : props['aria-current']}>
+    <Component {...props} ref={ref} className={joinClassNames('corn-panel-menu--item', active && 'corn-panel-menu--item--active', className)} aria-current={active ? 'page' : props['aria-current']}>
       {children}
     </Component>
   );

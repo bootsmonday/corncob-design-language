@@ -54,7 +54,7 @@ describe('CornPanelMenu', () => {
     expect(container.querySelector('summary .corn-icon')).toBeTruthy();
   });
 
-  test('supports router-like components and className callbacks', () => {
+  test('supports router-like components', () => {
     function RouterLink({ to, className, children, ...props }) {
       return (
         <a href={to} className={className} {...props}>
@@ -64,12 +64,7 @@ describe('CornPanelMenu', () => {
     }
 
     render(
-      <CornPanelMenuItem
-        as={RouterLink}
-        to="/settings"
-        active
-        className={({ isActive }) => (isActive ? 'router-active' : 'router-idle')}
-      >
+      <CornPanelMenuItem as={RouterLink} to="/settings" active className="router-active">
         Settings
       </CornPanelMenuItem>
     );

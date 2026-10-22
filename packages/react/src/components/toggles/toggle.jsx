@@ -1,6 +1,7 @@
-import { Children, cloneElement, isValidElement, useId } from 'react';
+import { useId } from 'react';
 import { CornFormItem } from '../../common/form-item.jsx';
-import { joinClassNames } from '../../utils/class-names.js';
+import { withChoiceName } from '../../common/choice-name.js';
+import { joinClassNames, modifierClass } from '../../utils/class-names.js';
 
 export const CORN_TOGGLE_SIZES = ['xs', 'sm', 'md', 'lg', 'xl'];
 
@@ -31,16 +32,10 @@ export function CornToggle({ ref, id, name, label, className = '', checked, defa
 }
 
 export function CornToggleGroup({ ref, legend, name, size = 'md', className = '', togglesClassName = '', children, ...props }) {
-  const childrenWithGroupName = Children.map(children, (child) => {
-    if (!isValidElement(child)) return child;
-    if (child.props.name != null) return child;
-    return cloneElement(child, { name });
-  });
-
   return (
-    <CornFormItem {...props} ref={ref} as="fieldset" className={joinClassNames('corn-toggle-group', size && `corn-toggle--${size}`, className)}>
+    <CornFormItem {...props} ref={ref} as="fieldset" className={joinClassNames('corn-toggle-group', modifierClass('corn-toggle--', size), className)}>
       {legend != null ? <legend>{legend}</legend> : null}
-      <div className={joinClassNames('corn-toggles', togglesClassName)}>{childrenWithGroupName}</div>
+      <div className={joinClassNames('corn-toggles', togglesClassName)}>{withChoiceName(children, name, [CornToggle])}</div>
     </CornFormItem>
   );
 }

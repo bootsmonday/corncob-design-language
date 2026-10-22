@@ -1,25 +1,28 @@
 import { useId } from 'react';
+import { FieldStatus, fieldItemClassName, resolveFieldLabel } from '../../common/field.jsx';
 import { CornFormItem } from '../../common/form-item.jsx';
-import { joinClassNames } from '../../utils/class-names.js';
+import { joinClassNames, modifierClass } from '../../utils/class-names.js';
 
 const ASSISTIVE_SIZES = new Set(['xs', 'sm']);
 
-export function CornTextInput({ ref, size = 'md', label, id, status, statusVariant, placeholder, disabled, className = '', itemClassName = '', labelClassName, 'aria-invalid': ariaInvalid, ...inputProps }) {
+export function CornTextInput({ ref, size = 'md', label, id, status, statusVariant, placeholder, disabled, className = '', itemClassName = '', labelClassName, 'aria-invalid': ariaInvalid, children, ...inputProps }) {
   const generatedId = useId();
   const inputId = id ?? generatedId;
+  const labelText = resolveFieldLabel(label, children);
   const resolvedLabelClassName = joinClassNames(ASSISTIVE_SIZES.has(size) && 'corn-assistive-text', labelClassName);
-  const itemClasses = joinClassNames(statusVariant && `corn-status--${statusVariant}`, itemClassName);
-  const classNames = joinClassNames('corn-text-input', size && `corn-text-input--${size}`, className);
+  const classNames = joinClassNames('corn-text-input', modifierClass('corn-text-input--', size), className);
 
   return (
-    <CornFormItem className={itemClasses}>
+    <CornFormItem className={fieldItemClassName(statusVariant, itemClassName)}>
       <div className={classNames}>
         <input {...inputProps} ref={ref} id={inputId} placeholder={placeholder} disabled={disabled} aria-invalid={ariaInvalid ?? (statusVariant === 'error' ? true : undefined)} />
-        <label htmlFor={inputId} className={resolvedLabelClassName || undefined}>
-          {label}
-        </label>
+        {labelText != null ? (
+          <label htmlFor={inputId} className={resolvedLabelClassName || undefined}>
+            {labelText}
+          </label>
+        ) : null}
       </div>
-      {status != null ? <div className="corn-status">{status}</div> : null}
+      <FieldStatus status={status} />
     </CornFormItem>
   );
 }

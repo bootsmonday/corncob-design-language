@@ -23,7 +23,13 @@
     "./style.css": "./dist/corncob-design-language.css"
   },
   "sideEffects": [
-    "**/*.css"
+    "**/*.css",
+    "./src/components/button-bars/button-bar.js",
+    "./src/components/expandables/expandable.js",
+    "./src/components/popovers/popover.js",
+    "./src/components/selects/select.js",
+    "./src/components/toast/toast.js",
+    "./src/components/tooltips/tooltip.js"
   ],
   "scripts": {
     "is:dev": "node testing/check-dev.js",

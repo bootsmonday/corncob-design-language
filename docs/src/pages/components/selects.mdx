@@ -6,7 +6,7 @@ title: 'Component | Select Input | Corncob'
 import CodeSample from '../../layouts/partials/CodeSample.astro';
 import { Code } from 'astro/components';
 import selectTokens from '../../../../src/components/selects/select-tokens.css?raw';
-import { CornSelect } from '@bootsmonday/corncob-design-language-react';
+import { CornSelect, CornSelectOption } from '@bootsmonday/corncob-design-language-react';
 export const baseUrl = import.meta.env.BASE_URL;
 
 
@@ -14,7 +14,19 @@ export const baseUrl = import.meta.env.BASE_URL;
 
 The select input component is a form element that allows users to choose one or more options from a dropdown list. It is commonly used in forms where users need to select from a predefined set of options.
 
-The select input component is built using the `corn-select` custom element, which provides a consistent and accessible user interface for selecting options. The component supports various sizes, including `xs`, `sm`, `md`, `lg`, and `xl`, allowing developers to choose the appropriate size for their form layout.
+### When to Use
+The select input should be used when you want to provide users with a predefined list of options to choose from. It is ideal for scenarios where the number of options is limited and known in advance, ensuring a consistent and user-friendly selection experience. Avoid using select inputs for large datasets or when users need to input custom values, as this can lead to a poor user experience.
+
+### When Not to Use
+
+The select input should not be used when the list of options is extremely large, as it can become cumbersome for users to scroll through and find the desired option. Additionally, it is not suitable when users need to input custom values that are not part of the predefined options, as this can limit flexibility and hinder the user experience. In such cases, consider using alternative input methods text inputs with validation. 
+
+### Future Enhancements
+
+Autocomplete and typeahead are planned for future releases of the select input component, enhancing its usability for large datasets and dynamic option filtering.
+
+### Implementation Details
+The select input component is built using the `corn-select` custom element, which provides a consistent and accessible user interface for selecting options. 
 
 The corn-select supports single and multiple selection modes, placeholder text. It is populated with options using the standard HTML `<option>` element.
 
@@ -297,12 +309,34 @@ The `xl` size is the largest size available for text inputs and is designed for 
   ```
 </CodeSample>
 
-## Composition Notes
-The corn-select component is composed of <a href={`${baseUrl}components/checkboxes`}>corn-checkboxes</a> and <a href={`${baseUrl}components/popovers`}>corn-popover</a>, allowing for a more flexible and customizable user experience. It also includes a placeholder option that can be used to provide guidance to users on what to select.
-
-
 
 ## Select Tokens
 <CodeSample id="select-tokens-code">
   <Code code={selectTokens} lang="css" />
 </CodeSample>
+
+## React Variant
+
+<CornSelect id="select-multiple-react" name="colors-react" label="Colors" multiple placeholder="Choose colors">
+  <CornSelectOption value="red">Red</CornSelectOption>
+  <CornSelectOption value="green">Green</CornSelectOption>
+  <CornSelectOption value="blue">Blue</CornSelectOption>
+  <CornSelectOption value="purple">Purple</CornSelectOption>
+</CornSelect>
+
+<CodeSample id="react-select-code">
+  ```jsx
+  <CornSelect id="select-multiple-react" name="colors-react" label="Colors" multiple placeholder="Choose colors">
+    <CornSelectOption value="red">Red</CornSelectOption>
+    <CornSelectOption value="green">Green</CornSelectOption>
+    <CornSelectOption value="blue">Blue</CornSelectOption>
+    <CornSelectOption value="purple">Purple</CornSelectOption>
+  </CornSelect>
+  ```
+</CodeSample>
+
+## See Also
+
+- [Corn Checkboxes](`${baseUrl}components/checkboxes`)
+- [Corn Popover](`${baseUrl}components/popovers`)
+

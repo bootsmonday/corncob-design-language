@@ -6,11 +6,19 @@ title: 'Component | Sliders | Corncob'
 import CodeSample from '../../layouts/partials/CodeSample.astro';
 import { Code } from 'astro/components';
 import sliderTokens from '../../../../src/components/sliders/slider-tokens.css?raw';
+import { CornSlider } from '@bootsmonday/corncob-design-language-react';
 
 ## Sliders
 
 Sliders are used to allow users to select a value from a range. They can be used in forms, settings, and anywhere else where a range selection is needed.
 Corncob sliders are standard HTML range inputs styled to fit the Corncob design system.
+
+### When to Use
+Sliders should be used when you want to allow users to select a value from a continuous range. They are ideal for settings where precise control over a value is needed, such as adjusting volume, brightness, or other numerical parameters. 
+
+### When Not to Use
+
+Sliders should not be used when exact values are required or when selecting from a set of discrete options. In such cases, other input types like dropdowns, radio buttons, or text inputs may be more appropriate. Avoid using sliders for critical settings where precision is essential, as users may find it difficult to select the exact value they need.
 
 ### Default Sliders
 
@@ -119,6 +127,16 @@ The `xl` size is the largest size available for sliders. It is designed for use 
   <label for="slider--xl">Adjust the Corn Slider:</label>
   <input type="range" min="0" max="100" value="50" id="slider--xl" name="corn-slider--xl" />
 </div>
+  ```
+</CodeSample>
+
+## React Variant
+
+<CornSlider id="slider-react" name="corn-slider-react" label="Adjust the Corn Slider:" min="0" max="100" value="50" />
+
+<CodeSample id="react-slider-code">
+  ```jsx
+  <CornSlider id="slider-react" name="corn-slider-react" label="Adjust the Corn Slider:" min="0" max="100" value="50" />
   ```
 </CodeSample>
 

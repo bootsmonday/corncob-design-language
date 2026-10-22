@@ -7,11 +7,21 @@ import CodeSample from '../../layouts/partials/CodeSample.astro';
 import { Code } from 'astro/components';
 import textInputTokens from '../../../../src/components/text-inputs/text-input-tokens.css?raw';
 
+import { CornTextInput } from '@bootsmonday/corncob-design-language-react';
+
+
 ## Text Inputs
 
 Text inputs are used to capture user input in a single line. They can be used for various purposes, such as capturing names, email addresses, or any other short text.
 
-Corncob provides a simple and elegant design for text inputs, ensuring a consistent user experience across your application.
+### When to Use
+
+Text inputs should be used when you need to capture short, single-line text input from the user. They are ideal for fields such as names, email addresses, usernames, or any other information that can be entered in a single line. 
+
+
+### When Not to Use
+
+Text inputs should not be used for capturing long-form content, multi-line input, or complex data entry. In such cases, consider using textareas or other specialized input components that are better suited for handling larger amounts of text or structured data.
 
 Corncob form elements should be wrapped in a container with the class `corn-form--item` to ensure proper spacing and alignment. Each form element should also include a `corn-status` element to display validation messages or other status information.
 
@@ -166,6 +176,16 @@ The `xl` size is the largest size available for text inputs and is designed for 
       <label for="input--xl">What is your name?</label>
     </div>
   </div>
+  ```
+</CodeSample>
+
+## React Variant
+
+<CornTextInput id="input-react" name="input-react" label="What is your name?" placeholder="Enter Full Name..." />
+
+<CodeSample id="react-text-input-code">
+  ```jsx
+  <CornTextInput id="input-react" name="input-react" label="What is your name?" placeholder="Enter Full Name..." />
   ```
 </CodeSample>
 

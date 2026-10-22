@@ -46,6 +46,12 @@ describe('CornSelect form submission', () => {
     }
   });
 
+  test('does not throw when created with browser custom-elements constraints', () => {
+    expect(() => {
+      document.createElement('corn-select');
+    }).not.toThrow();
+  });
+
   beforeEach(() => {
     jest.spyOn(console, 'log').mockImplementation(() => {});
     document.body.innerHTML = '';

@@ -18,6 +18,7 @@ export { CornCheckboxGroup } from './components/checkboxes/checkbox-group.jsx';
 export { CornRadioButton } from './components/radio-buttons/radio-button.jsx';
 export { CornRadioButtonGroup } from './components/radio-buttons/radio-button-group.jsx';
 export { CornPopover, CornPopoverTrigger, CornPopoverContent, CORN_POPOVER_POSITIONS } from './components/popovers/popover.jsx';
+export { CornSelect, CornSelectOption, CORN_SELECT_SIZES } from './components/selects/select.jsx';
 export { CornPanelMenu, CornPanelMenuItem, CornPanelMenuSubmenu } from './components/panel-menus/panel-menu.jsx';
 export { CornToast } from './components/toasts/toast.jsx';
 export { CornHeader, CornHeaderActions, CornHeaderCompany, CornHeaderCompanyLogo, CornHeaderCompanyName, CornHeaderNav, CornHeaderTitle } from './components/headers/header.jsx';

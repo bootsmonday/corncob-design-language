@@ -1,3 +1,6 @@
+// Guard against environments where HTMLElement is not defined (e.g., server-side rendering)
+const CornHTMLElement = globalThis.HTMLElement ?? class {};
+
 /**
  * CornButtonBar is a custom web component that represents a button bar with an overflow menu.
  * It is designed to handle situations where there are more buttons than can fit in a single row, allowing the user to access additional buttons through an overflow menu.
@@ -9,7 +12,6 @@
  * Set up template for the CornButtonBar component, which includes a default slot for the main buttons and a named slot for a custom "more" button that triggers the overflow menu.
  * The template is cloned and attached to the shadow DOM of each instance of the CornButtonBar, allowing for encapsulation of styles and structure while still providing flexibility for users to customize the content of the button bar.
  */
-const CornHTMLElement = globalThis.HTMLElement ?? class {};
 const template = typeof document === 'undefined' ? null : document.createElement('template');
 if (template) {
   template.innerHTML = `

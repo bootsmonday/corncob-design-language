@@ -20,6 +20,7 @@ export { CornRadioButtonGroup } from './components/radio-buttons/radio-button-gr
 export { CornPopover, CornPopoverTrigger, CornPopoverContent, CORN_POPOVER_POSITIONS } from './components/popovers/popover.jsx';
 export { CornSelect, CornSelectOption, CORN_SELECT_SIZES } from './components/selects/select.jsx';
 export { CornSlider, CORN_SLIDER_SIZES } from './components/sliders/slider.jsx';
+export { CornToggle, CornToggleGroup, CORN_TOGGLE_SIZES } from './components/toggles/toggle.jsx';
 export { CornPanelMenu, CornPanelMenuItem, CornPanelMenuSubmenu } from './components/panel-menus/panel-menu.jsx';
 export { CornToast } from './components/toasts/toast.jsx';
 export { CornHeader, CornHeaderActions, CornHeaderCompany, CornHeaderCompanyLogo, CornHeaderCompanyName, CornHeaderNav, CornHeaderTitle } from './components/headers/header.jsx';

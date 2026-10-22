@@ -6,12 +6,20 @@ title: 'Component | Tooltips | Corncob'
 import CodeSample from '../../layouts/partials/CodeSample.astro';
 import { Code } from 'astro/components';
 import tooltipTokens from '../../../../src/components/tooltips/tooltip-tokens.css?raw';
-
+import ReactTooltipExample from '../../layouts/partials/ReactTooltipExample.jsx';
 
 ## Tooltips
 
 Tooltips are used to provide additional information about an element on the page. They can be triggered by hovering over an element or by focusing on it with the keyboard. Tooltips can contain any type of content, including text, images, and interactive elements.
 
+### When to Use
+Tooltips should be used to provide additional context or information about an element when the user hovers over or focuses on it. They are ideal for explaining the purpose of buttons, links, form fields, or other interactive elements without cluttering the interface.
+
+### When Not to Use
+
+Tooltips should not be used for critical information that requires immediate attention or action from the user. They are meant for supplementary information and should not replace essential content or instructions. Adding too many tooltips can also overwhelm the user and reduce their effectiveness. Consider alternative ways to convey meaningful information without relying solely on tooltips if you find youself adding a tooltip to every element.
+
+### Implementation
 Tooltips are built with the `corn-tooltip` web component and can be positioned in any of the following directions: top, right, bottom, and left. The tooltip will automatically adjust its position to stay within the viewport if there is not enough space in the specified direction.
 
 The Tooltip component uses the `position` attribute to determine where to display the tooltip content in relation to the anchor element. The anchor element is the element that triggers the tooltip when interacted with. The tooltip content is defined within the `corn-tooltip` element and can include any HTML content, such as text, images, or interactive elements like links and buttons.
@@ -132,6 +140,11 @@ The default position for the tooltip is `top`, but it can be positioned in any o
   </div>
   ```
 </CodeSample>
+
+
+## React Variation
+
+<ReactTooltipExample client:only="react"/>
 
 ## Tooltip Tokens
 <CodeSample id="tooltip-tokens-code">

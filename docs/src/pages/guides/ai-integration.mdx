@@ -33,6 +33,8 @@ Use these rules as the default behavior for AI code generation:
 5. Generate markup only for `components.json` entries with `"implemented": true`. Planned components have no example on purpose.
 6. Always set `type="button"`, `type="submit"`, or `type="reset"` on `<button>` elements.
 
+For React output, follow [React generation](#react-generation). That path imports `Corn*` components instead of hand-writing their internal markup.
+
 ### Default Layout Rule
 
 When a prompt asks for a page, section, dashboard, hero, sidebar layout, cards, or any other general composition, default to the Corncob grid:
@@ -74,6 +76,80 @@ Enhancements include:
 - JavaScript behavior beyond what the component docs require
 
 If the canonical version is wrong, enhancement should stop until the base structure is fixed.
+
+### React generation
+
+Use this path when the target is `.jsx` or `.tsx`, or the user asks for React. Keep the vanilla HTML path for HTML and other non-React output.
+
+#### Packages
+
+- Components: `@bootsmonday/corncob-design-language-react`
+- Styles, once per app: `@bootsmonday/corncob-design-language/style.css`
+- Peer dependency: React 19. `ref` is a normal prop.
+- The package entry is a client component (`'use client'`). In the Next.js App Router, import it from a client boundary.
+- Machine-readable pointer: `components.json` field `react`.
+
+#### Rules
+
+1. Import the `Corn*` component for a catalog entry with `"implemented": true`. Do not rebuild that component's internal DOM with raw `corn-*` classes.
+2. Page and section layout still uses `corn-container`, `corn-row`, and `corn-col-*` on plain elements around the components.
+3. Copy the React example on the component docs page, or the account form on the [React framework page](/frameworks/react/), before replacing content.
+4. Skip catalog entries with `"implemented": false`. Use `CornPanel` instead of a card and `CornMessage` instead of an alert.
+5. `className` is a string. Do not pass a function, and do not invent props.
+6. `CornButton` defaults to `type="button"`. Pass `type="submit"` or `type="reset"` when that is the action. Do not add `corn-button--primary` or `corn-button--md`. The wrapper omits those defaults.
+7. `CornCheckboxGroup`, `CornRadioButtonGroup`, and `CornToggleGroup` copy `name` only onto direct `CornCheckbox`, `CornRadioButton`, or `CornToggle` children.
+8. `indeterminate` is a `CornCheckbox` prop. `CornRadioButton` does not accept it.
+9. `CornExpandable` leaves `open` uncontrolled when the prop is omitted. Pass `open={true}` or `open={false}` to control it.
+10. `CornSelect` children are `CornSelectOption` elements. Put the visible label in the `label` prop.
+11. `status` and `statusVariant` belong on `CornTextInput`, `CornSelect`, and `CornSlider`.
+12. `CornLink` with `underline` keeps `corn-link` and adds `corn-link--underline`.
+13. `CornPanelMenuItem` `active` sets `corn-panel-menu--item--active` and `aria-current="page"`.
+
+#### Canonical React form
+
+<div class="corn-docs-code">
+```jsx
+import "@bootsmonday/corncob-design-language/style.css";
+import {
+  CornButton,
+  CornTextInput,
+  CornCheckbox,
+  CornCheckboxGroup,
+} from "@bootsmonday/corncob-design-language-react";
+
+export function AccountForm() {
+  return (
+    <form>
+      <CornTextInput
+        label="What is your name?"
+        placeholder="Enter Full Name..."
+        status="Helper Text"
+      />
+      <CornCheckboxGroup legend="Options" name="example">
+        <CornCheckbox>Checkbox One</CornCheckbox>
+        <CornCheckbox defaultChecked>Checkbox Two</CornCheckbox>
+      </CornCheckboxGroup>
+      <CornButton type="submit">Save</CornButton>
+      <CornButton variant="secondary">Cancel</CornButton>
+    </form>
+  );
+}
+```
+</div>
+
+#### Public wrappers
+
+- `CornButton`, `CornButtonBar`, `CornBadge`
+- `CornTextInput`, `CornSelect`, `CornSelectOption`, `CornSlider`
+- `CornCheckbox`, `CornCheckboxGroup`, `CornRadioButton`, `CornRadioButtonGroup`, `CornToggle`, `CornToggleGroup`
+- `CornMessage`, `CornMessageStatus`, `CornMessageContent`, `CornMessageTitle`
+- `CornModal`, `CornModalHeader`, `CornModalContent`
+- `CornExpandable`, `CornExpandableSummary`, `CornExpandableContent`, `CornAccordion`
+- `CornPopover`, `CornPopoverTrigger`, `CornPopoverContent`, `CornTooltip`, `CornToast`
+- `CornHeader` and its company, title, nav, and actions parts
+- `CornFooter` and its intro, content, section, social, and copyright parts
+- `CornPanel`, `CornPanelMenu`, `CornPanelMenuItem`, `CornPanelMenuSubmenu`
+- `CornLink`, `CornLinkList`, `CornFormItem`
 
 ### File Structure & Purpose
 

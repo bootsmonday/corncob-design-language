@@ -190,6 +190,7 @@ jobs:
     if: ${{ inputs.confirm_publish && github.ref_name == 'main' }}
     needs: changelog
     runs-on: ubuntu-latest
+    environment: npm
 
     steps:
       - name: Checkout
@@ -235,7 +236,6 @@ jobs:
       - name: Publish to npmjs
         working-directory: packages/react
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_TAG: ${{ inputs.npm_tag }}
           NPM_CONFIG_ACCESS: ${{ inputs.access }}
         run: npm publish --tag "$NPM_TAG" --access "$NPM_CONFIG_ACCESS" --provenance

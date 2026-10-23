@@ -241,9 +241,8 @@ jobs:
       - name: Push commit and tags
         run: git push --follow-tags
 
-      - name: Publish to npmjs
+      - name: Stage release to npmjs
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_TAG: ${{ inputs.npm_tag }}
           NPM_CONFIG_ACCESS: ${{ inputs.access }}
         run: |

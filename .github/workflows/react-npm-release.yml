@@ -1,4 +1,4 @@
-name: React npm Release (Preview + Publish)
+name: React npm Release (Preview + Stage)
 
 on:
   workflow_dispatch:
@@ -190,7 +190,7 @@ jobs:
     if: ${{ inputs.confirm_publish && github.ref_name == 'main' }}
     needs: changelog
     runs-on: ubuntu-latest
-    environment: npm
+    environment:
 
     steps:
       - name: Checkout
@@ -230,15 +230,15 @@ jobs:
           VERSION=$(node -p "require('./package.json').version")
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
 
-      - name: Push commit and tags
-        run: git push --follow-tags
-
       - name: Publish to npmjs
         working-directory: packages/react
         env:
           NPM_TAG: ${{ inputs.npm_tag }}
           NPM_CONFIG_ACCESS: ${{ inputs.access }}
-        run: npm publish --tag "$NPM_TAG" --access "$NPM_CONFIG_ACCESS" --provenance
+        run: npm stage publish --tag "$NPM_TAG" --access "$NPM_CONFIG_ACCESS" --provenance
+
+      - name: Push commit and tags
+        run: git push --follow-tags
 
       - name: Create GitHub release
         uses: softprops/action-gh-release@v3

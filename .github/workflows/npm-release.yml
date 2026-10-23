@@ -1,4 +1,4 @@
-name: npm Release (Preview + Publish)
+name: npm Release (Preview + Stage)
 
 on:
   workflow_dispatch:

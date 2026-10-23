@@ -1,6 +1,6 @@
 {
   "name": "Corncob Design Language",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Lightweight, accessible vanilla JS design system. Perfect for AI-assisted website and application development.",
   "aiIntegrationGuide": "See DESIGN_SYSTEM_FOR_AI.md for documentation on how AI systems should consume these files",
   "prefix": "corn-",

@@ -193,7 +193,7 @@ jobs:
     if: ${{ inputs.confirm_publish && github.ref_name == 'main' }}
     needs: changelog
     runs-on: ubuntu-latest
-    environment: npm
+    environment:
 
     steps:
       - name: Checkout
@@ -243,7 +243,7 @@ jobs:
           NPM_TAG: ${{ inputs.npm_tag }}
           NPM_CONFIG_ACCESS: ${{ inputs.access }}
         run: |
-          npm publish .release/npm/package --tag "$NPM_TAG" --access "$NPM_CONFIG_ACCESS" --provenance
+          npm stage publish .release/npm/package --tag "$NPM_TAG" --access "$NPM_CONFIG_ACCESS" --provenance
 
       - name: Push commit and tags
         run: git push --follow-tags

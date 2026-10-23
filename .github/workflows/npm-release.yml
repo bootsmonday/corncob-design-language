@@ -210,8 +210,6 @@ jobs:
         with:
           node-version: 24
           cache: npm
-          registry-url: https://registry.npmjs.org
-          scope: "@bootsmonday"
 
       - name: Install dependencies
         run: npm ci
@@ -242,7 +240,6 @@ jobs:
 
       - name: Publish to npmjs
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_TAG: ${{ inputs.npm_tag }}
           NPM_CONFIG_ACCESS: ${{ inputs.access }}
         run: |

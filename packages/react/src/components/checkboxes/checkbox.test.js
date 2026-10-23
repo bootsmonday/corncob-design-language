@@ -96,10 +96,10 @@ describe('CornCheckbox', () => {
     expect(screen.getByRole('checkbox', { name: 'Checked' })).toBeChecked();
   });
 
-  test('prefers uncontrolled state by default and supports controlled state when checked is passed', () => {
+  test('prefers uncontrolled state by default', () => {
     const onChange = jest.fn();
 
-    const { rerender } = render(<CornCheckbox defaultChecked>Default on</CornCheckbox>);
+    render(<CornCheckbox defaultChecked>Default on</CornCheckbox>);
 
     const uncontrolled = screen.getByRole('checkbox', { name: 'Default on' });
     expect(uncontrolled).toBeChecked();
@@ -107,8 +107,12 @@ describe('CornCheckbox', () => {
     fireEvent.click(uncontrolled);
     expect(uncontrolled).not.toBeChecked();
     expect(onChange).not.toHaveBeenCalled();
+  });
 
-    rerender(
+  test('supports controlled state when checked is passed', () => {
+    const onChange = jest.fn();
+
+    render(
       <CornCheckbox checked onChange={onChange}>
         Controlled
       </CornCheckbox>

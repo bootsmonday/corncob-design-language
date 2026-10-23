@@ -4,7 +4,16 @@ if (!HTMLElement.prototype.attachInternals) {
   Object.defineProperty(HTMLElement.prototype, 'attachInternals', {
     configurable: true,
     value() {
-      return {};
+      return {
+        setFormValue() {},
+        setValidity() {},
+        checkValidity() {
+          return true;
+        },
+        reportValidity() {
+          return true;
+        },
+      };
     },
   });
 }

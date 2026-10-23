@@ -125,6 +125,15 @@ describe('AI catalog sync', () => {
     expect([...tokens.metadata.files].sort()).toEqual(expected);
   });
 
+  test('React generation rules are published with the AI contract', () => {
+    expect(catalog.react.package).toBe('@bootsmonday/corncob-design-language-react');
+    expect(catalog.react.styleImport).toBe('@bootsmonday/corncob-design-language/style.css');
+
+    for (const file of ['llms.txt', 'llms-full.txt', 'DESIGN_SYSTEM_FOR_AI.md', 'docs/src/pages/guides/ai-integration.mdx']) {
+      expect(readText(file)).toContain('@bootsmonday/corncob-design-language-react');
+    }
+  });
+
   test('root llms files match docs/public copies', () => {
     expect(readText('llms.txt')).toBe(readText('docs/public/llms.txt'));
     expect(readText('llms-full.txt')).toBe(readText('docs/public/llms-full.txt'));

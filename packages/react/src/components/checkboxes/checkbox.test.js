@@ -69,6 +69,19 @@ describe('CornCheckbox', () => {
     expect(screen.getByRole('checkbox', { name: 'Two' })).toHaveAttribute('name', 'other');
   });
 
+  test('does not copy the group name onto a wrapping element', () => {
+    const { container } = render(
+      <CornCheckboxGroup legend="Options" name="example">
+        <div>
+          <CornCheckbox>Nested</CornCheckbox>
+        </div>
+      </CornCheckboxGroup>
+    );
+
+    expect(container.querySelector('div.corn-checkbox').parentElement).not.toHaveAttribute('name');
+    expect(screen.getByRole('checkbox', { name: 'Nested' })).not.toHaveAttribute('name');
+  });
+
   test('forwards disabled and checked', () => {
     render(
       <>

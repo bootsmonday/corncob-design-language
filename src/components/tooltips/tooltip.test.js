@@ -68,6 +68,16 @@ describe('CornTooltip', () => {
     const { tooltip } = createTooltipFixture({ position: 'left' });
 
     expect(tooltip.classList.contains('corn-tooltip--left')).toBe(true);
+    expect(tooltip.classList.contains('corn-tooltip--top')).toBe(false);
+  });
+
+  test('replaces the position class when the attribute changes', () => {
+    const { tooltip } = createTooltipFixture({ position: 'top' });
+
+    tooltip.setAttribute('position', 'left');
+
+    expect(tooltip.classList.contains('corn-tooltip--top')).toBe(false);
+    expect(tooltip.classList.contains('corn-tooltip--left')).toBe(true);
   });
 
   test('adds tooltip accessibility attributes and references parent label ids', () => {

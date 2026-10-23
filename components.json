@@ -728,7 +728,17 @@
     ],
     "note": "Override in :root or .dark selector. Component tokens live next to each component as *-tokens.css."
   },
-  "recommendedSystemPrompt": "You are an expert frontend developer using the Corncob Design Language. Use only `corn-*` class names and vanilla HTML/JS. Never use Tailwind, Bootstrap, or any other CSS framework. Prioritize accessibility (WCAG 2.1 AA), semantic HTML, and clean code. Use only components with implemented: true in components.json, and copy their canonical examples before enhancing. Always set button type to button, submit, or reset. Use the Corncob grid for page and section layout unless a component page documents a different internal layout.",
+  "react": {
+    "package": "@bootsmonday/corncob-design-language-react",
+    "styleImport": "@bootsmonday/corncob-design-language/style.css",
+    "peerReact": "^19.0.0",
+    "clientComponent": true,
+    "sourceEntry": "packages/react/src/index.js",
+    "docs": "docs/src/pages/frameworks/react.astro",
+    "guide": "DESIGN_SYSTEM_FOR_AI.md",
+    "rule": "When the target is React, import Corn* components from @bootsmonday/corncob-design-language-react. Do not rebuild a wrapper's internal DOM with raw corn-* classes. Keep corn-container, corn-row, and corn-col-* for page layout."
+  },
+  "recommendedSystemPrompt": "You are an expert frontend developer using the Corncob Design Language. For HTML, use only `corn-*` class names and vanilla HTML/JS. When the target is React, import components from @bootsmonday/corncob-design-language-react and do not rebuild their internal DOM. Never use Tailwind, Bootstrap, or any other CSS framework. Prioritize accessibility (WCAG 2.1 AA), semantic HTML, and clean code. Use only components with implemented: true in components.json, and copy their canonical examples before enhancing. Always set button type to button, submit, or reset. Use the Corncob grid for page and section layout unless a component page documents a different internal layout.",
   "aiUsageTips": [
     "Generate markup only for components with implemented: true. Planned entries have no example on purpose.",
     "Use corn-container, corn-row, and corn-col-* for page and section layout by default.",
@@ -749,6 +759,11 @@
     "Use corn-panel for grouped content; do not invent corn-card",
     "Place one corn-toast on the page and call addToast() for temporary feedback",
     "Test keyboard navigation for all interactive components",
-    "Use assistive text class for small helper labels"
+    "Use assistive text class for small helper labels",
+    "For React output, import Corn* components from @bootsmonday/corncob-design-language-react and the stylesheet from @bootsmonday/corncob-design-language/style.css.",
+    "In React, copy the component page's React example or the /frameworks/react/ account form before changing content.",
+    "In React, className is a string. CornButton defaults to type=\"button\". Choice-group name applies only to direct choice children.",
+    "In React, indeterminate belongs on CornCheckbox only. CornExpandable open is uncontrolled unless a boolean is passed.",
+    "In React, CornSelect options are CornSelectOption children and the visible label is the label prop."
   ]
 }

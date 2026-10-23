@@ -1,3 +1,4 @@
+// Guard against environments where HTMLElement is not defined (e.g., server-side rendering)
 const CornHTMLElement = globalThis.HTMLElement ?? class {};
 
 export class CornToast extends CornHTMLElement {

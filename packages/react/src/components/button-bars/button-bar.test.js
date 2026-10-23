@@ -1,5 +1,6 @@
 import { createRef } from 'react';
 import { render } from '@testing-library/react';
+import { renderToString } from 'react-dom/server';
 import { CornButtonBar } from './button-bar.jsx';
 
 describe('CornButtonBar', () => {
@@ -40,5 +41,18 @@ describe('CornButtonBar', () => {
     );
 
     expect(ref.current.tagName).toBe('CORN-BUTTON-BAR');
+  });
+
+  test('forwards a callback ref', () => {
+    const ref = jest.fn();
+    const { container } = render(<CornButtonBar ref={ref} />);
+
+    expect(ref).toHaveBeenCalledWith(container.querySelector('corn-button-bar'));
+  });
+
+  test('renders the overflow label in server markup', () => {
+    const html = renderToString(<CornButtonBar overflowLabel="More" />);
+
+    expect(html).toContain('overflow-label="More"');
   });
 });

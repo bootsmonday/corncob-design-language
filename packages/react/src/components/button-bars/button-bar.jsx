@@ -1,12 +1,10 @@
-import { forwardRef } from 'react';
 import { joinClassNames } from '../../utils/class-names.js';
-import '../../../../../src/components/button-bars/button-bar.js';
-import '../../../../../src/components/popovers/popover.js';
+import '../../custom-elements.js';
 
-export const CornButtonBar = forwardRef(function CornButtonBar({ className = '', overflowLabel, children, ...props }, ref) {
+export function CornButtonBar({ ref, className = '', overflowLabel, children, ...props }) {
   return (
-    <corn-button-bar {...props} ref={ref} overflow-label={overflowLabel} className={joinClassNames('corn-button-bar', className)}>
+    <corn-button-bar {...props} ref={ref} className={joinClassNames('corn-button-bar', className)} overflow-label={overflowLabel}>
       {children}
     </corn-button-bar>
   );
-});
+}

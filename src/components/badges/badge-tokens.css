@@ -4,8 +4,8 @@
   --cc-badge--border--width: var(--cc-border--width);
   --cc-badge--border--style: var(--cc-border--style);
   --cc-badge--border--color: rgb(from var(--cc-border--color) r g b / 21%);
-  --cc-badge--padding: var(--cc-size--5) var(--cc-size--1);
-  --cc-badge--padding--sm: var(--cc-size--5) var(--cc-size--3);
+  --cc-badge--padding: var(--cc-size--5) var(--cc-size--2);
+  --cc-badge--padding--sm: var(--cc-size--5) var(--cc-size--4);
   --cc-badge--background: var(--cc-gray-10);
   --cc-badge--status--border--radius: var(--cc-border--radius--round);
   --cc-badge--status--color: var(--cc-gray-80);

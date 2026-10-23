@@ -1,28 +1,49 @@
+import { createContext, useContext, useId } from 'react';
 import { joinClassNames } from '../../utils/class-names.js';
-import '../../../../../src/components/popovers/popover.js';
+import { CornButton } from '../buttons/button.jsx';
+import '../../custom-elements.js';
 
 export const CORN_POPOVER_POSITIONS = ['top', 'top-right', 'top-left', 'right', 'right-top', 'right-bottom', 'bottom', 'bottom-right', 'bottom-left', 'left', 'left-top', 'left-bottom'];
 
-export function CornPopover({ id, position = 'top', triggerText, triggerClassName = '', className = '', anchorClassName = '', children, buttonProps, ...props }) {
-  if (!id) {
-    throw new Error('CornPopover requires an "id" prop.');
+const PopoverContext = createContext(null);
+
+export function CornPopoverTrigger({ ref, children, className = '', ...props }) {
+  const context = useContext(PopoverContext);
+
+  if (!context) {
+    throw new Error('CornPopoverTrigger must be used within a CornPopover');
   }
 
-  const resolvedButtonProps = buttonProps ?? {};
-  const triggerClasses = joinClassNames('corn-button', 'corn-pop', triggerClassName);
-  const popoverClasses = joinClassNames('corn-popover', className);
-  const anchorClasses = joinClassNames('corn-popover--anchor', anchorClassName);
+  return (
+    <CornButton {...props} ref={ref} id={`${context.id}-trigger`} type={props.type ?? 'button'} className={joinClassNames('corn-pop', className)} aria-controls={`${context.id}-content`}>
+      {children}
+    </CornButton>
+  );
+}
+
+export function CornPopoverContent({ ref, children, className = '', ...props }) {
+  const context = useContext(PopoverContext);
+
+  if (!context) {
+    throw new Error('CornPopoverContent must be used within a CornPopover');
+  }
 
   return (
-    <div className={anchorClasses}>
-      {triggerText != null ? (
-        <button {...resolvedButtonProps} type={resolvedButtonProps.type ?? 'button'} className={triggerClasses} aria-controls={id}>
-          {triggerText}
-        </button>
-      ) : null}
-      <corn-popover {...props} id={id} position={position} className={popoverClasses}>
+    <corn-popover {...props} ref={ref} id={`${context.id}-content`} position={context.position} aria-labelledby={`${context.id}-trigger`} className={joinClassNames('corn-popover', className)}>
+      {children}
+    </corn-popover>
+  );
+}
+
+export function CornPopover({ ref, id, position = 'top', className = '', anchorClassName = '', children, ...props }) {
+  const generatedId = useId();
+  const popoverId = id ?? generatedId;
+
+  return (
+    <PopoverContext.Provider value={{ id: popoverId, position }}>
+      <div {...props} ref={ref} className={joinClassNames('corn-popover--anchor', anchorClassName, className)}>
         {children}
-      </corn-popover>
-    </div>
+      </div>
+    </PopoverContext.Provider>
   );
 }

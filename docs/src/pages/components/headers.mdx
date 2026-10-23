@@ -1,32 +1,27 @@
 ---
 layout: ../../layouts/DocsLayout.astro
-title: 'Component | Header | Corncob'
+title: 'Component | Header'
 ---
 
 import Logo from '../../../../dist/corncob-design-language.svg';
 import CodeSample from '../../layouts/partials/CodeSample.astro';
-import bootstrapIconsSprite from 'bootstrap-icons/bootstrap-icons.svg?url';
 import { Code } from 'astro/components';
 import headerTokens from '../../../../src/components/headers/header-tokens.css?raw';
+import { CornHeader, CornHeaderCompany, CornHeaderCompanyLogo, CornHeaderCompanyName, CornHeaderTitle, CornHeaderNav, CornHeaderActions, CornButtonBar, CornButton } from '@bootsmonday/corncob-design-language-react';
+import SpriteIcon from '../../layouts/partials/SpriteIcon.jsx';
 
+## Overview
 
-## Headers
+Headers are used to provide structure and hierarchy to your content. They help users understand the organization of information and navigate through your application. Headers set the tone for the page and establish a clear visual hierarchy, guiding users to the most important elements first. Navigation elements within the header should be easily accessible and clearly indicate the current context. 
 
-Headers are used to provide structure and hierarchy to your content. They help users understand the organization of information and navigate through your application.
-Corncob provides a simple and elegant design for headers, ensuring a consistent user experience across your application.
+### When to Use Headers
 
-### AI Implementation Contract
+Headers should be used at the top of your pages or sections to provide context and navigation options. They are ideal for displaying the company logo, page title, and primary navigation links, ensuring users can easily understand the structure of your application and access key areas quickly.
 
-This component's documented example is canonical. Use this code before adding any customization.
+### When Not to Use Headers
 
-AI should preserve these direct children of `corn-header` in this order:
+Navigation Headers do not need to be used on splash pages, modal dialogs, or other contexts where the primary navigation is either unnecessary or already provided through alternative means. In such cases, including a header may add unnecessary visual complexity without providing meaningful navigation benefits.
 
-1. `corn-company`
-2. `corn-header--title`
-3. `corn-header--nav`
-4. `corn-header--actions`
-
-Use the Corncob grid around the header for page layout when needed. Do not introduce extra wrappers inside `corn-header` unless the documentation explicitly shows them.
 
 ### Default Header
 
@@ -40,7 +35,7 @@ Use the Corncob grid around the header for page layout when needed. Do not intro
     </div>
     <div class="corn-header--title">Title</div>
     <nav class="corn-header--nav">
-      <corn-button-bar class="corn-button-bar">
+      <corn-button-bar class="corn-button-bar" overflow-label="More">
         {/*prettier-ignore*/}
         <a href="#" class="corn-button corn-button--sm">Link 1</a>
         {/*prettier-ignore*/}
@@ -49,16 +44,6 @@ Use the Corncob grid around the header for page layout when needed. Do not intro
         <a href="#" class="corn-button corn-button--sm">Link 3</a>
         {/*prettier-ignore*/}
         <a href="#" class="corn-button corn-button--sm">Link 4</a>
-        <div class="corn-popover--anchor corn-button-bar--more">
-          <button class="corn-button corn-button--sm corn-pop" aria-controls="button-bar-popover" type="button">
-            More
-          </button>
-          <corn-popover
-            position="bottom"
-            id="button-bar-popover"
-            class="corn-popover"
-          ></corn-popover>
-        </div>
       </corn-button-bar>
     </nav>
     <div class="corn-header--actions">
@@ -67,14 +52,10 @@ Use the Corncob grid around the header for page layout when needed. Do not intro
         aria-label="Question Answering"
         type="button"
       >
-        <svg class="corn-icon">
-          <use href={`${bootstrapIconsSprite}#question`} />
-        </svg>
+        <SpriteIcon name="question" className="corn-icon" />
       </button>
       <button class="corn-button corn-button--icon corn-button--xs" aria-label="User" type="button">
-        <svg class="corn-icon">
-          <use href={`${bootstrapIconsSprite}#person`} />
-        </svg>
+        <SpriteIcon name="person" className="corn-icon" />
       </button>
     </div>
   </header>
@@ -91,7 +72,7 @@ Use the Corncob grid around the header for page layout when needed. Do not intro
     </div>
     <div class="corn-header--title">Title</div>
     <nav class="corn-header--nav">
-      <corn-button-bar class="corn-button-bar">
+      <corn-button-bar class="corn-button-bar" overflow-label="More">
         <a href="#" class="corn-button corn-button--sm">
           Link 1
         </a>
@@ -104,16 +85,6 @@ Use the Corncob grid around the header for page layout when needed. Do not intro
         <a href="#" class="corn-button corn-button--sm">
           Link 4
         </a>
-        <div class="corn-popover--anchor corn-button-bar--more">
-          <button class="corn-button corn-button--sm corn-pop" aria-controls="button-bar-popover" type="button">
-            More
-          </button>
-          <corn-popover
-            position="bottom"
-            id="button-bar-popover"
-            class="corn-popover"
-          ></corn-popover>
-        </div>
       </corn-button-bar>
     </nav>
     <div class="corn-header--actions">
@@ -140,7 +111,7 @@ Do:
 
 - start from the canonical header markup above
 - replace placeholder content and icons after the structure is in place
-- use `corn-button-bar` and `corn-popover--anchor corn-button-bar--more` as documented when the header includes overflow navigation
+- use `corn-button-bar` with `overflow-label` for overflow navigation
 
 Do not:
 
@@ -153,3 +124,89 @@ Do not:
   <Code code={headerTokens} lang="css" />
 </CodeSample>
 
+## React Variant
+
+<CornHeader>
+  <CornHeaderCompany>
+    <CornHeaderCompanyLogo>
+      <Logo class="corn-logo" />
+    </CornHeaderCompanyLogo>
+    <CornHeaderCompanyName>Corncob</CornHeaderCompanyName>
+  </CornHeaderCompany>
+
+  <CornHeaderTitle>Title Page</CornHeaderTitle>
+
+  <CornHeaderNav>
+    <CornButtonBar overflowLabel="More">
+      <CornButton key="Link 1" as="a" href="#" size="sm">
+        Link 1
+      </CornButton>
+      <CornButton key="Link 2" as="a" href="#" size="sm">
+        Link 2
+      </CornButton>
+      <CornButton key="Link 3" as="a" href="#" size="sm">
+        Link 3
+      </CornButton>
+    </CornButtonBar>
+  </CornHeaderNav>
+
+  <CornHeaderActions>
+    <CornButton size="xs" type="button">
+      Action 1
+    </CornButton>
+
+    <CornButton size="xs" icon type="button" aria-label="Settings">
+      <SpriteIcon name="gear" className="corn-icon" />
+    </CornButton>
+
+    <CornButton type="button" size="xs" icon aria-label="GitHub">
+      <SpriteIcon name="github" className="corn-icon" />
+    </CornButton>
+  </CornHeaderActions>
+</CornHeader>
+
+<CodeSample id="react-header-code">
+```jsx
+<CornHeader>
+  <CornHeaderCompany>
+    <CornHeaderCompanyLogo>
+      <Logo class="corn-logo" />
+    </CornHeaderCompanyLogo>
+    <CornHeaderCompanyName>Corncob</CornHeaderCompanyName>
+  </CornHeaderCompany>
+
+  <CornHeaderTitle>Title Page</CornHeaderTitle>
+
+  <CornHeaderNav>
+    <CornButtonBar overflowLabel="More">
+      <CornButton key="Link 1" as="a" href="#" size="sm">
+        Link 1
+      </CornButton>
+      <CornButton key="Link 2" as="a" href="#" size="sm">
+        Link 2
+      </CornButton>
+      <CornButton key="Link 3" as="a" href="#" size="sm">
+        Link 3
+      </CornButton>
+    </CornButtonBar>
+  </CornHeaderNav>
+
+  <CornHeaderActions>
+    <CornButton size="xs" type="button">
+      Action 1
+    </CornButton>
+
+    <CornButton size="xs" icon type="button" aria-label="Settings">
+      <SpriteIcon name="gear" className="corn-icon" />
+    </CornButton>
+
+    <CornButton type="button" size="xs" icon aria-label="GitHub">
+      <SpriteIcon name="github" className="corn-icon" />
+    </CornButton>
+  </CornHeaderActions>
+</CornHeader>
+```
+</CodeSample>
+
+## Inherited Components
+- [Buttons](./buttons)

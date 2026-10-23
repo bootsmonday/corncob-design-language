@@ -1,5 +1,5 @@
 import { joinClassNames } from '../../utils/class-names.js';
-import '../../../../../src/components/tooltips/tooltip.js';
+import '../../custom-elements.js';
 
 export const CORN_TOOLTIP_POSITIONS = ['top', 'right', 'bottom', 'left'];
 

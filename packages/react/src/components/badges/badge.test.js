@@ -3,17 +3,12 @@ import { render, screen } from '@testing-library/react';
 import { CornBadge } from './badge.jsx';
 
 describe('CornBadge', () => {
-  test('renders stickersheet-style status and content blocks', () => {
+  test('renders children inside the badge', () => {
     const { container } = render(<CornBadge>neutral</CornBadge>);
 
     const badge = container.querySelector('.corn-badge');
-    const status = container.querySelector('.corn-badge--status');
-    const content = container.querySelector('.corn-badge--content');
-
     expect(badge).toBeTruthy();
-    expect(status).toBeTruthy();
-    expect(content).toBeTruthy();
-    expect(content).toHaveTextContent('neutral');
+    expect(badge).toHaveTextContent('neutral');
   });
 
   test('maps variant and size props to classes', () => {
@@ -33,21 +28,18 @@ describe('CornBadge', () => {
     expect(badge.className).toBe('corn-badge');
   });
 
-  test('renders custom status content', () => {
+  test('renders custom child content', () => {
     const { container } = render(
-      <CornBadge
-        status={
-          <svg xmlns="http://www.w3.org/2000/svg" className="corn-icon" aria-hidden="true">
-            <use href="/node_modules/bootstrap-icons/bootstrap-icons.svg#check-lg"></use>
-          </svg>
-        }
-      >
+      <CornBadge>
+        <svg xmlns="http://www.w3.org/2000/svg" className="corn-icon" aria-hidden="true">
+          <use href="/node_modules/bootstrap-icons/bootstrap-icons.svg#check-lg"></use>
+        </svg>
         success
       </CornBadge>
     );
 
-    expect(container.querySelector('.corn-badge--status svg')).toBeTruthy();
-    expect(container.querySelector('.corn-badge--content')).toHaveTextContent('success');
+    expect(container.querySelector('.corn-badge .corn-icon')).toBeTruthy();
+    expect(container.querySelector('.corn-badge')).toHaveTextContent('success');
   });
 
   test('forwards arbitrary props and extra className', () => {

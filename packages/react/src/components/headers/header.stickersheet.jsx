@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { CornButton, CornButtonBar, CornHeader, CornHeaderActions, CornHeaderCompany, CornHeaderCompanyLogo, CornHeaderCompanyName, CornHeaderNav, CornHeaderTitle, CornPopover } from '../../index.js';
+import { CornButton, CornButtonBar, CornHeader, CornHeaderActions, CornHeaderCompany, CornHeaderCompanyLogo, CornHeaderCompanyName, CornHeaderNav, CornHeaderTitle } from '../../index.js';
 
 const HEADER_LINKS = ['Link 1', 'Link 2', 'Link 3', 'Link 4', 'Link 5', 'Link 6', 'Link 7', 'Link 8', 'Link 9'];
 
@@ -27,7 +27,7 @@ root.render(
       <CornHeaderCompany>
         <CornHeaderCompanyLogo>
           <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <use href="/corn-cob-dl.svg"></use>
+            <use href="/corncob-design-language.svg"></use>
           </svg>
         </CornHeaderCompanyLogo>
         <CornHeaderCompanyName>Corncob</CornHeaderCompanyName>
@@ -36,14 +36,12 @@ root.render(
       <CornHeaderTitle>Title Page</CornHeaderTitle>
 
       <CornHeaderNav>
-        <CornButtonBar>
+        <CornButtonBar overflowLabel="More">
           {HEADER_LINKS.map((label) => (
             <CornButton key={label} as="a" href="#" size="sm">
               {label}
             </CornButton>
           ))}
-
-          <CornPopover id="button-bar-popover" position="bottom" triggerText="More" triggerClassName="corn-button--sm" anchorClassName="corn-button-bar--more"></CornPopover>
         </CornButtonBar>
       </CornHeaderNav>
 

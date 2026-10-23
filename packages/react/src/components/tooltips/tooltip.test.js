@@ -40,4 +40,21 @@ describe('CornTooltip', () => {
     expect(ref.current).toBe(tooltip);
     expect(ref.current.tagName).toBe('CORN-TOOLTIP');
   });
+
+  test('keeps a single position class when position changes', () => {
+    const { container, rerender } = renderInAnchor(<CornTooltip position="top">Tip</CornTooltip>);
+    const tooltip = container.querySelector('corn-tooltip');
+
+    expect(tooltip).toHaveClass('corn-tooltip--top');
+
+    rerender(
+      <button className="corn-button corn-tooltip--anchor" type="button">
+        Trigger
+        <CornTooltip position="left">Tip</CornTooltip>
+      </button>
+    );
+
+    expect(tooltip.classList.contains('corn-tooltip--top')).toBe(false);
+    expect(tooltip).toHaveClass('corn-tooltip--left');
+  });
 });

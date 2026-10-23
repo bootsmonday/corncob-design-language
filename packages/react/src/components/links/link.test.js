@@ -26,7 +26,7 @@ describe('CornLink', () => {
       </CornLink>
     );
 
-    expect(screen.getByRole('link', { name: 'Underline Link' })).toHaveClass('corn-link--underline');
+    expect(screen.getByRole('link', { name: 'Underline Link' })).toHaveClass('corn-link', 'corn-link--underline');
   });
 
   test('supports router-style link components via as prop', () => {

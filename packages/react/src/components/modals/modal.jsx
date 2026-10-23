@@ -8,17 +8,17 @@ export function CornModal({ ref, className = '', children, ...props }) {
   );
 }
 
-export function CornModalHeader({ className = '', children, ...props }) {
+export function CornModalHeader({ ref, className = '', children, ...props }) {
   return (
-    <div {...props} className={joinClassNames('corn-modal--header', className)}>
+    <div {...props} ref={ref} className={joinClassNames('corn-modal--header', className)}>
       {children}
     </div>
   );
 }
 
-export function CornModalContent({ className = '', children, ...props }) {
+export function CornModalContent({ ref, className = '', children, ...props }) {
   return (
-    <div {...props} className={joinClassNames('corn-modal--content', className)}>
+    <div {...props} ref={ref} className={joinClassNames('corn-modal--content', className)}>
       {children}
     </div>
   );

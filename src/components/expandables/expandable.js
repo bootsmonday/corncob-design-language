@@ -50,9 +50,11 @@ export class CornExpandable extends CornHTMLElement {
    * @param {string} oldValue - The previous value of the attribute.
    * @param {string} newValue - The new value of the attribute.
    */
-  // attributeChangedCallback(name, oldValue, newValue) {
-  //   console.log('attribute changed', name, oldValue, newValue);
-  // }
+  attributeChangedCallback(name, oldValue, newValue) {
+    if (name !== 'open' || oldValue === newValue || !this.isConnected || !this.details || !this.content) return;
+    if (newValue !== null) this._open(this.details);
+    else this._close(this.details);
+  }
 
   /**
    * Called when the element is added to the DOM. This is a good place to perform setup tasks, such as caching references to child elements, adding event listeners, or initializing state.
@@ -168,9 +170,7 @@ export class CornExpandable extends CornHTMLElement {
       details.classList.add('corn-expandable--open');
       details.classList.add('corn-expandable--animating');
     });
-    details
-      .querySelector('.corn-expandable--content')
-      .addEventListener('transitionend', this._openTranisitionEnd);
+    details.querySelector('.corn-expandable--content').addEventListener('transitionend', this._openTranisitionEnd);
     // details.querySelector('.corn-expandable--content').addEventListener(
     //   'transitionend',
     //   (evt) => {
@@ -207,9 +207,7 @@ export class CornExpandable extends CornHTMLElement {
     details.classList.remove('corn-expandable--open');
     details.classList.add('corn-expandable--animating');
     this.isAnimating = true;
-    details
-      .querySelector('.corn-expandable--content')
-      .addEventListener('transitionend', this._closeTranisitionEnd);
+    details.querySelector('.corn-expandable--content').addEventListener('transitionend', this._closeTranisitionEnd);
     /*
     (evt) => {
          console.log('transition ended', evt.propertyName);

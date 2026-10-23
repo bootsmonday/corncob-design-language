@@ -1,6 +1,7 @@
 Corncob Design Language AI usage rules
 
-- Use only Corncob classes and vanilla HTML and JavaScript.
+- Default target: Corncob classes with vanilla HTML and JavaScript.
+- React target: import components from @bootsmonday/corncob-design-language-react and styles from @bootsmonday/corncob-design-language/style.css. Do not rebuild a Corn* wrapper's internal DOM with raw classes.
 - Generate markup only for components.json entries with implemented: true. Planned entries have no example on purpose.
 - Default layout system: corn-container, corn-row, and corn-col-*.
 - Use the grid for page and section layout unless a component page documents a different internal layout.
@@ -18,3 +19,18 @@ Corncob Design Language AI usage rules
 - In-repo contributors and coding agents: follow AGENTS.md.
 - Read guides/ai-integration/ for the full contract.
 - Full AI contract: llms-full.txt
+
+React generation
+
+- Use the React path for .jsx, .tsx, and requests that ask for React. Keep the vanilla path for HTML.
+- React 19. ref is a normal prop. The package entry is a client component ('use client').
+- Page layout still uses corn-container, corn-row, and corn-col-* around the components.
+- Copy the React example on the component page, or the form on /frameworks/react/, before changing content.
+- className is a string. Do not invent corn-* props or classes the wrapper already applies.
+- CornButton defaults to type="button". Pass type="submit" or type="reset" for those actions.
+- CornCheckboxGroup, CornRadioButtonGroup, and CornToggleGroup copy name only onto direct choice children.
+- indeterminate is valid on CornCheckbox only.
+- CornExpandable leaves open uncontrolled unless a boolean is passed.
+- CornSelect options are CornSelectOption children. The label prop is the visible label.
+- status and statusVariant belong on CornTextInput, CornSelect, and CornSlider.
+- Use CornPanel instead of a card and CornMessage instead of an alert.

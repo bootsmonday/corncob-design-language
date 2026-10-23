@@ -1,3 +1,4 @@
+// Guard against environments where HTMLElement is not defined (e.g., server-side rendering)
 const CornHTMLElement = globalThis.HTMLElement ?? class {};
 
 export class CornTooltip extends CornHTMLElement {
@@ -10,8 +11,10 @@ export class CornTooltip extends CornHTMLElement {
    * When any of these attributes change, the attributeChangedCallback method is called.
    */
   attributeChangedCallback(name, oldValue, newValue) {
-    if (name === 'position') this._position = newValue;
-    this.classList.add('corn-tooltip--' + this._position);
+    if (name !== 'position') return;
+    if (oldValue) this.classList.remove(`corn-tooltip--${oldValue}`);
+    this._position = newValue;
+    if (newValue) this.classList.add(`corn-tooltip--${newValue}`);
   }
 
   /*

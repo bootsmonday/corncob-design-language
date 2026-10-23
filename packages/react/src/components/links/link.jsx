@@ -1,18 +1,16 @@
 import { joinClassNames } from '../../utils/class-names.js';
 
 export function CornLink({ ref, as: Component = 'a', underline = false, className = '', children, ...props }) {
-  const classes = joinClassNames(underline ? 'corn-link--underline' : 'corn-link', className);
-
   return (
-    <Component {...props} ref={ref} className={classes}>
+    <Component {...props} ref={ref} className={joinClassNames('corn-link', underline && 'corn-link--underline', className)}>
       {children}
     </Component>
   );
 }
 
-export function CornLinkList({ className = '', children, ...props }) {
+export function CornLinkList({ ref, className = '', children, ...props }) {
   return (
-    <ul {...props} className={joinClassNames('corn-link-list', className)}>
+    <ul {...props} ref={ref} className={joinClassNames('corn-link-list', className)}>
       {children}
     </ul>
   );

@@ -6,12 +6,19 @@ title: 'Component | Panel | Corncob'
 import CodeSample from '../../layouts/partials/CodeSample.astro';
 import { Code } from 'astro/components';
 import panelTokens from '../../../../src/components/panels/panel-tokens.css?raw';
-
+import { CornPanel } from '@bootsmonday/corncob-design-language-react';
 
 ## Panels
 
 Panels are used to group related content and provide a visual separation between different sections of a page.
 They can be used for various purposes such as displaying information, grouping form elements, or creating card-like layouts. Corncob panels are simple containers with a border and padding that can be used to create a variety of layouts.
+
+### When to Use
+Use panels when you want to visually group related content and create a clear separation between different sections of a page. They are ideal for creating card-like layouts, grouping form elements, or displaying information in a structured manner. 
+
+### When Not to Use
+
+Avoid using panels for content that does not require visual separation, as unnecessary panels can add visual clutter to the interface.
 
 <div class="corn-panel docs-demo-panel">
   <h2>Panel Title</h2>
@@ -67,3 +74,24 @@ This allows for more visual separation between nested panels and their parent pa
 <CodeSample id="panel-tokens-code">
   <Code code={panelTokens} lang="css" />
 </CodeSample>
+
+## React Variant
+
+<CornPanel>
+  <h2>Corn Panel</h2>
+  <CornPanel>
+    <h3>Nested Corn Panel</h3>
+  </CornPanel>
+</CornPanel>
+
+<CodeSample id="react-panel-code">
+  ```jsx
+  <CornPanel>
+    <h2>Corn Panel</h2>
+    <CornPanel>
+      <h3>Nested Corn Panel</h3>
+    </CornPanel>
+  </CornPanel>
+  ```
+</CodeSample>
+

@@ -1,24 +1,36 @@
 ---
 layout: ../../layouts/DocsLayout.astro
-title: 'Component | Panel Menu | Corncob'
+title: 'Component | Panel Menu'
 ---
 import bootstrapIconsSprite from 'bootstrap-icons/bootstrap-icons.svg?url';
-
+import { Code } from 'astro/components';
+import PanelMenuTokens from '../../../../src/components/panel-menus/panel-menu-tokens.css?raw';
 import CodeSample from '../../layouts/partials/CodeSample.astro';
+import SpriteIcon from '../../layouts/partials/SpriteIcon.jsx';
+import { CornExpandable, CornExpandableContent, CornExpandableSummary, CornPanelMenu, CornPanelMenuItem, CornPanelMenuSubmenu } from '@bootsmonday/corncob-design-language-react';
+
+## Panel Menu
 
 Panel menus are a common UI pattern for organizing and navigating content. They typically consist of a list of items that can be expanded to reveal sub-items, allowing users to drill down into more specific content without overwhelming the interface.
 
-Panel menus take advantage of Corncob's `<corn-expandable>` component to create a nested, collapsible navigation structure.
+### When to Use
+Panel menus are ideal for applications with complex navigation structures, where users need to access multiple levels of content without losing context. They help maintain a clean and organized interface by collapsing less frequently used sections until needed.
+
+### When Not to Use
+Collapsible panel menus may not be suitable for simple navigation structures with only a few items, as the extra interaction can add unnecessary complexity and hinder quick access to content. In such cases, a straightforward panel menu without collapsible sections is preferable.
+
+
+### Implementation
 
 Add the class `corn-panel-menu--item--active` to indicate the active menu item. This can be applied to both top-level and sub-menu items.
-# Panel Menus
+
 
   <div class="corn-panel-menu">
     <a href="#" class="corn-panel-menu--item">Menu Item 1</a>
     <a href="#" class="corn-panel-menu--item">Menu Item 2</a>
     <corn-expandable class="corn-expandable">
       <details slot="details">
-        <summary class="corn-panel-menu--item corn-expandable-button">Menu Category<svg class="corn-icon" aria-hidden="true"><use href={`${bootstrapIconsSprite}#chevron-right`}></use></svg></summary>
+        <summary class="corn-panel-menu--item corn-expandable-button">Menu Category<SpriteIcon icon="chevron-right" className="corn-icon" aria-hidden="true" /></summary>
         <div class="corn-expandable--content">
           <div class="corn-panel-menu--submenu">
             <a href="#" class="corn-panel-menu--item">Sub Menu Item 1</a>
@@ -50,3 +62,48 @@ Add the class `corn-panel-menu--item--active` to indicate the active menu item. 
   </div>
 ```
 </CodeSample>
+
+## Panel Menu Tokens
+
+<CodeSample id="panel-menu-tokens-code">
+  <Code code={PanelMenuTokens} lang="css" />
+</CodeSample>
+
+## React Variation
+
+<CornPanelMenu>
+  <CornPanelMenuItem href="#">Menu Item 1</CornPanelMenuItem>
+  <CornPanelMenuItem href="#">Menu Item 2</CornPanelMenuItem>
+  <CornExpandable className="corn-expandable">
+    <CornExpandableSummary className="corn-panel-menu--item corn-expandable-button">Menu Category<SpriteIcon icon="chevron-right" className="corn-icon" aria-hidden="true" /></CornExpandableSummary>
+    <CornExpandableContent>
+      <CornPanelMenuSubmenu>
+        <CornPanelMenuItem href="#">Sub Menu Item 1</CornPanelMenuItem>
+        <CornPanelMenuItem href="#">Sub Menu Item 2</CornPanelMenuItem>
+      </CornPanelMenuSubmenu>
+    </CornExpandableContent>
+  </CornExpandable>
+  <CornPanelMenuItem href="#" active>Menu Item 3</CornPanelMenuItem>
+</CornPanelMenu>
+
+<CodeSample>
+```jsx
+<CornPanelMenu>
+  <CornPanelMenuItem href="#">Menu Item 1</CornPanelMenuItem>
+  <CornPanelMenuItem href="#">Menu Item 2</CornPanelMenuItem>
+  <CornExpandable className="corn-expandable">
+    <CornExpandableSummary className="corn-panel-menu--item corn-expandable-button">Menu Category<svg className="corn-icon" aria-hidden="true"><use href="#chevron-right"></use></svg></CornExpandableSummary>
+    <CornExpandableContent>
+      <CornPanelMenuSubmenu>
+        <CornPanelMenuItem href="#">Sub Menu Item 1</CornPanelMenuItem>
+        <CornPanelMenuItem href="#">Sub Menu Item 2</CornPanelMenuItem>
+      </CornPanelMenuSubmenu>
+    </CornExpandableContent>
+  </CornExpandable>
+  <CornPanelMenuItem href="#" active>Menu Item 3</CornPanelMenuItem>
+</CornPanelMenu>
+```
+</CodeSample>
+
+## See Also
+- <a href="/components/expandables">Corn Expandable</a>

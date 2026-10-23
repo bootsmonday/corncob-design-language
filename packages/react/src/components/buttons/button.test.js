@@ -2,23 +2,6 @@ import { createRef } from 'react';
 import { render, screen } from '@testing-library/react';
 import { CornButton } from './button.jsx';
 
-// describe('buildButtonClasses', () => {
-//   test('omits default primary and md modifiers', () => {
-//     expect(buildButtonClasses()).toBe('corn-button');
-//   });
-
-//   test('adds variant, size, icon, and extra class names', () => {
-//     expect(
-//       buildButtonClasses({
-//         variant: 'danger',
-//         size: 'sm',
-//         icon: true,
-//         className: 'extra',
-//       })
-//     ).toBe('corn-button corn-button--danger corn-button--sm corn-button--icon extra');
-//   });
-// });
-
 describe('CornButton', () => {
   test('renders a button with corn-button and type="button" by default', () => {
     render(<CornButton>Save</CornButton>);

@@ -238,15 +238,15 @@ jobs:
       - name: Stage release package
         run: npm run release:stage
 
-      - name: Push commit and tags
-        run: git push --follow-tags
-
       - name: Stage release to npmjs
         env:
           NPM_TAG: ${{ inputs.npm_tag }}
           NPM_CONFIG_ACCESS: ${{ inputs.access }}
         run: |
           npm publish .release/npm/package --tag "$NPM_TAG" --access "$NPM_CONFIG_ACCESS" --provenance
+
+      - name: Push commit and tags
+        run: git push --follow-tags
 
       - name: Create GitHub release
         uses: softprops/action-gh-release@v3

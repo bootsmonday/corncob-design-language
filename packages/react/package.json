@@ -5,14 +5,19 @@
   "type": "module",
   "main": "src/index.js",
   "module": "src/index.js",
+  "types": "./dist-types/index.d.ts",
   "exports": {
-    ".": "./src/index.js"
+    ".": {
+      "types": "./dist-types/index.d.ts",
+      "default": "./src/index.js"
+    }
   },
   "sideEffects": [
     "./src/custom-elements.js"
   ],
   "scripts": {
-    "build": "echo \"@bootsmonday/corncob-design-language-react has no build step\"",
+    "build": "tsc --project ./tsconfig.json",
+    "typecheck": "tsc --noEmit --project ./tsconfig.json",
     "test": "jest --config ./jest.config.cjs"
   },
   "repository": {
@@ -32,5 +37,10 @@
     "@bootsmonday/corncob-design-language": {
       "optional": true
     }
+  },
+  "devDependencies": {
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "typescript": "^7.0.2"
   }
 }

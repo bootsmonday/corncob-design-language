@@ -6,6 +6,11 @@ import '../../custom-elements.js';
 
 export const CORN_SELECT_SIZES = ['xs', 'sm', 'md', 'lg', 'xl'];
 
+/**
+ * Renders a select option component with the specified ref, value, and children.
+ * @param {*} param0 The props for the CornSelectOption component.
+ * @returns {JSX.Element} The rendered CornSelectOption component.
+ */
 export function CornSelectOption({ ref, value, children, ...props }) {
   return (
     <option {...props} ref={ref} value={value ?? children}>
@@ -14,6 +19,11 @@ export function CornSelectOption({ ref, value, children, ...props }) {
   );
 }
 
+/**
+ * Renders a select component with the specified ref, id, class name, size, label, name, placeholder, multiple state, required state, disabled state, value, status, status variant, item class name, and children.
+ * @param {*} param0 The props for the CornSelect component.
+ * @returns {JSX.Element} The rendered CornSelect component.
+ */
 export function CornSelect({ ref, id, className = '', size = 'md', label, name, placeholder, multiple = false, required = false, disabled = false, value, status, statusVariant, itemClassName = '', children, ...props }) {
   const generatedId = useId();
   const selectId = id ?? name ?? generatedId;

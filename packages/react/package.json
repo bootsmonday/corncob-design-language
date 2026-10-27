@@ -15,6 +15,18 @@
   "sideEffects": [
     "./src/custom-elements.js"
   ],
+  "files": [
+    "src/**/*.js",
+    "src/**/*.jsx",
+    "src/**/*.d.ts",
+    "dist-types/**/*.d.ts",
+    "CHANGELOG.md",
+    "!src/**/*.test.js",
+    "!src/**/*.stickersheet.jsx",
+    "!src/stickersheets/**",
+    "!dist-types/**/*.test.d.ts",
+    "!dist-types/**/*stickersheet*"
+  ],
   "scripts": {
     "build": "node ./scripts/build-types.mjs",
     "typecheck": "node ./scripts/build-types.mjs --check",
@@ -29,14 +41,9 @@
   },
   "homepage": "https://github.com/bootsmonday/corncob-design-language",
   "peerDependencies": {
-    "@bootsmonday/corncob-design-language": "^0.0.1",
+    "@bootsmonday/corncob-design-language": "^0.3.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
-  },
-  "peerDependenciesMeta": {
-    "@bootsmonday/corncob-design-language": {
-      "optional": true
-    }
   },
   "devDependencies": {
     "@types/react": "^19.3.0",

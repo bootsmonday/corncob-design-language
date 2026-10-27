@@ -6,13 +6,16 @@
   "module": "dist/corncob-design-language.esm.js",
   "style": "dist/corncob-design-language.css",
   "files": [
-    "dist",
+    "dist/corncob-design-language.css",
+    "dist/corncob-design-language.esm.js",
+    "dist/corncob-design-language.umd.js",
     "DESIGN_SYSTEM_FOR_AI.md",
     "tokens.json",
     "components.json",
     "layouts.json",
     "llms.txt",
-    "llms-full.txt"
+    "llms-full.txt",
+    "CHANGELOG.md"
   ],
   "workspaces": [
     "packages/react",

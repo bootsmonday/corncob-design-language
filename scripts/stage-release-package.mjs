@@ -9,14 +9,17 @@ const stageDir = path.join(projectRoot, '.release', 'npm', 'package');
 
 const pkg = JSON.parse(readFileSync(path.join(projectRoot, 'package.json'), 'utf8'));
 
-const packageFiles = [
-  'dist',
+const publishedFiles = [
+  'dist/corncob-design-language.css',
+  'dist/corncob-design-language.esm.js',
+  'dist/corncob-design-language.umd.js',
   'DESIGN_SYSTEM_FOR_AI.md',
   'tokens.json',
   'components.json',
   'layouts.json',
   'README.md',
   'LICENSE',
+  'CHANGELOG.md',
 ];
 
 const llmsFiles = [
@@ -27,14 +30,15 @@ const llmsFiles = [
 rmSync(stageDir, { recursive: true, force: true });
 mkdirSync(stageDir, { recursive: true });
 
-for (const relativePath of packageFiles) {
+for (const relativePath of publishedFiles) {
   const sourcePath = path.join(projectRoot, relativePath);
   if (!existsSync(sourcePath)) {
     throw new Error(`Missing release asset: ${relativePath}`);
   }
 
   const destinationPath = path.join(stageDir, relativePath);
-  cpSync(sourcePath, destinationPath, { recursive: true });
+  mkdirSync(path.dirname(destinationPath), { recursive: true });
+  cpSync(sourcePath, destinationPath);
 }
 
 for (const [sourceRelativePath, destinationRelativePath] of llmsFiles) {
@@ -47,16 +51,37 @@ for (const [sourceRelativePath, destinationRelativePath] of llmsFiles) {
 }
 
 const stagedPackageJson = {
-  ...pkg,
+  name: pkg.name,
+  version: pkg.version,
+  description: pkg.description,
+  main: 'dist/corncob-design-language.umd.js',
+  module: 'dist/corncob-design-language.esm.js',
+  style: 'dist/corncob-design-language.css',
+  exports: pkg.exports,
+  sideEffects: [
+    './dist/corncob-design-language.css',
+    './dist/corncob-design-language.esm.js',
+    './dist/corncob-design-language.umd.js',
+  ],
   files: [
-    'dist',
+    'dist/corncob-design-language.css',
+    'dist/corncob-design-language.esm.js',
+    'dist/corncob-design-language.umd.js',
     'DESIGN_SYSTEM_FOR_AI.md',
     'tokens.json',
     'components.json',
     'layouts.json',
     'llms.txt',
     'llms-full.txt',
+    'CHANGELOG.md',
   ],
+  keywords: pkg.keywords,
+  repository: pkg.repository,
+  bugs: pkg.bugs,
+  homepage: pkg.homepage,
+  author: pkg.author,
+  license: pkg.license,
+  publishConfig: pkg.publishConfig,
 };
 
 writeFileSync(

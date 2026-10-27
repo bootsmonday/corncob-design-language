@@ -19,5 +19,11 @@
     "noEmit": false
   },
   "include": ["src/**/*"],
-  "exclude": ["src/custom-elements.js"]
+  // custom-elements.js imports the vanilla components. Leave it out of this
+  // program so declaration emit cannot write .d.ts files beside them.
+  "exclude": [
+    "src/custom-elements.js",
+    "../../src",
+    "../../dist"
+  ]
 }

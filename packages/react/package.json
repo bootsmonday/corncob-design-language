@@ -16,8 +16,8 @@
     "./src/custom-elements.js"
   ],
   "scripts": {
-    "build": "tsc --project ./tsconfig.json",
-    "typecheck": "tsc --noEmit --project ./tsconfig.json",
+    "build": "node ./scripts/build-types.mjs",
+    "typecheck": "node ./scripts/build-types.mjs --check",
     "test": "jest --config ./jest.config.cjs"
   },
   "repository": {

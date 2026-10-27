@@ -43,7 +43,7 @@
     "visual:approve": "backstop approve --config='backstop.config.js'",
     "visual:reference": "npm run is:dev && backstop reference --config='backstop.config.js'",
     "dev": "vite --host ",
-    "build": "vite build && npm run docs:sync-dist",
+    "build": "vite build && node scripts/assert-standard-build-has-no-types.mjs && npm run docs:sync-dist",
     "preview": "vite preview --host 0.0.0.0 --port 4173",
     "docs:sync-dist": "mkdir -p docs/public/assets && rsync -a --delete --exclude='*.html' dist/ docs/public/assets/",
     "docs:dev": "npm run docs:sync-dist && cd docs && astro dev --host",

@@ -18,5 +18,6 @@
     "isolatedModules": true,
     "noEmit": false
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*"],
+  "exclude": ["src/custom-elements.js"]
 }

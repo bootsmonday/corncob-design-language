@@ -5,6 +5,11 @@ import { joinClassNames, modifierClass } from '../../utils/class-names.js';
 
 export const CORN_TOGGLE_SIZES = ['xs', 'sm', 'md', 'lg', 'xl'];
 
+/**
+ * Renders a toggle component with the specified ref, id, name, label, class name, checked state, default checked state, disabled state, change handler, value, and children.
+ * @param {*} param0 The props for the CornToggle component.
+ * @returns {JSX.Element} The rendered CornToggle component.
+ */
 export function CornToggle({ ref, id, name, label, className = '', checked, defaultChecked = false, disabled = false, onChange, value, children, ...inputProps }) {
   const generatedId = useId();
   const inputId = id ?? generatedId;
@@ -31,6 +36,11 @@ export function CornToggle({ ref, id, name, label, className = '', checked, defa
   );
 }
 
+/**
+ * Renders a toggle group component with the specified ref, legend, name, size, class name, toggles class name, and children.
+ * @param {*} param0 The props for the CornToggleGroup component.
+ * @returns {JSX.Element} The rendered CornToggleGroup component.
+ */
 export function CornToggleGroup({ ref, legend, name, size = 'md', className = '', togglesClassName = '', children, ...props }) {
   return (
     <CornFormItem {...props} ref={ref} as="fieldset" className={joinClassNames('corn-toggle-group', modifierClass('corn-toggle--', size), className)}>

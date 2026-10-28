@@ -240,6 +240,12 @@ jobs:
           VERSION=$(node -p "require('./package.json').version")
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
 
+      - name: Update core peer dependency to the latest npmjs release
+        working-directory: packages/react
+        run: |
+          LATEST_CORE_VERSION=$(npm view @bootsmonday/corncob-design-language version --json | tr -d '\"')
+          npm pkg set "peerDependencies.@bootsmonday/corncob-design-language=^${LATEST_CORE_VERSION}"
+
       - name: Stage release to npmjs
         working-directory: packages/react
         env:

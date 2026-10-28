@@ -5,7 +5,7 @@ import { CornRadioButton } from './radio-button.jsx';
 
 /**
  * Renders a radio button group component with the specified legend, name, inline state, class name, and children.
- * @param {{ ref: React.Ref<any>, legend?: string, name: string, inline?: boolean, className?: string, children: React.ReactNode }} param0
+ * @param {{ ref?: React.Ref<any>, legend?: string, name: string, inline?: boolean, className?: string, children: React.ReactNode }} param0
  * @returns {JSX.Element}
  */
 export function CornRadioButtonGroup({ ref, legend, name, inline = false, className = '', children, ...props }) {

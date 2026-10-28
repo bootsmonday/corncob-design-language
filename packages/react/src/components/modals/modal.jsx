@@ -2,7 +2,7 @@ import { joinClassNames } from '../../utils/class-names.js';
 
 /**
  * Renders a modal component with the specified class name and children.
- * @param {{ ref: React.Ref<any>, className?: string, children: React.ReactNode }} param0
+ * @param {{ ref?: React.Ref<any>, className?: string, children: React.ReactNode }} param0
  * @returns {JSX.Element}
  */
 export function CornModal({ ref, className = '', children, ...props }) {
@@ -15,7 +15,7 @@ export function CornModal({ ref, className = '', children, ...props }) {
 
 /**
  * Renders a modal header component with the specified class name and children.
- * @param {{ ref: React.Ref<any>, className?: string, children: React.ReactNode }} param0
+ * @param {{ ref?: React.Ref<any>, className?: string, children: React.ReactNode }} param0
  * @returns {JSX.Element}
  */
 export function CornModalHeader({ ref, className = '', children, ...props }) {
@@ -28,7 +28,7 @@ export function CornModalHeader({ ref, className = '', children, ...props }) {
 
 /**
  * Renders a modal content component with the specified class name and children.
- * @param {{ ref: React.Ref<any>, className?: string, children: React.ReactNode }} param0
+ * @param {{ ref?: React.Ref<any>, className?: string, children: React.ReactNode }} param0
  * @returns {JSX.Element}
  */
 export function CornModalContent({ ref, className = '', children, ...props }) {

@@ -22,6 +22,9 @@
   // custom-elements.js imports the vanilla components. Leave it out of this
   // program so declaration emit cannot write .d.ts files beside them.
   "exclude": [
+    "src/**/*.test.js",
+    "src/**/*.stickersheet.jsx",
+    "src/stickersheets/**",
     "src/custom-elements.js",
     "../../src",
     "../../dist"

@@ -2,7 +2,7 @@ import { joinClassNames } from '../../utils/class-names.js';
 
 /**
  * Renders a panel menu component with the specified class name and children.
- * @param {{ ref: React.Ref<any>, as?: React.ElementType, className?: string, children: React.ReactNode }} param0
+ * @param {{ ref?: React.Ref<any>, as?: React.ElementType, className?: string, children: React.ReactNode }} param0
  * @returns {JSX.Element}
  */
 export function CornPanelMenu({ ref, as: Component = 'div', className = '', children, ...props }) {
@@ -15,7 +15,7 @@ export function CornPanelMenu({ ref, as: Component = 'div', className = '', chil
 
 /**
  * Renders a panel menu item component with the specified class name, active state, and children.
- * @param {{ ref: React.Ref<any>, as?: React.ElementType, active?: boolean, className?: string, children: React.ReactNode }} param0
+ * @param {{ ref?: React.Ref<any>, as?: React.ElementType, active?: boolean, className?: string, children: React.ReactNode }} param0
  * @returns {JSX.Element}
  */
 export function CornPanelMenuItem({ ref, as: Component = 'a', active = false, className = '', children, ...props }) {
@@ -28,7 +28,7 @@ export function CornPanelMenuItem({ ref, as: Component = 'a', active = false, cl
 
 /**
  * Renders a panel menu submenu component with the specified class name and children.
- * @param {{ ref: React.Ref<any>, className?: string, children: React.ReactNode }} param0
+ * @param {{ ref?: React.Ref<any>, className?: string, children: React.ReactNode }} param0
  * @returns {JSX.Element}
  */
 export function CornPanelMenuSubmenu({ ref, className = '', children, ...props }) {

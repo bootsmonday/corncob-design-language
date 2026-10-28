@@ -5,7 +5,7 @@ import { CornCheckbox } from './checkbox.jsx';
 
 /**
  * Renders a checkbox group component with the specified legend, name, inline display, and children.
- * @param {{ ref: React.Ref<any>, legend?: string, name: string, inline?: boolean, className?: string, children: React.ReactNode }} param0
+ * @param {{ ref?: React.Ref<any>, legend?: string, name: string, inline?: boolean, className?: string, children: React.ReactNode }} param0
  * @returns {JSX.Element}
  */
 export function CornCheckboxGroup({ ref, legend, name, inline = false, className = '', children, ...props }) {

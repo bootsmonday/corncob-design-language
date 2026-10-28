@@ -2,7 +2,7 @@ import { joinClassNames, modifierClass } from '../../utils/class-names.js';
 
 /**
  * Renders a badge component with the specified variant, size, and children.
- * @param {{ ref: React.Ref<any>, variant?: string, size?: string, className?: string, children: React.ReactNode }} param0
+ * @param {{ ref?: React.Ref<any>, variant?: string, size?: string, className?: string, children: React.ReactNode }} param0
  * @returns {JSX.Element}
  */
 export function CornBadge({ ref, variant = 'neutral', size = 'md', className = '', children, ...props }) {

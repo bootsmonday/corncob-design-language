@@ -2,7 +2,7 @@ import { joinClassNames } from '../../utils/class-names.js';
 
 /**
  * Renders a header component with the specified class name and children.
- * @param {{ ref: React.Ref<any>, className?: string, children: React.ReactNode }} param0
+ * @param {{ ref?: React.Ref<any>, className?: string, children: React.ReactNode }} param0
  * @returns {JSX.Element}
  */
 export function CornHeader({ ref, className = '', children, ...props }) {
@@ -15,7 +15,7 @@ export function CornHeader({ ref, className = '', children, ...props }) {
 
 /**
  * Renders a header company component with the specified class name and children.
- * @param {{ ref: React.Ref<any>, className?: string, children: React.ReactNode }} param0
+ * @param {{ ref?: React.Ref<any>, className?: string, children: React.ReactNode }} param0
  * @returns {JSX.Element}
  */
 export function CornHeaderCompany({ ref, className = '', children, ...props }) {
@@ -28,7 +28,7 @@ export function CornHeaderCompany({ ref, className = '', children, ...props }) {
 
 /**
  * Renders a header company logo component with the specified class name and children.
- * @param {{ ref: React.Ref<any>, className?: string, children: React.ReactNode }} param0
+ * @param {{ ref?: React.Ref<any>, className?: string, children: React.ReactNode }} param0
  * @returns {JSX.Element}
  */
 export function CornHeaderCompanyLogo({ ref, className = '', children, ...props }) {
@@ -41,7 +41,7 @@ export function CornHeaderCompanyLogo({ ref, className = '', children, ...props 
 
 /**
  * Renders a header company name component with the specified class name and children.
- * @param {{ ref: React.Ref<any>, as?: React.ElementType, className?: string, children: React.ReactNode }} param0
+ * @param {{ ref?: React.Ref<any>, as?: React.ElementType, className?: string, children: React.ReactNode }} param0
  * @returns {JSX.Element}
  */
 export function CornHeaderCompanyName({ ref, as: Component = 'div', className = '', children, ...props }) {
@@ -54,7 +54,7 @@ export function CornHeaderCompanyName({ ref, as: Component = 'div', className = 
 
 /**
  * Renders a header title component with the specified class name and children.
- * @param {{ ref: React.Ref<any>, as?: React.ElementType, className?: string, children: React.ReactNode }} param0
+ * @param {{ ref?: React.Ref<any>, as?: React.ElementType, className?: string, children: React.ReactNode }} param0
  * @returns {JSX.Element}
  */
 export function CornHeaderTitle({ ref, as: Component = 'div', className = '', children, ...props }) {
@@ -67,7 +67,7 @@ export function CornHeaderTitle({ ref, as: Component = 'div', className = '', ch
 
 /**
  * Renders a header navigation component with the specified class name and children.
- * @param {{ ref: React.Ref<any>, className?: string, children: React.ReactNode }} param0
+ * @param {{ ref?: React.Ref<any>, className?: string, children: React.ReactNode }} param0
  * @returns {JSX.Element}
  */
 export function CornHeaderNav({ ref, className = '', children, ...props }) {
@@ -80,7 +80,7 @@ export function CornHeaderNav({ ref, className = '', children, ...props }) {
 
 /**
  * Renders a header actions component with the specified class name and children.
- * @param {{ ref: React.Ref<any>, className?: string, children: React.ReactNode }} param0
+ * @param {{ ref?: React.Ref<any>, className?: string, children: React.ReactNode }} param0
  * @returns {JSX.Element}
  */
 export function CornHeaderActions({ ref, className = '', children, ...props }) {

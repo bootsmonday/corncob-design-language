@@ -9,7 +9,7 @@ const PopoverContext = createContext(null);
 
 /**
  * Renders a popover trigger component with the specified class name and children.
- * @param {{ ref: React.Ref<any>, className?: string, children: React.ReactNode }} param0
+ * @param {{ ref?: React.Ref<any>, className?: string, children: React.ReactNode }} param0
  * @returns {JSX.Element}
  */
 export function CornPopoverTrigger({ ref, children, className = '', ...props }) {
@@ -28,7 +28,7 @@ export function CornPopoverTrigger({ ref, children, className = '', ...props }) 
 
 /**
  * Renders a popover content component with the specified class name and children.
- * @param {{ ref: React.Ref<any>, className?: string, children: React.ReactNode }} param0
+ * @param {{ ref?: React.Ref<any>, className?: string, children: React.ReactNode }} param0
  * @returns {JSX.Element}
  */
 export function CornPopoverContent({ ref, children, className = '', ...props }) {
@@ -47,7 +47,7 @@ export function CornPopoverContent({ ref, children, className = '', ...props }) 
 
 /**
  * Renders a popover component with the specified class name, anchor class name, and children.
- * @param {{ ref: React.Ref<any>, id?: string, position?: string, className?: string, anchorClassName?: string, children: React.ReactNode }} param0
+ * @param {{ ref?: React.Ref<any>, id?: string, position?: string, className?: string, anchorClassName?: string, children: React.ReactNode }} param0
  * @returns {JSX.Element}
  */
 export function CornPopover({ ref, id, position = 'top', className = '', anchorClassName = '', children, ...props }) {

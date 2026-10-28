@@ -2,7 +2,7 @@ import { useFormStatus } from 'react-dom';
 import { joinClassNames, modifierClass } from '../../utils/class-names.js';
 /**
  * Renders a button component with the specified variant, size, icon, type, and children.
- * @param {{ ref: React.Ref<any>, variant?: string, size?: string, icon?: boolean, type?: string, as?: React.ElementType, className?: string, disabled?: boolean, children: React.ReactNode }} param0
+ * @param {{ ref?: React.Ref<any>, variant?: string, size?: string, icon?: boolean, type?: string, as?: React.ElementType, className?: string, disabled?: boolean, children: React.ReactNode }} param0
  * @returns {JSX.Element}
  */
 export function CornButton({ ref, variant = 'primary', size = 'md', icon = false, type = 'button', as: Component = 'button', className = '', disabled, children, ...props }) {

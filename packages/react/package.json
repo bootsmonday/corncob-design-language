@@ -5,14 +5,31 @@
   "type": "module",
   "main": "src/index.js",
   "module": "src/index.js",
+  "types": "./dist-types/index.d.ts",
   "exports": {
-    ".": "./src/index.js"
+    ".": {
+      "types": "./dist-types/index.d.ts",
+      "default": "./src/index.js"
+    }
   },
   "sideEffects": [
     "./src/custom-elements.js"
   ],
+  "files": [
+    "src/**/*.js",
+    "src/**/*.jsx",
+    "src/**/*.d.ts",
+    "dist-types/**/*.d.ts",
+    "CHANGELOG.md",
+    "!src/**/*.test.js",
+    "!src/**/*.stickersheet.jsx",
+    "!src/stickersheets/**",
+    "!dist-types/**/*.test.d.ts",
+    "!dist-types/**/*stickersheet*"
+  ],
   "scripts": {
-    "build": "echo \"@bootsmonday/corncob-design-language-react has no build step\"",
+    "build": "node ./scripts/build-types.mjs",
+    "typecheck": "node ./scripts/build-types.mjs --check",
     "test": "jest --config ./jest.config.cjs"
   },
   "repository": {
@@ -24,13 +41,13 @@
   },
   "homepage": "https://github.com/bootsmonday/corncob-design-language",
   "peerDependencies": {
-    "@bootsmonday/corncob-design-language": "^0.0.1",
+    "@bootsmonday/corncob-design-language": "^0.3.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
-  "peerDependenciesMeta": {
-    "@bootsmonday/corncob-design-language": {
-      "optional": true
-    }
+  "devDependencies": {
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "typescript": "^7.0.2"
   }
 }

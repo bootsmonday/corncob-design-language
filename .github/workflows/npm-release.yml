@@ -245,6 +245,18 @@ jobs:
         run: |
           npm stage publish .release/npm/package --tag "$NPM_TAG" --access "$NPM_CONFIG_ACCESS" --provenance
 
+      - name: Sync React peer dependency to released version
+        run: npm run release:sync-react-peer -- "${{ steps.bump.outputs.version }}"
+
+      - name: Commit React peer dependency bump
+        run: |
+          git add packages/react/package.json
+          if git diff --cached --quiet; then
+            echo "React peer dependency already synced — skipping commit."
+          else
+            git commit -m "chore(react): sync corncob peer dependency to v${{ steps.bump.outputs.version }}"
+          fi
+
       - name: Push commit and tags
         run: git push --follow-tags
 

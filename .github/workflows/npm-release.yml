@@ -228,6 +228,14 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
+      - name: Verify working tree is clean before version bump
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "Repository is dirty before npm version; refusing to continue."
+            git status --short
+            exit 1
+          fi
+
       - name: Bump version and create tag
         id: bump
         run: |
@@ -244,18 +252,6 @@ jobs:
           NPM_CONFIG_ACCESS: ${{ inputs.access }}
         run: |
           npm stage publish .release/npm/package --tag "$NPM_TAG" --access "$NPM_CONFIG_ACCESS" --provenance
-
-      - name: Sync React peer dependency to released version
-        run: npm run release:sync-react-peer -- "${{ steps.bump.outputs.version }}"
-
-      - name: Commit React peer dependency bump
-        run: |
-          git add packages/react/package.json
-          if git diff --cached --quiet; then
-            echo "React peer dependency already synced — skipping commit."
-          else
-            git commit -m "chore(react): sync corncob peer dependency to v${{ steps.bump.outputs.version }}"
-          fi
 
       - name: Push commit and tags
         run: git push --follow-tags

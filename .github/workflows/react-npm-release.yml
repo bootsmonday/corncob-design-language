@@ -65,6 +65,12 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Update core peer dependency to latest npmjs release
+        working-directory: packages/react
+        run: |
+          LATEST_CORE_VERSION=$(npm view @bootsmonday/corncob-design-language version --json | tr -d '"')
+          npm pkg set "peerDependencies.@bootsmonday/corncob-design-language=^${LATEST_CORE_VERSION}"
+
       - name: Test React package
         working-directory: packages/react
         run: npm test --if-present
@@ -219,6 +225,12 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Update core peer dependency to latest npmjs release
+        working-directory: packages/react
+        run: |
+          LATEST_CORE_VERSION=$(npm view @bootsmonday/corncob-design-language version --json | tr -d '"')
+          npm pkg set "peerDependencies.@bootsmonday/corncob-design-language=^${LATEST_CORE_VERSION}"
+
       - name: Test React package
         working-directory: packages/react
         run: npm test --if-present
@@ -245,6 +257,16 @@ jobs:
         run: |
           LATEST_CORE_VERSION=$(npm view @bootsmonday/corncob-design-language version --json | tr -d '\"')
           npm pkg set "peerDependencies.@bootsmonday/corncob-design-language=^${LATEST_CORE_VERSION}"
+
+      - name: Commit updated React peer dependency
+        run: |
+          git add packages/react/package.json
+          if git diff --cached --quiet; then
+            echo "No React peer dependency changes to commit."
+          else
+            LATEST_CORE_VERSION=$(npm view @bootsmonday/corncob-design-language version --json | tr -d '\"')
+            git commit -m "chore(react): sync core peer dependency to ^${LATEST_CORE_VERSION}"
+          fi
 
       - name: Stage release to npmjs
         working-directory: packages/react

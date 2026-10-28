@@ -228,6 +228,11 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
+      - name: Restore generated React type artifacts
+        run: |
+          git restore --source=HEAD --staged --worktree packages/react/dist-types || true
+          git clean -fd -- packages/react/dist-types || true
+
       - name: Bump version and create tag
         id: bump
         run: |

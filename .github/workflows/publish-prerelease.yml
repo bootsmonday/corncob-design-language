@@ -53,6 +53,11 @@ jobs:
       - name: Build package
         run: npm run build
 
+      - name: Restore generated React type artifacts
+        run: |
+          git restore --source=HEAD --staged --worktree packages/react/dist-types || true
+          git clean -fd -- packages/react/dist-types || true
+
       - name: Resolve publish channel and version
         id: release_meta
         shell: bash

@@ -114,6 +114,16 @@ Please refer to the <a href={base + `guides/ai-integration`}>AI integration docu
 
 Configure npm to install the package from GitHub Packages:
 
+<CodeSample id="github-packages-registry">
+```bash
+npm config set @bootsmonday:registry https://npm.pkg.github.com
+```
+</CodeSample>
+
+If you have not authenticated to GitHub Packages yet, create a GitHub personal access token (classic) with the `read:packages` scope (and the `repo` scope if installing from a private repository). Then add it to your npm config:
+
+> **Important:** Do not commit your token to source control. The `npm config set` command writes to your user-level `~/.npmrc` file, but be careful that this token is never added to a project-level `.npmrc` that could be committed.
+
 <CodeSample id="auth-token">
 ```bash
 npm config set //npm.pkg.github.com/:_authToken YOUR_GITHUB_PAT
@@ -125,10 +135,6 @@ npm config set //npm.pkg.github.com/:_authToken YOUR_GITHUB_PAT
 npm install @bootsmonday/corncob-design-language@beta
 ```
 </CodeSample>
-
-If you have not authenticated to GitHub Packages yet, create a GitHub personal access token (classic) with the `read:packages` scope (and the `repo` scope if installing from a private repository). Then add it to your npm config:
-
-> **Important:** Do not commit your token to source control. The `npm config set` command writes to your user-level `~/.npmrc` file, but be careful that this token is never added to a project-level `.npmrc` that could be committed.
 
 
 

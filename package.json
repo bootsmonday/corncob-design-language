@@ -1,18 +1,21 @@
 {
   "name": "@bootsmonday/corncob-design-language",
-  "version": "0.3.1",
+  "version": "0.3.5",
   "description": "Corncob Design Language - A vanilla JavaScript design system",
   "main": "dist/corncob-design-language.js",
   "module": "dist/corncob-design-language.esm.js",
   "style": "dist/corncob-design-language.css",
   "files": [
-    "dist",
+    "dist/corncob-design-language.css",
+    "dist/corncob-design-language.esm.js",
+    "dist/corncob-design-language.umd.js",
     "DESIGN_SYSTEM_FOR_AI.md",
     "tokens.json",
     "components.json",
     "layouts.json",
     "llms.txt",
-    "llms-full.txt"
+    "llms-full.txt",
+    "CHANGELOG.md"
   ],
   "workspaces": [
     "packages/react",
@@ -22,8 +25,17 @@
     ".": "./dist/corncob-design-language.esm.js",
     "./style.css": "./dist/corncob-design-language.css"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "sideEffects": [
-    "**/*.css"
+    "**/*.css",
+    "./src/components/button-bars/button-bar.js",
+    "./src/components/expandables/expandable.js",
+    "./src/components/popovers/popover.js",
+    "./src/components/selects/select.js",
+    "./src/components/toast/toast.js",
+    "./src/components/tooltips/tooltip.js"
   ],
   "scripts": {
     "is:dev": "node testing/check-dev.js",
@@ -34,7 +46,7 @@
     "visual:approve": "backstop approve --config='backstop.config.js'",
     "visual:reference": "npm run is:dev && backstop reference --config='backstop.config.js'",
     "dev": "vite --host ",
-    "build": "vite build && npm run docs:sync-dist",
+    "build": "vite build && node scripts/assert-standard-build-has-no-types.mjs && npm run docs:sync-dist",
     "preview": "vite preview --host 0.0.0.0 --port 4173",
     "docs:sync-dist": "mkdir -p docs/public/assets && rsync -a --delete --exclude='*.html' dist/ docs/public/assets/",
     "docs:dev": "npm run docs:sync-dist && cd docs && astro dev --host",
@@ -60,7 +72,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/bootsmonday/corncob-design-language"
+    "url": "git+https://github.com/bootsmonday/corncob-design-language.git"
   },
   "bugs": {
     "url": "https://github.com/bootsmonday/corncob-design-language/issues"
@@ -73,13 +85,18 @@
     "@astrojs/react": "^5.0.1",
     "@astrojs/vue": "^6.0.1",
     "@axe-core/playwright": "^4.11.1",
-    "@babel/preset-env": "^7.29.2",
+    "@babel/core": "^8.0.1",
+    "@babel/preset-env": "^8.0.2",
+    "@babel/preset-react": "^8.0.1",
     "@fontsource-variable/ibm-plex-sans": "^5.2.8",
     "@fontsource/ibm-plex-mono": "^5.2.7",
     "@happy-dom/jest-environment": "^20.8.4",
     "@stylistic/stylelint-config": "^5.0.0",
     "@stylistic/stylelint-plugin": "^5.1.0",
     "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.3.0",
+    "@vitejs/plugin-react": "^6.1.1",
     "astro": "^6.0.8",
     "backstopjs": "^6.3.25",
     "bootstrap-icons": "^1.13.1",
@@ -91,10 +108,12 @@
     "modern-normalize": "^3.0.1",
     "playwright": "^1.59.1",
     "prettier": "^3.1.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
     "stylelint": "^17.4.0",
     "stylelint-config-standard": "^40.0.0",
     "stylelint-order": "^7.0.1",
-    "vite": "^7.3.1",
+    "vite": "^8.2.2",
     "vite-plugin-string": "^1.2.3"
   },
   "peerDependencies": {

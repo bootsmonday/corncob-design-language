@@ -1,3 +1,6 @@
+// Guard against environments where HTMLElement is not defined (e.g., server-side rendering)
+const CornHTMLElement = globalThis.HTMLElement ?? class {};
+
 /**
  * CornSelect is a custom HTML element that represents a select dropdown component with support for multiple selections.
  * It extends the HTMLElement class and implements the FormAssociated interface, allowing it to be used in forms and participate in form submission.
@@ -18,7 +21,7 @@
  * </corn-select>
  */
 
-export class CornSelect extends HTMLElement {
+export class CornSelect extends CornHTMLElement {
   static formAssociated = true;
   #internals;
   #value = [];
@@ -26,23 +29,44 @@ export class CornSelect extends HTMLElement {
   #isRendering = false;
   #list = null;
 
+  _generateUuid() {
+    if (typeof crypto !== 'undefined' && typeof crypto.getRandomValues === 'function') {
+      return crypto.getRandomValues(new Uint32Array(1))[0].toString(36).slice(2, 11);
+    }
+    return `corn-select-${Math.random().toString(36).slice(2, 11)}`;
+  }
+
   /**
-   * constructor initializes the CornSelect component, setting up its internal state and attributes. It generates a unique identifier for the component instance, attaches the FormAssociated internals, and sets ARIA attributes for accessibility. The constructor also sets the tabindex to make the component focusable.
+   * constructor initializes the CornSelect component, setting up its internal state and internals. Host attributes are applied in connectedCallback to keep construction compliant with custom element requirements.
    */
   constructor() {
     super();
-    this.uuid = crypto.getRandomValues(new Uint32Array(1))[0].toString(36).substr(2, 9);
-    this.id = this.id || `corn-select-${this.uuid}`;
-    this.#internals = this.attachInternals();
-    this.setAttribute('tabindex', '0');
+    this.uuid = this._generateUuid();
+    this.#internals = typeof this.attachInternals === 'function' ? this.attachInternals() : null;
   }
 
   /**
    * connectedCallback is a lifecycle method that is called when the element is added to the DOM. In this method, we call the render method to set up the initial structure of the component, and we create a MutationObserver to watch for changes in the light DOM children (option elements). When changes are detected, we re-render the component to reflect the updated options. We also set up event listeners for user interactions with the component.
    */
   connectedCallback() {
+    if (typeof document === 'undefined') {
+      return;
+    }
+
+    if (!this.id) {
+      this.id = `corn-select-${this.uuid}`;
+    }
+
+    if (!this.hasAttribute('tabindex')) {
+      this.setAttribute('tabindex', '0');
+    }
+
+    if (typeof MutationObserver === 'undefined') {
+      return;
+    }
+
     this.render();
-    this.#observer = new MutationObserver((mutationlist) => {
+    this.#observer = new MutationObserver(() => {
       if (this.#isRendering) return;
       this.render();
     });
@@ -108,6 +132,11 @@ export class CornSelect extends HTMLElement {
    * render is a method that sets up the initial structure and content of the CornSelect component. It creates a display value element to show the selected options, initializes a popover for the list of options, and generates checkbox inputs for each option in the light DOM. The method also sets up event listeners and connects the MutationObserver to watch for changes in the light DOM. This method is called when the component is first added to the DOM and whenever changes are detected in the light DOM children (option elements). It ensures that the component's UI reflects its current state and provides an interactive experience for users.
    */
   render() {
+    if (typeof document === 'undefined') return;
+
+    if (this._displayValue) this._displayValue.remove();
+    if (this._popover) this._popover.remove();
+
     this._displayValue = document.createElement('div');
     this._displayValue.classList.add('corn-select--value', 'corn-pop');
     this.appendChild(this._displayValue);
@@ -120,8 +149,9 @@ export class CornSelect extends HTMLElement {
     this._popover.setAttribute('role', 'listbox');
     this._popover.classList.add('corn-popover');
     this._displayValue.setAttribute('aria-controls', this._popover.id);
-    this.parentNode.classList.add('corn-popover--anchor');
-    //this.classList.add('corn-pop');
+    if (this.parentNode) {
+      this.parentNode.classList.add('corn-popover--anchor');
+    }
     const fieldSet = document.createElement('fieldset');
     fieldSet.classList.add('corn-form--item', 'corn-checkbox-group');
     const options = [...this.querySelectorAll(':scope > option')];
@@ -160,7 +190,7 @@ export class CornSelect extends HTMLElement {
    * When any of these attributes change, the attributeChangedCallback method is called.
    */
   static get observedAttributes() {
-    return ['position', 'required'];
+    return ['name', 'placeholder', 'multiple', 'required', 'disabled', 'value'];
   }
 
   /**
@@ -169,9 +199,19 @@ export class CornSelect extends HTMLElement {
    * In this case, when the 'position' attribute changes, it updates the internal _position property and applies the corresponding position class.
    */
   attributeChangedCallback(name, oldValue, newValue) {
-    if (name === 'value') this.value = newValue;
-    if (name === 'disabled') this.#internals.ariaDisabled = newValue !== null;
+    if (oldValue === newValue) return;
+
+    if (name === 'value') {
+      this.value = newValue ?? '';
+      return;
+    }
+
+    if (name === 'disabled' && this.#internals) this.#internals.ariaDisabled = newValue !== null;
     if (name === 'required') this.#updateValidity();
+
+    if ((name === 'name' || name === 'placeholder' || name === 'multiple') && this.isConnected) {
+      this.render();
+    }
   }
 
   /**
@@ -304,7 +344,7 @@ export class CornSelect extends HTMLElement {
    * The following getter methods provide access to the form-associated properties of the CornSelect component. These properties allow the component to participate in form submission and validation, making it behave like a native form control.
    */
   get form() {
-    return this.#internals.form;
+    return this.#internals?.form ?? null;
   }
 
   /**
@@ -312,6 +352,11 @@ export class CornSelect extends HTMLElement {
    */
   get name() {
     return this.getAttribute('name');
+  }
+
+  set name(value) {
+    if (value == null || value === false) this.removeAttribute('name');
+    else this.setAttribute('name', String(value));
   }
 
   /**
@@ -325,21 +370,21 @@ export class CornSelect extends HTMLElement {
    * The following getter methods provide access to the validity state of the CornSelect component, allowing it to participate in form validation. These properties are part of the FormAssociated interface and enable the component to report its validity status, validation messages, and whether it will be validated as part of a form submission.
    */
   get validity() {
-    return this.#internals.validity;
+    return this.#internals?.validity ?? {};
   }
 
   /**
    * The validationMessage getter returns the validation message associated with the CornSelect component. This message is generated based on the component's validity state and can be used to provide feedback to the user when the component is invalid. If the component is valid, this getter will return an empty string.
    */
   get validationMessage() {
-    return this.#internals.validationMessage;
+    return this.#internals?.validationMessage ?? '';
   }
 
   /**
    * The willValidate getter returns a boolean indicating whether the CornSelect component will be validated when the form is submitted. This is determined by the component's attributes and validity state. If the component has the 'required' attribute or other validation constraints, this getter will return true, indicating that it will be validated as part of the form submission process.
    */
   get willValidate() {
-    return this.#internals.willValidate;
+    return this.#internals?.willValidate ?? true;
   }
 
   /**
@@ -347,14 +392,14 @@ export class CornSelect extends HTMLElement {
    * the custom select the same way they would a standard <select> element.
    */
   checkValidity() {
-    return this.#internals.checkValidity();
+    return this.#internals ? this.#internals.checkValidity() : true;
   }
 
   /**
    * reportValidity mirrors the native form control API.
    */
   reportValidity() {
-    return this.#internals.reportValidity();
+    return this.#internals ? this.#internals.reportValidity() : true;
   }
 
   /**
@@ -369,7 +414,9 @@ export class CornSelect extends HTMLElement {
    */
   set value(v) {
     this.#value = v ?? '';
-    this.#internals.setFormValue(this.#value); // ← this is what the form sees
+    if (this.#internals) {
+      this.#internals.setFormValue(this.#value);
+    }
     this.#updateValidity();
   }
 
@@ -387,6 +434,8 @@ export class CornSelect extends HTMLElement {
    * The #updateValidity method is called whenever the value of the component changes, ensuring that the validity state is always up to date and consistent with the component's attributes and user interactions.
    */
   #updateValidity() {
+    if (!this.#internals) return;
+
     const required = this.hasAttribute('required');
     const empty = Array.isArray(this.#value) ? this.#value.length === 0 : !this.#value;
 
@@ -398,4 +447,6 @@ export class CornSelect extends HTMLElement {
   }
 }
 
-customElements.define('corn-select', CornSelect);
+if (typeof customElements !== 'undefined' && !customElements.get('corn-select')) {
+  customElements.define('corn-select', CornSelect);
+}

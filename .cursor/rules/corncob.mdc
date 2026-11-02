@@ -1,0 +1,11 @@
+---
+description: Corncob project instructions for Cursor
+alwaysApply: true
+---
+
+Follow `AGENTS.md`.
+
+When adding a component, read and follow `.agents/skills/add-component/SKILL.md`.
+When changing components, tokens, or canonical examples, read and follow `.agents/skills/sync-ai-manifests/SKILL.md`.
+
+Use only Corncob components with `"implemented": true` in `components.json`. Copy canonical examples before enhancing. Always set a `type` on `<button>` elements. Do not invent `corn-card` or `corn-alert` markup.

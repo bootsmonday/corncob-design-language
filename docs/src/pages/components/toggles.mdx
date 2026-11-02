@@ -7,7 +7,7 @@ import bootstrapIconsSprite from 'bootstrap-icons/bootstrap-icons.svg?url';
 import CodeSample from '../../layouts/partials/CodeSample.astro';
 import { Code } from 'astro/components';
 import toggleTokens from '../../../../src/components/toggles/toggle-tokens.css?raw';
-
+import { CornToggleGroup, CornToggle } from '@bootsmonday/corncob-design-language-react';
 
 ## Toggles
 
@@ -608,9 +608,25 @@ Icon toggles are a variation of the default toggle that uses icons instead of te
       </div>
     </div>
   </fieldset>
-
   ```
 </CodeSample>
+
+
+## React Variant
+<CornToggleGroup legend="Group Label" name="example-disabled" size="sm">
+  <CornToggle value="one" defaultChecked>One</CornToggle>
+  <CornToggle value="two">Two</CornToggle>
+</CornToggleGroup>
+
+<CodeSample id="react-toggle">
+```jsx
+<CornToggleGroup legend="Group Label" name="example-react" size="sm">
+  <CornToggle value="one" defaultChecked>One</CornToggle>
+  <CornToggle value="two">Two</CornToggle>
+</CornToggleGroup>
+```
+</CodeSample>
+
 
 ## Accessibility Notes
 `Fieldsets` and `Legends` are used to group related toggles together. In order to maintain accessibility, fieldsets should have a legend that describes the group of toggles.

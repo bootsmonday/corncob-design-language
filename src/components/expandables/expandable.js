@@ -6,15 +6,18 @@
  * Overall, CornExpandable is designed to provide a flexible and interactive way to display expandable content in a web application.
  */
 
-const template = document.createElement('template');
-template.innerHTML = `
+const CornHTMLElement = globalThis.HTMLElement ?? class {};
+const template = typeof document === 'undefined' ? null : document.createElement('template');
+if (template) {
+  template.innerHTML = `
   <slot name="details">
     <slot name="summary"></slot>
     <slot></slot>
   </slot>
 `;
+}
 
-export class CornExpandable extends HTMLElement {
+export class CornExpandable extends CornHTMLElement {
   /**
    * Returns an array of attribute names to be observed for changes.
    * When any of these attributes change, the attributeChangedCallback is invoked.
@@ -35,7 +38,9 @@ export class CornExpandable extends HTMLElement {
     this.isOpen = false;
     // 2. Create the shadow root
     const shadow = this.attachShadow({ mode: 'open' });
-    shadow.appendChild(template.content.cloneNode(true));
+    if (template) {
+      shadow.appendChild(template.content.cloneNode(true));
+    }
   }
 
   /**
@@ -45,9 +50,11 @@ export class CornExpandable extends HTMLElement {
    * @param {string} oldValue - The previous value of the attribute.
    * @param {string} newValue - The new value of the attribute.
    */
-  // attributeChangedCallback(name, oldValue, newValue) {
-  //   console.log('attribute changed', name, oldValue, newValue);
-  // }
+  attributeChangedCallback(name, oldValue, newValue) {
+    if (name !== 'open' || oldValue === newValue || !this.isConnected || !this.details || !this.content) return;
+    if (newValue !== null) this._open(this.details);
+    else this._close(this.details);
+  }
 
   /**
    * Called when the element is added to the DOM. This is a good place to perform setup tasks, such as caching references to child elements, adding event listeners, or initializing state.
@@ -163,9 +170,7 @@ export class CornExpandable extends HTMLElement {
       details.classList.add('corn-expandable--open');
       details.classList.add('corn-expandable--animating');
     });
-    details
-      .querySelector('.corn-expandable--content')
-      .addEventListener('transitionend', this._openTranisitionEnd);
+    details.querySelector('.corn-expandable--content').addEventListener('transitionend', this._openTranisitionEnd);
     // details.querySelector('.corn-expandable--content').addEventListener(
     //   'transitionend',
     //   (evt) => {
@@ -202,9 +207,7 @@ export class CornExpandable extends HTMLElement {
     details.classList.remove('corn-expandable--open');
     details.classList.add('corn-expandable--animating');
     this.isAnimating = true;
-    details
-      .querySelector('.corn-expandable--content')
-      .addEventListener('transitionend', this._closeTranisitionEnd);
+    details.querySelector('.corn-expandable--content').addEventListener('transitionend', this._closeTranisitionEnd);
     /*
     (evt) => {
          console.log('transition ended', evt.propertyName);
@@ -229,4 +232,6 @@ export class CornExpandable extends HTMLElement {
     this._removeEventListeners();
   }
 }
-customElements.define('corn-expandable', CornExpandable);
+if (typeof customElements !== 'undefined' && !customElements.get('corn-expandable')) {
+  customElements.define('corn-expandable', CornExpandable);
+}

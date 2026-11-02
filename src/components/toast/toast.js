@@ -1,4 +1,7 @@
-export class CornToast extends HTMLElement {
+// Guard against environments where HTMLElement is not defined (e.g., server-side rendering)
+const CornHTMLElement = globalThis.HTMLElement ?? class {};
+
+export class CornToast extends CornHTMLElement {
   constructor() {
     super();
   }
@@ -219,6 +222,6 @@ export class CornToast extends HTMLElement {
 }
 
 // This check ensures that the 'corn-toast' element is only defined once, avoiding potential issues with duplicate definitions in the browser's custom elements registry.
-if (!customElements.get('corn-toast')) {
+if (typeof customElements !== 'undefined' && !customElements.get('corn-toast')) {
   customElements.define('corn-toast', CornToast);
 }

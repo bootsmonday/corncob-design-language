@@ -1,4 +1,7 @@
-export class CornSlider extends HTMLElement {
+// Guard against environments where HTMLElement is not defined (e.g., server-side rendering)
+const CornHTMLElement = globalThis.HTMLElement ?? class {};
+
+export class CornSlider extends CornHTMLElement {
   static get observedAttributes() {
     return ['position'];
   }

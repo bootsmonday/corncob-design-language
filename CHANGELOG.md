@@ -9,6 +9,25 @@ the "Changelog Release" GitHub Actions workflow.
 
 ## [Unreleased]
 
+## [0.3.2] - 2026-10-23
+
+### Added
+
+- react: Added React wrappers for Corncob Design Language components in `@bootsmonday/corncob-design-language-react`.
+- component: Added check for `attachInternals` in the CornSelect and CornButtonBar component.
+- checkboxes: Added styles to checkbox group legends to respond to different checkbox sizes
+
+### Changed
+
+- docs: Aligned the AI catalog with shipped components, added `AGENTS.md` plus Copilot and Cursor entry points, and added a catalog sync test so generated markup stays on implemented Corncob components.
+- badges: Deprecated: .corn-badge--content and .corn-badge--status classes are now deprecated.
+
+### Fixed
+
+- components: Web components used by the React wrappers can be imported during server rendering without reading `document`, `HTMLElement`, or `customElements`.
+- components: Expandables open and close when the `open` attribute changes after the element connects. Tooltips keep a single position class when `position` changes. Assigning `name` on `corn-select` writes the `name` attribute, so React can pass the form name through.
+
+
 ## [0.3.1] - 2026-08-27
 
 ### Added

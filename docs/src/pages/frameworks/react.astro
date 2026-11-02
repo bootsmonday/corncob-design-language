@@ -1,29 +1,52 @@
 ---
 import DocsLayout from '../../layouts/DocsLayout.astro';
 import ButtonExample from '../../components/react/ButtonExample.jsx';
+import TextInputExample from '../../components/react/TextInputExample.jsx';
+import CheckboxExample from '../../components/react/CheckboxExample.jsx';
 ---
 
 <DocsLayout title="React | Corncob" description="React adapter guidance for Corncob EDL">
   <h1>React Version</h1>
   <p>
-    React wrappers should stay thin. Map React props to Corncob class names and keep style logic in
-    the core CSS package.
+    React wrappers should stay thin. Map React props to Corncob class names and keep style logic in the core CSS package. The package targets React 19: <code>ref</code> is a regular prop, and the entry module is a client component (<code
+      >'use client'</code
+    >) for App Router / RSC consumers.
   </p>
 
-  <ButtonExample />
+  <h2>Buttons</h2>
+  <ButtonExample client:load />
+
+  <h2>Text Inputs</h2>
+  <TextInputExample client:load />
+
+  <h2>Checkboxes</h2>
+  <CheckboxExample client:load />
 
   <h2>Wrapper Pattern</h2>
   <pre
-    class="docs-code"><code>{`import "@bootsmonday/corncob-design-language/corncob-design-language.css";
-import { CcButton } from "@bootsmonday/corncob-design-language-react";
+    class="docs-code"><code>{`import "@bootsmonday/corncob-design-language/style.css";
+import {
+  CornButton,
+  CornTextInput,
+  CornCheckbox,
+  CornCheckboxGroup,
+} from "@bootsmonday/corncob-design-language-react";
 
-export function ToolbarActions() {
+export function AccountForm() {
   return (
-    <div>
-      <CcButton size="sm">Save</CcButton>
-      <CcButton variant="secondary" size="sm">Cancel</CcButton>
-      <CcButton variant="danger" size="sm">Delete</CcButton>
-    </div>
+    <form>
+      <CornTextInput
+        label="What is your name?"
+        placeholder="Enter Full Name..."
+        status="Helper Text"
+      />
+      <CornCheckboxGroup legend="Options" name="example">
+        <CornCheckbox>Checkbox One</CornCheckbox>
+        <CornCheckbox defaultChecked>Checkbox Two</CornCheckbox>
+      </CornCheckboxGroup>
+      <CornButton type="submit">Save</CornButton>
+      <CornButton variant="secondary">Cancel</CornButton>
+    </form>
   );
 }`}</code></pre>
 </DocsLayout>

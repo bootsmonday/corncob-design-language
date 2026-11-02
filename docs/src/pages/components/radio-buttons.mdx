@@ -6,6 +6,8 @@ title: 'Component | Radio Buttons | Corncob'
 import CodeSample from '../../layouts/partials/CodeSample.astro';
 import { Code } from 'astro/components';
 import radioButtonTokens from '../../../../src/components/radio-buttons/radio-button-tokens.css?raw';
+import { CornRadioButton, CornRadioButtonGroup } from '@bootsmonday/corncob-design-language-react';
+
 
 ## Radio Buttons
 
@@ -106,4 +108,32 @@ They can be used in various states such as checked, unchecked, and disabled.
 ## Radio Button Tokens
 <CodeSample id="radio-button-tokens-code">
   <Code code={radioButtonTokens} lang="css" />
+</CodeSample>
+
+## React Variant
+
+<CornRadioButtonGroup legend="Group Label" name="example-task">
+  <CornRadioButton task defaultChecked name="example-task-react">
+    Task Complete
+  </CornRadioButton>
+  <CornRadioButton task name="example-task-react">Task Complete</CornRadioButton>
+  <CornRadioButton task name="example-task-react">Task Complete</CornRadioButton>
+</CornRadioButtonGroup>
+
+<CodeSample id="react-radio-button-examples-code">
+  ```jsx
+import { CornRadioButton, CornRadioButtonGroup } from '@bootsmonday/corncob-design-language-react';
+
+export default function Example() {
+    return (
+      <CornRadioButtonGroup legend="Group Label" name="example-task">
+        <CornRadioButton task defaultChecked name="example-task-react">
+          Task Complete
+        </CornRadioButton>
+        <CornRadioButton task name="example-task-react">Task Complete</CornRadioButton>
+        <CornRadioButton task name="example-task-react">Task Complete</CornRadioButton>
+      </CornRadioButtonGroup>
+    );
+}
+``` 
 </CodeSample>

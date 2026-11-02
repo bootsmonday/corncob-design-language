@@ -49,6 +49,12 @@ describe('CornPopover', () => {
     expect(CornPopover.observedAttributes).toEqual(['position']);
   });
 
+  test('does not mutate the trigger by assigning aria-controls automatically', () => {
+    const { trigger } = createPopoverFixture();
+
+    expect(trigger.hasAttribute('aria-controls')).toBe(false);
+  });
+
   test('defaults to top position when no attribute is provided', () => {
     const { popover } = createPopoverFixture();
 

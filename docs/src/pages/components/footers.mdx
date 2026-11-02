@@ -1,16 +1,18 @@
 ---
 layout: ../../layouts/DocsLayout.astro
-title: 'Component | Footer | Corncob'
+title: 'Component | Footer '
 ---
 
 import bootstrapIconsSprite from 'bootstrap-icons/bootstrap-icons.svg?url';
 import CodeSample from '../../layouts/partials/CodeSample.astro';
 import { Code } from 'astro/components';
 import footerTokens from '../../../../src/components/footers/footer-tokens.css?raw';
+import SpriteIcon from '../../layouts/partials/SpriteIcon.jsx';
+
+import { CornFooter, CornFooterIntro, CornFooterContent, CornFooterSection, CornFooterSocial, CornFooterCopyright, CornLink } from '@bootsmonday/corncob-design-language-react';
 
 
-
-## Footers
+## Overview
 
 Footers are used to provide additional information about the website or application, such as
 copyright information, links to social media profiles, and contact information. They are typically
@@ -19,6 +21,22 @@ SEO best practices suggest that footers should include important links and infor
 may need to access frequently, such as contact information, privacy policies, and terms of service.
 Additionally, footers can be used to improve the overall user experience by providing easy access to
 important information and resources.
+
+### When to Use Footers
+
+Footers should be used when you want to provide users with consistent access to important information and links at the bottom of every page. They are particularly useful for:
+
+- Displaying company information and branding.
+- Providing quick links to key sections of the website.
+- Offering contact details and support options.
+- Linking to social media profiles.
+- Presenting legal information such as privacy policies and terms of service.
+
+By including a well-structured footer, you can enhance the user experience and ensure that essential information is easily accessible. Typical usages would be on corporate websites, e-commerce platforms, blogs, and informational websites where users benefit from having consistent access to key information and links at the bottom of each page.
+
+### When Not to Use Footers
+
+Footers should be avoided when they would add unnecessary clutter to the page or when the information they contain is not relevant to the user. Overloading a page with footer content can distract from the main content and negatively impact the user experience. Consider omitting a footer on pages where minimalism and focus on primary content are more important than providing additional links and information, such as web applications or landing pages with a single call-to-action.
 
 <div class="corn-panel">
   <footer class="corn-footer">
@@ -80,31 +98,11 @@ important information and resources.
       </div>
     </div>
     <div class="corn-footer--social">
-      <a href="#" class="corn-link" aria-label="X social media">
-        <svg class="corn-icon" aria-hidden="true">
-          <use href={`${bootstrapIconsSprite}#twitter-x`}></use>
-        </svg>
-      </a>
-      <a href="#" class="corn-link" aria-label="Facebook">
-        <svg class="corn-icon" aria-hidden="true">
-          <use href={`${bootstrapIconsSprite}#facebook`}></use>
-        </svg>
-      </a>
-      <a href="#" class="corn-link" aria-label="Instagram">
-        <svg class="corn-icon" aria-hidden="true">
-          <use href={`${bootstrapIconsSprite}#instagram`}></use>
-        </svg>
-      </a>
-      <a href="#" class="corn-link" aria-label="LinkedIn">
-        <svg class="corn-icon" aria-hidden="true">
-          <use href={`${bootstrapIconsSprite}#linkedin`}></use>
-        </svg>
-      </a>
-      <a href="#" class="corn-link" aria-label="GitHub">
-        <svg class="corn-icon" aria-hidden="true">
-          <use href={`${bootstrapIconsSprite}#github`}></use>
-        </svg>
-      </a>
+      <a href="#" class="corn-link" aria-label="X social media"><SpriteIcon icon="twitter-x" className="corn-icon" aria-hidden="true" /></a>
+      <a href="#" class="corn-link" aria-label="Facebook"><SpriteIcon icon="facebook" className="corn-icon" aria-hidden="true" /></a>
+      <a href="#" class="corn-link" aria-label="Instagram"><SpriteIcon icon="instagram" className="corn-icon" aria-hidden="true" /></a>
+      <a href="#" class="corn-link" aria-label="LinkedIn"><SpriteIcon icon="linkedin" className="corn-icon" aria-hidden="true" /></a>
+      <a href="#" class="corn-link" aria-label="GitHub"><SpriteIcon icon="github" className="corn-icon" aria-hidden="true" /></a>
     </div>
     <div class="corn-footer--copyright">&copy; 2026 Your Company. All rights reserved.</div>
   </footer>
@@ -182,27 +180,27 @@ important information and resources.
     <div class="corn-footer--social">
       <a href="#" class="corn-link" aria-label="X social media">
         <svg class="corn-icon" aria-hidden="true">
-          <use href={`${bootstrapIconsSprite}#twitter-x`}></use>
+          <use href="#twitter-x"></use>
         </svg>
       </a>
       <a href="#" class="corn-link" aria-label="Facebook">
         <svg class="corn-icon" aria-hidden="true">
-          <use href={`${bootstrapIconsSprite}#facebook`}></use>
+          <use href="#facebook"></use>
         </svg>
       </a>
       <a href="#" class="corn-link" aria-label="Instagram">
         <svg class="corn-icon" aria-hidden="true">
-          <use href={`${bootstrapIconsSprite}#instagram`}></use>
+          <use href="#instagram"></use>
         </svg>
       </a>
       <a href="#" class="corn-link" aria-label="LinkedIn">
         <svg class="corn-icon" aria-hidden="true">
-          <use href={`${bootstrapIconsSprite}#linkedin`}></use>
+          <use href="#linkedin"></use>
         </svg>
       </a>
       <a href="#" class="corn-link" aria-label="GitHub">
         <svg class="corn-icon" aria-hidden="true">
-          <use href={`${bootstrapIconsSprite}#github`}></use>
+          <use href="#github"></use>
         </svg>
       </a>
     </div>
@@ -211,7 +209,158 @@ important information and resources.
   ```
 </CodeSample>
 
+<hr />
+
 ## Footer Tokens
 <CodeSample id="footer-tokens-code">
   <Code code={footerTokens} lang="css" />
 </CodeSample>
+
+<hr />
+
+## React Variant
+
+  <CornFooter>
+    <CornFooterIntro>
+      The footer is the last section of a page, and typically contains information about the company, links to important pages, and social media links.
+    </CornFooterIntro>
+
+    <CornFooterContent>
+      <CornFooterSection key="Company" title="Company">
+        <ul>
+          <li key="About Us">
+            <CornLink to="#" className="corn-link">About Us</CornLink>
+          </li>
+          <li key="Careers">
+            <CornLink to="#" className="corn-link">Careers</CornLink>
+          </li>
+          <li key="Press">
+            <CornLink to="#" className="corn-link">Press</CornLink>
+          </li>
+        </ul>
+      </CornFooterSection>
+
+      <CornFooterSection key="Support" title="Support">
+        <ul>
+          <li key="Contact Us">
+            <CornLink to="#" className="corn-link">Contact Us</CornLink>
+          </li>
+          <li key="FAQs">
+            <CornLink to="#" className="corn-link">FAQs</CornLink>
+          </li>
+          <li key="Help Center">
+            <CornLink to="#" className="corn-link">Help Center</CornLink>
+          </li>
+        </ul>
+      </CornFooterSection>
+
+      <CornFooterSection key="Legal" title="Legal">
+        <ul>
+          <li key="Privacy Policy">
+            <CornLink  to="#" className="corn-link">Privacy Policy</CornLink>
+          </li>
+          <li key="Terms of Service">
+            <CornLink to="#" className="corn-link">Terms of Service</CornLink>
+          </li>
+          <li key="Cookie Policy">
+            <CornLink to="#" className="corn-link">Cookie Policy</CornLink>
+          </li>
+        </ul>
+      </CornFooterSection>
+    </CornFooterContent>
+
+    <CornFooterSocial>
+      <CornLink key="X" href="#" aria-label="X">
+        <SpriteIcon icon="twitter-x" className="corn-icon"/>
+      </CornLink>
+      <CornLink key="Instagram" href="#" aria-label="Instagram">
+        <SpriteIcon icon="instagram" className="corn-icon"/>
+      </CornLink>
+      <CornLink key="LinkedIn" href="#" aria-label="LinkedIn">
+        <SpriteIcon icon="linkedin" className="corn-icon"/>
+      </CornLink>
+      <CornLink key="GitHub" href="#" aria-label="GitHub">
+        <SpriteIcon icon="github" className="corn-icon"/>
+      </CornLink>
+    </CornFooterSocial>
+
+    <CornFooterCopyright>
+      © 2026 Your Company. All rights reserved.
+    </CornFooterCopyright>
+  </CornFooter>
+
+<CodeSample id="footer-react-code">
+```jsx
+<CornFooter>
+  <CornFooterIntro>
+    The footer is the last section of a page, and typically contains information about the company, links to important pages, and social media links.
+  </CornFooterIntro>
+
+  <CornFooterContent>
+    <CornFooterSection key="Company" title="Company">
+      <ul>
+        <li key="About Us">
+          <CornLink to="#" className="corn-link">About Us</CornLink>
+        </li>
+        <li key="Careers">
+          <CornLink to="#" className="corn-link">Careers</CornLink>
+        </li>
+        <li key="Press">
+          <CornLink to="#" className="corn-link">Press</CornLink>
+        </li>
+      </ul>
+    </CornFooterSection>
+
+    <CornFooterSection key="Support" title="Support">
+      <ul>
+        <li key="Contact Us">
+          <CornLink to="#" className="corn-link">Contact Us</CornLink>
+        </li>
+        <li key="FAQs">
+          <CornLink to="#" className="corn-link">FAQs</CornLink>
+        </li>
+        <li key="Help Center">
+          <CornLink to="#" className="corn-link">Help Center</CornLink>
+        </li>
+      </ul>
+    </CornFooterSection>
+
+    <CornFooterSection key="Legal" title="Legal">
+      <ul>
+        <li key="Privacy Policy">
+          <CornLink  to="#" className="corn-link">Privacy Policy</CornLink>
+        </li>
+        <li key="Terms of Service">
+          <CornLink to="#" className="corn-link">Terms of Service</CornLink>
+        </li>
+        <li key="Cookie Policy">
+          <CornLink to="#" className="corn-link">Cookie Policy</CornLink>
+        </li>
+      </ul>
+    </CornFooterSection>
+  </CornFooterContent>
+
+  <CornFooterSocial>
+    <CornLink key="X" href="#" aria-label="X">
+      <SpriteIcon icon="twitter-x" className="corn-icon"/>
+    </CornLink>
+    <CornLink key="Instagram" href="#" aria-label="Instagram">
+      <SpriteIcon icon="instagram" className="corn-icon"/>
+    </CornLink>
+    <CornLink key="LinkedIn" href="#" aria-label="LinkedIn">
+      <SpriteIcon icon="linkedin" className="corn-icon"/>
+    </CornLink>
+    <CornLink key="GitHub" href="#" aria-label="GitHub">
+      <SpriteIcon icon="github" className="corn-icon"/>
+    </CornLink>
+  </CornFooterSocial>
+
+  <CornFooterCopyright>
+    © 2026 Your Company. All rights reserved.
+  </CornFooterCopyright>
+</CornFooter>
+```
+</CodeSample>
+
+
+

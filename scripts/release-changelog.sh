@@ -2,8 +2,8 @@
 set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-CHANGELOG_FILE="$ROOT_DIR/CHANGELOG.md"
-FRAGMENTS_DIR="$ROOT_DIR/.changelog"
+CHANGELOG_FILE="${CHANGELOG_FILE:-$ROOT_DIR/CHANGELOG.md}"
+FRAGMENTS_DIR="${FRAGMENTS_DIR:-$ROOT_DIR/.changelog}"
 
 VERSION="${1:-}"
 RELEASE_DATE="${2:-$(date +%F)}"
@@ -23,7 +23,10 @@ if [[ ! -d "$FRAGMENTS_DIR" ]]; then
   exit 1
 fi
 
-mapfile -t FRAGMENTS < <(find "$FRAGMENTS_DIR" -maxdepth 1 -type f -name '*.md' \
+FRAGMENTS=()
+while IFS= read -r fragment; do
+  FRAGMENTS+=("$fragment")
+done < <(find "$FRAGMENTS_DIR" -maxdepth 1 -type f -name '*.md' \
   ! -name 'README.md' | sort)
 
 if [[ "${#FRAGMENTS[@]}" -eq 0 ]]; then

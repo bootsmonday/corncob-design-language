@@ -2,6 +2,8 @@
 
 This document explains how AI systems should consume and use the Corncob Design Language files for code generation, validation, and design system enforcement.
 
+Coding agents working **in this repository** should follow `AGENTS.md`. This file is the downstream generation contract.
+
 ## Non-Negotiable Contract
 
 Use these rules as the default behavior for AI code generation:
@@ -10,6 +12,10 @@ Use these rules as the default behavior for AI code generation:
 2. Start from the canonical component code before enhancing or customizing it.
 3. Preserve documented class names, child order, and required relationships before adding wrappers, styling hooks, or behavior.
 4. Use the grid around components that have their own internal structure. Do not rewrite the inside of the component just to satisfy a page layout.
+5. Generate markup only for `components.json` entries with `"implemented": true`. Planned components have no example on purpose.
+6. Always set `type="button"`, `type="submit"`, or `type="reset"` on `<button>` elements.
+
+For React output, follow [React generation](#react-generation). That path imports `Corn*` components instead of hand-writing their internal markup.
 
 ## Default Layout Rule
 
@@ -51,6 +57,78 @@ Enhancements include:
 
 If the canonical version is wrong, enhancement should stop until the base structure is fixed.
 
+## React generation
+
+Use this path when the target is `.jsx` or `.tsx`, or the user asks for React. Keep the vanilla HTML path for HTML and other non-React output.
+
+### Packages
+
+- Components: `@bootsmonday/corncob-design-language-react`
+- Styles, once per app: `@bootsmonday/corncob-design-language/style.css`
+- Peer dependency: React 19. `ref` is a normal prop.
+- The package entry is a client component (`'use client'`). In the Next.js App Router, import it from a client boundary.
+- Machine-readable pointer: `components.json` field `react`.
+
+### Rules
+
+1. Import the `Corn*` component for a catalog entry with `"implemented": true`. Do not rebuild that component's internal DOM with raw `corn-*` classes.
+2. Page and section layout still uses `corn-container`, `corn-row`, and `corn-col-*` on plain elements around the components.
+3. Copy the React example on the component docs page, or the account form on `/frameworks/react/`, before replacing content.
+4. Skip catalog entries with `"implemented": false`. Use `CornPanel` instead of a card and `CornMessage` instead of an alert.
+5. `className` is a string. Do not pass a function, and do not invent props.
+6. `CornButton` defaults to `type="button"`. Pass `type="submit"` or `type="reset"` when that is the action. Do not add `corn-button--primary` or `corn-button--md`. The wrapper omits those defaults.
+7. `CornCheckboxGroup`, `CornRadioButtonGroup`, and `CornToggleGroup` copy `name` only onto direct `CornCheckbox`, `CornRadioButton`, or `CornToggle` children.
+8. `indeterminate` is a `CornCheckbox` prop. `CornRadioButton` does not accept it.
+9. `CornExpandable` leaves `open` uncontrolled when the prop is omitted. Pass `open={true}` or `open={false}` to control it.
+10. `CornSelect` children are `CornSelectOption` elements. Put the visible label in the `label` prop.
+11. `status` and `statusVariant` belong on `CornTextInput`, `CornSelect`, and `CornSlider`.
+12. `CornLink` with `underline` keeps `corn-link` and adds `corn-link--underline`.
+13. `CornPanelMenuItem` `active` sets `corn-panel-menu--item--active` and `aria-current="page"`.
+
+### Canonical React form
+
+```jsx
+import "@bootsmonday/corncob-design-language/style.css";
+import {
+  CornButton,
+  CornTextInput,
+  CornCheckbox,
+  CornCheckboxGroup,
+} from "@bootsmonday/corncob-design-language-react";
+
+export function AccountForm() {
+  return (
+    <form>
+      <CornTextInput
+        label="What is your name?"
+        placeholder="Enter Full Name..."
+        status="Helper Text"
+      />
+      <CornCheckboxGroup legend="Options" name="example">
+        <CornCheckbox>Checkbox One</CornCheckbox>
+        <CornCheckbox defaultChecked>Checkbox Two</CornCheckbox>
+      </CornCheckboxGroup>
+      <CornButton type="submit">Save</CornButton>
+      <CornButton variant="secondary">Cancel</CornButton>
+    </form>
+  );
+}
+```
+
+### Public wrappers
+
+- `CornButton`, `CornButtonBar`, `CornBadge`
+- `CornTextInput`, `CornSelect`, `CornSelectOption`, `CornSlider`
+- `CornCheckbox`, `CornCheckboxGroup`, `CornRadioButton`, `CornRadioButtonGroup`, `CornToggle`, `CornToggleGroup`
+- `CornMessage`, `CornMessageStatus`, `CornMessageContent`, `CornMessageTitle`
+- `CornModal`, `CornModalHeader`, `CornModalContent`
+- `CornExpandable`, `CornExpandableSummary`, `CornExpandableContent`, `CornAccordion`
+- `CornPopover`, `CornPopoverTrigger`, `CornPopoverContent`, `CornTooltip`, `CornToast`
+- `CornHeader` and its company, title, nav, and actions parts
+- `CornFooter` and its intro, content, section, social, and copyright parts
+- `CornPanel`, `CornPanelMenu`, `CornPanelMenuItem`, `CornPanelMenuSubmenu`
+- `CornLink`, `CornLinkList`, `CornFormItem`
+
 ## File Structure & Purpose
 
 ### 1. `components.json`
@@ -70,6 +148,8 @@ If the canonical version is wrong, enhancement should stop until the base struct
 
 - When generating UI code, reference the `baseClass` and `example` fields
 - Treat `example` as canonical component code unless a `fullExamples` entry is a closer match to the task
+- Skip any component with `"implemented": false`. Use `corn-panel` instead of a card and `corn-message` instead of an alert
+- Use `sourceDir` to find the implementation when working in this repository
 - Check `jsRequired` to determine if interactivity setup is needed
 - Use `variants` and `sizes` arrays to validate generated classes
 - Follow component accessibility requirements in `accessibility` field
@@ -84,7 +164,7 @@ If the canonical version is wrong, enhancement should stop until the base struct
     "variants": ["primary", "secondary", "danger"],
     "sizes": ["xs", "sm", "md", "lg", "xl"],
     "jsRequired": false,
-    "example": "<button class=\"corn-button corn-button--md\">Primary Button</button>"
+    "example": "<button class=\"corn-button corn-button--md\" type=\"button\">Primary Button</button>"
   }
 }
 ```
@@ -138,7 +218,7 @@ If the canonical version is wrong, enhancement should stop until the base struct
    - Default variant: `primary` (implicit)
    - Size: `lg`
 
-2. Generate: `<button class="corn-button corn-button--lg">Action</button>`
+2. Generate: `<button class="corn-button corn-button--lg" type="button">Action</button>`
 
 3. For error styling, look up `colors.semantic.error` in `tokens.json`:
    - Use red color scale or error variant if available
@@ -302,7 +382,7 @@ Use `corn-checkbox--task` on the `.corn-checkbox` wrapper to render a checklist-
 
 ```html
 <div class="corn-popover--anchor">
-  <button class="corn-button corn-pop" aria-controls="my-popover">Open Menu</button>
+  <button class="corn-button corn-pop" aria-controls="my-popover" type="button">Open Menu</button>
   <corn-popover position="bottom" id="my-popover" class="corn-popover">
     <ul>
       <li><a href="#" class="corn-link">Item 1</a></li>
@@ -342,7 +422,7 @@ Some components define a required internal DOM shape. Headers are the clearest e
 For these components:
 
 - keep the documented direct children in the same order
-- preserve required wrappers such as `corn-company` or `corn-popover--anchor`
+- preserve required wrappers such as `corn-company` and required hosts such as `corn-button-bar`
 - use the Corncob grid outside the component for page placement
 - do not introduce custom wrappers inside the component unless the docs explicitly show them
 
@@ -396,15 +476,15 @@ font-size: 18px; // ❌ Use token system instead
 
 ### Component Class Validation
 
-```json
-// VALID - button with size and variant
-<button class="corn-button corn-button--md corn-button--secondary">
+```html
+<!-- VALID - button with size and variant -->
+<button class="corn-button corn-button--md corn-button--secondary" type="button">Secondary</button>
 
-// INVALID - missing base class
-<button class="corn-button--md"> // ❌ Must include corn-button
+<!-- INVALID - missing base class -->
+<button class="corn-button--md" type="button"><!-- Must include corn-button --></button>
 
-// INVALID - undefined modifier
-<button class="corn-button corn-button--extra-large"> // ❌ Only xs|sm|md|lg|xl
+<!-- INVALID - undefined modifier -->
+<button class="corn-button corn-button--extra-large" type="button"><!-- Only xs|sm|md|lg|xl --></button>
 ```
 
 ---
@@ -454,10 +534,11 @@ font-size: 18px; // ❌ Use token system instead
 
 Whenever these files are updated:
 
-1. **Version field** in `metadata` will increment
+1. **Version field** in `metadata` / `components.json` stays aligned with the package version
 2. **changelog** section should document breaking changes
 3. **deprecated** components will be marked explicitly
 4. AI systems should check version before generating code to ensure compatibility
+5. Keep `"implemented"` flags and canonical examples in sync with `src/components`. Run `npm test` (includes `testing/ai-catalog.test.js`)
 
 ---
 
@@ -491,7 +572,7 @@ Here's how an AI system should generate a contact form:
   </fieldset>
 
   <!-- Button from components.json -->
-  <button class="corn-button corn-button--md corn-button--primary">Submit</button>
+  <button class="corn-button corn-button--md" type="submit">Submit</button>
 </form>
 ```
 

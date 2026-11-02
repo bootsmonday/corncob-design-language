@@ -1,0 +1,19 @@
+import { useFormStatus } from 'react-dom';
+import { joinClassNames, modifierClass } from '../../utils/class-names.js';
+/**
+ * Renders a button component with the specified variant, size, icon, type, and children.
+ * @param {{ ref?: React.Ref<any>, variant?: string, size?: string, icon?: boolean, type?: string, as?: React.ElementType, className?: string, disabled?: boolean, children: React.ReactNode }} param0
+ * @returns {JSX.Element}
+ */
+export function CornButton({ ref, variant = 'primary', size = 'md', icon = false, type = 'button', as: Component = 'button', className = '', disabled, children, ...props }) {
+  const { pending } = useFormStatus();
+  const isNativeButton = Component === 'button';
+  const isPendingSubmit = isNativeButton && type === 'submit' && pending;
+  const classNames = joinClassNames('corn-button', modifierClass('corn-button--', variant, ['primary']), modifierClass('corn-button--', size, ['md']), icon && 'corn-button--icon', className);
+
+  return (
+    <Component {...props} ref={ref} type={isNativeButton ? type : undefined} disabled={isNativeButton && type === 'submit' ? (disabled ?? isPendingSubmit) : disabled} aria-busy={isPendingSubmit || undefined} className={classNames}>
+      {children}
+    </Component>
+  );
+}

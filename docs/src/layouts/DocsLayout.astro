@@ -6,9 +6,10 @@ import SideBar from './partials/SideBar.astro';
 import Footer from './partials/Footer.astro';
 import themeSwitcherUrl from '../js/theme-switcher.js?url';
 
-const { title = 'Corncob Design Language', description = 'Corncob is a framework-neutral design language built with tokens, CSS, and plain JavaScript behavior.' } = Astro.props;
-const { headings = [], dynamicHeadings = [] } = Astro.props;
-const allHeadings = [...headings, ...dynamicHeadings].filter((heading, index, all) => all.findIndex((candidate) => candidate.slug === heading.slug) === index);
+const { frontmatter = {}, headings = [], dynamicHeadings = [] } = Astro.props;
+const title = Astro.props.title ?? frontmatter.title ?? 'Corncob Design Language';
+const description = Astro.props.description ?? frontmatter.description ?? '';
+const allHeadings = [...headings, ...dynamicHeadings].filter((heading, index, all) => (heading.depth ?? 2) <= 2 && all.findIndex((candidate) => candidate.slug === heading.slug) === index);
 const base = import.meta.env.BASE_URL;
 ---
 
@@ -44,7 +45,7 @@ const base = import.meta.env.BASE_URL;
       <div class="corn-row">
         <div class="corn-col-12">
           <h1>{title}</h1>
-          <p>{description}</p>
+          {description ? <p>{description}</p> : null}
         </div>
       </div>
       <div class="corn-row">

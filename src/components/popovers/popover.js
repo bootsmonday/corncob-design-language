@@ -1,4 +1,7 @@
-export class CornPopover extends HTMLElement {
+// Guard against environments where HTMLElement is not defined (e.g., server-side rendering)
+const CornHTMLElement = globalThis.HTMLElement ?? class {};
+
+export class CornPopover extends CornHTMLElement {
   /**
    * Constructor is called when the element is created.
    * Note:
@@ -72,7 +75,6 @@ export class CornPopover extends HTMLElement {
 
     if (!this.parent) return;
     if (!this._position) this._position = 'top';
-    this.trigger?.setAttribute('aria-controls', this.id);
     this.classPrefix = 'corn-popover--';
     this._applyPositionClass();
     this._cacheElements();
@@ -416,4 +418,6 @@ export class CornPopover extends HTMLElement {
     this._removeEventListeners();
   }
 }
-customElements.define('corn-popover', CornPopover);
+if (typeof customElements !== 'undefined' && !customElements.get('corn-popover')) {
+  customElements.define('corn-popover', CornPopover);
+}

@@ -6,7 +6,7 @@ title: 'Component | Popover | Corncob'
 import CodeSample from '../../layouts/partials/CodeSample.astro';
 import { Code } from 'astro/components';
 import popoverTokens from '../../../../src/components/popovers/popover-tokens.css?raw';
-
+import ReactPopoverExample from '../../layouts/partials/ReactPopoverExample.jsx';
 
 ## Popovers
 
@@ -668,4 +668,19 @@ The default position for the popover is `top`, but it can be positioned in any o
 ## Popover Tokens
 <CodeSample id="popover-tokens-code">
   <Code code={popoverTokens} lang="css" />
+</CodeSample>
+
+## React Variant
+
+<ReactPopoverExample />
+
+<CodeSample id="react-popover-code">
+  ```jsx
+    <CornPopover id="popover-simple" position="top">
+      <CornPopoverTrigger>Open simple popover</CornPopoverTrigger>
+      <CornPopoverContent>
+        <p>Simple content that matches the component pattern used elsewhere.</p>
+      </CornPopoverContent>
+    </CornPopover>
+  ```
 </CodeSample>

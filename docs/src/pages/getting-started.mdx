@@ -1,23 +1,17 @@
 ---
 layout: ../layouts/DocsLayout.astro
-title: Getting Started | Corncob
+title: Getting Started with Corncob
 ---
 import CodeSample from '../layouts/partials/CodeSample.astro';
 
-## Getting Started
+export const base = import.meta.env.BASE_URL;
 
-### Install
+## Browser Native
 
-Corncob is published to two registries:
+The browser native version uses standard HTML, Web Components, CSS variables.
 
-- **Official channel (stable releases):** npmjs
-- **Beta channel (preview builds):** GitHub Packages
+### Official release from npmjs
 
-Choose one install path below.
-
-#### Official release from npmjs
-
-If you previously configured GitHub Packages for this scope, set the scope back to npmjs:
 
 <CodeSample id="registry-config-npmjs">
 ```bash
@@ -32,33 +26,6 @@ Install the latest stable release from npmjs:
 npm install @bootsmonday/corncob-design-language@latest
 ```
 </CodeSample>
-
-#### Beta from GitHub Packages
-
-Configure npm to install the package from GitHub Packages:
-
-<CodeSample id="registry-config">
-```bash
-npm config set @bootsmonday:registry https://npm.pkg.github.com
-```
-</CodeSample>
-
-If you have not authenticated to GitHub Packages yet, create a GitHub personal access token (classic) with the `read:packages` scope (and the `repo` scope if installing from a private repository). Then add it to your npm config:
-
-> **Important:** Do not commit your token to source control. The `npm config set` command writes to your user-level `~/.npmrc` file, but be careful that this token is never added to a project-level `.npmrc` that could be committed.
-
-<CodeSample id="auth-token">
-```bash
-npm config set //npm.pkg.github.com/:_authToken YOUR_GITHUB_PAT
-```
-</CodeSample>
-
-<CodeSample id="npm-install">
-```bash
-npm install @bootsmonday/corncob-design-language@beta
-```
-</CodeSample>
-
 
 
 ### Include Styles
@@ -103,3 +70,65 @@ HTML version:
 <button class="corn-button corn-button--secondary" type="button">Cancel</button>
 ```
 </CodeSample>
+
+<hr />
+
+## React 19
+
+Corncob Design Language React components can be used in your React project by installing the package and importing the components you need.
+The package provides React components that wrap the browser native components, making it easier to use them in a React application.
+Install the latest stable release from npmjs:
+
+<CodeSample id="react-npm-install-latest">
+```bash
+npm install @bootsmonday/corncob-design-language-react@latest
+```
+</CodeSample>
+
+Install the peer dependencies required by the React components:
+
+<CodeSample id="react-peer-dependencies">
+```bash
+npm install react react-dom @bootsmonday/corncob-design-language
+```
+</CodeSample>
+
+Use the React components in your project by importing them:
+
+<CodeSample id="react-import">
+```js
+import { Button } from '@bootsmonday/corncob-design-language-react';
+```
+</CodeSample>
+
+## AI integration
+
+Corncob Design Language can be integrated with AI tools and frameworks to enhance your development workflow. 
+
+Please refer to the <a href={base + `guides/ai-integration`}>AI integration documentation</a> for guidance on how to connect Corncob Design Language with various AI tools and frameworks.
+
+
+## Beta
+
+### Install Beta from GitHub Packages
+
+Configure npm to install the package from GitHub Packages:
+
+<CodeSample id="auth-token">
+```bash
+npm config set //npm.pkg.github.com/:_authToken YOUR_GITHUB_PAT
+```
+</CodeSample>
+
+<CodeSample id="github-npm-install">
+```bash
+npm install @bootsmonday/corncob-design-language@beta
+```
+</CodeSample>
+
+If you have not authenticated to GitHub Packages yet, create a GitHub personal access token (classic) with the `read:packages` scope (and the `repo` scope if installing from a private repository). Then add it to your npm config:
+
+> **Important:** Do not commit your token to source control. The `npm config set` command writes to your user-level `~/.npmrc` file, but be careful that this token is never added to a project-level `.npmrc` that could be committed.
+
+
+

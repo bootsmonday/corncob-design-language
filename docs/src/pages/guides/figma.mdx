@@ -7,6 +7,9 @@ export const base = import.meta.env.BASE_URL;
 ## Figma 
 
 If you want to use corncob design language token in your Figma projects, you can follow these steps to integrate them seamlessly.
+These tokens represent the design system's color, typography, spacing, and other style properties, making it easy to maintain consistency across your Figma projects.
+
+
 
 ### Token JSON files
 
@@ -19,4 +22,14 @@ If you want to use corncob design language token in your Figma projects, you can
 2. Go to the "Variables" panel and click on the "Collections" icon.
 3. Select "Import" and choose the corncob design language token file.
 4. Once imported, you can apply the tokens to your design elements directly from the "Styles" panel.
+
+### Notes
+A couple notes on CSS to Figma token translation:
+- Not all CSS properties have a direct equivalent in Figma tokens. 
+  - '50%' needed to be converted 9999 for circular corners.
+  - Box shadows / Focus Rings needed to be broken down into individual layers for Figma.
+- Some complex CSS values may need to be simplified or adjusted for Figma.
+- Ensure that your design elements in Figma are using the imported tokens consistently to maintain design system integrity.
+
+
 

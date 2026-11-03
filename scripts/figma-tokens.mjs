@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.resolve(__dirname, '..');
-const outDir = path.join(projectRoot, 'dist', 'figma');
+const outDir = path.join(projectRoot, 'docs', 'public', 'assets', 'figma');
 
 const REM_PX = 16;
 
@@ -522,9 +522,15 @@ function resolveColor(raw, mode, registry, numericVars, colorCache, seenVars = n
   return null;
 }
 
-function resolveToken(name, mode, registry, numericVars, colorCache) {
+function resolveToken(name, mode, registry, numericVars, colorCache, seenTokens = new Set()) {
+  if (seenTokens.has(name)) {
+    return null;
+  }
+  seenTokens.add(name);
+
   const entry = registry[name];
   if (!entry) {
+    seenTokens.delete(name);
     return null;
   }
 
@@ -532,30 +538,37 @@ function resolveToken(name, mode, registry, numericVars, colorCache) {
 
   const lightDark = parseLightDark(raw);
   if (lightDark) {
-    return {
+    const token = {
       $type: 'color',
       $value: hexToDtcgColor(lightDark[mode]),
     };
+    seenTokens.delete(name);
+    return token;
   }
 
   const rgbFrom = parseRgbFrom(raw);
   if (rgbFrom) {
     const baseRaw = registry[rgbFrom.ref]?.raw;
     if (!baseRaw) {
+      seenTokens.delete(name);
       return null;
     }
     const baseColor = resolveColor(baseRaw, mode, registry, numericVars, colorCache);
     if (!baseColor) {
+      seenTokens.delete(name);
       return null;
     }
-    return {
+    const token = {
       $type: 'color',
       $value: applyAlpha(baseColor, rgbFrom.alpha),
     };
+    seenTokens.delete(name);
+    return token;
   }
 
   const shadowToken = resolveShadowToken(raw, mode, registry, numericVars, colorCache);
   if (shadowToken) {
+    seenTokens.delete(name);
     return shadowToken;
   }
 
@@ -563,56 +576,76 @@ function resolveToken(name, mode, registry, numericVars, colorCache) {
   if (varRef && registry[varRef]) {
     const target = registry[varRef];
     const type = inferType(target.raw, registry, numericVars);
-    return {
+    if (type === 'shadow') {
+      const resolvedShadow = resolveToken(varRef, mode, registry, numericVars, colorCache, seenTokens);
+      seenTokens.delete(name);
+      return resolvedShadow;
+    }
+    const token = {
       $type: type,
       $value: tokenReference(target.collection, target.tokenKey),
     };
+    seenTokens.delete(name);
+    return token;
   }
 
   if (numericVars[name] !== undefined) {
-    return {
+    const token = {
       $type: 'dimension',
       $value: { value: numericVars[name], unit: 'px' },
     };
+    seenTokens.delete(name);
+    return token;
   }
 
   const dimension = parseDimension(raw, name);
   if (dimension) {
-    return {
+    const token = {
       $type: 'dimension',
       $value: dimension,
     };
+    seenTokens.delete(name);
+    return token;
   }
 
   const duration = parseDuration(raw);
   if (duration) {
-    return {
+    const token = {
       $type: 'duration',
       $value: duration,
     };
+    seenTokens.delete(name);
+    return token;
   }
 
   if (/^-?[0-9.]+$/.test(raw)) {
-    return {
+    const token = {
       $type: 'number',
       $value: parseFloat(raw),
     };
+    seenTokens.delete(name);
+    return token;
   }
 
   if (/^#[0-9a-fA-F]{3,8}$/.test(raw)) {
-    return {
+    const token = {
       $type: 'color',
       $value: hexToDtcgColor(raw),
     };
+    seenTokens.delete(name);
+    return token;
   }
 
   if (/^(none|solid|ease-out|ease-in-out)$/.test(raw)) {
-    return {
+    const token = {
       $type: 'string',
       $value: raw,
     };
+    seenTokens.delete(name);
+    return token;
   }
 
+  seenTokens.delete(name);
   return null;
 }
 
@@ -728,7 +761,7 @@ function main() {
 
   console.log(`Exported ${tokenCount} token entries across ${Object.keys(files).length} files:`);
   for (const fileName of Object.keys(files).sort()) {
-    console.log(`  dist/figma/${fileName}`);
+    console.log(`  docs/public/assets/figma/${fileName}`);
   }
 }
 

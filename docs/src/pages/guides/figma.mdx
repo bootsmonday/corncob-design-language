@@ -2,6 +2,21 @@
 layout: ../../layouts/DocsLayout.astro
 title: 'Figma Integration Guide'
 ---
+export const base = import.meta.env.BASE_URL;
 
 ## Figma 
+
+If you want to use corncob design language token in your Figma projects, you can follow these steps to integrate them seamlessly.
+
+### Token JSON files
+
+- Light mode tokens <a href={`${base}assets/figma/corncob.light.tokens.json`}>tokens-light.json</a>
+- Dark mode tokens<a href={`${base}assets/figma/corncob.dark.tokens.json`}>tokens-dark.json</a>
+
+### Steps to Integrate
+
+1. Open your Figma project.
+2. Go to the "Variables" panel and click on the "Collections" icon.
+3. Select "Import" and choose the corncob design language token file.
+4. Once imported, you can apply the tokens to your design elements directly from the "Styles" panel.
 

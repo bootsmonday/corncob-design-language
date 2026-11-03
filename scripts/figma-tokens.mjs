@@ -16,11 +16,7 @@ const COLLECTIONS = {
 
 const MODES = ['light', 'dark'];
 const ORDERED_COLLECTION_NAMES = [COLLECTIONS.primitives, COLLECTIONS.semantic, COLLECTIONS.components];
-const LEGACY_COLLECTION_FILE_NAMES = MODES.flatMap((mode) => [
-  `corncob-primitives.${mode}.tokens.json`,
-  `corncob-semantic.${mode}.tokens.json`,
-  `corncob-components.${mode}.tokens.json`,
-]);
+const LEGACY_COLLECTION_FILE_NAMES = MODES.flatMap((mode) => [`corncob-primitives.${mode}.tokens.json`, `corncob-semantic.${mode}.tokens.json`, `corncob-components.${mode}.tokens.json`]);
 
 /** @type {Record<string, 'primitives' | 'semantic' | 'components'>} */
 const FILE_COLLECTION = {
@@ -253,9 +249,7 @@ function parseSingleShadowLayer(rawLayer, mode, registry, numericVars, colorCach
     layer = layer.slice(6).trim();
   }
 
-  const colorMatch = layer.match(
-    /(var\(\s*--[a-zA-Z0-9-]+\s*\)|rgb\(from\s+var\(\s*--[a-zA-Z0-9-]+\s*\)\s+r\s+g\s+b\s*\/\s*[0-9.]+%?\)|#[0-9a-fA-F]{3,8}|light-dark\(\s*#[0-9a-fA-F]{3,8}\s*,\s*#[0-9a-fA-F]{3,8}\s*\))$/
-  );
+  const colorMatch = layer.match(/(var\(\s*--[a-zA-Z0-9-]+\s*\)|rgb\(from\s+var\(\s*--[a-zA-Z0-9-]+\s*\)\s+r\s+g\s+b\s*\/\s*[0-9.]+%?\)|#[0-9a-fA-F]{3,8}|light-dark\(\s*#[0-9a-fA-F]{3,8}\s*,\s*#[0-9a-fA-F]{3,8}\s*\))$/);
   if (!colorMatch) {
     return null;
   }
@@ -693,17 +687,15 @@ function buildCollectionFiles(registry, allVars) {
 
       if (entry.unskippable) {
         const { collection, tokenKey } = entry;
-        const parsedToken =
-          resolveShadowToken(entry.raw, mode, registry, numericVars, colorCache) ||
-          resolveToken(name, mode, registry, numericVars, colorCache);
+        const parsedToken = resolveShadowToken(entry.raw, mode, registry, numericVars, colorCache) || resolveToken(name, mode, registry, numericVars, colorCache);
         if (parsedToken) {
           collections.get(collection)[tokenKey] = parsedToken;
           continue;
         }
 
         collections.get(collection)[tokenKey] = {
-          $type: '',
-          $value: '',
+          $type: 'string',
+          $value: entry.raw,
           $description: entry.raw,
           devNote: UNSKIPPABLE_VARIABLES.get(name),
         };
@@ -719,9 +711,7 @@ function buildCollectionFiles(registry, allVars) {
       collections.get(collection)[tokenKey] = token;
     }
 
-    files[`corncob.${mode}.tokens.json`] = Object.fromEntries(
-      ORDERED_COLLECTION_NAMES.map((collectionName) => [collectionName, sortKeys(collections.get(collectionName))])
-    );
+    files[`corncob.${mode}.tokens.json`] = Object.fromEntries(ORDERED_COLLECTION_NAMES.map((collectionName) => [collectionName, sortKeys(collections.get(collectionName))]));
   }
 
   return files;

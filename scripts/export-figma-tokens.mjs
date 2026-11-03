@@ -1,4 +1,4 @@
-import { mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, readdirSync, unlinkSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -15,6 +15,12 @@ const COLLECTIONS = {
 };
 
 const MODES = ['light', 'dark'];
+const ORDERED_COLLECTION_NAMES = [COLLECTIONS.primitives, COLLECTIONS.semantic, COLLECTIONS.components];
+const LEGACY_COLLECTION_FILE_NAMES = MODES.flatMap((mode) => [
+  `corncob-primitives.${mode}.tokens.json`,
+  `corncob-semantic.${mode}.tokens.json`,
+  `corncob-components.${mode}.tokens.json`,
+]);
 
 /** @type {Record<string, 'primitives' | 'semantic' | 'components'>} */
 const FILE_COLLECTION = {
@@ -36,23 +42,9 @@ const SEMANTIC_OVERRIDES = new Set([
   '--cc-border--color',
 ]);
 
-/** Variables skipped because Figma variables cannot represent them cleanly. */
+/** Variables skipped because they cannot be represented as token parts. */
 const SKIP_VARIABLES = new Set([
   '--cc-form--item--border',
-  '--cc-form--item--focus-ring',
-  '--cc-form--item--focus-ring--inverted',
-  '--cc-form--item--focus-ring--active',
-  '--cc-form--item--focus-ring--disabled',
-  '--cc-status--success--box-shadow',
-  '--cc-status--error--box-shadow',
-  '--cc-status--warning--box-shadow',
-  '--cc-status--info--box-shadow',
-  '--cc-shadow--drop',
-  '--cc-shadow--drop--heavy',
-  '--cc-shadow--inset',
-  '--cc-shadow--inset--heavy',
-  '--cc-shadow--text',
-  '--cc-shadow--text--reverse',
 ]);
 
 function cssVarToTokenKey(name) {
@@ -172,6 +164,160 @@ function round(value) {
 
 function tokenReference(collectionName, tokenKey) {
   return `{${collectionName}.${tokenKey}}`;
+}
+
+function parseShadowLength(raw) {
+  const pxMatch = raw.match(/^(-?[0-9.]+)px$/);
+  if (pxMatch) {
+    return { value: round(parseFloat(pxMatch[1])), label: `${round(parseFloat(pxMatch[1]))}px` };
+  }
+
+  const numberMatch = raw.match(/^(-?[0-9.]+)$/);
+  if (numberMatch) {
+    return { value: round(parseFloat(numberMatch[1])), label: `${round(parseFloat(numberMatch[1]))}` };
+  }
+
+  return null;
+}
+
+function splitTopLevelCommas(value) {
+  /** @type {string[]} */
+  const parts = [];
+  let current = '';
+  let depth = 0;
+
+  for (const char of value) {
+    if (char === '(') depth += 1;
+    if (char === ')') depth = Math.max(0, depth - 1);
+
+    if (char === ',' && depth === 0) {
+      if (current.trim()) {
+        parts.push(current.trim());
+      }
+      current = '';
+      continue;
+    }
+
+    current += char;
+  }
+
+  if (current.trim()) {
+    parts.push(current.trim());
+  }
+
+  return parts;
+}
+
+function resolveShadowColorToken(colorRaw, mode, registry, numericVars, colorCache) {
+  const colorVarRef = parseVarReference(colorRaw);
+  if (colorVarRef && registry[colorVarRef]) {
+    const target = registry[colorVarRef];
+    return {
+      $type: 'color',
+      $value: tokenReference(target.collection, target.tokenKey),
+      $description: `Linked alias pointing to the ${target.tokenKey} variable color.`,
+    };
+  }
+
+  const colorValue = resolveColor(colorRaw, mode, registry, numericVars, colorCache);
+  if (!colorValue) {
+    return null;
+  }
+
+  return {
+    $type: 'color',
+    $value: colorValue,
+    $description: `Resolved from CSS color value (${colorRaw}).`,
+  };
+}
+
+function parseSingleShadowLayer(rawLayer, mode, registry, numericVars, colorCache) {
+  let layer = rawLayer.trim();
+  if (!layer) {
+    return null;
+  }
+
+  if (layer.startsWith('inset ')) {
+    layer = layer.slice(6).trim();
+  }
+
+  const colorMatch = layer.match(
+    /(var\(\s*--[a-zA-Z0-9-]+\s*\)|rgb\(from\s+var\(\s*--[a-zA-Z0-9-]+\s*\)\s+r\s+g\s+b\s*\/\s*[0-9.]+%?\)|#[0-9a-fA-F]{3,8}|light-dark\(\s*#[0-9a-fA-F]{3,8}\s*,\s*#[0-9a-fA-F]{3,8}\s*\))$/
+  );
+  if (!colorMatch) {
+    return null;
+  }
+
+  const colorRaw = colorMatch[1];
+  const lengthsRaw = layer.slice(0, colorMatch.index).trim();
+  const lengthParts = lengthsRaw.split(/\s+/).filter(Boolean);
+  if (lengthParts.length < 3 || lengthParts.length > 4) {
+    return null;
+  }
+
+  const [xRaw, yRaw, blurRaw, spreadRaw] = lengthParts;
+  const x = parseShadowLength(xRaw);
+  const y = parseShadowLength(yRaw);
+  const blur = parseShadowLength(blurRaw);
+  const spread = spreadRaw ? parseShadowLength(spreadRaw) : { value: 0, label: '0' };
+
+  if (!x || !y || !blur || !spread) {
+    return null;
+  }
+
+  const color = resolveShadowColorToken(colorRaw, mode, registry, numericVars, colorCache);
+  if (!color) {
+    return null;
+  }
+
+  return {
+    'x-offset': {
+      $type: 'number',
+      $value: x.value,
+      $description: `CSS box-shadow X-offset (${x.label})`,
+    },
+    'y-offset': {
+      $type: 'number',
+      $value: y.value,
+      $description: `CSS box-shadow Y-offset (${y.label})`,
+    },
+    blur: {
+      $type: 'number',
+      $value: blur.value,
+      $description: `CSS box-shadow Blur radius (${blur.label})`,
+    },
+    spread: {
+      $type: 'number',
+      $value: spread.value,
+      $description: `CSS box-shadow Spread radius (${spread.label})`,
+    },
+    color,
+  };
+}
+
+function resolveShadowToken(raw, mode, registry, numericVars, colorCache) {
+  if (raw === 'none') {
+    return {
+      $type: 'string',
+      $value: 'none',
+    };
+  }
+
+  const layers = splitTopLevelCommas(raw);
+  if (layers.length === 0) {
+    return null;
+  }
+
+  const parsedLayers = layers.map((layer) => parseSingleShadowLayer(layer, mode, registry, numericVars, colorCache));
+  if (parsedLayers.some((layer) => !layer)) {
+    return null;
+  }
+
+  if (parsedLayers.length === 1) {
+    return parsedLayers[0];
+  }
+
+  return Object.fromEntries(parsedLayers.map((layer, index) => [`layer-${index + 1}`, layer]));
 }
 
 function loadTokenSources() {
@@ -315,7 +461,7 @@ function evaluateCalc(raw, resolved) {
   return typeof value === 'number' && Number.isFinite(value) ? round(value) : null;
 }
 
-function resolveColor(raw, mode, registry, numericVars, colorCache) {
+function resolveColor(raw, mode, registry, numericVars, colorCache, seenVars = new Set()) {
   const cacheKey = `${mode}:${raw}`;
   if (colorCache.has(cacheKey)) {
     return colorCache.get(cacheKey);
@@ -351,9 +497,17 @@ function resolveColor(raw, mode, registry, numericVars, colorCache) {
   }
 
   const varRef = parseVarReference(raw);
-  if (varRef) {
-    colorCache.set(cacheKey, { alias: varRef });
-    return { alias: varRef };
+  if (varRef && registry[varRef]) {
+    if (seenVars.has(varRef)) {
+      return null;
+    }
+    seenVars.add(varRef);
+    const resolved = resolveColor(registry[varRef].raw, mode, registry, numericVars, colorCache, seenVars);
+    seenVars.delete(varRef);
+    if (resolved) {
+      colorCache.set(cacheKey, resolved);
+      return resolved;
+    }
   }
 
   return null;
@@ -382,13 +536,18 @@ function resolveToken(name, mode, registry, numericVars, colorCache) {
       return null;
     }
     const baseColor = resolveColor(baseRaw, mode, registry, numericVars, colorCache);
-    if (!baseColor || baseColor.alias) {
+    if (!baseColor) {
       return null;
     }
     return {
       $type: 'color',
       $value: applyAlpha(baseColor, rgbFrom.alpha),
     };
+  }
+
+  const shadowToken = resolveShadowToken(raw, mode, registry, numericVars, colorCache);
+  if (shadowToken) {
+    return shadowToken;
   }
 
   const varRef = parseVarReference(raw);
@@ -462,6 +621,10 @@ function inferType(raw, registry, numericVars) {
     return 'duration';
   }
 
+  if (raw !== 'none' && resolveShadowToken(raw, MODES[0], registry, numericVars, new Map())) {
+    return 'shadow';
+  }
+
   if (parseDimension(raw) || /^calc\(/.test(raw)) {
     return 'dimension';
   }
@@ -480,7 +643,7 @@ function buildCollectionFiles(registry, allVars) {
 
   for (const mode of MODES) {
     /** @type {Map<string, Record<string, unknown>>} */
-    const collections = new Map();
+    const collections = new Map(ORDERED_COLLECTION_NAMES.map((collectionName) => [collectionName, {}]));
     const colorCache = new Map();
 
     for (const [name] of Object.entries(registry)) {
@@ -490,20 +653,12 @@ function buildCollectionFiles(registry, allVars) {
       }
 
       const { collection, tokenKey } = registry[name];
-      if (!collections.has(collection)) {
-        collections.set(collection, {});
-      }
-
       collections.get(collection)[tokenKey] = token;
     }
 
-    for (const [collectionName, tokens] of collections.entries()) {
-      const slug = collectionName.toLowerCase().replace(/\s+/g, '-');
-      const fileName = `${slug}.${mode}.tokens.json`;
-      files[fileName] = {
-        [collectionName]: sortKeys(tokens),
-      };
-    }
+    files[`corncob.${mode}.tokens.json`] = Object.fromEntries(
+      ORDERED_COLLECTION_NAMES.map((collectionName) => [collectionName, sortKeys(collections.get(collectionName))])
+    );
   }
 
   return files;
@@ -520,6 +675,12 @@ function main() {
   const files = buildCollectionFiles(registry, allVars);
 
   mkdirSync(outDir, { recursive: true });
+  for (const fileName of LEGACY_COLLECTION_FILE_NAMES) {
+    const legacyPath = path.join(outDir, fileName);
+    if (existsSync(legacyPath)) {
+      unlinkSync(legacyPath);
+    }
+  }
 
   for (const [fileName, content] of Object.entries(files)) {
     const outputPath = path.join(outDir, fileName);
@@ -527,8 +688,12 @@ function main() {
   }
 
   const tokenCount = Object.values(files).reduce((total, file) => {
-    const collectionName = Object.keys(file)[0];
-    return total + Object.keys(file[collectionName]).length;
+    return (
+      total +
+      ORDERED_COLLECTION_NAMES.reduce((collectionTotal, collectionName) => {
+        return collectionTotal + Object.keys(file[collectionName]).length;
+      }, 0)
+    );
   }, 0);
 
   console.log(`Exported ${tokenCount} token entries across ${Object.keys(files).length} files:`);

@@ -48,7 +48,7 @@
     "dev": "vite --host ",
     "build": "vite build && node scripts/assert-standard-build-has-no-types.mjs && npm run docs:sync-dist",
     "preview": "vite preview --host 0.0.0.0 --port 4173",
-    "docs:sync-dist": "mkdir -p docs/public/assets && rsync -a --delete --exclude='*.html' dist/ docs/public/assets/",
+    "docs:sync-dist": "mkdir -p docs/public/assets && rsync -a --delete --exclude='*.html' dist/ docs/public/assets/ && npm run tokens:figma",
     "docs:dev": "npm run docs:sync-dist && cd docs && astro dev --host",
     "docs:build": "npm run docs:sync-dist && cd docs && astro build",
     "docs:preview": "npm run docs:sync-dist && cd docs && astro preview --host --port 4322",
@@ -60,7 +60,8 @@
     "format": "prettier --write \"src/**/*.{js,css,html}\"",
     "changelog:check": "bash scripts/check-changelog-fragment.sh",
     "changelog:release": "bash scripts/release-changelog.sh",
-    "release:stage": "node scripts/stage-release-package.mjs"
+    "release:stage": "node scripts/stage-release-package.mjs",
+    "tokens:figma": "node scripts/figma-tokens.mjs"
   },
   "keywords": [
     "design-system",

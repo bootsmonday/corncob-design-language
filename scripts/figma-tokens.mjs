@@ -30,34 +30,30 @@ const FILE_COLLECTION = {
 };
 
 /** Variables routed to semantic despite living in a primitives file. */
-const SEMANTIC_OVERRIDES = new Set([
-  '--cc-body--background',
-  '--cc-body--color',
-  '--cc-border--color',
-]);
+const SEMANTIC_OVERRIDES = new Set(['--cc-body--background', '--cc-body--color', '--cc-border--color']);
 
-/** Variables skipped because Figma variables cannot represent them cleanly. */
-const SKIP_VARIABLES = new Set([
-  '--cc-form--item--border',
-  '--cc-form--item--focus-ring',
-  '--cc-form--item--focus-ring--inverted',
-  '--cc-form--item--focus-ring--active',
-  '--cc-form--item--focus-ring--disabled',
-  '--cc-status--success--box-shadow',
-  '--cc-status--error--box-shadow',
-  '--cc-status--warning--box-shadow',
-  '--cc-status--info--box-shadow',
-  '--cc-shadow--drop',
-  '--cc-shadow--drop--heavy',
-  '--cc-shadow--inset',
-  '--cc-shadow--inset--heavy',
-  '--cc-shadow--text',
-  '--cc-shadow--text--reverse',
+/** Variables that Figma cannot represent cleanly, mapped to explanatory notes. */
+const UNSKIPPABLE_VARIABLES = new Map([
+  ['--cc-form--item--border', 'Complex shorthand border property cannot be fully represented in Figma.'],
+  ['--cc-form--item--focus-ring', 'Complex multi-property focus ring cannot be represented as a single Figma variable.'],
+  ['--cc-form--item--focus-ring--inverted', 'Complex multi-property focus ring cannot be represented as a single Figma variable.'],
+  ['--cc-form--item--focus-ring--active', 'Complex multi-property focus ring cannot be represented as a single Figma variable.'],
+  ['--cc-form--item--focus-ring--disabled', 'Complex multi-property focus ring cannot be represented as a single Figma variable.'],
+  ['--cc-status--success--box-shadow', 'Complex shadow value with multiple layers cannot be represented in Figma.'],
+  ['--cc-status--error--box-shadow', 'Complex shadow value with multiple layers cannot be represented in Figma.'],
+  ['--cc-status--warning--box-shadow', 'Complex shadow value with multiple layers cannot be represented in Figma.'],
+  ['--cc-status--info--box-shadow', 'Complex shadow value with multiple layers cannot be represented in Figma.'],
+  ['--cc-shadow--drop', 'Complex shadow value with multiple layers cannot be represented in Figma.'],
+  ['--cc-shadow--drop--heavy', 'Complex shadow value with multiple layers cannot be represented in Figma.'],
+  ['--cc-shadow--inset', 'Complex shadow value with multiple layers cannot be represented in Figma.'],
+  ['--cc-shadow--inset--heavy', 'Complex shadow value with multiple layers cannot be represented in Figma.'],
+  ['--cc-shadow--text', 'Complex shadow value with multiple layers cannot be represented in Figma.'],
+  ['--cc-shadow--text--reverse', 'Complex shadow value with multiple layers cannot be represented in Figma.'],
 ]);
 
 function cssVarToTokenKey(name) {
   if (name.startsWith('--cc-')) {
-    return name.slice(5).replace(/--/g, '-');
+    return name.slice(5);
   }
   if (name.startsWith('--')) {
     return name.slice(2);
@@ -119,9 +115,7 @@ function parseVarReference(value) {
 }
 
 function parseRgbFrom(value) {
-  const match = value.match(
-    /^rgb\(from\s+var\(\s*(--[a-zA-Z0-9-]+)\s*\)\s+r\s+g\s+b\s*\/\s*([0-9.]+%?)\)$/
-  );
+  const match = value.match(/^rgb\(from\s+var\(\s*(--[a-zA-Z0-9-]+)\s*\)\s+r\s+g\s+b\s*\/\s*([0-9.]+%?)\)$/);
   if (!match) return null;
   return { ref: match[1], alpha: parseAlpha(match[2]) };
 }
@@ -141,7 +135,7 @@ function applyAlpha(color, alpha) {
   };
 }
 
-function parseDimension(value) {
+function parseDimension(value, entry) {
   const pxMatch = value.match(/^(-?[0-9.]+)px$/);
   if (pxMatch) {
     return { value: round(parseFloat(pxMatch[1])), unit: 'px' };
@@ -153,7 +147,11 @@ function parseDimension(value) {
   }
 
   const percentMatch = value.match(/^(-?[0-9.]+)%$/);
+
   if (percentMatch) {
+    if (parseFloat(percentMatch[1]) === 50) {
+      return { value: 9999, unit: 'px', description: 'Actual css variable is 50%, Figma workaround' };
+    }
     return { value: parseFloat(percentMatch[1]), unit: '%' };
   }
 
@@ -218,16 +216,12 @@ function walkComponentTokenFiles(dir) {
 }
 
 function buildRegistry(sources) {
-  /** @type {Record<string, { collection: string, raw: string, tokenKey: string }>} */
+  /** @type {Record<string, { collection: string, raw: string, tokenKey: string, unskippable?: boolean }>} */
   const registry = {};
 
   for (const source of sources) {
     for (const [name, raw] of Object.entries(source.vars)) {
       if (!name.startsWith('--cc-') && !name.startsWith('--radius-') && !name.startsWith('--transition-')) {
-        continue;
-      }
-
-      if (SKIP_VARIABLES.has(name)) {
         continue;
       }
 
@@ -240,6 +234,7 @@ function buildRegistry(sources) {
         collection: COLLECTIONS[collection],
         raw,
         tokenKey: cssVarToTokenKey(name),
+        unskippable: UNSKIPPABLE_VARIABLES.has(name),
       };
     }
   }
@@ -263,7 +258,7 @@ function resolveNumericVars(allVars) {
         continue;
       }
 
-      const dimension = parseDimension(raw);
+      const dimension = parseDimension(raw, name);
       if (dimension && dimension.unit === 'px') {
         resolved[name] = dimension.value;
         changed = true;
@@ -401,18 +396,18 @@ function resolveToken(name, mode, registry, numericVars, colorCache) {
     };
   }
 
-  const dimension = parseDimension(raw);
-  if (dimension) {
-    return {
-      $type: 'dimension',
-      $value: dimension,
-    };
-  }
-
   if (numericVars[name] !== undefined) {
     return {
       $type: 'dimension',
       $value: { value: numericVars[name], unit: 'px' },
+    };
+  }
+
+  const dimension = parseDimension(raw, name);
+  if (dimension) {
+    return {
+      $type: 'dimension',
+      $value: dimension,
     };
   }
 
@@ -484,12 +479,28 @@ function buildCollectionFiles(registry, allVars) {
     const colorCache = new Map();
 
     for (const [name] of Object.entries(registry)) {
+      const entry = registry[name];
+      
+      if (entry.unskippable) {
+        const { collection, tokenKey } = entry;
+        if (!collections.has(collection)) {
+          collections.set(collection, {});
+        }
+
+        collections.get(collection)[tokenKey] = {
+          $type: '',
+          $value: '',
+          $description: UNSKIPPABLE_VARIABLES.get(name),
+        };
+        continue;
+      }
+
       const token = resolveToken(name, mode, registry, numericVars, colorCache);
       if (!token) {
         continue;
       }
 
-      const { collection, tokenKey } = registry[name];
+      const { collection, tokenKey } = entry;
       if (!collections.has(collection)) {
         collections.set(collection, {});
       }

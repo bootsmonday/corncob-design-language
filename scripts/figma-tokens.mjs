@@ -461,7 +461,7 @@ function evaluateCalc(raw, resolved) {
     return null;
   }
 
-  if (!/^[0-9+\-*/().\sNaN]+$/.test(expression)) {
+  if (!/^[0-9+\-*/().\sNa]+$/.test(expression)) {
     return null;
   }
 

@@ -10,8 +10,8 @@
   --cc-status--error--border-color: var(--cc-red-40);
   --cc-status--warning--background: var(--cc-yellow-10);
   --cc-status--warning--box-shadow: inset 10px 0 0 -2px var(--cc-yellow-40);
-  --cc-status--warning--color: var(--cc-yellow-60);
-  --cc-status--warning--border-color: var(--cc-yellow-40);
+  --cc-status--warning--color: var(--cc-orange-60);
+  --cc-status--warning--border-color: var(--cc-orange-40);
   --cc-status--info--background: var(--cc-blue-10);
   --cc-status--info--box-shadow: inset 10px 0 0 -2px var(--cc-blue-40);
   --cc-status--info--color: var(--cc-blue-60);

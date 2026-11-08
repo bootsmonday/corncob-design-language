@@ -9,6 +9,13 @@ the "Changelog Release" GitHub Actions workflow.
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-11-08
+
+### Changed
+
+- colors: Updated the color palette for the design system.
+
+
 ## [0.3.2] - 2026-10-23
 
 ### Added

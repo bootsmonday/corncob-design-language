@@ -71,6 +71,9 @@ jobs:
       - name: Test
         run: npm test --if-present
 
+      - name: Smoke test base package tarball
+        run: npm test -- --runInBand testing/publish-contents.test.js --testNamePattern='plain package|packed core package'
+
       - name: Show current and next version
         id: next_version
         env:
@@ -222,6 +225,9 @@ jobs:
 
       - name: Test
         run: npm test --if-present
+
+      - name: Smoke test base package tarball
+        run: npm test -- --runInBand testing/publish-contents.test.js --testNamePattern='plain package|packed core package'
 
       - name: Configure git user
         run: |

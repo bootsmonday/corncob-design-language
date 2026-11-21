@@ -12,6 +12,7 @@ module.exports = {
   },
   setupFilesAfterEnv: ['<rootDir>/jest.setup.cjs'],
   moduleNameMapper: {
+    '^@bootsmonday/corncob-design-language$': '<rootDir>/../../src/index.js',
     '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
   },
 };

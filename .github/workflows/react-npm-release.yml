@@ -66,7 +66,7 @@ jobs:
         run: npm ci
 
       - name: Build core package
-        run: npm run build
+        run: npm exec -- vite build && node scripts/assert-standard-build-has-no-types.mjs
 
       - name: Update core peer dependency to latest npmjs release
         working-directory: packages/react

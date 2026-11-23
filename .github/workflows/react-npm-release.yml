@@ -65,6 +65,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Build core package
+        run: npm run build
+
       - name: Update core peer dependency to latest npmjs release
         working-directory: packages/react
         run: |
@@ -227,6 +230,9 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Build core package
+        run: npm run build
 
       - name: Update core peer dependency to latest npmjs release
         working-directory: packages/react

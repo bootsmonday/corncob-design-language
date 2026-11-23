@@ -80,6 +80,9 @@ jobs:
       - name: Stage release package
         run: npm run release:stage
 
+      - name: Smoke test base package tarball
+        run: npm test -- --runInBand testing/publish-contents.test.js --testNamePattern='plain package|packed core package'
+
       - name: Publish to GitHub Packages
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

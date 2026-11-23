@@ -8,6 +8,13 @@ Entries are generated from markdown fragments in `.changelog/` using the React r
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-11-23
+
+### Fixed
+
+- packaging: Fixed React package custom-element imports so the published package resolves its Corncob core dependency outside the monorepo.
+
+
 ## [0.2.0] - 2026-10-28
 
 ### Added

@@ -1,6 +1,6 @@
-const template = document.createElement('template');
+const CornHTMLElement = globalThis.HTMLElement ?? class {};
 
-export class CornCopyButton extends HTMLElement {
+export class CornCopyButton extends CornHTMLElement {
   /**
    * Observed attributes for the copy button.
    * When any of these attributes change, the component will update its internal state and re-cache the target element and messages.
@@ -103,4 +103,6 @@ export class CornCopyButton extends HTMLElement {
     this._removeEventListeners();
   }
 }
-customElements.define('corn-copy-button', CornCopyButton);
+if (typeof customElements !== 'undefined' && !customElements.get('corn-copy-button')) {
+  customElements.define('corn-copy-button', CornCopyButton);
+}

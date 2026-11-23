@@ -23,4 +23,6 @@ export class CornSlider extends CornHTMLElement {
    */
   disconnectedCallback() {}
 }
-customElements.define('corn-slider', CornSlider);
+if (typeof customElements !== 'undefined' && !customElements.get('corn-slider')) {
+  customElements.define('corn-slider', CornSlider);
+}

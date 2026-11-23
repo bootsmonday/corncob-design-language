@@ -114,7 +114,7 @@ jobs:
 
       - name: Apply preview version (no commit, no tag)
         working-directory: packages/react
-        run: npm version "${{ steps.next_version.outputs.version }}" --no-git-tag-version --ignore-scripts
+        run: npm version "${{ steps.next_version.outputs.version }}" --no-git-tag-version --legacy-peer-deps
 
       - name: Preview tarball contents
         working-directory: packages/react
@@ -260,7 +260,7 @@ jobs:
         id: bump
         working-directory: packages/react
         run: |
-          npm version "${{ inputs.release_type }}" --tag-version-prefix="react-v" -m "chore(release-react): %s" --ignore-scripts
+          npm version "${{ inputs.release_type }}" --tag-version-prefix="react-v" -m "chore(release-react): %s" --legacy-peer-deps
           VERSION=$(node -p "require('./package.json').version")
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
 

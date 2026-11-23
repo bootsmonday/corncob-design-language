@@ -1,6 +1,6 @@
 {
   "name": "@bootsmonday/corncob-design-language-react",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "React wrappers for Corncob EDL",
   "type": "module",
   "main": "src/index.js",
@@ -45,7 +45,7 @@
   },
   "homepage": "https://github.com/bootsmonday/corncob-design-language",
   "peerDependencies": {
-    "@bootsmonday/corncob-design-language": "^0.3.5",
+    "@bootsmonday/corncob-design-language": "^0.4.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },

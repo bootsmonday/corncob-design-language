@@ -9,6 +9,13 @@ the "Changelog Release" GitHub Actions workflow.
 
 ## [Unreleased]
 
+## [0.4.1] - 2026-11-23
+
+### Changed
+
+- build: Added isolated tarball smoke tests to validate the published package contents and imports before core package releases.
+
+
 ## [0.4.0] - 2026-11-08
 
 ### Changed
